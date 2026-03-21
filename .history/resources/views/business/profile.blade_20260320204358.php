@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Business Dashboard</title>
+
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            background: white;
+            border-right: 1px solid #eee;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #c9a227;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            margin-top: 40px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #555;
+            transition: 0.25s;
+        }
+
+        .menu a:hover {
+            background: #fef9e7;
+            color: #c9a227;
+        }
+
+        .logout-btn {
+            background: #c9a227;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #a8831f;
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            padding: 40px;
+            background: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eee;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-content h2 {
+            margin: 0 0 10px;
+            color: #1f2937;
+        }
+
+        .card-content p {
+            margin: 5px 0;
+            color: #6b7280;
+        }
+
+        .info-card {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+            color: #c9a227;
+        }
+
+        .info-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .info-card a {
+            color: #c9a227;
+            text-decoration: none;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div>
+                <h2>BUSINESS</h2>
+
+                <div class="menu">
+                    <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
+                    <a href="#"><i class="fas fa-file-alt"></i> Reportes</a>
+                </div>
+            </div>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <button class="logout-btn"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+            </button>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+
+            <div class="cards-container">
+
+                <!-- Tarjeta de imagen y nombre -->
+                <div class="card">
+                    <img src="/images/negocio-ejemplo.jpg" alt="Imagen del Negocio">
+                    <div class="card-content">
+                        <h2>Panadería La Delicia</h2>
+                        <p><strong>Propietario:</strong> Juan Pérez</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de slogan -->
+                <div class="card info-card">
+                    <h3>Slogan</h3>
+                    <p>"El sabor que te hace sonreír"</p>
+                </div>
+
+                <!-- Tarjeta de contacto -->
+                <div class="card info-card">
+                    <h3>Contacto</h3>
+                    <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad de México</p>
+                    <p><strong>Teléfono:</strong> +52 55 1234 5678</p>
+                    <p><strong>Ubicación:</strong> <a href="https://goo.gl/maps/xyz123" target="_blank">Ver en Google Maps</a></p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
