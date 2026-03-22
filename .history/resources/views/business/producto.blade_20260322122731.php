@@ -148,18 +148,6 @@
         .cards-row .card {
             flex: 1 1 300px;
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
     </style>
 </head>
 
@@ -192,29 +180,6 @@
         <!-- MAIN -->
         <div class="main">
 
-            @if (session('success'))
-                <div id="toast"
-                    style="
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #16a34a;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 500;
-        z-index: 999;
-        animation: slideIn 0.5s ease;
-    ">
-                    <i class="fas fa-check-circle" style="font-size: 20px;"></i>
-                    {{ session('success') }}
-                </div>
-            @endif
-
             <div class="cards-row"
                 style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch;">
 
@@ -226,20 +191,14 @@
                     </h3>
                     <p style="color: #555; margin-bottom: 15px;">Crea nuevas categorías para tus productos y organiza tu
                         negocio.</p>
-                    <form method="POST" action="/business/category"
-                        style="display: flex; flex-direction: column; gap: 15px;">
-
-                        @csrf
-
+                    <form id="category-form" style="display: flex; flex-direction: column; gap: 15px;">
                         <input type="text" name="category" placeholder="Nombre de la categoría"
                             style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 16px;"
                             required>
-
                         <button type="submit"
                             style="padding: 12px; border-radius: 8px; border: none; background: #c9a227; color: white; font-weight: 600; cursor: pointer; transition: 0.25s;">
                             Crear Categoría
                         </button>
-
                     </form>
                 </div>
 
@@ -250,11 +209,7 @@
                     </h3>
                     <p style="color: #555; margin-bottom: 15px;">Agrega nuevos productos con todos los detalles para
                         mostrarlos en tu tienda.</p>
-                    <form method="POST" action="/business/product"
-                        style="display: flex; flex-direction: column; gap: 15px;">
-
-                        @csrf
-
+                    <form id="product-form" style="display: flex; flex-direction: column; gap: 15px;">
                         <input type="text" name="name" placeholder="Nombre del producto" required
                             style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 16px;">
 
@@ -263,13 +218,10 @@
 
                         <select name="category" required
                             style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 16px;">
-
                             <option value="" disabled selected>Seleccionar categoría</option>
-
-                            @foreach (auth()->user()->categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-
+                            <option value="panaderia">Panadería</option>
+                            <option value="bebidas">Bebidas</option>
+                            <option value="postres">Postres</option>
                         </select>
 
                         <textarea name="description" placeholder="Descripción del producto" rows="4" required
@@ -279,7 +231,6 @@
                             style="padding: 12px; border-radius: 8px; border: none; background: #c9a227; color: white; font-weight: 600; cursor: pointer; transition: 0.25s;">
                             Agregar Producto
                         </button>
-
                     </form>
                 </div>
 
@@ -288,18 +239,6 @@
         </div>
 
     </div>
-
-    <script>
-        setTimeout(() => {
-            const toast = document.getElementById('toast');
-            if (toast) {
-                toast.style.transition = "0.5s";
-                toast.style.opacity = "0";
-                toast.style.transform = "translateX(50px)";
-                setTimeout(() => toast.remove(), 500);
-            }
-        }, 3000);
-    </script>
 
 </body>
 

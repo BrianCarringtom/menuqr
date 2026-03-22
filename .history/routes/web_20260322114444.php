@@ -151,14 +151,9 @@ Route::post('/business/product', function (Request $request) {
 
     return back()->with('success', 'Producto agregado');
 })->middleware('auth');
-
 // 🔥 PERFIL PÚBLICO POR SLUG (SIEMPRE AL FINAL)
 Route::get('/{slug}', function ($slug) {
-
-    $user = User::where('slug', $slug)
-        ->with('categories.products')
-        ->firstOrFail();
-
+    $user = User::where('slug', $slug)->firstOrFail();
     return view('business.show', compact('user'));
 })->where('slug', '^(?!admin|business|login|register|dashboard|api|logout).*$');
 

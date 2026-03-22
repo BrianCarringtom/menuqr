@@ -148,18 +148,6 @@
         .cards-row .card {
             flex: 1 1 300px;
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
     </style>
 </head>
 
@@ -191,29 +179,6 @@
 
         <!-- MAIN -->
         <div class="main">
-
-            @if (session('success'))
-                <div id="toast"
-                    style="
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #16a34a;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 500;
-        z-index: 999;
-        animation: slideIn 0.5s ease;
-    ">
-                    <i class="fas fa-check-circle" style="font-size: 20px;"></i>
-                    {{ session('success') }}
-                </div>
-            @endif
 
             <div class="cards-row"
                 style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch;">
@@ -288,18 +253,6 @@
         </div>
 
     </div>
-
-    <script>
-        setTimeout(() => {
-            const toast = document.getElementById('toast');
-            if (toast) {
-                toast.style.transition = "0.5s";
-                toast.style.opacity = "0";
-                toast.style.transform = "translateX(50px)";
-                setTimeout(() => toast.remove(), 500);
-            }
-        }, 3000);
-    </script>
 
 </body>
 

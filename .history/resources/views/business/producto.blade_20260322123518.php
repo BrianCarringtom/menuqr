@@ -148,18 +148,6 @@
         .cards-row .card {
             flex: 1 1 300px;
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
     </style>
 </head>
 
@@ -288,18 +276,6 @@
         </div>
 
     </div>
-
-    <script>
-        setTimeout(() => {
-            const toast = document.getElementById('toast');
-            if (toast) {
-                toast.style.transition = "0.5s";
-                toast.style.opacity = "0";
-                toast.style.transform = "translateX(50px)";
-                setTimeout(() => toast.remove(), 500);
-            }
-        }, 3000);
-    </script>
 
 </body>
 

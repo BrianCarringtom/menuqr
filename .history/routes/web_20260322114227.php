@@ -110,55 +110,30 @@ Route::get('/business/producto', function () {
 
 // GUARDAR CATEGORIA
 Route::post('/business/category', function (Request $request) {
-
-    if (!Auth::check()) {
-        abort(403);
-    }
-
-    $request->validate([
-        'category' => 'required|string|max:255'
-    ]);
-
     Category::create([
         'name' => $request->category,
-        'user_id' => Auth::id() // 🔥 FIX AQUÍ
+        'user_id' => auth()->id()
     ]);
 
-    return back()->with('success', 'Categoría creada');
+    return back();
 })->middleware('auth');
 
 // GUARDAR PRODUCTO
 Route::post('/business/product', function (Request $request) {
-
-    if (!Auth::check()) {
-        abort(403);
-    }
-
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'description' => 'required|string',
-        'category' => 'required|exists:categories,id'
-    ]);
-
     Product::create([
         'name' => $request->name,
         'price' => $request->price,
         'description' => $request->description,
         'category_id' => $request->category,
-        'user_id' => Auth::id() // 🔥 FIX AQUÍ
+        'user_id' => auth()->id()
     ]);
 
-    return back()->with('success', 'Producto agregado');
+    return back();
 })->middleware('auth');
 
 // 🔥 PERFIL PÚBLICO POR SLUG (SIEMPRE AL FINAL)
 Route::get('/{slug}', function ($slug) {
-
-    $user = User::where('slug', $slug)
-        ->with('categories.products')
-        ->firstOrFail();
-
+    $user = User::where('slug', $slug)->firstOrFail();
     return view('business.show', compact('user'));
 })->where('slug', '^(?!admin|business|login|register|dashboard|api|logout).*$');
 

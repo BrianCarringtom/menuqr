@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Category;
-use App\Models\Product;
 
 // Página pública
 Route::get('/', function () {
@@ -108,57 +106,9 @@ Route::get('/business/producto', function () {
     return view('business.producto');
 })->middleware('auth');
 
-// GUARDAR CATEGORIA
-Route::post('/business/category', function (Request $request) {
-
-    if (!Auth::check()) {
-        abort(403);
-    }
-
-    $request->validate([
-        'category' => 'required|string|max:255'
-    ]);
-
-    Category::create([
-        'name' => $request->category,
-        'user_id' => Auth::id() // 🔥 FIX AQUÍ
-    ]);
-
-    return back()->with('success', 'Categoría creada');
-})->middleware('auth');
-
-// GUARDAR PRODUCTO
-Route::post('/business/product', function (Request $request) {
-
-    if (!Auth::check()) {
-        abort(403);
-    }
-
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'description' => 'required|string',
-        'category' => 'required|exists:categories,id'
-    ]);
-
-    Product::create([
-        'name' => $request->name,
-        'price' => $request->price,
-        'description' => $request->description,
-        'category_id' => $request->category,
-        'user_id' => Auth::id() // 🔥 FIX AQUÍ
-    ]);
-
-    return back()->with('success', 'Producto agregado');
-})->middleware('auth');
-
 // 🔥 PERFIL PÚBLICO POR SLUG (SIEMPRE AL FINAL)
 Route::get('/{slug}', function ($slug) {
-
-    $user = User::where('slug', $slug)
-        ->with('categories.products')
-        ->firstOrFail();
-
+    $user = User::where('slug', $slug)->firstOrFail();
     return view('business.show', compact('user'));
 })->where('slug', '^(?!admin|business|login|register|dashboard|api|logout).*$');
 

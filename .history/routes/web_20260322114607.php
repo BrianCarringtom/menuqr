@@ -151,7 +151,6 @@ Route::post('/business/product', function (Request $request) {
 
     return back()->with('success', 'Producto agregado');
 })->middleware('auth');
-
 // 🔥 PERFIL PÚBLICO POR SLUG (SIEMPRE AL FINAL)
 Route::get('/{slug}', function ($slug) {
 
