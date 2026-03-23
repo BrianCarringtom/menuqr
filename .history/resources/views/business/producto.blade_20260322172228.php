@@ -284,7 +284,6 @@
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
                     <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
                     <a href="/business/producto"><i class="fas fa-file-alt"></i> Producto-Categoria</a>
-                    <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestion de Producto</a>
                 </div>
             </div>
 
@@ -348,6 +347,23 @@
                             </button>
                         </form>
                     </div>
+
+                    @if (auth()->user()->categories->count())
+                        <div style="margin-top:20px;">
+                            <h4 style="font-size:15px; color:#6b7280; margin-bottom:10px;">
+                                Categorías creadas:
+                            </h4>
+
+                            <div style="display:flex; flex-direction:column; gap:8px; max-height:150px; overflow:auto;">
+                                @foreach (auth()->user()->categories as $cat)
+                                    <div
+                                        style="padding:10px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:14px;">
+                                        {{ $cat->name }}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
                 <!-- PRODUCTO -->
@@ -382,6 +398,8 @@
                             </button>
                         </form>
                     </div>
+
+                    
                 </div>
 
             </div>

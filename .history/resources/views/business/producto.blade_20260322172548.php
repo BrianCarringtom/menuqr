@@ -90,7 +90,7 @@
             flex-direction: column;
             gap: 18px;
             height: 100vh;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         /* HEADER */
@@ -268,6 +268,46 @@
                 transform: scale(0.9) translateY(20px);
             }
         }
+
+        /* TABLAS */
+        .table-box {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .table-box h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: #111827;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f9fafb;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #fef9e7;
+        }
     </style>
 </head>
 
@@ -284,7 +324,6 @@
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
                     <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
                     <a href="/business/producto"><i class="fas fa-file-alt"></i> Producto-Categoria</a>
-                    <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestion de Producto</a>
                 </div>
             </div>
 

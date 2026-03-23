@@ -284,7 +284,6 @@
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
                     <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
                     <a href="/business/producto"><i class="fas fa-file-alt"></i> Producto-Categoria</a>
-                    <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestion de Producto</a>
                 </div>
             </div>
 
