@@ -56,8 +56,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit"
-                                style="background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
-                                onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">
+                                style="background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;">
                                 Eliminar
                             </button>
                         </form>

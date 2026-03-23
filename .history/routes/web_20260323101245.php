@@ -104,7 +104,7 @@ Route::put('/admin/users/{id}', function (Request $request, $id) {
         'role' => $request->role,
     ]);
 
-    return redirect('/admin/users')->with('success', 'Usuario actualizado correctamente');
+    return redirect('/admin')->with('success', 'Usuario actualizado correctamente');
 })->middleware('auth')->name('users.update');
 
 

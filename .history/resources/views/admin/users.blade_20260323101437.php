@@ -1,6 +1,49 @@
 @extends('admin.layout', ['page' => 'users'])
 
 @section('content')
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
     <h1>Panel Administrador</h1>
 
     @if (session('success'))
@@ -43,10 +86,8 @@
                     <td style="display:flex; gap:8px; align-items:center;">
 
                         <!-- EDITAR -->
-                        <button
-                            onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')"
-                            style="background:#3b82f6; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
-                            onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                        <button class="btn btn-edit"
+                            onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')">
                             Editar
                         </button>
 
@@ -55,9 +96,7 @@
                             onsubmit="return confirm('¿Eliminar usuario?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"
-                                style="background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
-                                onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">
+                            <button type="submit" class="btn btn-delete">
                                 Eliminar
                             </button>
                         </form>

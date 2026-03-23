@@ -43,10 +43,8 @@
                     <td style="display:flex; gap:8px; align-items:center;">
 
                         <!-- EDITAR -->
-                        <button
-                            onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')"
-                            style="background:#3b82f6; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
-                            onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                        <button class="btn btn-edit"
+                            onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')">
                             Editar
                         </button>
 
@@ -56,8 +54,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit"
-                                style="background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
-                                onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">
+                                style="background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;">
                                 Eliminar
                             </button>
                         </form>
