@@ -170,7 +170,7 @@ Route::put('/business/category/{id}', function (Request $request, $id) {
         'name' => $request->name
     ]);
 
-    return redirect('/business/gestion')->with('success', 'Categoría actualizada');
+    return redirect('/business/producto')->with('success', 'Categoría actualizada');
 })->middleware('auth')->name('categories.update');
 
 // GUARDAR PRODUCTO
@@ -240,7 +240,7 @@ Route::put('/business/product/{id}', function (Request $request, $id) {
         'category_id' => $request->category
     ]);
 
-    return redirect('/business/gestion')->with('success', 'Producto actualizado');
+    return redirect('/business/producto')->with('success', 'Producto actualizado');
 })->middleware('auth')->name('products.update');
 
 // 🔥 PERFIL PÚBLICO POR SLUG (SIEMPRE AL FINAL)

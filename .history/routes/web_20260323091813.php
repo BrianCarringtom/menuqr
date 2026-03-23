@@ -170,7 +170,7 @@ Route::put('/business/category/{id}', function (Request $request, $id) {
         'name' => $request->name
     ]);
 
-    return redirect('/business/gestion')->with('success', 'Categoría actualizada');
+    return redirect('/business/producto')->with('success', 'Categoría actualizada');
 })->middleware('auth')->name('categories.update');
 
 // GUARDAR PRODUCTO
@@ -197,51 +197,6 @@ Route::post('/business/product', function (Request $request) {
 
     return back()->with('success', 'Producto agregado');
 })->middleware('auth');
-
-Route::delete('/business/product/{id}', function ($id) {
-
-    $product = Product::where('id', $id)
-        ->where('user_id', Auth::id())
-        ->firstOrFail();
-
-    $product->delete();
-
-    return back()->with('success', 'Producto eliminado');
-})->middleware('auth')->name('products.destroy');
-
-Route::get('/business/product/edit/{id}', function ($id) {
-
-    $product = Product::where('id', $id)
-        ->where('user_id', Auth::id())
-        ->firstOrFail();
-
-    $categories = Category::where('user_id', Auth::id())->get();
-
-    return view('edit-product', compact('product', 'categories'));
-})->middleware('auth')->name('products.edit');
-
-Route::put('/business/product/{id}', function (Request $request, $id) {
-
-    $request->validate([
-        'name' => 'required',
-        'price' => 'required|numeric',
-        'description' => 'required',
-        'category' => 'required|exists:categories,id'
-    ]);
-
-    $product = Product::where('id', $id)
-        ->where('user_id', Auth::id())
-        ->firstOrFail();
-
-    $product->update([
-        'name' => $request->name,
-        'price' => $request->price,
-        'description' => $request->description,
-        'category_id' => $request->category
-    ]);
-
-    return redirect('/business/gestion')->with('success', 'Producto actualizado');
-})->middleware('auth')->name('products.update');
 
 // 🔥 PERFIL PÚBLICO POR SLUG (SIEMPRE AL FINAL)
 Route::get('/{slug}', function ($slug) {

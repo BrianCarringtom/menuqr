@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <title>Business Dashboard</title>
 
-    <!-- Fuentes e iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        /* RESET */
         * {
             box-sizing: border-box;
         }
@@ -24,7 +22,6 @@
             color: #1f2937;
         }
 
-        /* LAYOUT */
         .container {
             display: flex;
             height: 100vh;
@@ -74,7 +71,6 @@
             border-radius: 10px;
             color: white;
             font-weight: 600;
-            cursor: pointer;
         }
 
         .logout-btn:hover {
@@ -118,6 +114,7 @@
             overflow: hidden;
         }
 
+        /* HEADER CARD */
         .card-header {
             padding: 14px;
             font-weight: 600;
@@ -125,12 +122,14 @@
             background: #fafafa;
         }
 
+        /* 🔥 SCROLL FIJO (CLAVE) */
         .card-body {
             height: 400px;
+            /* 👈 aquí se controla (8 filas aprox) */
             overflow-y: auto;
         }
 
-        /* TABLAS */
+        /* TABLA */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -178,13 +177,14 @@
             color: white;
         }
 
-        /* EMPTY STATE */
+        /* EMPTY */
         .empty {
             padding: 40px;
             text-align: center;
             color: #9ca3af;
         }
     </style>
+
 </head>
 
 <body>
@@ -192,19 +192,19 @@
     <div class="container">
 
         <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <div class="sidebar">
             <div>
                 <h2>BUSINESS</h2>
 
-                <nav class="menu">
+                <div class="menu">
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
                     <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
                     <a href="/business/producto"><i class="fas fa-file-alt"></i> Producto-Categoria</a>
                     <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestion de Producto</a>
-                </nav>
+                </div>
             </div>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
 
@@ -212,30 +212,33 @@
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i> Cerrar sesión
             </button>
-        </aside>
+        </div>
 
         <!-- MAIN -->
-        <main class="main">
+        <div class="main">
 
-            <!-- HEADER -->
             <div class="header">
                 <div>
                     <h1>Productos</h1>
                     <p>Gestión de catálogo</p>
                 </div>
+
                 <div>
                     <i class="fas fa-box"></i> Catálogo
                 </div>
             </div>
 
-            <!-- GRID -->
             <div class="grid">
 
                 <!-- CATEGORÍAS -->
                 <div class="card">
-                    <div class="card-header">Categorías</div>
+
+                    <div class="card-header">
+                        Categorías
+                    </div>
 
                     <div class="card-body">
+
                         @if (count(auth()->user()->categories) > 0)
                             <table>
                                 <thead>
@@ -273,6 +276,7 @@
                         @else
                             <div class="empty">No hay categorías</div>
                         @endif
+
                     </div>
                 </div>
 
@@ -281,6 +285,7 @@
                     <div class="card-header">Productos</div>
 
                     <div class="card-body">
+
                         @if (count(auth()->user()->products) > 0)
                             <table>
                                 <thead>
@@ -304,12 +309,12 @@
 
                                                 <button class="btn btn-edit"
                                                     onclick="openProductModal(
-                                                        {{ $product->id }},
-                                                        '{{ $product->name }}',
-                                                        {{ $product->price }},
-                                                        '{{ $product->description }}',
-                                                        {{ $product->category_id ?? 'null' }}
-                                                    )">
+            {{ $product->id }},
+            '{{ $product->name }}',
+            {{ $product->price }},
+            '{{ $product->description }}',
+            {{ $product->category_id ?? 'null' }}
+        )">
                                                     Editar
                                                 </button>
 
@@ -328,14 +333,16 @@
                         @else
                             <div class="empty">No hay productos</div>
                         @endif
+
                     </div>
                 </div>
 
             </div>
-        </main>
+
+        </div>
+
     </div>
 
-    <!-- MODAL -->
     <div id="editModal"
         style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); justify-content:center; align-items:center; z-index:999;">
 
@@ -382,9 +389,9 @@
                 </div>
             </form>
         </div>
+
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         function openCategoryModal(id, name) {
             document.getElementById('editModal').style.display = 'flex';
@@ -394,6 +401,7 @@
 
             document.getElementById('editName').value = name;
 
+            // ocultar campos extra
             document.getElementById('priceField').style.display = 'none';
             document.getElementById('descField').style.display = 'none';
             document.getElementById('categoryField').style.display = 'none';
@@ -410,6 +418,7 @@
             document.getElementById('editDescription').value = description;
             document.getElementById('editCategory').value = categoryId;
 
+            // mostrar campos
             document.getElementById('priceField').style.display = 'block';
             document.getElementById('descField').style.display = 'block';
             document.getElementById('categoryField').style.display = 'block';

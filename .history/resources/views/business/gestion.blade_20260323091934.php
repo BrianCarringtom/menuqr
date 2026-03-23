@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <title>Business Dashboard</title>
 
-    <!-- Fuentes e iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        /* RESET */
         * {
             box-sizing: border-box;
         }
@@ -24,7 +22,6 @@
             color: #1f2937;
         }
 
-        /* LAYOUT */
         .container {
             display: flex;
             height: 100vh;
@@ -74,7 +71,6 @@
             border-radius: 10px;
             color: white;
             font-weight: 600;
-            cursor: pointer;
         }
 
         .logout-btn:hover {
@@ -118,6 +114,7 @@
             overflow: hidden;
         }
 
+        /* HEADER CARD */
         .card-header {
             padding: 14px;
             font-weight: 600;
@@ -125,12 +122,14 @@
             background: #fafafa;
         }
 
+        /* 🔥 SCROLL FIJO (CLAVE) */
         .card-body {
             height: 400px;
+            /* 👈 aquí se controla (8 filas aprox) */
             overflow-y: auto;
         }
 
-        /* TABLAS */
+        /* TABLA */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -178,13 +177,14 @@
             color: white;
         }
 
-        /* EMPTY STATE */
+        /* EMPTY */
         .empty {
             padding: 40px;
             text-align: center;
             color: #9ca3af;
         }
     </style>
+
 </head>
 
 <body>
@@ -192,19 +192,19 @@
     <div class="container">
 
         <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <div class="sidebar">
             <div>
                 <h2>BUSINESS</h2>
 
-                <nav class="menu">
+                <div class="menu">
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
                     <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
                     <a href="/business/producto"><i class="fas fa-file-alt"></i> Producto-Categoria</a>
                     <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestion de Producto</a>
-                </nav>
+                </div>
             </div>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
 
@@ -212,30 +212,33 @@
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i> Cerrar sesión
             </button>
-        </aside>
+        </div>
 
         <!-- MAIN -->
-        <main class="main">
+        <div class="main">
 
-            <!-- HEADER -->
             <div class="header">
                 <div>
                     <h1>Productos</h1>
                     <p>Gestión de catálogo</p>
                 </div>
+
                 <div>
                     <i class="fas fa-box"></i> Catálogo
                 </div>
             </div>
 
-            <!-- GRID -->
             <div class="grid">
 
                 <!-- CATEGORÍAS -->
                 <div class="card">
-                    <div class="card-header">Categorías</div>
+
+                    <div class="card-header">
+                        Categorías
+                    </div>
 
                     <div class="card-body">
+
                         @if (count(auth()->user()->categories) > 0)
                             <table>
                                 <thead>
@@ -253,10 +256,10 @@
                                             <td>{{ $category->name }}</td>
                                             <td style="display:flex; gap:8px; align-items:center;">
 
-                                                <button class="btn btn-edit"
-                                                    onclick="openCategoryModal({{ $category->id }}, '{{ $category->name }}')">
+                                                <a href="{{ route('categories.edit', $category->id) }}"
+                                                    class="btn btn-edit">
                                                     Editar
-                                                </button>
+                                                </a>
 
                                                 <form action="{{ route('categories.destroy', $category->id) }}"
                                                     method="POST" onsubmit="return confirm('¿Eliminar categoría?')">
@@ -273,6 +276,7 @@
                         @else
                             <div class="empty">No hay categorías</div>
                         @endif
+
                     </div>
                 </div>
 
@@ -281,6 +285,7 @@
                     <div class="card-header">Productos</div>
 
                     <div class="card-body">
+
                         @if (count(auth()->user()->products) > 0)
                             <table>
                                 <thead>
@@ -300,26 +305,9 @@
                                             <td>{{ $product->name }}</td>
                                             <td>${{ $product->price }}</td>
                                             <td>{{ $product->category->name ?? 'Sin categoría' }}</td>
-                                            <td style="display:flex; gap:8px; align-items:center;">
-
-                                                <button class="btn btn-edit"
-                                                    onclick="openProductModal(
-                                                        {{ $product->id }},
-                                                        '{{ $product->name }}',
-                                                        {{ $product->price }},
-                                                        '{{ $product->description }}',
-                                                        {{ $product->category_id ?? 'null' }}
-                                                    )">
-                                                    Editar
-                                                </button>
-
-                                                <form action="{{ route('products.destroy', $product->id) }}"
-                                                    method="POST" onsubmit="return confirm('¿Eliminar producto?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-delete">Eliminar</button>
-                                                </form>
-
+                                            <td style="display:flex; gap:8px;">
+                                                <a class="btn btn-edit">Editar</a>
+                                                <button class="btn btn-delete">Eliminar</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -328,97 +316,15 @@
                         @else
                             <div class="empty">No hay productos</div>
                         @endif
+
                     </div>
                 </div>
 
             </div>
-        </main>
-    </div>
 
-    <!-- MODAL -->
-    <div id="editModal"
-        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); justify-content:center; align-items:center; z-index:999;">
-
-        <div style="background:white; padding:20px; border-radius:12px; width:400px;">
-            <h3 id="modalTitle">Editar</h3>
-
-            <form id="editForm" method="POST">
-                @csrf
-                @method('PUT')
-
-                <input type="hidden" id="editId">
-
-                <div style="margin-top:10px;">
-                    <label>Nombre</label>
-                    <input type="text" name="name" id="editName"
-                        style="width:100%; padding:8px; border:1px solid #ccc; border-radius:8px;">
-                </div>
-
-                <div id="priceField" style="margin-top:10px; display:none;">
-                    <label>Precio</label>
-                    <input type="number" name="price" id="editPrice"
-                        style="width:100%; padding:8px; border:1px solid #ccc; border-radius:8px;">
-                </div>
-
-                <div id="descField" style="margin-top:10px; display:none;">
-                    <label>Descripción</label>
-                    <textarea name="description" id="editDescription"
-                        style="width:100%; padding:8px; border:1px solid #ccc; border-radius:8px;"></textarea>
-                </div>
-
-                <div id="categoryField" style="margin-top:10px; display:none;">
-                    <label>Categoría</label>
-                    <select name="category" id="editCategory"
-                        style="width:100%; padding:8px; border:1px solid #ccc; border-radius:8px;">
-                        @foreach (auth()->user()->categories as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div style="margin-top:15px; display:flex; justify-content:flex-end; gap:10px;">
-                    <button type="button" onclick="closeModal()">Cancelar</button>
-                    <button type="submit" class="btn btn-edit">Guardar</button>
-                </div>
-            </form>
         </div>
+
     </div>
-
-    <!-- SCRIPTS -->
-    <script>
-        function openCategoryModal(id, name) {
-            document.getElementById('editModal').style.display = 'flex';
-
-            document.getElementById('modalTitle').innerText = 'Editar Categoría';
-            document.getElementById('editForm').action = '/business/category/' + id;
-
-            document.getElementById('editName').value = name;
-
-            document.getElementById('priceField').style.display = 'none';
-            document.getElementById('descField').style.display = 'none';
-            document.getElementById('categoryField').style.display = 'none';
-        }
-
-        function openProductModal(id, name, price, description, categoryId) {
-            document.getElementById('editModal').style.display = 'flex';
-
-            document.getElementById('modalTitle').innerText = 'Editar Producto';
-            document.getElementById('editForm').action = '/business/product/' + id;
-
-            document.getElementById('editName').value = name;
-            document.getElementById('editPrice').value = price;
-            document.getElementById('editDescription').value = description;
-            document.getElementById('editCategory').value = categoryId;
-
-            document.getElementById('priceField').style.display = 'block';
-            document.getElementById('descField').style.display = 'block';
-            document.getElementById('categoryField').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('editModal').style.display = 'none';
-        }
-    </script>
 
 </body>
 
