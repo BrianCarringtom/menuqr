@@ -238,7 +238,7 @@
             }
 
             .main {
-                padding: 70px 15px 15px 15px;
+                padding: 25px;
                 overflow: auto;
             }
 

@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -26,6 +23,7 @@
         .container {
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
         /* SIDEBAR */
@@ -37,12 +35,26 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .sidebar h2 {
-            text-align: center;
+            margin: 0;
             color: #c9a227;
             letter-spacing: 2px;
+        }
+
+        .close-btn {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #c9a227;
         }
 
         .menu {
@@ -84,6 +96,7 @@
             flex: 1;
             padding: 40px;
             overflow-y: auto;
+            position: relative;
         }
 
         /* PORTADA */
@@ -128,24 +141,6 @@
             object-fit: cover;
         }
 
-        .edit-cover {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 10px 15px;
-            border-radius: 12px;
-            cursor: pointer;
-            color: white;
-            font-size: 14px;
-        }
-
-        .edit-cover:hover {
-            background: rgba(255, 255, 255, 0.35);
-        }
-
-        /* GRID */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -153,7 +148,6 @@
             margin-top: 80px;
         }
 
-        /* CARD */
         .card {
             background: white;
             border-radius: 20px;
@@ -161,38 +155,17 @@
             padding: 35px;
         }
 
-        .card h2 {
-            margin: 0;
-            font-size: 28px;
-        }
-
-        .card h3 {
-            margin-bottom: 20px;
-            color: #c9a227;
-        }
-
-        .card p {
-            color: #666;
-        }
-
-        /* BOTONES */
         .btn {
-            display: inline-block;
             background: #c9a227;
             color: white;
             padding: 12px 20px;
             border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
 
-        .btn:hover {
-            background: #a8831f;
-        }
-
-        /* INPUT */
         .input {
             width: 100%;
             padding: 14px;
@@ -200,64 +173,61 @@
             border: 1px solid #ddd;
         }
 
-        /* HAMBURGUESA */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #c9a227;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 18px;
-            z-index: 1001;
-            cursor: pointer;
-        }
-
-        /* BOTÓN CERRAR */
-        .close-menu {
+        /* HAMBURGER */
+        .hamburger {
             display: none;
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 22px;
+            top: 20px;
+            left: 20px;
+            font-size: 26px;
             cursor: pointer;
+            color: #c9a227;
+            z-index: 1001;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
         }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
 
-            .menu-toggle {
-                display: block;
-            }
-
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -260px;
+                left: 0;
                 height: 100%;
-                z-index: 1000;
-                transition: 0.3s;
+                transform: translateX(-100%);
+                z-index: 1002;
             }
 
             .sidebar.active {
-                left: 0;
+                transform: translateX(0);
             }
 
-            .close-menu {
+            .hamburger {
                 display: block;
             }
 
-            .main {
-                padding: 20px;
+            .close-btn {
+                display: block;
+            }
+
+            .overlay.active {
+                display: block;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding: 20px;
             }
 
             .profile-img {
@@ -269,16 +239,24 @@
 
 <body>
 
+    <!-- HAMBURGER -->
+    <div class="hamburger" id="openMenu">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay"></div>
+
     <div class="container">
 
         <!-- SIDEBAR -->
-        <div class="sidebar">
-            <!-- BOTÓN CERRAR -->
-            <button class="close-menu" onclick="toggleMenu()">
-                <i class="fas fa-times"></i>
-            </button>
+        <div class="sidebar" id="sidebar">
+
             <div>
-                <h2>BUSINESS</h2>
+                <div class="sidebar-header">
+                    <h2>BUSINESS</h2>
+                    <i class="fas fa-times close-btn" id="closeMenu"></i>
+                </div>
 
                 <div class="menu">
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
@@ -296,17 +274,12 @@
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i> Cerrar sesión
             </button>
+
         </div>
 
         <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- PORTADA -->
             <div class="cover">
 
                 <div class="cover-img">
@@ -321,61 +294,48 @@
                         src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://via.placeholder.com/150' }}">
                 </div>
 
-                <label for="uploadImage" class="edit-cover">
-                    <i class="fas fa-camera"></i> Cambiar portada
-                </label>
-
             </div>
 
-            <!-- CONTENIDO -->
             <div class="grid">
 
-                <!-- INFO -->
                 <div class="card">
                     <h2>{{ Auth::user()->name }}</h2>
                     <p>Perfil activo • Negocio digital 🚀</p>
-
-                    <div style="margin-top:20px;">
-                        <a href="/{{ Auth::user()->slug }}" target="_blank" class="btn">
-                            Ver mi página
-                        </a>
-                    </div>
                 </div>
 
-                <!-- FORM -->
                 <div class="card">
                     <h3>Actualizar imagen</h3>
-
                     <form action="/business/profile/image" method="POST" enctype="multipart/form-data">
                         @csrf
-
-                        <input id="uploadImage" type="file" name="image" required class="input">
-
-                        <button type="submit" class="btn" style="margin-top:20px; width:100%;">
-                            Guardar cambios
-                        </button>
+                        <input type="file" name="image" class="input">
+                        <button class="btn" style="margin-top:15px; width:100%;">Guardar</button>
                     </form>
                 </div>
 
             </div>
 
         </div>
-
     </div>
-    
+
     <script>
-        function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const openMenu = document.getElementById('openMenu');
+        const closeMenu = document.getElementById('closeMenu');
 
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
         }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        openMenu.addEventListener('click', openSidebar);
+        closeMenu.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
     </script>
 
 </body>

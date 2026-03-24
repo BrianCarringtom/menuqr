@@ -244,8 +244,9 @@
                 transition: 0.3s;
             }
 
-            .sidebar.active {
-                left: 0;
+            /* OCULTAR HAMBURGUESA CUANDO EL MENÚ ESTÁ ABIERTO */
+            .sidebar.active~.main .menu-toggle {
+                display: none;
             }
 
             .close-menu {
@@ -362,19 +363,10 @@
         </div>
 
     </div>
-    
+
     <script>
         function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
+            document.querySelector('.sidebar').classList.toggle('active');
         }
     </script>
 

@@ -183,19 +183,6 @@
             .main {
                 padding: 20px;
             }
-
-            .welcome-box img {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
-                display: block;
-                margin: 0 auto;
-            }
-
-            .welcome-box {
-                text-align: center;
-            }
-
         }
 
         /* OCULTAR HAMBURGUESA CUANDO SE ABRE */
@@ -256,21 +243,6 @@
         </div>
 
     </div>
-
-    <script>
-        function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
-        }
-    </script>
 
 </body>
 

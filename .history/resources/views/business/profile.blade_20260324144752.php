@@ -273,10 +273,6 @@
 
         <!-- SIDEBAR -->
         <div class="sidebar">
-            <!-- BOTÓN CERRAR -->
-            <button class="close-menu" onclick="toggleMenu()">
-                <i class="fas fa-times"></i>
-            </button>
             <div>
                 <h2>BUSINESS</h2>
 
@@ -300,11 +296,6 @@
 
         <!-- MAIN -->
         <div class="main">
-
-            <!-- BOTÓN HAMBURGUESA -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
 
             <!-- PORTADA -->
             <div class="cover">
@@ -362,19 +353,10 @@
         </div>
 
     </div>
-    
+
     <script>
         function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
+            document.querySelector('.sidebar').classList.toggle('active');
         }
     </script>
 

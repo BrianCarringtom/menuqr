@@ -42,7 +42,6 @@
         .sidebar h2 {
             text-align: center;
             color: #c9a227;
-            font-weight: 600;
             letter-spacing: 2px;
         }
 
@@ -59,7 +58,6 @@
             border-radius: 8px;
             text-decoration: none;
             color: #555;
-            transition: 0.25s;
         }
 
         .menu a:hover {
@@ -84,48 +82,122 @@
         /* MAIN */
         .main {
             flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 40px;
+            overflow-y: auto;
         }
 
-        /* WELCOME */
-        .welcome-box {
-            background: white;
-            border-radius: 18px;
+        /* PORTADA */
+        .cover {
+            position: relative;
+        }
+
+        .cover-img {
+            width: 100%;
+            height: 340px;
+            border-radius: 25px;
             overflow: hidden;
-            max-width: 700px;
-            width: 100%;
-            border: 1px solid #eee;
-            text-align: center;
         }
 
-        .welcome-box img {
+        .cover-img img {
             width: 100%;
-            height: 260px;
+            height: 100%;
             object-fit: cover;
         }
 
-        .welcome-content {
-            padding: 30px;
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 340px;
+            width: 100%;
+            border-radius: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
         }
 
-        .welcome-content h1 {
+        .profile-img {
+            position: absolute;
+            bottom: -60px;
+            left: 50px;
+        }
+
+        .profile-img img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid white;
+            object-fit: cover;
+        }
+
+        .edit-cover {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            font-size: 14px;
+        }
+
+        .edit-cover:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #eee;
+            padding: 35px;
+        }
+
+        .card h2 {
             margin: 0;
             font-size: 28px;
-            color: #1f2937;
         }
 
-        .welcome-content h2 {
-            margin: 10px 0;
+        .card h3 {
+            margin-bottom: 20px;
             color: #c9a227;
-            font-weight: 500;
         }
 
-        .welcome-content p {
-            color: #6b7280;
-            margin-top: 10px;
+        .card p {
+            color: #666;
+        }
+
+        /* BOTONES */
+        .btn {
+            display: inline-block;
+            background: #c9a227;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #a8831f;
+        }
+
+        /* INPUT */
+        .input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
         }
 
         /* HAMBURGUESA */
@@ -184,23 +256,13 @@
                 padding: 20px;
             }
 
-            .welcome-box img {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
-                display: block;
-                margin: 0 auto;
+            .grid {
+                grid-template-columns: 1fr;
             }
 
-            .welcome-box {
-                text-align: center;
+            .profile-img {
+                left: 20px;
             }
-
-        }
-
-        /* OCULTAR HAMBURGUESA CUANDO SE ABRE */
-        .sidebar.active~.main .menu-toggle {
-            display: none;
         }
     </style>
 </head>
@@ -211,11 +273,10 @@
 
         <!-- SIDEBAR -->
         <div class="sidebar">
-
+            <!-- BOTÓN CERRAR -->
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
-
             <div>
                 <h2>BUSINESS</h2>
 
@@ -223,11 +284,11 @@
                     <a href="/business"><i class="fas fa-chart-line"></i> Dashboard</a>
                     <a href="/business/profile"><i class="fas fa-user"></i> Perfil</a>
                     <a href="/business/producto"><i class="fas fa-file-alt"></i> Producto-Categoria</a>
-                    <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestion de Producto</a>
+                    <a href="/business/gestion"><i class="fas fa-boxes"></i> Gestión de Producto</a>
                 </div>
             </div>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
                 @csrf
             </form>
 
@@ -239,18 +300,63 @@
 
         <!-- MAIN -->
         <div class="main">
+
+            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="welcome-box">
-                <img src="/images/bienvenido.png" alt="Negocio">
+            <!-- PORTADA -->
+            <div class="cover">
 
-                <div class="welcome-content">
-                    <h1>Bienvenido a tu panel</h1>
-                    <h2>{{ auth()->user()->name }}</h2>
-                    <p>Gestiona tu negocio de forma profesional, clara y organizada.</p>
+                <div class="cover-img">
+                    <img
+                        src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}">
                 </div>
+
+                <div class="cover-overlay"></div>
+
+                <div class="profile-img">
+                    <img
+                        src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://via.placeholder.com/150' }}">
+                </div>
+
+                <label for="uploadImage" class="edit-cover">
+                    <i class="fas fa-camera"></i> Cambiar portada
+                </label>
+
+            </div>
+
+            <!-- CONTENIDO -->
+            <div class="grid">
+
+                <!-- INFO -->
+                <div class="card">
+                    <h2>{{ Auth::user()->name }}</h2>
+                    <p>Perfil activo • Negocio digital 🚀</p>
+
+                    <div style="margin-top:20px;">
+                        <a href="/{{ Auth::user()->slug }}" target="_blank" class="btn">
+                            Ver mi página
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FORM -->
+                <div class="card">
+                    <h3>Actualizar imagen</h3>
+
+                    <form action="/business/profile/image" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <input id="uploadImage" type="file" name="image" required class="input">
+
+                        <button type="submit" class="btn" style="margin-top:20px; width:100%;">
+                            Guardar cambios
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
         </div>
@@ -259,16 +365,7 @@
 
     <script>
         function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
+            document.querySelector('.sidebar').classList.toggle('active');
         }
     </script>
 

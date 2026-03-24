@@ -183,19 +183,6 @@
             .main {
                 padding: 20px;
             }
-
-            .welcome-box img {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
-                display: block;
-                margin: 0 auto;
-            }
-
-            .welcome-box {
-                text-align: center;
-            }
-
         }
 
         /* OCULTAR HAMBURGUESA CUANDO SE ABRE */

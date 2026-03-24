@@ -184,77 +184,6 @@
             text-align: center;
             color: #9ca3af;
         }
-
-        /* HAMBURGUESA */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #c9a227;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 18px;
-            z-index: 1001;
-            cursor: pointer;
-        }
-
-        /* BOTÓN CERRAR */
-        .close-menu {
-            display: none;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: -260px;
-                height: 100%;
-                z-index: 1000;
-                transition: 0.3s;
-            }
-
-            .sidebar.active {
-                left: 0;
-            }
-
-            .close-menu {
-                display: block;
-            }
-
-            .main {
-                padding: 70px 15px 15px 15px;
-                overflow: auto;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            body {
-                overflow: auto;
-            }
-        }
-
-        /* OCULTAR ☰ CUANDO SE ABRE */
-        .sidebar.active~.main .menu-toggle {
-            display: none;
-        }
     </style>
 </head>
 
@@ -268,7 +197,7 @@
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
-
+            
             <div>
                 <h2>BUSINESS</h2>
 
@@ -497,21 +426,6 @@
 
         function closeModal() {
             document.getElementById('editModal').style.display = 'none';
-        }
-    </script>
-
-    <script>
-        function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
         }
     </script>
 

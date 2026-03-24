@@ -334,17 +334,6 @@
         .sidebar.active~.main .menu-toggle {
             display: none;
         }
-
-        @media (max-width: 900px) {
-
-            .main {
-                overflow-y: auto;
-                height: auto;
-                min-height: 100vh;
-                padding: 70px 15px 15px 15px;
-            }
-
-        }
     </style>
 </head>
 

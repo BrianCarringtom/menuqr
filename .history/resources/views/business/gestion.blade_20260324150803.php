@@ -238,7 +238,7 @@
             }
 
             .main {
-                padding: 70px 15px 15px 15px;
+                padding: 25px;
                 overflow: auto;
             }
 
@@ -254,6 +254,14 @@
         /* OCULTAR ☰ CUANDO SE ABRE */
         .sidebar.active~.main .menu-toggle {
             display: none;
+        }
+
+        @media (max-width: 900px) {
+
+            .main {
+                padding: 70px 15px 15px 15px;
+            }
+
         }
     </style>
 </head>

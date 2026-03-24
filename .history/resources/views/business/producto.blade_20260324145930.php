@@ -339,9 +339,7 @@
 
             .main {
                 overflow-y: auto;
-                height: auto;
-                min-height: 100vh;
-                padding: 70px 15px 15px 15px;
+                height: 100vh;
             }
 
         }

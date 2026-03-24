@@ -238,7 +238,7 @@
             }
 
             .main {
-                padding: 70px 15px 15px 15px;
+                padding: 15px;
                 overflow: auto;
             }
 
@@ -497,21 +497,6 @@
 
         function closeModal() {
             document.getElementById('editModal').style.display = 'none';
-        }
-    </script>
-
-    <script>
-        function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
         }
     </script>
 

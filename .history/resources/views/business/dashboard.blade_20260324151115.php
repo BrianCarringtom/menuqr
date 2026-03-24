@@ -186,14 +186,19 @@
 
             .welcome-box img {
                 width: 100%;
+                /* que ocupe todo el ancho del contenedor */
                 height: auto;
+                /* altura proporcional */
                 object-fit: contain;
+                /* evita que se corte la imagen */
                 display: block;
                 margin: 0 auto;
+                /* centrado */
             }
 
             .welcome-box {
                 text-align: center;
+                /* opcional: centra texto e imagen */
             }
 
         }

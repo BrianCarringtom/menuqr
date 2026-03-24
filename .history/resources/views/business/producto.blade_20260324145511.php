@@ -334,17 +334,6 @@
         .sidebar.active~.main .menu-toggle {
             display: none;
         }
-
-        @media (max-width: 900px) {
-
-            .main {
-                overflow-y: auto;
-                height: auto;
-                min-height: 100vh;
-                padding: 70px 15px 15px 15px;
-            }
-
-        }
     </style>
 </head>
 
@@ -484,21 +473,6 @@
                 setTimeout(() => overlay.remove(), 200);
             }
         }, 1000);
-    </script>
-
-    <script>
-        function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
-        }
     </script>
 
 </body>

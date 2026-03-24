@@ -28,6 +28,22 @@
             height: 100vh;
         }
 
+        /* BOTÓN HAMBURGUESA */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 22px;
+            background: #c9a227;
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 8px;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
         /* SIDEBAR */
         .sidebar {
             width: 240px;
@@ -37,12 +53,22 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease;
         }
 
         .sidebar h2 {
             text-align: center;
             color: #c9a227;
             letter-spacing: 2px;
+        }
+
+        /* BOTÓN CERRAR */
+        .close-btn {
+            display: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-align: right;
         }
 
         .menu {
@@ -200,34 +226,6 @@
             border: 1px solid #ddd;
         }
 
-        /* HAMBURGUESA */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #c9a227;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 18px;
-            z-index: 1001;
-            cursor: pointer;
-        }
-
-        /* BOTÓN CERRAR */
-        .close-menu {
-            display: none;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
         /* RESPONSIVE */
         @media (max-width: 900px) {
 
@@ -238,17 +236,17 @@
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -260px;
+                left: 0;
                 height: 100%;
                 z-index: 1000;
-                transition: 0.3s;
+                transform: translateX(-100%);
             }
 
             .sidebar.active {
-                left: 0;
+                transform: translateX(0);
             }
 
-            .close-menu {
+            .close-btn {
                 display: block;
             }
 
@@ -259,25 +257,27 @@
             .grid {
                 grid-template-columns: 1fr;
             }
-
-            .profile-img {
-                left: 20px;
-            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <div class="container">
 
         <!-- SIDEBAR -->
-        <div class="sidebar">
-            <!-- BOTÓN CERRAR -->
-            <button class="close-menu" onclick="toggleMenu()">
-                <i class="fas fa-times"></i>
-            </button>
+        <div class="sidebar" id="sidebar">
+
             <div>
+                <div class="close-btn" onclick="toggleMenu()">
+                    <i class="fas fa-times"></i>
+                </div>
+
                 <h2>BUSINESS</h2>
 
                 <div class="menu">
@@ -301,14 +301,7 @@
         <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- PORTADA -->
             <div class="cover">
-
                 <div class="cover-img">
                     <img
                         src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}">
@@ -324,13 +317,10 @@
                 <label for="uploadImage" class="edit-cover">
                     <i class="fas fa-camera"></i> Cambiar portada
                 </label>
-
             </div>
 
-            <!-- CONTENIDO -->
             <div class="grid">
 
-                <!-- INFO -->
                 <div class="card">
                     <h2>{{ Auth::user()->name }}</h2>
                     <p>Perfil activo • Negocio digital 🚀</p>
@@ -342,7 +332,6 @@
                     </div>
                 </div>
 
-                <!-- FORM -->
                 <div class="card">
                     <h3>Actualizar imagen</h3>
 
@@ -362,19 +351,10 @@
         </div>
 
     </div>
-    
+
     <script>
         function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
-
-            sidebar.classList.toggle('active');
-
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
+            document.getElementById('sidebar').classList.toggle('active');
         }
     </script>
 

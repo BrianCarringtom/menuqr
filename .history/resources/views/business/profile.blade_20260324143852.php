@@ -26,6 +26,7 @@
         .container {
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
         /* SIDEBAR */
@@ -37,6 +38,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease;
         }
 
         .sidebar h2 {
@@ -84,6 +86,7 @@
             flex: 1;
             padding: 40px;
             overflow-y: auto;
+            position: relative;
         }
 
         /* PORTADA */
@@ -201,63 +204,58 @@
         }
 
         /* HAMBURGUESA */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #c9a227;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 18px;
-            z-index: 1001;
-            cursor: pointer;
-        }
-
-        /* BOTÓN CERRAR */
-        .close-menu {
+        .hamburger {
             display: none;
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 22px;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
             cursor: pointer;
+            z-index: 1001;
+            color: #c9a227;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
         }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-
-            .menu-toggle {
-                display: block;
-            }
-
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -260px;
+                left: 0;
                 height: 100%;
-                z-index: 1000;
-                transition: 0.3s;
+                transform: translateX(-100%);
+                z-index: 1002;
             }
 
             .sidebar.active {
-                left: 0;
+                transform: translateX(0);
             }
 
-            .close-menu {
+            .hamburger {
                 display: block;
             }
 
-            .main {
-                padding: 20px;
+            .overlay.active {
+                display: block;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding: 20px;
             }
 
             .profile-img {
@@ -269,14 +267,16 @@
 
 <body>
 
+    <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
     <div class="container">
 
         <!-- SIDEBAR -->
-        <div class="sidebar">
-            <!-- BOTÓN CERRAR -->
-            <button class="close-menu" onclick="toggleMenu()">
-                <i class="fas fa-times"></i>
-            </button>
+        <div class="sidebar" id="sidebar">
             <div>
                 <h2>BUSINESS</h2>
 
@@ -300,11 +300,6 @@
 
         <!-- MAIN -->
         <div class="main">
-
-            <!-- BOTÓN HAMBURGUESA -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
 
             <!-- PORTADA -->
             <div class="cover">
@@ -362,20 +357,21 @@
         </div>
 
     </div>
-    
+
     <script>
-        function toggleMenu() {
-            const sidebar = document.querySelector('.sidebar');
-            const btn = document.querySelector('.menu-toggle');
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
 
-            sidebar.classList.toggle('active');
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
 
-            if (sidebar.classList.contains('active')) {
-                btn.style.display = 'none';
-            } else {
-                btn.style.display = 'block';
-            }
-        }
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
     </script>
 
 </body>
