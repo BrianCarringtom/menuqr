@@ -600,6 +600,44 @@
                 width: 100%;
             }
         }
+
+        /* CONTENEDOR ONDA */
+        .wave-top {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        /* SVG */
+        .wave-top svg {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* COLOR DE LA ONDA */
+        .wave-top path {
+            fill: #16a34a;
+            /* mismo color del footer */
+        }
+
+        /* OPCIONAL: ANIMACIÓN SUAVE */
+        .wave-top svg path {
+            animation: waveMove 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes waveMove {
+            0% {
+                d: path("M0,80 C240,140 480,20 720,60 C960,100 1200,40 1440,80 L1440,0 L0,0 Z");
+            }
+
+            100% {
+                d: path("M0,60 C240,20 480,120 720,80 C960,40 1200,120 1440,60 L1440,0 L0,0 Z");
+            }
+        }
     </style>
 </head>
 
@@ -799,6 +837,12 @@
 
         </div>
     </section>
+
+    <div class="wave-top">
+        <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+            <path d="M0,80 C240,140 480,20 720,60 C960,100 1200,40 1440,80 L1440,0 L0,0 Z"></path>
+        </svg>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">

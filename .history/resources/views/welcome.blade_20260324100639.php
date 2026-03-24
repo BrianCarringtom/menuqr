@@ -800,6 +800,12 @@
         </div>
     </section>
 
+    <div class="wave-top">
+        <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+            <path d="M0,80 C240,140 480,20 720,60 C960,100 1200,40 1440,80 L1440,0 L0,0 Z"></path>
+        </svg>
+    </div>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">

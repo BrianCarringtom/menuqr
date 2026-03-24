@@ -802,18 +802,23 @@
 
     <!-- FOOTER -->
     <footer class="footer">
+
+        <!-- 🌊 OLA -->
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+                <path d="M0,80 C240,140 480,20 720,60 C960,100 1200,40 1440,80 L1440,0 L0,0 Z"></path>
+            </svg>
+        </div>
+
         <div class="footer-container">
 
             <!-- Marca -->
             <div class="footer-col brand">
-
                 <div class="logo">
                     <img src="/images/logo.png" alt="Carringtom Logo">
                 </div>
-
                 <h2>Carringtom</h2>
                 <p>Diseño web profesional que convierte visitantes en clientes 🚀</p>
-
             </div>
 
             <!-- Navegación -->
@@ -858,6 +863,7 @@
         <div class="footer-bottom">
             <p>© 2026 Carringtom - Todos los derechos reservados</p>
         </div>
+
     </footer>
 
     <script>

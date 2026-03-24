@@ -807,6 +807,7 @@
             <!-- Marca -->
             <div class="footer-col brand">
 
+                <!-- Logo -->
                 <div class="logo">
                     <img src="/images/logo.png" alt="Carringtom Logo">
                 </div>
@@ -850,6 +851,7 @@
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
 

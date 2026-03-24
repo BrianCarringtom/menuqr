@@ -226,159 +226,98 @@
         /* FOOTER PRO */
         .footer {
             background: linear-gradient(135deg, #16a34a, #15803d);
-            color: #ffffff;
-            padding: 90px 10% 30px;
+            color: #fff;
             position: relative;
-            overflow: hidden;
+            padding-top: 120px;
+            /* espacio para la ola */
         }
 
-        /* efecto glow fondo */
-        .footer::before {
-            content: "";
+        /* 🌊 OLA INTEGRADA */
+        .footer-wave {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.08);
-            filter: blur(120px);
-            top: -100px;
-            left: -100px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            line-height: 0;
         }
 
-        /* layout */
+        .footer-wave svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .footer-wave path {
+            fill: #fff;
+            /* 👈 color de la sección de arriba */
+        }
+
+        /* CONTENIDO */
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 60px;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 2;
+            padding: 0 10% 50px;
         }
 
-        /* marca */
-        .brand {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* LOGO PRO */
+        /* LOGO */
         .logo img {
             width: 65px;
-            height: 65px;
-            object-fit: contain;
-            border-radius: 16px;
-            background: #ffffff;
+            background: #fff;
             padding: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-            transition: 0.4s;
+            border-radius: 14px;
+            transition: 0.3s;
         }
 
-        /* hover brutal */
         .logo img:hover {
-            transform: scale(1.12) rotate(-3deg);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform: scale(1.1);
         }
 
-        /* título marca */
-        .brand h2 {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 12px 0 10px;
-        }
-
-        /* descripción */
-        .brand p {
-            font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.9;
-            max-width: 280px;
-        }
-
-        /* títulos */
+        /* TEXTOS */
         .footer-col h3 {
-            margin-bottom: 18px;
-            font-size: 18px;
-            font-weight: 600;
-            position: relative;
+            margin-bottom: 15px;
         }
 
-        /* línea decorativa */
-        .footer-col h3::after {
-            content: "";
-            width: 40px;
-            height: 3px;
-            background: #bbf7d0;
-            display: block;
-            margin-top: 6px;
-            border-radius: 10px;
-        }
-
-        /* listas */
         .footer-col ul {
             list-style: none;
             padding: 0;
         }
 
         .footer-col ul li {
-            margin-bottom: 12px;
-            font-size: 14px;
+            margin-bottom: 10px;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
         }
 
-        /* iconos */
-        .footer-col ul li i {
-            margin-right: 10px;
-            font-size: 14px;
-            color: #bbf7d0;
-        }
-
-        /* hover moderno */
         .footer-col ul li:hover {
-            transform: translateX(8px);
-            color: #bbf7d0;
+            transform: translateX(6px);
         }
 
-        /* links */
-        .footer-col a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* redes */
-        .socials {
-            margin-top: 18px;
-        }
-
-        /* botones redes PRO */
+        /* REDES */
         .socials a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
+            display: inline-block;
             margin-right: 10px;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            color: #ffffff;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
             transition: 0.3s;
         }
 
-        /* hover redes */
         .socials a:hover {
-            background: #ffffff;
+            background: #fff;
             color: #16a34a;
-            transform: translateY(-6px) scale(1.1);
         }
 
-        /* footer bottom */
+        /* BOTTOM */
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 18px;
             text-align: center;
-            font-size: 14px;
-            opacity: 0.85;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px;
         }
 
         /* RESPONSIVE */
@@ -802,18 +741,23 @@
 
     <!-- FOOTER -->
     <footer class="footer">
+
+        <!-- 🌊 OLA -->
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+                <path d="M0,80 C240,140 480,20 720,60 C960,100 1200,40 1440,80 L1440,0 L0,0 Z"></path>
+            </svg>
+        </div>
+
         <div class="footer-container">
 
             <!-- Marca -->
             <div class="footer-col brand">
-
                 <div class="logo">
                     <img src="/images/logo.png" alt="Carringtom Logo">
                 </div>
-
                 <h2>Carringtom</h2>
                 <p>Diseño web profesional que convierte visitantes en clientes 🚀</p>
-
             </div>
 
             <!-- Navegación -->
@@ -858,6 +802,7 @@
         <div class="footer-bottom">
             <p>© 2026 Carringtom - Todos los derechos reservados</p>
         </div>
+
     </footer>
 
     <script>

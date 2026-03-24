@@ -223,178 +223,88 @@
             margin-bottom: 10px;
         }
 
-        /* FOOTER PRO */
+        /* FOOTER */
         .footer {
-            background: linear-gradient(135deg, #16a34a, #15803d);
-            color: #ffffff;
-            padding: 90px 10% 30px;
-            position: relative;
-            overflow: hidden;
+            background: #020617;
+            color: #94a3b8;
+            padding: 60px 10% 20px;
         }
 
-        /* efecto glow fondo */
-        .footer::before {
-            content: "";
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.08);
-            filter: blur(120px);
-            top: -100px;
-            left: -100px;
-        }
-
-        /* layout */
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 60px;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 2;
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        /* marca */
-        .brand {
-            display: flex;
-            flex-direction: column;
+        .footer-col h2 {
+            color: #fff;
+            margin-bottom: 15px;
         }
 
-        /* LOGO PRO */
-        .logo img {
-            width: 65px;
-            height: 65px;
-            object-fit: contain;
-            border-radius: 16px;
-            background: #ffffff;
-            padding: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-            transition: 0.4s;
-        }
-
-        /* hover brutal */
-        .logo img:hover {
-            transform: scale(1.12) rotate(-3deg);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        /* título marca */
-        .brand h2 {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 12px 0 10px;
-        }
-
-        /* descripción */
-        .brand p {
-            font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.9;
-            max-width: 280px;
-        }
-
-        /* títulos */
         .footer-col h3 {
-            margin-bottom: 18px;
+            color: #fff;
+            margin-bottom: 15px;
             font-size: 18px;
-            font-weight: 600;
-            position: relative;
         }
 
-        /* línea decorativa */
-        .footer-col h3::after {
-            content: "";
-            width: 40px;
-            height: 3px;
-            background: #bbf7d0;
-            display: block;
-            margin-top: 6px;
-            border-radius: 10px;
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        /* listas */
         .footer-col ul {
             list-style: none;
             padding: 0;
         }
 
         .footer-col ul li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-size: 14px;
+            cursor: pointer;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
         }
 
-        /* iconos */
         .footer-col ul li i {
-            margin-right: 10px;
-            font-size: 14px;
-            color: #bbf7d0;
+            margin-right: 8px;
+            color: #3b82f6;
         }
 
-        /* hover moderno */
         .footer-col ul li:hover {
-            transform: translateX(8px);
-            color: #bbf7d0;
+            color: #3b82f6;
         }
 
-        /* links */
-        .footer-col a {
+        .footer-col ul li a {
             text-decoration: none;
             color: inherit;
         }
 
-        /* redes */
-        .socials {
-            margin-top: 18px;
-        }
-
-        /* botones redes PRO */
+        /* Redes */
         .socials a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
+            display: inline-block;
             margin-right: 10px;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
+            background: #0f172a;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            color: #ffffff;
+            text-align: center;
+            line-height: 40px;
+            color: #94a3b8;
             transition: 0.3s;
         }
 
-        /* hover redes */
         .socials a:hover {
-            background: #ffffff;
-            color: #16a34a;
-            transform: translateY(-6px) scale(1.1);
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-3px);
         }
 
-        /* footer bottom */
+        /* Línea inferior */
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 18px;
+            border-top: 1px solid #1e293b;
+            padding-top: 15px;
             text-align: center;
             font-size: 14px;
-            opacity: 0.85;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .footer {
-                padding: 70px 6% 25px;
-            }
-
-            .footer-container {
-                gap: 40px;
-            }
-
-            .brand {
-                align-items: center;
-                text-align: center;
-            }
         }
 
         /* RESPONSIVE */
@@ -801,63 +711,8 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-container">
-
-            <!-- Marca -->
-            <div class="footer-col brand">
-
-                <div class="logo">
-                    <img src="/images/logo.png" alt="Carringtom Logo">
-                </div>
-
-                <h2>Carringtom</h2>
-                <p>Diseño web profesional que convierte visitantes en clientes 🚀</p>
-
-            </div>
-
-            <!-- Navegación -->
-            <div class="footer-col">
-                <h3>Explorar</h3>
-                <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#"><i class="fas fa-briefcase"></i> Servicios</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> Nosotros</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i> Contacto</a></li>
-                </ul>
-            </div>
-
-            <!-- Servicios -->
-            <div class="footer-col">
-                <h3>Servicios</h3>
-                <ul>
-                    <li><i class="fas fa-code"></i> Desarrollo Web</li>
-                    <li><i class="fas fa-mobile-alt"></i> Apps Móviles</li>
-                    <li><i class="fas fa-chart-line"></i> Marketing</li>
-                    <li><i class="fas fa-search"></i> SEO</li>
-                </ul>
-            </div>
-
-            <!-- Contacto -->
-            <div class="footer-col">
-                <h3>Contacto</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> contacto@carringtom.com</li>
-                    <li><i class="fas fa-phone"></i> +52 961 000 0000</li>
-                </ul>
-
-                <div class="socials">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 Carringtom - Todos los derechos reservados</p>
-        </div>
+    <footer>
+        <p>© 2026 Carringtom - Diseño PRO 🚀</p>
     </footer>
 
     <script>

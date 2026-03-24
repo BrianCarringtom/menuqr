@@ -223,25 +223,11 @@
             margin-bottom: 10px;
         }
 
-        /* FOOTER PRO */
+        /* FOOTER */
         .footer {
-            background: linear-gradient(135deg, #16a34a, #15803d);
+            background: #22c55e;
             color: #ffffff;
-            padding: 90px 10% 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* efecto glow fondo */
-        .footer::before {
-            content: "";
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.08);
-            filter: blur(120px);
-            top: -100px;
-            left: -100px;
+            padding: 80px 10% 25px;
         }
 
         /* layout */
@@ -249,67 +235,67 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 60px;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 40px;
         }
 
-        /* marca */
+        /* columna marca */
         .brand {
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
         }
 
-        /* LOGO PRO */
+        /* logo */
+        .logo {
+            margin-bottom: 15px;
+        }
+
         .logo img {
-            width: 65px;
-            height: 65px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
-            border-radius: 16px;
+            border-radius: 12px;
             background: #ffffff;
-            padding: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-            transition: 0.4s;
+            padding: 6px;
+            transition: 0.3s;
         }
 
-        /* hover brutal */
+        /* efecto pro */
         .logo img:hover {
-            transform: scale(1.12) rotate(-3deg);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform: scale(1.08) rotate(-2deg);
         }
 
-        /* título marca */
+        /* nombre */
         .brand h2 {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 12px 0 10px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        /* descripción */
+        /* texto */
         .brand p {
             font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.9;
-            max-width: 280px;
+            line-height: 1.6;
+            max-width: 260px;
         }
 
         /* títulos */
-        .footer-col h3 {
-            margin-bottom: 18px;
-            font-size: 18px;
-            font-weight: 600;
-            position: relative;
+        .footer-col h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
-        /* línea decorativa */
-        .footer-col h3::after {
-            content: "";
-            width: 40px;
-            height: 3px;
-            background: #bbf7d0;
-            display: block;
-            margin-top: 6px;
-            border-radius: 10px;
+        .footer-col h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        /* texto */
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
         }
 
         /* listas */
@@ -322,45 +308,39 @@
             margin-bottom: 12px;
             font-size: 14px;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
         }
 
         /* iconos */
         .footer-col ul li i {
-            margin-right: 10px;
-            font-size: 14px;
-            color: #bbf7d0;
+            margin-right: 8px;
         }
 
-        /* hover moderno */
+        /* hover elegante */
         .footer-col ul li:hover {
-            transform: translateX(8px);
-            color: #bbf7d0;
+            transform: translateX(6px);
+            opacity: 0.8;
         }
 
         /* links */
         .footer-col a {
             text-decoration: none;
-            color: inherit;
+            color: #ffffff;
         }
 
         /* redes */
         .socials {
-            margin-top: 18px;
+            margin-top: 15px;
         }
 
-        /* botones redes PRO */
         .socials a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
+            display: inline-block;
             margin-right: 10px;
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
+            border: 2px solid #ffffff;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
+            text-align: center;
+            line-height: 42px;
             color: #ffffff;
             transition: 0.3s;
         }
@@ -368,33 +348,17 @@
         /* hover redes */
         .socials a:hover {
             background: #ffffff;
-            color: #16a34a;
-            transform: translateY(-6px) scale(1.1);
+            color: #22c55e;
+            transform: translateY(-5px) scale(1.1);
         }
 
-        /* footer bottom */
+        /* línea inferior */
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            padding-top: 15px;
             text-align: center;
             font-size: 14px;
-            opacity: 0.85;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .footer {
-                padding: 70px 6% 25px;
-            }
-
-            .footer-container {
-                gap: 40px;
-            }
-
-            .brand {
-                align-items: center;
-                text-align: center;
-            }
+            opacity: 0.9;
         }
 
         /* RESPONSIVE */
@@ -807,8 +771,9 @@
             <!-- Marca -->
             <div class="footer-col brand">
 
+                <!-- Logo -->
                 <div class="logo">
-                    <img src="/images/logo.png" alt="Carringtom Logo">
+                    <img src="imgages/logo.png" alt="Carringtom Logo">
                 </div>
 
                 <h2>Carringtom</h2>
@@ -850,6 +815,7 @@
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
 

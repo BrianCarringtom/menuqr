@@ -626,7 +626,7 @@
         <div class="hero-content">
             <h1>Crea tu negocio digital 🚀</h1>
             <p>Convierte tu menú en una experiencia moderna con QR y diseño profesional.</p>
-            <a href="#" class="btn-main">Comenzar</a>
+            <a href="#features" class="btn-main">Comenzar</a>
 
             <div class="stats">
                 <div class="stat">

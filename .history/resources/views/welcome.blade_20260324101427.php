@@ -600,6 +600,23 @@
                 width: 100%;
             }
         }
+
+        .footer-wave {
+            position: relative;
+            width: 100%;
+            line-height: 0;
+        }
+
+        .footer-wave svg {
+            display: block;
+            width: 100%;
+            height: 80px;
+        }
+
+        .footer-wave path {
+            fill: #16a34a;
+            /* mismo color del footer */
+        }
     </style>
 </head>
 
@@ -800,6 +817,11 @@
         </div>
     </section>
 
+    <div class="footer-wave">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,64 C240,120 480,0 720,48 C960,96 1200,32 1440,64 L1440,0 L0,0 Z"></path>
+        </svg>
+    </div>
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
