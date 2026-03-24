@@ -514,6 +514,7 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             padding: 30px;
+            color: #334155;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
@@ -522,9 +523,8 @@
         .contact-form textarea {
             width: 100%;
             padding: 14px;
-            border: 1px solid #22c55e;
             border-radius: 12px;
-            /* border: none; */
+            border: none;
             margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.08);
             color: white;
@@ -843,7 +843,7 @@
             <div class="footer-col">
                 <h3>Contacto</h3>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> brianisaac@carringtom.com</li>
+                    <li><i class="fas fa-envelope"></i> contacto@carringtom.com</li>
                     <li><i class="fas fa-phone"></i> +52 961 105 0667</li>
                 </ul>
 

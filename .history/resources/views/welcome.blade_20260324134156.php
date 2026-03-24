@@ -522,9 +522,9 @@
         .contact-form textarea {
             width: 100%;
             padding: 14px;
-            border: 1px solid #22c55e;
+            border: 2px solid #22c55e;
             border-radius: 12px;
-            /* border: none; */
+            border: none;
             margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.08);
             color: white;

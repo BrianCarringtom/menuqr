@@ -522,12 +522,11 @@
         .contact-form textarea {
             width: 100%;
             padding: 14px;
-            border: 1px solid #22c55e;
             border-radius: 12px;
-            /* border: none; */
+            border: none;
             margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.08);
-            color: white;
+            color: black;
         }
 
         .contact-form input::placeholder,
@@ -843,7 +842,7 @@
             <div class="footer-col">
                 <h3>Contacto</h3>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> brianisaac@carringtom.com</li>
+                    <li><i class="fas fa-envelope"></i> contacto@carringtom.com</li>
                     <li><i class="fas fa-phone"></i> +52 961 105 0667</li>
                 </ul>
 
