@@ -150,7 +150,7 @@
 
         /* CARDS */
         .section {
-            padding: 50px 10%;
+            padding: 80px 10%;
             text-align: center;
         }
 
@@ -264,7 +264,6 @@
 
         /* GALERIA COLLAGE */
         .gallery {
-            background: #ecfdf5;
             padding: 80px 10%;
         }
 
@@ -300,11 +299,23 @@
 
         /* CONOCENOS */
         .about {
-            padding: 80px 10%;
+            padding: 100px 10%;
             display: flex;
             gap: 40px;
             flex-wrap: wrap;
             align-items: center;
+
+            /* 🔥 FONDO PRO */
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d');
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* 👈 EFECTO PARALLAX */
+
+            color: white;
         }
 
         .about img {
@@ -312,8 +323,18 @@
             border-radius: 20px;
         }
 
-        .about-text {
-            max-width: 500px;
+        .about-text h2 {
+            color: white;
+        }
+
+        .about-text p {
+            color: #e2e8f0;
+        }
+
+        .about-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
         }
 
         .about-box {
@@ -518,15 +539,6 @@
                     <button>Ver más</button>
                 </div>
             </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-                <div class="card-content">
-                    <h3>Tiendas</h3>
-                    <p>Catálogo atractivo</p>
-                    <button>Ver más</button>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -578,12 +590,6 @@
                 <img src="https://randomuser.me/api/portraits/women/44.jpg">
                 <p>"Mi menú ahora se ve profesional"</p>
                 <strong>- Ana</strong>
-            </div>
-
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg">
-                <p>"Mis clientes ahora ordenan más rápido y fácil"</p>
-                <strong>- Luis</strong>
             </div>
 
         </div>

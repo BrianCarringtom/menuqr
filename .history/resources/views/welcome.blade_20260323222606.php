@@ -150,7 +150,7 @@
 
         /* CARDS */
         .section {
-            padding: 50px 10%;
+            padding: 80px 10%;
             text-align: center;
         }
 
@@ -264,7 +264,6 @@
 
         /* GALERIA COLLAGE */
         .gallery {
-            background: #ecfdf5;
             padding: 80px 10%;
         }
 
@@ -324,6 +323,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
+        /* CONTACTO FINAL */
         /* CONTACTO PRO */
         .contact {
             padding: 100px 10%;
@@ -518,15 +518,6 @@
                     <button>Ver más</button>
                 </div>
             </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-                <div class="card-content">
-                    <h3>Tiendas</h3>
-                    <p>Catálogo atractivo</p>
-                    <button>Ver más</button>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -578,12 +569,6 @@
                 <img src="https://randomuser.me/api/portraits/women/44.jpg">
                 <p>"Mi menú ahora se ve profesional"</p>
                 <strong>- Ana</strong>
-            </div>
-
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg">
-                <p>"Mis clientes ahora ordenan más rápido y fácil"</p>
-                <strong>- Luis</strong>
             </div>
 
         </div>

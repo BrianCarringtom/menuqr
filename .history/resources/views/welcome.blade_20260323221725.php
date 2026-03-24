@@ -89,7 +89,7 @@
 
         .hero-content {
             max-width: 600px;
-            margin-top: 60px;
+            margin-top: 40px;
             /* ajusta este valor */
         }
 
@@ -150,7 +150,7 @@
 
         /* CARDS */
         .section {
-            padding: 50px 10%;
+            padding: 80px 10%;
             text-align: center;
         }
 
@@ -261,179 +261,6 @@
                 flex-direction: column;
             }
         }
-
-        /* GALERIA COLLAGE */
-        .gallery {
-            background: #ecfdf5;
-            padding: 80px 10%;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 200px;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .gallery-grid img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: 0.4s;
-        }
-
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-        }
-
-        /* EFECTO COLLAGE */
-        .gallery-grid img:nth-child(1) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .gallery-grid img:nth-child(4) {
-            grid-row: span 2;
-        }
-
-        /* CONOCENOS */
-        .about {
-            padding: 80px 10%;
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .about img {
-            width: 400px;
-            border-radius: 20px;
-        }
-
-        .about-text {
-            max-width: 500px;
-        }
-
-        .about-box {
-            margin-top: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        /* CONTACTO PRO */
-        .contact {
-            padding: 100px 10%;
-            background: white;
-            color: black;
-        }
-
-        .contact h2 {
-            margin-bottom: 50px;
-            font-size: 32px;
-        }
-
-        .contact-container {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        /* FORM */
-        .contact-form {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            border: none;
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-        }
-
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: #94a3b8;
-        }
-
-        .contact-form button {
-            width: 100%;
-            background: #22c55e;
-            padding: 14px;
-            border-radius: 30px;
-            border: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .contact-form button:hover {
-            transform: scale(1.05);
-            background: #16a34a;
-        }
-
-        /* INFO */
-        .contact-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .contact-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 15px;
-            transition: 0.3s;
-        }
-
-        .contact-box i {
-            font-size: 20px;
-            color: #22c55e;
-        }
-
-        .contact-box:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:768px) {
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .about {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .about img {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 
@@ -518,47 +345,6 @@
                     <button>Ver más</button>
                 </div>
             </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-                <div class="card-content">
-                    <h3>Tiendas</h3>
-                    <p>Catálogo atractivo</p>
-                    <button>Ver más</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="gallery">
-        <h2 style="text-align:center;">Galería</h2>
-
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-            <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
-        </div>
-    </section>
-
-    <section class="about">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-
-        <div class="about-text">
-            <h2>Sobre nosotros</h2>
-            <p>Impulsamos negocios con tecnología moderna y diseño profesional.</p>
-
-            <div class="about-box">
-                <h3>Misión</h3>
-                <p>Ayudar a negocios a crecer digitalmente.</p>
-            </div>
-
-            <div class="about-box">
-                <h3>Visión</h3>
-                <p>Ser líderes en innovación digital en Latinoamérica.</p>
-            </div>
         </div>
     </section>
 
@@ -578,57 +364,6 @@
                 <img src="https://randomuser.me/api/portraits/women/44.jpg">
                 <p>"Mi menú ahora se ve profesional"</p>
                 <strong>- Ana</strong>
-            </div>
-
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg">
-                <p>"Mis clientes ahora ordenan más rápido y fácil"</p>
-                <strong>- Luis</strong>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="contact">
-        <h2 style="text-align:center;">Contáctanos 🚀</h2>
-
-        <div class="contact-container">
-
-            <!-- FORM -->
-            <div class="contact-form">
-                <input type="text" placeholder="Tu nombre">
-                <input type="email" placeholder="Tu correo">
-                <textarea rows="5" placeholder="Escribe tu mensaje..."></textarea>
-                <button>Enviar mensaje</button>
-            </div>
-
-            <!-- INFO -->
-            <div class="contact-info">
-
-                <div class="contact-box">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong>
-                        <p>contacto@carringtom.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-box">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Teléfono</strong>
-                        <p>+52 961 000 0000</p>
-                    </div>
-                </div>
-
-                <div class="contact-box">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Ubicación</strong>
-                        <p>México</p>
-                    </div>
-                </div>
-
             </div>
 
         </div>

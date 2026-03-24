@@ -150,7 +150,7 @@
 
         /* CARDS */
         .section {
-            padding: 50px 10%;
+            padding: 60px 10%;
             text-align: center;
         }
 
@@ -264,7 +264,6 @@
 
         /* GALERIA COLLAGE */
         .gallery {
-            background: #ecfdf5;
             padding: 80px 10%;
         }
 
@@ -578,12 +577,6 @@
                 <img src="https://randomuser.me/api/portraits/women/44.jpg">
                 <p>"Mi menú ahora se ve profesional"</p>
                 <strong>- Ana</strong>
-            </div>
-
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg">
-                <p>"Mis clientes ahora ordenan más rápido y fácil"</p>
-                <strong>- Luis</strong>
             </div>
 
         </div>

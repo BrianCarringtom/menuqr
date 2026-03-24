@@ -264,7 +264,6 @@
 
         /* GALERIA COLLAGE */
         .gallery {
-            background: #ecfdf5;
             padding: 80px 10%;
         }
 
