@@ -162,26 +162,20 @@ Route::get('/business/producto', function () {
 
 Route::post('/business/profile/image', function (Request $request) {
 
-    if (!Auth::check()) {
-        abort(403);
-    }
-
     $request->validate([
         'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
     ]);
 
-    /** @var \App\Models\User $user */
     $user = Auth::user();
 
-    if ($request->hasFile('image')) {
+    // Guardar imagen
+    $path = $request->file('image')->store('profiles', 'public');
 
-        $path = $request->file('image')->store('profiles', 'public');
+    // Actualizar usuario
+    $user->image = $path;
+    $user->save();
 
-        $user->image = $path;
-        $user->save(); // 🔥 ya no marca error visual
-    }
-
-    return back()->with('success', 'Imagen actualizada');
+    return back()->with('success', 'Imagen actualizada 🔥');
 })->middleware('auth');
 
 Route::get('/business/gestion', function () {

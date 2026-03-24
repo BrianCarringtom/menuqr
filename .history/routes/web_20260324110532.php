@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -151,6 +152,29 @@ Route::get('/business/profile', function () {
     return view('business.profile');
 })->middleware('auth');
 
+Route::post('/business/profile/image', function (Request $request) {
+
+    $request->validate([
+        'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+    ]);
+
+    $user = Auth::user();
+
+    // 🔥 borrar imagen anterior (PRO)
+    if ($user->image) {
+        Storage::disk('public')->delete($user->image);
+    }
+
+    // 🔥 guardar nueva imagen
+    $path = $request->file('image')->store('business', 'public');
+
+    // 🔥 guardar en BD
+    $user->image = $path;
+    $user->save();
+
+    return back()->with('success', 'Imagen actualizada 🔥');
+})->middleware('auth');
+
 Route::get('/business/producto', function () {
 
     if (Auth::user()->role !== 'business') {
@@ -158,30 +182,6 @@ Route::get('/business/producto', function () {
     }
 
     return view('business.producto');
-})->middleware('auth');
-
-Route::post('/business/profile/image', function (Request $request) {
-
-    if (!Auth::check()) {
-        abort(403);
-    }
-
-    $request->validate([
-        'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
-    ]);
-
-    /** @var \App\Models\User $user */
-    $user = Auth::user();
-
-    if ($request->hasFile('image')) {
-
-        $path = $request->file('image')->store('profiles', 'public');
-
-        $user->image = $path;
-        $user->save(); // 🔥 ya no marca error visual
-    }
-
-    return back()->with('success', 'Imagen actualizada');
 })->middleware('auth');
 
 Route::get('/business/gestion', function () {

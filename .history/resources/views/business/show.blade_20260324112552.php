@@ -14,9 +14,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background:
-                linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
-                url('{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}') center/cover no-repeat fixed;
+            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat fixed;
             color: #f5f5f5;
         }
 
@@ -33,6 +32,10 @@
 
         <!-- HEADER -->
         <div class="text-center mb-20">
+            <div class="flex justify-center mb-6">
+                <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://via.placeholder.com/150' }}"
+                    class="w-32 h-32 rounded-full object-cover border-4 border-yellow-500 shadow-lg">
+            </div>
             <h1 class="text-5xl md:text-6xl tracking-widest">
                 {{ $user->name }}
             </h1>

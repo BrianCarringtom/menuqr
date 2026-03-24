@@ -14,9 +14,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background:
-                linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
-                url('{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}') center/cover no-repeat fixed;
+            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat fixed;
             color: #f5f5f5;
         }
 
@@ -29,6 +28,13 @@
 
 <body class="min-h-screen px-6 py-16">
 
+    @if ($user->image)
+        <div class="text-center mb-10">
+            <img src="{{ asset('storage/' . $user->image) }}"
+                class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-yellow-500 shadow-lg">
+        </div>
+    @endif
+    
     <div class="max-w-4xl mx-auto">
 
         <!-- HEADER -->

@@ -163,22 +163,31 @@ Route::get('/business/producto', function () {
 Route::post('/business/profile/image', function (Request $request) {
 
     if (!Auth::check()) {
-        abort(403);
+        abort(403, 'No autenticado');
     }
 
     $request->validate([
         'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
     ]);
 
-    /** @var \App\Models\User $user */
     $user = Auth::user();
 
     if ($request->hasFile('image')) {
 
         $path = $request->file('image')->store('profiles', 'public');
 
+        // 🔥 DEBUG
+        if (!$path) {
+            dd('No se guardó la imagen');
+        }
+
         $user->image = $path;
-        $user->save(); // 🔥 ya no marca error visual
+
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     return back()->with('success', 'Imagen actualizada');

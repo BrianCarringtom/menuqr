@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Menú Elegante</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- FUENTES PRO -->
+    <!-- FUENTES -->
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap"
         rel="stylesheet">
@@ -14,9 +15,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background:
-                linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
-                url('{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}') center/cover no-repeat fixed;
+            background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat fixed;
             color: #f5f5f5;
         }
 
@@ -31,6 +31,14 @@
 
     <div class="max-w-4xl mx-auto">
 
+        {{-- IMAGEN DEL NEGOCIO --}}
+        @if (!empty($user->image))
+            <div class="text-center mb-10">
+                <img src="{{ asset('storage/' . $user->image) }}"
+                    class="w-48 h-48 mx-auto rounded-full object-cover border-4 border-yellow-500 shadow-2xl hover:scale-105 transition">
+            </div>
+        @endif
+
         <!-- HEADER -->
         <div class="text-center mb-20">
             <h1 class="text-5xl md:text-6xl tracking-widest">
@@ -44,19 +52,18 @@
             <div class="w-24 h-[1px] bg-yellow-500 mx-auto mt-6"></div>
         </div>
 
-        {{-- 🔥 CATEGORÍAS DINÁMICAS --}}
+        {{-- CATEGORÍAS --}}
         @forelse ($user->categories as $category)
 
             <div class="mb-16">
 
-                <!-- NOMBRE CATEGORIA -->
                 <h2 class="text-3xl md:text-4xl mb-10 text-yellow-500 tracking-wide border-l-4 border-yellow-500 pl-4">
                     {{ $category->name }}
                 </h2>
 
                 <div class="space-y-8">
 
-                    {{-- 🔥 PRODUCTOS --}}
+                    {{-- PRODUCTOS --}}
                     @forelse ($category->products as $product)
                         <div class="hover:scale-[1.01] transition duration-300">
 
@@ -89,7 +96,6 @@
 
         @empty
 
-            <!-- SI NO HAY NADA -->
             <div class="text-center text-gray-400">
                 <p class="text-xl">Este negocio aún no tiene menú</p>
             </div>

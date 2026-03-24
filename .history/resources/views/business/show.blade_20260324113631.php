@@ -33,6 +33,10 @@
 
         <!-- HEADER -->
         <div class="text-center mb-20">
+            <div class="flex justify-center mb-6">
+                <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://via.placeholder.com/150' }}"
+                    class="w-32 h-32 rounded-full object-cover border-4 border-yellow-500 shadow-lg">
+            </div>
             <h1 class="text-5xl md:text-6xl tracking-widest">
                 {{ $user->name }}
             </h1>

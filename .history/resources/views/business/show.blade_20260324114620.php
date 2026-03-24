@@ -14,9 +14,20 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background:
-                linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.85)),
-                url('{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}') center/cover no-repeat fixed;
+
+            background-image:
+                linear-gradient(rgba(10, 10, 10, 0.5), rgba(10, 10, 10, 0.7)),
+                url('{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}');
+
+            background-position: center;
+            background-size: contain;
+            /* 🔥 NO pierde calidad */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #000;
+            /* relleno */
+
+            min-height: 100vh;
             color: #f5f5f5;
         }
 

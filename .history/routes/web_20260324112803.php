@@ -166,11 +166,16 @@ Route::post('/business/profile/image', function (Request $request) {
         abort(403);
     }
 
+    // 🔥 PONLO AQUÍ
+    dd([
+        'user' => Auth::user(),
+        'file' => $request->file('image'),
+    ]);
+
     $request->validate([
         'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
     ]);
 
-    /** @var \App\Models\User $user */
     $user = Auth::user();
 
     if ($request->hasFile('image')) {
@@ -178,7 +183,7 @@ Route::post('/business/profile/image', function (Request $request) {
         $path = $request->file('image')->store('profiles', 'public');
 
         $user->image = $path;
-        $user->save(); // 🔥 ya no marca error visual
+        $user->save();
     }
 
     return back()->with('success', 'Imagen actualizada');

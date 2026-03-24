@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Product;
@@ -151,6 +153,33 @@ Route::get('/business/profile', function () {
     return view('business.profile');
 })->middleware('auth');
 
+Route::post('/business/profile/image', function (Request $request) {
+
+    if (!Auth::check()) {
+        return redirect('/login');
+    }
+
+    if (!$request->hasFile('image')) {
+        return back()->with('error', 'No se seleccionó imagen');
+    }
+
+    $request->validate([
+        'image' => 'image|mimes:jpg,jpeg,png|max:2048'
+    ]);
+
+    $user = Auth::user();
+
+    // guardar imagen
+    $path = $request->file('image')->store('business', 'public');
+
+    // guardar en BD (SIN errores)
+    DB::table('users')
+        ->where('id', $user->id)
+        ->update(['image' => $path]);
+
+    return back()->with('success', 'Imagen subida 🔥');
+})->middleware('auth');
+
 Route::get('/business/producto', function () {
 
     if (Auth::user()->role !== 'business') {
@@ -158,30 +187,6 @@ Route::get('/business/producto', function () {
     }
 
     return view('business.producto');
-})->middleware('auth');
-
-Route::post('/business/profile/image', function (Request $request) {
-
-    if (!Auth::check()) {
-        abort(403);
-    }
-
-    $request->validate([
-        'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
-    ]);
-
-    /** @var \App\Models\User $user */
-    $user = Auth::user();
-
-    if ($request->hasFile('image')) {
-
-        $path = $request->file('image')->store('profiles', 'public');
-
-        $user->image = $path;
-        $user->save(); // 🔥 ya no marca error visual
-    }
-
-    return back()->with('success', 'Imagen actualizada');
 })->middleware('auth');
 
 Route::get('/business/gestion', function () {
