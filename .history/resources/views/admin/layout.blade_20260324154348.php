@@ -33,12 +33,6 @@
             color: white;
             cursor: pointer;
             z-index: 1001;
-            transition: transform 0.4s ease;
-        }
-
-        /* Clase para rotar el icono cuando está activo */
-        .hamburger.rotate {
-            transform: rotate(180deg);
         }
 
         /* SIDEBAR */
@@ -162,7 +156,7 @@
         }
 
         /* Responsive */
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 768px) {
             .hamburger {
                 display: block;
             }
@@ -180,16 +174,6 @@
             .main {
                 margin-left: 0 !important;
                 transition: none;
-            }
-        }
-
-        /* Para pantallas pequeñas */
-        @media screen and (max-width: 900px) {
-            body[data-page="dashboard"] .main {
-                margin-left: 0 !important;
-                /* ya que sidebar estará colapsado */
-                margin-top: 60px;
-                /* baja el contenido un poco */
             }
         }
 
@@ -391,6 +375,26 @@
     <div class="main">
         @yield('content')
     </div>
+
+    <style>
+        /* Transición suave para rotar */
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.4s ease;
+        }
+
+        /* Clase para rotar el icono cuando está activo */
+        .hamburger.rotate {
+            transform: rotate(180deg);
+        }
+    </style>
 
     <script>
         const sidebar = document.querySelector('.sidebar');

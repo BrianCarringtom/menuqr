@@ -23,24 +23,6 @@
             text-decoration: none;
         }
 
-        /* BOTON HAMBURGUESA */
-        .hamburger {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            z-index: 1001;
-            transition: transform 0.4s ease;
-        }
-
-        /* Clase para rotar el icono cuando está activo */
-        .hamburger.rotate {
-            transform: rotate(180deg);
-        }
-
         /* SIDEBAR */
         .sidebar {
             position: fixed;
@@ -54,11 +36,6 @@
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar.collapsed {
-            transform: translateX(-100%);
         }
 
         .logo {
@@ -150,6 +127,7 @@
             padding: 30px;
             min-height: 100vh;
             margin-left: 280px;
+            /* default */
             transition: margin-left 0.3s ease;
         }
 
@@ -161,39 +139,7 @@
             margin-left: 340px;
         }
 
-        /* Responsive */
-        @media screen and (max-width: 900px) {
-            .hamburger {
-                display: block;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-                width: 220px;
-                z-index: 1000;
-            }
-
-            .sidebar.show {
-                transform: translateX(0);
-            }
-
-            .main {
-                margin-left: 0 !important;
-                transition: none;
-            }
-        }
-
-        /* Para pantallas pequeñas */
-        @media screen and (max-width: 900px) {
-            body[data-page="dashboard"] .main {
-                margin-left: 0 !important;
-                /* ya que sidebar estará colapsado */
-                margin-top: 60px;
-                /* baja el contenido un poco */
-            }
-        }
-
-        /* FORM, TABLE, BOTONES etc. mantienen tus estilos actuales */
+        /* FORM */
         input {
             padding: 12px;
             width: 280px;
@@ -210,12 +156,15 @@
             border-radius: 6px;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
+            /* transición suave */
         }
 
         button:hover {
             background: #2563eb;
+            /* azul más oscuro al pasar el mouse */
         }
 
+        /* TABLE */
         .custom-table {
             width: 100%;
             margin-top: 25px;
@@ -225,6 +174,7 @@
             overflow: hidden;
         }
 
+        /* HEADER */
         .custom-table thead {
             background: #020617;
         }
@@ -238,16 +188,19 @@
             text-align: left;
         }
 
+        /* CELDAS */
         .custom-table td {
             padding: 14px;
             border-top: 1px solid #374151;
             color: #e5e7eb;
         }
 
+        /* HOVER */
         .custom-table tbody tr:hover {
             background: #374151;
         }
 
+        /* SLUG */
         .link-slug {
             color: #60a5fa;
             text-decoration: none;
@@ -257,11 +210,13 @@
             text-decoration: underline;
         }
 
+        /* ACCIONES */
         .actions {
             display: flex;
             gap: 8px;
         }
 
+        /* BOTONES */
         .btn {
             border: none;
             padding: 7px 12px;
@@ -271,6 +226,7 @@
             transition: 0.2s;
         }
 
+        /* COLORES */
         .btn-edit {
             background: #3b82f6;
             color: white;
@@ -352,14 +308,77 @@
                 transform: scale(1);
             }
         }
+
+        /* HAMBURGUESA */
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* BOTÓN CERRAR EN SIDEBAR */
+        .sidebar .close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .sidebar {
+                left: -260px;
+                /* fuera de pantalla */
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .sidebar .close-btn {
+                display: block;
+            }
+
+            .main {
+                margin-left: 0 !important;
+                /* sin margen para móviles */
+                padding: 20px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            /* Ajuste para formularios y tablas en móvil */
+            input {
+                width: 100%;
+            }
+
+            .custom-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
     </style>
 </head>
 
 <body data-page="{{ $page ?? 'dashboard' }}">
 
-    <i class="fas fa-bars hamburger" id="hamburger-btn" onclick="toggleSidebar()"></i>
+    <i class="fas fa-bars hamburger" onclick="toggleSidebar()"></i>
 
     <div class="sidebar">
+
+        <i class="fas fa-times close-btn" onclick="toggleSidebar()"></i>
+
         <div>
             <div class="logo">
                 <h2>ADMIN</h2>
@@ -386,39 +405,13 @@
         <button class="logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fas fa-sign-out-alt"></i> Cerrar sesión
         </button>
+
     </div>
 
     <div class="main">
         @yield('content')
     </div>
 
-    <script>
-        const sidebar = document.querySelector('.sidebar');
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('show');
-
-            // Cambiar icono de hamburguesa a X
-            if (sidebar.classList.contains('show')) {
-                hamburgerBtn.classList.remove('fa-bars');
-                hamburgerBtn.classList.add('fa-times');
-                hamburgerBtn.classList.add('rotate'); // aplica la rotación
-            } else {
-                hamburgerBtn.classList.remove('fa-times');
-                hamburgerBtn.classList.add('fa-bars');
-                hamburgerBtn.classList.remove('rotate'); // vuelve a normal
-            }
-        }
-
-        // Cierra al tocar fuera
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth < 768 && sidebar.classList.contains('show') && !sidebar.contains(e.target) && !
-                hamburgerBtn.contains(e.target)) {
-                toggleSidebar();
-            }
-        });
-    </script>
 </body>
 
 </html>

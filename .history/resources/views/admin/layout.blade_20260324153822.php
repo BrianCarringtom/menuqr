@@ -33,12 +33,6 @@
             color: white;
             cursor: pointer;
             z-index: 1001;
-            transition: transform 0.4s ease;
-        }
-
-        /* Clase para rotar el icono cuando está activo */
-        .hamburger.rotate {
-            transform: rotate(180deg);
         }
 
         /* SIDEBAR */
@@ -162,7 +156,7 @@
         }
 
         /* Responsive */
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 768px) {
             .hamburger {
                 display: block;
             }
@@ -180,16 +174,6 @@
             .main {
                 margin-left: 0 !important;
                 transition: none;
-            }
-        }
-
-        /* Para pantallas pequeñas */
-        @media screen and (max-width: 900px) {
-            body[data-page="dashboard"] .main {
-                margin-left: 0 !important;
-                /* ya que sidebar estará colapsado */
-                margin-top: 60px;
-                /* baja el contenido un poco */
             }
         }
 
@@ -357,7 +341,7 @@
 
 <body data-page="{{ $page ?? 'dashboard' }}">
 
-    <i class="fas fa-bars hamburger" id="hamburger-btn" onclick="toggleSidebar()"></i>
+    <i class="fas fa-bars hamburger" onclick="toggleSidebar()"></i>
 
     <div class="sidebar">
         <div>
@@ -393,31 +377,9 @@
     </div>
 
     <script>
-        const sidebar = document.querySelector('.sidebar');
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-
         function toggleSidebar() {
-            sidebar.classList.toggle('show');
-
-            // Cambiar icono de hamburguesa a X
-            if (sidebar.classList.contains('show')) {
-                hamburgerBtn.classList.remove('fa-bars');
-                hamburgerBtn.classList.add('fa-times');
-                hamburgerBtn.classList.add('rotate'); // aplica la rotación
-            } else {
-                hamburgerBtn.classList.remove('fa-times');
-                hamburgerBtn.classList.add('fa-bars');
-                hamburgerBtn.classList.remove('rotate'); // vuelve a normal
-            }
+            document.querySelector('.sidebar').classList.toggle('show');
         }
-
-        // Cierra al tocar fuera
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth < 768 && sidebar.classList.contains('show') && !sidebar.contains(e.target) && !
-                hamburgerBtn.contains(e.target)) {
-                toggleSidebar();
-            }
-        });
     </script>
 </body>
 

@@ -162,7 +162,7 @@
         }
 
         /* Responsive */
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 768px) {
             .hamburger {
                 display: block;
             }
@@ -180,16 +180,6 @@
             .main {
                 margin-left: 0 !important;
                 transition: none;
-            }
-        }
-
-        /* Para pantallas pequeñas */
-        @media screen and (max-width: 900px) {
-            body[data-page="dashboard"] .main {
-                margin-left: 0 !important;
-                /* ya que sidebar estará colapsado */
-                margin-top: 60px;
-                /* baja el contenido un poco */
             }
         }
 

@@ -184,14 +184,12 @@
         }
 
         /* Para pantallas pequeñas */
-        @media screen and (max-width: 900px) {
-            body[data-page="dashboard"] .main {
-                margin-left: 0 !important;
-                /* ya que sidebar estará colapsado */
-                margin-top: 60px;
-                /* baja el contenido un poco */
-            }
-        }
+@media screen and (max-width: 900px) {
+    body[data-page="dashboard"] .main {
+        margin-left: 0 !important; /* ya que sidebar estará colapsado */
+        margin-top: 60px; /* baja el contenido un poco */
+    }
+}
 
         /* FORM, TABLE, BOTONES etc. mantienen tus estilos actuales */
         input {
