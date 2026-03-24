@@ -165,102 +165,31 @@
         }
 
         /* TABLE */
-        .custom-table {
+        table {
             width: 100%;
-            margin-top: 25px;
-            border-collapse: collapse;
+            margin-top: 30px;
             background: #1f2937;
             border-radius: 10px;
             overflow: hidden;
         }
 
-        /* HEADER */
-        .custom-table thead {
+        table th,
+        table td {
+            padding: 14px;
+            border-bottom: 1px solid #374151;
+        }
+
+        table th {
             background: #020617;
         }
 
-        .custom-table th {
-            padding: 14px;
-            font-size: 13px;
-            text-transform: uppercase;
-            color: #9ca3af;
-            letter-spacing: 0.5px;
-            text-align: left;
-        }
-
-        /* CELDAS */
-        .custom-table td {
-            padding: 14px;
-            border-top: 1px solid #374151;
-            color: #e5e7eb;
-        }
-
-        /* HOVER */
-        .custom-table tbody tr:hover {
+        table tr:hover {
             background: #374151;
         }
 
-        /* SLUG */
         .link-slug {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-
-        .link-slug:hover {
+            color: white;
             text-decoration: underline;
-        }
-
-        /* ACCIONES */
-        .actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        /* BOTONES */
-        .btn {
-            border: none;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-
-        /* COLORES */
-        .btn-edit {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .btn-edit:hover {
-            background: #2563eb;
-        }
-
-        .btn-delete {
-            background: #ef4444;
-            color: white;
-        }
-
-        .btn-delete:hover {
-            background: #dc2626;
-        }
-
-        .btn-warning {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .btn-warning:hover {
-            background: #d97706;
-        }
-
-        .btn-success {
-            background: #10b981;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #059669;
         }
 
         .success-message {

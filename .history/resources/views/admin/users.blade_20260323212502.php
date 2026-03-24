@@ -17,7 +17,7 @@
     </form>
 
     <h3>Lista de Usuarios</h3>
-    <table class="custom-table">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -32,14 +32,22 @@
         <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td>#{{ $user->id }}</td>
+
+                    <td><strong>{{ $user->name }}</strong></td>
+
                     <td>{{ $user->email }}</td>
-                    <td class="text-capitalize">{{ $user->role }}</td>
+
+                    <td>
+                        <span
+                            style="background:#eef2ff; color:#4338ca; padding:4px 8px; border-radius:6px; font-size:12px;">
+                            {{ $user->role }}
+                        </span>
+                    </td>
 
                     <td>
                         <a href="/{{ $user->slug }}" target="_blank" class="link-slug">
-                            {{ $user->slug }}
+                            /{{ $user->slug }}
                         </a>
                     </td>
 
@@ -47,9 +55,8 @@
                         <div class="actions">
 
                             <!-- EDITAR -->
-                            <button
-                                onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')"
-                                class="btn btn-edit">
+                            <button class="btn btn-edit"
+                                onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')">
                                 Editar
                             </button>
 
@@ -64,20 +71,20 @@
                                 </button>
                             </form>
 
-                            <!-- BLOQUEAR -->
+                            <!-- BLOQUEAR / DESBLOQUEAR -->
                             <form action="{{ route('users.toggle', $user->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
-                                <button type="submit" class="btn {{ $user->is_active ? 'btn-warning' : 'btn-success' }}">
-
+                                <button type="submit"
+                                    class="btn {{ $user->is_active ? 'btn-toggle-active' : 'btn-toggle-inactive' }}">
                                     {{ $user->is_active ? 'Bloquear' : 'Desbloquear' }}
-
                                 </button>
                             </form>
 
                         </div>
                     </td>
+
                 </tr>
             @endforeach
         </tbody>
@@ -131,23 +138,5 @@
                 modal.style.display = "none";
             }
         }
-    </script>
-
-    <script>
-        // Guardar posición antes de enviar cualquier form
-        document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", () => {
-                localStorage.setItem("scrollY", window.scrollY);
-            });
-        });
-
-        // Restaurar posición al cargar
-        window.addEventListener("load", () => {
-            const scrollY = localStorage.getItem("scrollY");
-            if (scrollY !== null) {
-                window.scrollTo(0, parseInt(scrollY));
-                localStorage.removeItem("scrollY");
-            }
-        });
     </script>
 @endsection

@@ -165,71 +165,66 @@
         }
 
         /* TABLE */
-        .custom-table {
+
+        table {
             width: 100%;
-            margin-top: 25px;
             border-collapse: collapse;
-            background: #1f2937;
-            border-radius: 10px;
-            overflow: hidden;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* HEADER */
-        .custom-table thead {
-            background: #020617;
+        thead {
+            background: #f9fafb;
         }
 
-        .custom-table th {
-            padding: 14px;
-            font-size: 13px;
-            text-transform: uppercase;
-            color: #9ca3af;
-            letter-spacing: 0.5px;
+        th {
             text-align: left;
-        }
-
-        /* CELDAS */
-        .custom-table td {
             padding: 14px;
-            border-top: 1px solid #374151;
-            color: #e5e7eb;
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            border-bottom: 1px solid #e5e7eb;
         }
 
-        /* HOVER */
-        .custom-table tbody tr:hover {
-            background: #374151;
+        td {
+            padding: 14px;
+            font-size: 14px;
+            color: #4b5563;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        /* SLUG */
+        tbody tr:hover {
+            background: #f9fafb;
+            transition: 0.2s;
+        }
+
         .link-slug {
-            color: #60a5fa;
+            color: #3b82f6;
             text-decoration: none;
+            font-weight: 500;
         }
 
         .link-slug:hover {
             text-decoration: underline;
         }
 
-        /* ACCIONES */
         .actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
-        /* BOTONES */
         .btn {
-            border: none;
             padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            color: white;
             font-size: 13px;
-            transition: 0.2s;
+            cursor: pointer;
+            transition: 0.2s ease;
         }
 
-        /* COLORES */
         .btn-edit {
             background: #3b82f6;
-            color: white;
         }
 
         .btn-edit:hover {
@@ -238,28 +233,25 @@
 
         .btn-delete {
             background: #ef4444;
-            color: white;
         }
 
         .btn-delete:hover {
             background: #dc2626;
         }
 
-        .btn-warning {
+        .btn-toggle-active {
             background: #f59e0b;
-            color: white;
         }
 
-        .btn-warning:hover {
+        .btn-toggle-active:hover {
             background: #d97706;
         }
 
-        .btn-success {
+        .btn-toggle-inactive {
             background: #10b981;
-            color: white;
         }
 
-        .btn-success:hover {
+        .btn-toggle-inactive:hover {
             background: #059669;
         }
 

@@ -165,39 +165,39 @@
         }
 
         /* TABLE */
-        .custom-table {
+        table {
             width: 100%;
-            margin-top: 25px;
-            border-collapse: collapse;
+            margin-top: 30px;
             background: #1f2937;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
+            border-collapse: collapse;
         }
 
-        /* HEADER */
-        .custom-table thead {
-            background: #020617;
-        }
-
-        .custom-table th {
-            padding: 14px;
-            font-size: 13px;
-            text-transform: uppercase;
-            color: #9ca3af;
-            letter-spacing: 0.5px;
+        table th,
+        table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #374151;
             text-align: left;
         }
 
-        /* CELDAS */
-        .custom-table td {
-            padding: 14px;
-            border-top: 1px solid #374151;
-            color: #e5e7eb;
+        table th {
+            background: #020617;
+            font-weight: 600;
+            font-size: 14px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* HOVER */
-        .custom-table tbody tr:hover {
+        table td {
+            color: #e5e7eb;
+            font-size: 14px;
+        }
+
+        table tr:hover {
             background: #374151;
+            transition: 0.2s;
         }
 
         /* SLUG */
@@ -210,23 +210,26 @@
             text-decoration: underline;
         }
 
-        /* ACCIONES */
+        /* CONTENEDOR DE BOTONES */
         .actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
+            /* 👈 clave cuando hay muchos botones */
         }
 
-        /* BOTONES */
+        /* BOTONES BASE */
         .btn {
             border: none;
             padding: 7px 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 13px;
+            font-weight: 500;
             transition: 0.2s;
         }
 
-        /* COLORES */
+        /* VARIANTES */
         .btn-edit {
             background: #3b82f6;
             color: white;

@@ -132,22 +132,4 @@
             }
         }
     </script>
-
-    <script>
-        // Guardar posición antes de enviar cualquier form
-        document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", () => {
-                localStorage.setItem("scrollY", window.scrollY);
-            });
-        });
-
-        // Restaurar posición al cargar
-        window.addEventListener("load", () => {
-            const scrollY = localStorage.getItem("scrollY");
-            if (scrollY !== null) {
-                window.scrollTo(0, parseInt(scrollY));
-                localStorage.removeItem("scrollY");
-            }
-        });
-    </script>
 @endsection

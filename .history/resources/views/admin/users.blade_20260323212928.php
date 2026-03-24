@@ -17,66 +17,64 @@
     </form>
 
     <h3>Lista de Usuarios</h3>
-    <table class="custom-table">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Rol</th>
-                <th>Slug</th>
+                <th>Slug</th> <!-- 👈 NUEVO -->
                 <th>Acciones</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach ($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td class="text-capitalize">{{ $user->role }}</td>
-
+                    <td>{{ $user->role }}</td>
                     <td>
                         <a href="/{{ $user->slug }}" target="_blank" class="link-slug">
                             {{ $user->slug }}
                         </a>
-                    </td>
+                    </td> <!-- 👈 NUEVO -->
+                    <td style="display:flex; gap:8px; align-items:center;">
 
-                    <td>
-                        <div class="actions">
+                        <!-- EDITAR -->
+                        <button
+                            onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')"
+                            style="background:#3b82f6; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
+                            onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                            Editar
+                        </button>
 
-                            <!-- EDITAR -->
-                            <button
-                                onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')"
-                                class="btn btn-edit">
-                                Editar
+                        <!-- ELIMINAR -->
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                            onsubmit="return confirm('¿Eliminar usuario?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                style="background:#ef4444; color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;"
+                                onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">
+                                Eliminar
                             </button>
+                        </form>
 
-                            <!-- ELIMINAR -->
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                onsubmit="return confirm('¿Eliminar usuario?')">
-                                @csrf
-                                @method('DELETE')
+                        <form action="{{ route('users.toggle', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
 
-                                <button type="submit" class="btn btn-delete">
-                                    Eliminar
-                                </button>
-                            </form>
+                            <button type="submit"
+                                style="background:{{ $user->is_active ? '#f59e0b' : '#10b981' }};
+               color:white; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;">
 
-                            <!-- BLOQUEAR -->
-                            <form action="{{ route('users.toggle', $user->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
+                                {{ $user->is_active ? 'Bloquear' : 'Desbloquear' }}
 
-                                <button type="submit" class="btn {{ $user->is_active ? 'btn-warning' : 'btn-success' }}">
+                            </button>
+                        </form>
 
-                                    {{ $user->is_active ? 'Bloquear' : 'Desbloquear' }}
-
-                                </button>
-                            </form>
-
-                        </div>
                     </td>
                 </tr>
             @endforeach
@@ -131,23 +129,5 @@
                 modal.style.display = "none";
             }
         }
-    </script>
-
-    <script>
-        // Guardar posición antes de enviar cualquier form
-        document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", () => {
-                localStorage.setItem("scrollY", window.scrollY);
-            });
-        });
-
-        // Restaurar posición al cargar
-        window.addEventListener("load", () => {
-            const scrollY = localStorage.getItem("scrollY");
-            if (scrollY !== null) {
-                window.scrollTo(0, parseInt(scrollY));
-                localStorage.removeItem("scrollY");
-            }
-        });
     </script>
 @endsection
