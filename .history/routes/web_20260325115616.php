@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -78,10 +76,13 @@ Route::post('/admin/create-user', function (Request $request) {
         'slug' => $slug,
     ]);
 
-    // 🔹 GENERAR QR en SVG
-    $qrSvg = QrCode::format('svg')->size(200)->generate(url($slug));
-    $qrPath = 'qrcodes/' . $user->id . '.svg';
-    Storage::disk('public')->put($qrPath, $qrSvg);
+    // 🔹 GENERAR QR
+    use SimpleSoftwareIO\QrCode\Facades\QrCode;
+    use Illuminate\Support\Facades\Storage;
+
+    $qr = QrCode::format('png')->size(300)->generate(url($slug));
+    $qrPath = 'qrcodes/' . $user->id . '.png';
+    Storage::disk('public')->put($qrPath, $qr);
 
     // Guardar ruta QR en usuario
     $user->qr_path = $qrPath;

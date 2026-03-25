@@ -318,13 +318,13 @@
 
                 <div class="profile-img">
                     @if (Auth::user()->qr_path)
-                        {{-- Mostrar QR como imagen para mantener diseño circular --}}
-                        <img src="{{ asset('storage/' . Auth::user()->qr_path) }}" alt="QR de {{ Auth::user()->slug }}">
+                        {{-- Mostrar QR inline --}}
+                        {!! file_get_contents(storage_path('app/public/' . Auth::user()->qr_path)) !!}
 
-                        {{-- Enlace para descargar QR --}}
+                        {{-- Enlace para descargar el QR --}}
                         <a href="{{ asset('storage/' . Auth::user()->qr_path) }}"
                             download="qr-{{ Auth::user()->slug }}.svg"
-                            style="display:block; text-align:center; margin-top:5px; font-size:14px; color:#333;">
+                            style="display:block; text-align:center; margin-top:5px;">
                             Descargar QR
                         </a>
                     @else

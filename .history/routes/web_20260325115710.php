@@ -78,10 +78,9 @@ Route::post('/admin/create-user', function (Request $request) {
         'slug' => $slug,
     ]);
 
-    // 🔹 GENERAR QR en SVG
-    $qrSvg = QrCode::format('svg')->size(200)->generate(url($slug));
-    $qrPath = 'qrcodes/' . $user->id . '.svg';
-    Storage::disk('public')->put($qrPath, $qrSvg);
+    $qr = QrCode::format('png')->size(300)->generate(url($slug));
+    $qrPath = 'qrcodes/' . $user->id . '.png';
+    Storage::disk('public')->put($qrPath, $qr);
 
     // Guardar ruta QR en usuario
     $user->qr_path = $qrPath;

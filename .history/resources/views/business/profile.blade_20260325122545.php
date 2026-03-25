@@ -317,20 +317,8 @@
                 <div class="cover-overlay"></div>
 
                 <div class="profile-img">
-                    @if (Auth::user()->qr_path)
-                        {{-- Mostrar QR como imagen para mantener diseño circular --}}
-                        <img src="{{ asset('storage/' . Auth::user()->qr_path) }}" alt="QR de {{ Auth::user()->slug }}">
-
-                        {{-- Enlace para descargar QR --}}
-                        <a href="{{ asset('storage/' . Auth::user()->qr_path) }}"
-                            download="qr-{{ Auth::user()->slug }}.svg"
-                            style="display:block; text-align:center; margin-top:5px; font-size:14px; color:#333;">
-                            Descargar QR
-                        </a>
-                    @else
-                        {{-- Placeholder si no hay QR --}}
-                        <img src="https://via.placeholder.com/150" alt="QR no disponible">
-                    @endif
+                    <img
+                        src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://via.placeholder.com/150' }}">
                 </div>
 
                 <label for="uploadImage" class="edit-cover">
@@ -374,7 +362,7 @@
         </div>
 
     </div>
-
+    
     <script>
         function toggleMenu() {
             const sidebar = document.querySelector('.sidebar');
