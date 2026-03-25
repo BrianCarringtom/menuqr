@@ -196,27 +196,16 @@
     <!-- 🔥 SCRIPT ACORDEÓN -->
     <script>
         function toggleMenu(index) {
-            const allContents = document.querySelectorAll("[id^='content-']");
-            const allIcons = document.querySelectorAll("[id^='icon-']");
+            const content = document.getElementById(`content-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
 
-            allContents.forEach((content, i) => {
-                const icon = allIcons[i];
-
-                if (i === index) {
-                    // Abrir o cerrar la categoría clickeada
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                        icon.innerText = "+";
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.innerText = "−";
-                    }
-                } else {
-                    // Cerrar todas las demás categorías
-                    content.style.maxHeight = null;
-                    icon.innerText = "+";
-                }
-            });
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.innerText = "+";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.innerText = "−";
+            }
         }
     </script>
 

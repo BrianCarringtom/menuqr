@@ -74,13 +74,13 @@
             </h1>
 
             <p class="text-gray-300 text-lg mb-10 leading-relaxed">
-                Una experiencia única donde cada detalle importa.
-                Calidad, estilo y atención en un solo lugar.
+                Una experiencia gastronómica moderna donde cada detalle importa.
+                Sabor, diseño y elegancia en un solo lugar.
             </p>
 
             <a href="#menu"
                 class="inline-block border border-yellow-500 text-yellow-400 px-10 py-3 rounded-full tracking-widest hover:bg-yellow-500 hover:text-black transition duration-300">
-                DESCUBRE MÁS
+                VER MENÚ
             </a>
 
         </div>
@@ -104,7 +104,7 @@
             <!-- HEADER -->
             <div class="text-center mb-20">
                 <h2 class="text-4xl md:text-5xl tracking-[0.3em]">
-                    LO QUE OFRECEMOS
+                    MENÚ
                 </h2>
                 <div class="w-24 h-[1px] bg-yellow-500 mx-auto mt-6"></div>
             </div>
@@ -133,18 +133,24 @@
                         <div class="mt-8 space-y-8">
 
                             @forelse ($category->products as $product)
-                                <div class="group">
+                                <div class="group transition duration-300 hover:translate-x-1 hover:scale-[1.02]">
+
                                     <div class="flex justify-between items-end border-b border-gray-700 pb-3">
-                                        <h3 class="text-xl md:text-2xl">
+
+                                        <h3 class="text-xl md:text-2xl group-hover:text-yellow-400 transition">
                                             {{ $product->name }}
                                         </h3>
+
                                         <span class="text-lg text-yellow-400 font-semibold">
                                             ${{ number_format($product->price, 2) }}
                                         </span>
+
                                     </div>
+
                                     <p class="text-gray-400 text-sm mt-2 max-w-xl">
                                         {{ $product->description }}
                                     </p>
+
                                 </div>
 
                             @empty
@@ -179,7 +185,7 @@
         </h3>
 
         <p class="text-gray-600 text-sm mb-6">
-            Experiencia de calidad y atención excepcional
+            Experiencia gastronómica de alto nivel
         </p>
 
         <div class="flex justify-center gap-6 text-sm text-gray-500 mb-6">
@@ -196,27 +202,16 @@
     <!-- 🔥 SCRIPT ACORDEÓN -->
     <script>
         function toggleMenu(index) {
-            const allContents = document.querySelectorAll("[id^='content-']");
-            const allIcons = document.querySelectorAll("[id^='icon-']");
+            const content = document.getElementById(`content-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
 
-            allContents.forEach((content, i) => {
-                const icon = allIcons[i];
-
-                if (i === index) {
-                    // Abrir o cerrar la categoría clickeada
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                        icon.innerText = "+";
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        icon.innerText = "−";
-                    }
-                } else {
-                    // Cerrar todas las demás categorías
-                    content.style.maxHeight = null;
-                    icon.innerText = "+";
-                }
-            });
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.innerText = "+";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.innerText = "−";
+            }
         }
     </script>
 
