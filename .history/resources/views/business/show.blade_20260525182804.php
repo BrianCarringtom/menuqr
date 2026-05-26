@@ -8,9 +8,9 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- FUENTES -->
+    <!-- FUENTES PRO -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap"
         rel="stylesheet">
 
     <style>
@@ -18,30 +18,18 @@
             scroll-behavior: smooth;
         }
 
-        html,
-        body {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        * {
-            box-sizing: border-box;
-            max-width: 100%;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
             color: #f5f5f5;
-            background: black;
+            overflow-x: hidden;
         }
 
         h1,
-        h2,
-        h3 {
+        h2 {
             font-family: 'Playfair Display', serif;
         }
 
-        /* ANIMACIÓN */
+        /* Animación */
         .fade-in {
             animation: fadeIn 1.2s ease forwards;
         }
@@ -58,138 +46,100 @@
             }
         }
 
-        /* TRANSICIÓN */
-        .accordion-content {
-            transition: max-height 0.5s ease;
-        }
-
-        /* 🔥 RESPONSIVE CELULAR */
+        /* 🔥 MEJORAS CELULAR */
         @media (max-width: 768px) {
 
             /* HERO */
             .hero-title {
-                font-size: 3.1rem !important;
-                line-height: 1.15;
-                letter-spacing: 2px;
-                word-break: break-word;
+                font-size: 4rem !important;
+                line-height: 1.1;
+                letter-spacing: 3px;
             }
 
             .hero-text {
-                font-size: 1.15rem !important;
+                font-size: 1.35rem !important;
                 line-height: 1.9;
             }
 
             .hero-button {
-                font-size: 1rem;
-                padding: 14px 28px;
-                letter-spacing: 2px;
+                font-size: 1.1rem;
+                padding: 16px 34px;
             }
 
-            /* TÍTULOS */
+            /* TITULOS */
             .section-title {
-                font-size: 2rem !important;
-                line-height: 1.3;
-                letter-spacing: 4px;
+                font-size: 2.8rem !important;
             }
 
             .category-title {
-                font-size: 1.5rem !important;
-                line-height: 1.5;
-                padding-right: 12px;
+                font-size: 2rem !important;
             }
 
             /* PRODUCTOS */
             .product-name {
-                font-size: 1.2rem !important;
+                font-size: 1.5rem !important;
                 line-height: 1.5;
-                word-break: break-word;
             }
 
             .product-price {
-                font-size: 1.1rem !important;
-                flex-shrink: 0;
-                white-space: nowrap;
+                font-size: 1.4rem !important;
             }
 
             .product-description {
-                font-size: 1rem !important;
-                line-height: 1.8;
-                word-break: break-word;
+                font-size: 1.1rem !important;
+                line-height: 1.9;
             }
 
             /* FOOTER */
             .footer-title {
-                font-size: 1.4rem;
-                line-height: 1.5;
+                font-size: 1.7rem;
             }
 
             .footer-text {
-                font-size: 0.95rem;
-                line-height: 1.7;
+                font-size: 1rem;
             }
 
-            /* ESPACIADOS */
+            /* MÁS ESPACIOS */
             .mobile-spacing {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
+                padding-left: 1.4rem;
+                padding-right: 1.4rem;
             }
 
             .mobile-section {
-                padding-top: 6rem;
-                padding-bottom: 6rem;
-            }
-
-            /* FLEX RESPONSIVE */
-            .product-flex {
-                gap: 10px;
-                align-items: flex-start;
-            }
-
-            /* BOTÓN ACORDEÓN */
-            .accordion-button {
-                gap: 15px;
-                align-items: center;
-            }
-
-            /* ICONO */
-            .accordion-icon {
-                font-size: 2rem !important;
-                flex-shrink: 0;
+                padding-top: 7rem;
+                padding-bottom: 7rem;
             }
         }
     </style>
 </head>
 
-<body>
+<body class="bg-black">
 
     <!-- 🔥 HERO -->
     <section
         class="h-screen relative flex items-center justify-center text-center overflow-hidden mobile-spacing">
 
-        <!-- Fondo -->
+        <!-- Imagen fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
                 class="w-full h-full object-cover scale-110 blur-[3px]">
         </div>
 
         <!-- Overlay -->
-        <div
-            class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
-        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95"></div>
 
         <!-- Marca -->
         <div class="absolute top-6 left-6 z-20">
-            <p
-                class="text-sm md:text-base tracking-[0.4em] text-gray-400 uppercase">
+            <p class="text-sm md:text-base tracking-[0.5em] text-gray-400 uppercase">
                 Carrington Brian
             </p>
         </div>
 
         <!-- Contenido -->
-        <div class="relative z-10 max-w-3xl px-4 fade-in">
+        <div class="relative z-10 px-6 max-w-3xl fade-in">
 
             <h1
-                class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
+                class="hero-title text-6xl md:text-7xl tracking-widest mb-8 leading-tight font-bold">
                 {{ $user->name }}
             </h1>
 
@@ -200,7 +150,7 @@
             </p>
 
             <a href="#menu"
-                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">
+                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-12 py-4 rounded-full tracking-[0.25em] hover:bg-yellow-500 hover:text-black transition duration-300">
                 DESCUBRE MÁS
             </a>
 
@@ -219,21 +169,18 @@
                 class="w-full h-full object-cover opacity-15">
         </div>
 
-        <!-- Overlay -->
         <div class="absolute inset-0 bg-black/80"></div>
 
         <div class="relative max-w-5xl mx-auto">
 
             <!-- HEADER -->
             <div class="text-center mb-24">
-
                 <h2
                     class="section-title text-5xl md:text-6xl tracking-[0.3em]">
                     LO QUE OFRECEMOS
                 </h2>
 
                 <div class="w-28 h-[2px] bg-yellow-500 mx-auto mt-8"></div>
-
             </div>
 
             @forelse ($user->categories as $index => $category)
@@ -242,16 +189,16 @@
 
                     <!-- BOTÓN -->
                     <button onclick="toggleMenu({{ $index }})"
-                        class="accordion-button w-full flex justify-between items-center text-left">
+                        class="w-full flex justify-between items-center text-left gap-5">
 
                         <h2
-                            class="category-title text-3xl md:text-4xl text-yellow-500 font-semibold tracking-wide">
+                            class="category-title text-3xl md:text-4xl text-yellow-500 tracking-wide font-semibold">
                             {{ $category->name }}
                         </h2>
 
                         <!-- ICONO -->
                         <span id="icon-{{ $index }}"
-                            class="accordion-icon text-4xl text-yellow-400 transition duration-300">
+                            class="text-4xl text-yellow-400 transition duration-300">
                             +
                         </span>
 
@@ -259,16 +206,16 @@
 
                     <!-- CONTENIDO -->
                     <div id="content-{{ $index }}"
-                        class="accordion-content max-h-0 overflow-hidden">
+                        class="max-h-0 overflow-hidden transition-all duration-500">
 
                         <div class="mt-10 space-y-10">
 
                             @forelse ($category->products as $product)
 
-                                <div>
+                                <div class="group">
 
                                     <div
-                                        class="product-flex flex justify-between items-start border-b border-gray-700 pb-5">
+                                        class="flex justify-between items-end gap-5 border-b border-gray-700 pb-5">
 
                                         <h3
                                             class="product-name text-2xl md:text-3xl font-medium">
@@ -276,14 +223,14 @@
                                         </h3>
 
                                         <span
-                                            class="product-price text-2xl text-yellow-400 font-semibold">
+                                            class="product-price text-2xl text-yellow-400 font-semibold whitespace-nowrap">
                                             ${{ number_format($product->price, 2) }}
                                         </span>
 
                                     </div>
 
                                     <p
-                                        class="product-description text-gray-400 text-base md:text-lg mt-4 max-w-3xl">
+                                        class="product-description text-gray-400 text-base md:text-lg mt-4 leading-relaxed max-w-3xl">
                                         {{ $product->description }}
                                     </p>
 
@@ -314,13 +261,11 @@
             @endforelse
 
         </div>
-
     </section>
 
 
     <!-- 🔥 FOOTER -->
-    <footer
-        class="bg-white text-black py-20 text-center mobile-spacing">
+    <footer class="bg-white text-black py-20 text-center mobile-spacing">
 
         <h3
             class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
@@ -333,10 +278,8 @@
 
         <div
             class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
-
             <span>© {{ date('Y') }}</span>
             <span>Todos los derechos reservados</span>
-
         </div>
 
         <!-- Línea -->
@@ -347,14 +290,10 @@
 
     <!-- 🔥 SCRIPT -->
     <script>
-
         function toggleMenu(index) {
 
-            const allContents =
-                document.querySelectorAll("[id^='content-']");
-
-            const allIcons =
-                document.querySelectorAll("[id^='icon-']");
+            const allContents = document.querySelectorAll("[id^='content-']");
+            const allIcons = document.querySelectorAll("[id^='icon-']");
 
             allContents.forEach((content, i) => {
 
@@ -363,12 +302,9 @@
                 if (i === index) {
 
                     if (content.style.maxHeight) {
-
                         content.style.maxHeight = null;
                         icon.innerText = "+";
-
                     } else {
-
                         content.style.maxHeight =
                             content.scrollHeight + "px";
 
@@ -385,7 +321,6 @@
             });
 
         }
-
     </script>
 
 </body>

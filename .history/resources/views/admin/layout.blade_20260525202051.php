@@ -3,13 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
         * {
@@ -32,12 +29,6 @@
             display: flex;
         }
 
-        /* 🔥 CUANDO EL MENÚ ABRE */
-        body.menu-open {
-            overflow: hidden;
-            height: 100dvh;
-        }
-
         a {
             text-decoration: none;
         }
@@ -49,7 +40,7 @@
             max-width: 100%;
         }
 
-        /* 🔥 BOTÓN */
+        /* 🔥 HAMBURGUESA */
         .hamburger {
             display: none;
             position: fixed;
@@ -57,7 +48,7 @@
             left: 16px;
             width: 48px;
             height: 48px;
-            border-radius: 14px;
+            border-radius: 12px;
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             color: white;
@@ -85,34 +76,26 @@
             left: 0;
             width: 280px;
             max-width: 85%;
-            height: 100dvh;
+            height: 100vh;
             background: linear-gradient(180deg, #1f2937, #020617);
-            padding: 22px 18px;
+            padding: 24px 18px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 5px 0 30px rgba(0, 0, 0, 0.45);
             transition: transform 0.35s ease;
             z-index: 1100;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         .sidebar.collapsed {
             transform: translateX(-100%);
         }
 
-        /* 🔥 CONTENEDOR INTERNO */
-        .sidebar-top {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 0;
-        }
-
         /* LOGO */
         .logo {
             text-align: center;
-            margin-bottom: 26px;
+            margin-bottom: 35px;
         }
 
         .logo h2 {
@@ -127,18 +110,17 @@
             color: #9ca3af;
         }
 
-        /* 🔥 MENU */
+        /* MENU */
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            overflow: hidden;
+            gap: 12px;
         }
 
         .menu-title {
-            font-size: 11px;
+            font-size: 12px;
             color: #6b7280;
-            margin: 8px 0 4px;
+            margin: 12px 0 8px;
             padding-left: 6px;
             letter-spacing: 1px;
         }
@@ -147,7 +129,7 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 12px 14px;
+            padding: 14px 16px;
             border-radius: 14px;
             color: #e5e7eb;
             transition: all 0.25s ease;
@@ -169,7 +151,7 @@
             transform: translateX(4px);
         }
 
-        /* 🔥 ACTIVO */
+        /* ACTIVO */
         .active {
             background: linear-gradient(90deg, #2563eb, #1d4ed8);
             color: white;
@@ -187,18 +169,18 @@
             border-radius: 0 6px 6px 0;
         }
 
-        /* 🔥 LOGOUT */
+        /* LOGOUT */
         .logout-btn {
             width: 100%;
             background: transparent;
             border: 1px solid #ef4444;
             color: #ef4444;
-            padding: 13px;
+            padding: 14px;
             border-radius: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 18px;
-            font-size: 14px;
+            margin-top: 30px;
+            font-size: 15px;
             font-weight: 500;
         }
 
@@ -217,7 +199,7 @@
             overflow-x: hidden;
         }
 
-        /* 🔥 PÁGINAS */
+        /* PÁGINAS */
         body[data-page="dashboard"] .main {
             margin-left: 430px;
         }
@@ -242,7 +224,7 @@
             font-size: 15px;
         }
 
-        /* 🔥 BOTONES */
+        /* BOTONES */
         button {
             padding: 12px 22px;
             background: #3b82f6;
@@ -259,7 +241,7 @@
             background: #2563eb;
         }
 
-        /* 🔥 TABLAS */
+        /* TABLAS */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -300,7 +282,7 @@
             background: #374151;
         }
 
-        /* 🔥 LINKS */
+        /* LINKS */
         .link-slug {
             color: #60a5fa;
         }
@@ -309,7 +291,7 @@
             text-decoration: underline;
         }
 
-        /* 🔥 ACCIONES */
+        /* ACCIONES */
         .actions {
             display: flex;
             flex-wrap: wrap;
@@ -331,9 +313,17 @@
             color: white;
         }
 
+        .btn-edit:hover {
+            background: #2563eb;
+        }
+
         .btn-delete {
             background: #ef4444;
             color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
         }
 
         .btn-warning {
@@ -341,9 +331,17 @@
             color: white;
         }
 
+        .btn-warning:hover {
+            background: #d97706;
+        }
+
         .btn-success {
             background: #10b981;
             color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
         }
 
         .success-message {
@@ -381,7 +379,7 @@
             border: 1px solid #d1d5db;
         }
 
-        /* 🔥 ANIMACIÓN */
+        /* ANIMACIÓN */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -416,7 +414,6 @@
 
             .sidebar {
                 transform: translateX(-100%);
-                justify-content: space-between;
             }
 
             .sidebar.show {
@@ -431,30 +428,13 @@
                 padding: 90px 18px 25px;
             }
 
-            .logo {
-                margin-bottom: 22px;
-            }
-
             .logo h2 {
-                font-size: 22px;
-            }
-
-            .logo span {
-                font-size: 12px;
-            }
-
-            .menu {
-                gap: 8px;
+                font-size: 24px;
             }
 
             .menu a {
-                font-size: 14px;
-                padding: 11px 13px;
-            }
-
-            .logout-btn {
-                font-size: 14px;
-                padding: 12px;
+                font-size: 15px;
+                padding: 13px 14px;
             }
 
             .custom-table {
@@ -474,12 +454,11 @@
             }
 
             .menu a {
-                font-size: 13px;
-                padding: 10px 12px;
+                font-size: 14px;
             }
 
             .logout-btn {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             button {
@@ -498,27 +477,18 @@
 <body data-page="{{ $page ?? 'dashboard' }}">
 
     <!-- 🔥 BOTÓN -->
-    <div class="hamburger"
-        id="hamburger-btn"
-        onclick="toggleSidebar()">
-
+    <div class="hamburger" id="hamburger-btn" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
-
     </div>
 
     <!-- 🔥 SIDEBAR -->
     <div class="sidebar">
 
-        <div class="sidebar-top">
+        <div>
 
             <div class="logo">
-
                 <h2>ADMIN</h2>
-
-                <span>
-                    Panel de control
-                </span>
-
+                <span>Panel de control</span>
             </div>
 
             <div class="menu">
@@ -527,16 +497,14 @@
                     GENERAL
                 </div>
 
-                <a href="/admin"
-                    class="{{ request()->is('admin') ? 'active' : '' }}">
+                <a href="/admin" class="{{ request()->is('admin') ? 'active' : '' }}">
 
                     <i class="fas fa-chart-line"></i>
                     Dashboard
 
                 </a>
 
-                <a href="/admin/users"
-                    class="{{ request()->is('admin/users') ? 'active' : '' }}">
+                <a href="/admin/users" class="{{ request()->is('admin/users') ? 'active' : '' }}">
 
                     <i class="fas fa-users"></i>
                     Usuarios
@@ -547,13 +515,10 @@
 
         </div>
 
-        <!-- 🔥 LOGOUT -->
+        <!-- LOGOUT -->
         <div>
 
-            <form id="logout-form"
-                action="/logout"
-                method="POST"
-                style="display:none;">
+            <form id="logout-form" action="/logout" method="POST" style="display:none;">
 
                 @csrf
 
@@ -580,15 +545,9 @@
 
     <!-- 🔥 SCRIPT -->
     <script>
-
-        const sidebar =
-            document.querySelector('.sidebar');
-
-        const hamburgerBtn =
-            document.getElementById('hamburger-btn');
-
-        const hamburgerIcon =
-            hamburgerBtn.querySelector('i');
+        const sidebar = document.querySelector('.sidebar');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const hamburgerIcon = hamburgerBtn.querySelector('i');
 
         function toggleSidebar() {
 
@@ -601,18 +560,12 @@
 
                 hamburgerBtn.classList.add('rotate');
 
-                // 🔥 BLOQUEA SCROLL BODY
-                document.body.classList.add('menu-open');
-
             } else {
 
                 hamburgerIcon.classList.remove('fa-times');
                 hamburgerIcon.classList.add('fa-bars');
 
                 hamburgerBtn.classList.remove('rotate');
-
-                // 🔥 RESTAURA SCROLL
-                document.body.classList.remove('menu-open');
 
             }
 
@@ -634,7 +587,7 @@
 
         });
 
-        // 🔥 RESETEAR
+        // 🔥 RESETEA AL CAMBIAR TAMAÑO
         window.addEventListener('resize', () => {
 
             if (window.innerWidth > 900) {
@@ -646,12 +599,9 @@
 
                 hamburgerBtn.classList.remove('rotate');
 
-                document.body.classList.remove('menu-open');
-
             }
 
         });
-
     </script>
 
 </body>
