@@ -64,46 +64,21 @@
         }
 
         /* 🔥 IMÁGENES PEQUEÑAS Y ELEGANTES */
-        /* 🔥 IMÁGENES MINIMALISTAS Y PREMIUM */
         .menu-image {
-            width: 56px;
-            height: 56px;
+            width: 58px;
+            height: 58px;
             object-fit: cover;
-            border-radius: 18px;
-
-            /* BORDE DELGADO */
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-            /* EFECTO GLASS */
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-
-            /* SOMBRA ELEGANTE */
+            border-radius: 14px;
+            border: 2px solid rgba(234, 179, 8, 0.75);
             box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.35),
-                0 0 0 1px rgba(255, 255, 255, 0.03);
-
+                0 6px 18px rgba(0, 0, 0, 0.45),
+                0 0 12px rgba(234, 179, 8, 0.18);
             flex-shrink: 0;
-
-            transition:
-                transform 0.35s ease,
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
-
-            position: relative;
-            overflow: hidden;
+            transition: 0.35s ease;
         }
 
-        /* EFECTO HOVER */
         .menu-image:hover {
-
-            transform: translateY(-3px) scale(1.04);
-
-            border-color: rgba(234, 179, 8, 0.35);
-
-            box-shadow:
-                0 12px 28px rgba(0, 0, 0, 0.45),
-                0 0 18px rgba(234, 179, 8, 0.12);
+            transform: scale(1.08) rotate(2deg);
         }
 
         .category-left {
@@ -208,9 +183,9 @@
 
             /* IMÁGENES */
             .menu-image {
-                width: 48px;
-                height: 48px;
-                border-radius: 15px;
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
             }
 
             .category-left {
@@ -303,14 +278,13 @@
                             <!-- 🔥 IMAGEN -->
                             <div class="relative">
 
-                                <!-- IMAGEN -->
                                 <img src="{{ $category->image
                                     ? asset('storage/' . $category->image)
                                     : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop' }}"
                                     class="menu-image">
 
-                                <!-- EFECTO PREMIUM -->
-                                <div class="absolute inset-0 rounded-[18px] bg-white/5 backdrop-blur-sm -z-10">
+                                <!-- BRILLO -->
+                                <div class="absolute -inset-1 rounded-[16px] bg-yellow-500/10 blur-md -z-10">
                                 </div>
 
                             </div>

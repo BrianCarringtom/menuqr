@@ -303,14 +303,13 @@
                             <!-- 🔥 IMAGEN -->
                             <div class="relative">
 
-                                <!-- IMAGEN -->
                                 <img src="{{ $category->image
                                     ? asset('storage/' . $category->image)
                                     : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop' }}"
                                     class="menu-image">
 
-                                <!-- EFECTO PREMIUM -->
-                                <div class="absolute inset-0 rounded-[18px] bg-white/5 backdrop-blur-sm -z-10">
+                                <!-- BRILLO -->
+                                <div class="absolute -inset-1 rounded-[16px] bg-yellow-500/10 blur-md -z-10">
                                 </div>
 
                             </div>

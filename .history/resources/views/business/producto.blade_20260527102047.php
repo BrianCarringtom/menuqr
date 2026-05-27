@@ -584,23 +584,27 @@
                         Organiza tu catálogo profesionalmente.
                     </p>
 
-                    <form method="POST" action="/business/category" enctype="multipart/form-data">
+                    <form method="POST" action="/business/category">
 
                         @csrf
 
-                        <!-- NOMBRE -->
-                        <input type="text" name="category" placeholder="Nombre de la categoría" required>
+                        <form method="POST" action="/business/category" enctype="multipart/form-data">
 
-                        <!-- IMAGEN -->
-                        <input type="file" name="image" accept="image/*" required>
+                            @csrf
 
-                        <button type="submit" class="btn-gold" style="margin-top:10px;">
+                            <!-- NOMBRE -->
+                            <input type="text" name="category" placeholder="Nombre de la categoría" required>
 
-                            Crear Categoría
+                            <!-- IMAGEN -->
+                            <input type="file" name="image" accept="image/*" required>
 
-                        </button>
+                            <button type="submit" class="btn-gold" style="margin-top:10px;">
 
-                    </form>
+                                Crear Categoría
+
+                            </button>
+
+                        </form>
 
                 </div>
 

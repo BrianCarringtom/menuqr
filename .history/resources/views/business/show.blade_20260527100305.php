@@ -63,53 +63,26 @@
             transition: max-height 0.5s ease;
         }
 
-        /* 🔥 IMÁGENES PEQUEÑAS Y ELEGANTES */
-        /* 🔥 IMÁGENES MINIMALISTAS Y PREMIUM */
+        /* 🔥 NUEVAS IMÁGENES DEL MENÚ */
         .menu-image {
-            width: 56px;
-            height: 56px;
+            width: 85px;
+            height: 85px;
             object-fit: cover;
             border-radius: 18px;
-
-            /* BORDE DELGADO */
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-            /* EFECTO GLASS */
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-
-            /* SOMBRA ELEGANTE */
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.35),
-                0 0 0 1px rgba(255, 255, 255, 0.03);
-
+            border: 2px solid rgba(234, 179, 8, 0.7);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             flex-shrink: 0;
-
-            transition:
-                transform 0.35s ease,
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
-
-            position: relative;
-            overflow: hidden;
+            transition: 0.3s ease;
         }
 
-        /* EFECTO HOVER */
         .menu-image:hover {
-
-            transform: translateY(-3px) scale(1.04);
-
-            border-color: rgba(234, 179, 8, 0.35);
-
-            box-shadow:
-                0 12px 28px rgba(0, 0, 0, 0.45),
-                0 0 18px rgba(234, 179, 8, 0.12);
+            transform: scale(1.05);
         }
 
         .category-left {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
 
         /* 🔥 RESPONSIVE CELULAR */
@@ -206,15 +179,15 @@
                 flex-shrink: 0;
             }
 
-            /* IMÁGENES */
+            /* IMAGENES MENU */
             .menu-image {
-                width: 48px;
-                height: 48px;
+                width: 70px;
+                height: 70px;
                 border-radius: 15px;
             }
 
             .category-left {
-                gap: 12px;
+                gap: 14px;
             }
         }
     </style>
@@ -223,7 +196,8 @@
 <body>
 
     <!-- 🔥 HERO -->
-    <section class="h-screen relative flex items-center justify-center text-center overflow-hidden mobile-spacing">
+    <section
+        class="h-screen relative flex items-center justify-center text-center overflow-hidden mobile-spacing">
 
         <!-- Fondo -->
         <div class="absolute inset-0">
@@ -232,12 +206,14 @@
         </div>
 
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
         </div>
 
         <!-- Marca -->
         <div class="absolute top-6 left-6 z-20">
-            <p class="text-sm md:text-base tracking-[0.4em] text-gray-400 uppercase">
+            <p
+                class="text-sm md:text-base tracking-[0.4em] text-gray-400 uppercase">
                 Carrington Brian
             </p>
         </div>
@@ -245,11 +221,13 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
+            <h1
+                class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
                 {{ $user->name }}
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
+            <p
+                class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
                 Una experiencia única donde cada detalle importa.
                 Calidad, estilo y atención en un solo lugar.
             </p>
@@ -265,7 +243,8 @@
 
 
     <!-- 🔥 MENÚ -->
-    <section id="menu" class="relative py-28 px-6 mobile-section mobile-spacing">
+    <section id="menu"
+        class="relative py-28 px-6 mobile-section mobile-spacing">
 
         <!-- Fondo -->
         <div class="absolute inset-0">
@@ -281,7 +260,8 @@
             <!-- HEADER -->
             <div class="text-center mb-24">
 
-                <h2 class="section-title text-5xl md:text-6xl tracking-[0.3em]">
+                <h2
+                    class="section-title text-5xl md:text-6xl tracking-[0.3em]">
                     LO QUE OFRECEMOS
                 </h2>
 
@@ -301,22 +281,13 @@
                         <div class="category-left">
 
                             <!-- 🔥 IMAGEN -->
-                            <div class="relative">
-
-                                <!-- IMAGEN -->
-                                <img src="{{ $category->image
-                                    ? asset('storage/' . $category->image)
-                                    : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop' }}"
-                                    class="menu-image">
-
-                                <!-- EFECTO PREMIUM -->
-                                <div class="absolute inset-0 rounded-[18px] bg-white/5 backdrop-blur-sm -z-10">
-                                </div>
-
-                            </div>
+                            <img
+                                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop"
+                                class="menu-image">
 
                             <!-- TÍTULO -->
-                            <h2 class="category-title text-3xl md:text-4xl text-yellow-500 font-semibold tracking-wide">
+                            <h2
+                                class="category-title text-3xl md:text-4xl text-yellow-500 font-semibold tracking-wide">
                                 {{ $category->name }}
                             </h2>
 
@@ -331,27 +302,32 @@
                     </button>
 
                     <!-- CONTENIDO -->
-                    <div id="content-{{ $index }}" class="accordion-content max-h-0 overflow-hidden">
+                    <div id="content-{{ $index }}"
+                        class="accordion-content max-h-0 overflow-hidden">
 
                         <div class="mt-10 space-y-10">
 
                             @forelse ($category->products as $product)
+
                                 <div>
 
                                     <div
                                         class="product-flex flex justify-between items-start border-b border-gray-700 pb-5">
 
-                                        <h3 class="product-name text-2xl md:text-3xl font-medium">
+                                        <h3
+                                            class="product-name text-2xl md:text-3xl font-medium">
                                             {{ $product->name }}
                                         </h3>
 
-                                        <span class="product-price text-2xl text-yellow-400 font-semibold">
+                                        <span
+                                            class="product-price text-2xl text-yellow-400 font-semibold">
                                             ${{ number_format($product->price, 2) }}
                                         </span>
 
                                     </div>
 
-                                    <p class="product-description text-gray-400 text-base md:text-lg mt-4 max-w-3xl">
+                                    <p
+                                        class="product-description text-gray-400 text-base md:text-lg mt-4 max-w-3xl">
                                         {{ $product->description }}
                                     </p>
 
@@ -362,6 +338,7 @@
                                 <p class="text-gray-500 italic text-xl mt-6">
                                     No hay productos en esta categoría
                                 </p>
+
                             @endforelse
 
                         </div>
@@ -386,9 +363,11 @@
 
 
     <!-- 🔥 FOOTER -->
-    <footer class="bg-white text-black py-20 text-center mobile-spacing">
+    <footer
+        class="bg-white text-black py-20 text-center mobile-spacing">
 
-        <h3 class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
+        <h3
+            class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
             Carrington Brian
         </h3>
 
@@ -396,7 +375,8 @@
             Experiencia de calidad y atención excepcional
         </p>
 
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
+        <div
+            class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
 
             <span>© {{ date('Y') }}</span>
             <span>Todos los derechos reservados</span>
@@ -411,6 +391,7 @@
 
     <!-- 🔥 SCRIPT -->
     <script>
+
         function toggleMenu(index) {
 
             const allContents =
@@ -448,6 +429,7 @@
             });
 
         }
+
     </script>
 
 </body>
