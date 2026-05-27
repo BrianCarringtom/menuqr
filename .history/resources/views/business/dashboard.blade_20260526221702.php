@@ -7,7 +7,8 @@
     <title>Business Dashboard</title>
 
     <!-- Fuente -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -107,47 +108,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 45px;
             position: relative;
         }
 
-        /* ================= WELCOME ================= */
+        /* ================= WELCOME BOX ================= */
 
         .welcome-box {
             position: relative;
-            width: 100%;
-            max-width: 1100px;
-            min-height: 650px;
-            border-radius: 32px;
             overflow: hidden;
-            background: #000;
-            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 30px;
+            min-height: 520px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
         }
 
         .welcome-box img {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            height: 520px;
+            object-fit: cover;
             display: block;
-            background: #000;
         }
 
-        /* OSCURECER UN POCO */
+        /* OVERLAY OSCURO */
         .welcome-overlay {
             position: absolute;
             inset: 0;
             background:
                 linear-gradient(to top,
-                    rgba(0, 0, 0, 0.72),
-                    rgba(0, 0, 0, 0.20),
-                    rgba(0, 0, 0, 0.08));
+                    rgba(0, 0, 0, 0.75),
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.15));
         }
 
-        /* CONTENIDO */
+        /* ================= CONTENT DENTRO DE LA IMAGEN ================= */
+
         .welcome-content {
             position: absolute;
             inset: 0;
-            z-index: 2;
+            z-index: 5;
 
             display: flex;
             flex-direction: column;
@@ -156,51 +156,54 @@
 
             text-align: center;
             padding: 40px;
-            color: white;
         }
 
         .welcome-content h1 {
-            font-size: 56px;
+            font-size: 48px;
+            color: white;
             font-weight: 700;
-            margin-bottom: 14px;
-            text-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+            margin-bottom: 18px;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
         .welcome-content h2 {
+            color: #f7d560;
             font-size: 30px;
-            color: #f7d35b;
-            margin-bottom: 18px;
             font-weight: 600;
-            text-shadow: 0 5px 18px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
         .welcome-content p {
             max-width: 650px;
-            font-size: 17px;
-            line-height: 1.8;
             color: rgba(255, 255, 255, 0.92);
-            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+            font-size: 18px;
+            line-height: 1.8;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* BOTÓN MÁS ELEGANTE */
+        /* BOTÓN */
         .welcome-btn {
-            margin-top: 28px;
-            padding: 10px 20px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(10px);
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
 
+            background: #c9a227;
             color: white;
+            padding: 16px 28px;
+            border-radius: 16px;
+
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 16px;
 
             transition: 0.3s ease;
+            box-shadow: 0 10px 25px rgba(201, 162, 39, 0.35);
         }
 
         .welcome-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: #aa861d;
             transform: translateY(-2px);
         }
 
@@ -211,13 +214,13 @@
             position: fixed;
             top: 18px;
             left: 18px;
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border: none;
             border-radius: 14px;
             background: #c9a227;
             color: white;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             z-index: 1100;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
@@ -284,24 +287,27 @@
 
             .main {
                 width: 100%;
-                padding: 90px 22px 30px;
+                padding: 90px 24px 30px;
             }
 
             .welcome-box {
-                min-height: 560px;
-                border-radius: 26px;
+                min-height: 470px;
+            }
+
+            .welcome-box img {
+                height: 470px;
             }
 
             .welcome-content h1 {
-                font-size: 42px;
+                font-size: 38px;
             }
 
             .welcome-content h2 {
-                font-size: 24px;
+                font-size: 26px;
             }
 
             .welcome-content p {
-                font-size: 15px;
+                font-size: 16px;
             }
         }
 
@@ -310,33 +316,31 @@
         @media (max-width: 600px) {
 
             .main {
-                padding: 85px 14px 22px;
+                padding: 85px 14px 20px;
             }
 
             .welcome-box {
-                min-height: 420px;
                 border-radius: 24px;
+                min-height: 430px;
             }
 
             .welcome-box img {
-                object-fit: contain;
-                background: #000;
+                height: 430px;
             }
 
             .welcome-content {
-                padding: 22px;
-                justify-content: center;
-                transform: translateY(100px);
+                padding: 25px;
             }
 
             .welcome-content h1 {
-                font-size: 30px;
+                font-size: 29px;
                 line-height: 1.3;
+                margin-bottom: 14px;
             }
 
             .welcome-content h2 {
-                font-size: 21px;
-                margin-bottom: 14px;
+                font-size: 22px;
+                margin-bottom: 16px;
             }
 
             .welcome-content p {
@@ -345,9 +349,10 @@
             }
 
             .welcome-btn {
-                margin-top: 22px;
-                padding: 9px 17px;
-                font-size: 12px;
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+                font-size: 15px;
             }
 
             .menu a {
@@ -361,9 +366,9 @@
             }
 
             .menu-toggle {
-                width: 46px;
-                height: 46px;
-                font-size: 17px;
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
             }
         }
     </style>
@@ -410,9 +415,10 @@
                     </a>
 
                 </div>
+
             </div>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
 
@@ -438,8 +444,10 @@
 
                 <img src="/images/bienvenido.png" alt="Negocio">
 
+                <!-- Overlay -->
                 <div class="welcome-overlay"></div>
 
+                <!-- CONTENIDO DENTRO DE LA IMAGEN -->
                 <div class="welcome-content">
 
                     <h1>Bienvenido a tu panel</h1>
@@ -448,11 +456,12 @@
 
                     <p>
                         Gestiona tu negocio de forma profesional,
-                        moderna y organizada desde un solo lugar.
+                        clara y organizada desde un solo lugar.
                     </p>
 
-                    <a href="/{{ auth()->user()->slug }}" class="welcome-btn">
-                        Ver mi página
+                    <a href="/business/profile" class="welcome-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        Ir a mi perfil
                     </a>
 
                 </div>
@@ -485,6 +494,7 @@
             }
         }
 
+        // CERRAR MENÚ AL CAMBIAR TAMAÑO
         window.addEventListener('resize', () => {
 
             const sidebar = document.querySelector('.sidebar');

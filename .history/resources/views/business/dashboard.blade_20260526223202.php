@@ -7,7 +7,8 @@
     <title>Business Dashboard</title>
 
     <!-- Fuente -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -324,9 +325,7 @@
             }
 
             .welcome-content {
-                padding: 22px;
-                justify-content: center;
-                transform: translateY(100px);
+                padding: 42px;
             }
 
             .welcome-content h1 {

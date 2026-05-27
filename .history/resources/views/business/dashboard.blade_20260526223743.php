@@ -326,7 +326,7 @@
             .welcome-content {
                 padding: 22px;
                 justify-content: center;
-                transform: translateY(100px);
+                transform: translateY(80px);
             }
 
             .welcome-content h1 {
