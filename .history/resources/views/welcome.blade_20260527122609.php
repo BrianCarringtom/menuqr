@@ -153,154 +153,133 @@
         /* HERO */
         .hero {
             min-height: 100vh;
+            padding: 140px 8% 90px;
             display: flex;
             align-items: center;
-            padding: 130px 10% 90px;
+            justify-content: space-between;
+            gap: 60px;
             position: relative;
             overflow: hidden;
-
-            background:
-                linear-gradient(to right,
-                    rgba(2, 6, 23, 0.96),
-                    rgba(2, 6, 23, 0.72)),
-                url('https://images.unsplash.com/photo-1492724441997-5dc865305da7');
-
-            background-size: cover;
-            background-position: center;
         }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: rgba(37, 99, 235, 0.28);
-            filter: blur(140px);
-            top: -150px;
-            right: -100px;
-            animation: glow 5s infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                transform: scale(1);
-            }
-
-            to {
-                transform: scale(1.2);
-            }
-        }
-
+        /* CONTENIDO */
         .hero-content {
-            max-width: 760px;
-            position: relative;
-            z-index: 5;
-            animation: fadeUp 1.2s ease;
+            max-width: 700px;
+            width: 100%;
+            z-index: 3;
         }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
-            border-radius: 40px;
-            margin-bottom: 28px;
-
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-            color: #bfdbfe;
-            font-size: 14px;
-        }
-
+        /* TITULO */
         .hero h1 {
-            font-size: 72px;
-            line-height: 1.02;
-            margin-bottom: 24px;
+            font-size: clamp(58px, 5vw, 88px);
+            line-height: 1.05;
+            margin-bottom: 25px;
             font-weight: 800;
             letter-spacing: -2px;
         }
 
-        .hero h1 span {
-            background: linear-gradient(to right, white, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        /* TEXTO */
         .hero p {
-            font-size: 18px;
-            color: #cbd5e1;
-            line-height: 1.9;
-            margin-bottom: 38px;
             max-width: 620px;
+            font-size: 18px;
+            line-height: 1.9;
+            color: #cbd5e1;
+            margin-bottom: 35px;
         }
 
-        .btn-main {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 16px 34px;
-            border-radius: 40px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            transition: .4s;
-
-            box-shadow:
-                0 15px 35px rgba(37, 99, 235, 0.35);
-        }
-
-        .btn-main:hover {
-            transform: translateY(-5px);
-        }
-
-        /* IMAGENES HERO */
-        .hero-images {
-            margin-top: 50px;
+        /* BOTON */
+        .hero-buttons {
             display: flex;
-            gap: 20px;
-            flex-wrap: nowrap;
             align-items: center;
+            gap: 18px;
+            margin-top: 20px;
         }
 
-        .hero-images img {
-            width: 165px;
-            height: 125px;
-            object-fit: cover;
+        /* CARD DERECHA */
+        .floating-card {
+            position: relative;
+            right: auto;
+            top: auto;
+            transform: none;
+            width: 360px;
+            min-width: 360px;
 
-            border-radius: 26px;
+            animation: floatCard 5s ease-in-out infinite;
 
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(20px);
+
+            border-radius: 34px;
+            overflow: hidden;
 
             box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.3);
-
-            transition: .4s;
+                0 30px 80px rgba(0, 0, 0, .45),
+                0 10px 40px rgba(37, 99, 235, .18);
         }
 
-        .hero-images img:nth-child(2) {
-            transform: translateY(22px);
+        /* IMAGEN CARD */
+        .floating-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
         }
 
-        .hero-images img:hover {
-            transform: translateY(-10px) scale(1.05);
+        /* CONTENIDO CARD */
+        .floating-card-content {
+            padding: 28px;
         }
 
-        .hero-images img:nth-child(2):hover {
-            transform: translateY(10px) scale(1.05);
+        .floating-card h3 {
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .floating-card p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        /* EFECTO FLOTANTE */
+        @keyframes floatCard {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* DECORACIONES */
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, .22);
+            filter: blur(120px);
+            top: -250px;
+            right: -120px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: rgba(96, 165, 250, .12);
+            filter: blur(120px);
+            bottom: -180px;
+            left: -120px;
         }
 
         /* FEATURES */

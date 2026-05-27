@@ -155,14 +155,12 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 130px 10% 90px;
+            padding: 0 10%;
             position: relative;
             overflow: hidden;
 
             background:
-                linear-gradient(to right,
-                    rgba(2, 6, 23, 0.96),
-                    rgba(2, 6, 23, 0.72)),
+                linear-gradient(to right, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.55)),
                 url('https://images.unsplash.com/photo-1492724441997-5dc865305da7');
 
             background-size: cover;
@@ -192,7 +190,7 @@
         }
 
         .hero-content {
-            max-width: 760px;
+            max-width: 700px;
             position: relative;
             z-index: 5;
             animation: fadeUp 1.2s ease;
@@ -216,23 +214,19 @@
             gap: 10px;
             padding: 10px 18px;
             border-radius: 40px;
-            margin-bottom: 28px;
-
+            margin-bottom: 25px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
-
             border: 1px solid rgba(255, 255, 255, 0.08);
-
             color: #bfdbfe;
             font-size: 14px;
         }
 
         .hero h1 {
             font-size: 72px;
-            line-height: 1.02;
-            margin-bottom: 24px;
+            line-height: 1.05;
+            margin-bottom: 22px;
             font-weight: 800;
-            letter-spacing: -2px;
         }
 
         .hero h1 span {
@@ -244,8 +238,8 @@
         .hero p {
             font-size: 18px;
             color: #cbd5e1;
-            line-height: 1.9;
-            margin-bottom: 38px;
+            line-height: 1.8;
+            margin-bottom: 35px;
             max-width: 620px;
         }
 
@@ -258,9 +252,7 @@
             color: white;
             font-weight: 600;
             transition: .4s;
-
-            box-shadow:
-                0 15px 35px rgba(37, 99, 235, 0.35);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.35);
         }
 
         .btn-main:hover {
@@ -269,38 +261,24 @@
 
         /* IMAGENES HERO */
         .hero-images {
-            margin-top: 50px;
+            margin-top: 45px;
             display: flex;
-            gap: 20px;
-            flex-wrap: nowrap;
-            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
         }
 
         .hero-images img {
-            width: 165px;
-            height: 125px;
+            width: 140px;
+            height: 110px;
             object-fit: cover;
-
-            border-radius: 26px;
-
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.3);
-
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             transition: .4s;
-        }
-
-        .hero-images img:nth-child(2) {
-            transform: translateY(22px);
         }
 
         .hero-images img:hover {
             transform: translateY(-10px) scale(1.05);
-        }
-
-        .hero-images img:nth-child(2):hover {
-            transform: translateY(10px) scale(1.05);
         }
 
         /* FEATURES */
