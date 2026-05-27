@@ -375,10 +375,10 @@
             }
 
             .profile-img {
-                left: 40px;
-                transform: none;
+                left: 50%;
+                transform: translateX(-50%);
                 bottom: -55px;
-                text-align: left;
+                text-align: center;
             }
 
             .profile-img img {

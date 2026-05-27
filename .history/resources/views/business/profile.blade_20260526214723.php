@@ -375,7 +375,7 @@
             }
 
             .profile-img {
-                left: 40px;
+                left: 10px;
                 transform: none;
                 bottom: -55px;
                 text-align: left;
