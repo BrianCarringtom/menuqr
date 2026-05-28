@@ -743,7 +743,15 @@
             }
 
             .btn-login {
-                display: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 10px 18px;
+                font-size: 14px;
+
+                border-radius: 30px;
+                white-space: nowrap;
             }
 
             .hero {
@@ -758,6 +766,44 @@
 
             .hero-images {
                 justify-content: center;
+                gap: 12px;
+                margin-top: 35px;
+                flex-wrap: nowrap;
+            }
+
+            .hero-images img {
+                width: 110px;
+                height: 130px;
+
+                object-fit: cover;
+                object-position: center;
+                background: rgba(255, 255, 255, 0.04);
+                padding: 4px;
+
+                border-radius: 20px;
+
+                border: 1px solid rgba(255, 255, 255, 0.12);
+
+                box-shadow:
+                    0 10px 25px rgba(0, 0, 0, 0.35);
+
+                transition: .4s;
+            }
+
+            .hero-images img:nth-child(1) {
+                transform: translateY(8px);
+            }
+
+            .hero-images img:nth-child(2) {
+                transform: translateY(-10px);
+            }
+
+            .hero-images img:nth-child(3) {
+                transform: translateY(8px);
+            }
+
+            .hero-images img:hover {
+                transform: scale(1.05);
             }
 
             .gallery-grid {
@@ -811,6 +857,27 @@
                 padding-right: 6%;
             }
         }
+
+        @media(max-width:430px) {
+
+            header {
+                padding: 12px 14px;
+            }
+
+            header h2 {
+                font-size: 22px;
+            }
+
+            .btn-login {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .menu-toggle {
+                font-size: 22px;
+            }
+
+        }
     </style>
 </head>
 
@@ -858,9 +925,9 @@
             <a href="#" class="btn-main">Comenzar ahora</a>
 
             <div class="hero-images">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df">
+                <img src="/images/welcome1.jpeg">
+                <img src="/images/welcome2.jpg">
+                <img src="/images/welcome3.jpg">
             </div>
 
         </div>
@@ -904,7 +971,7 @@
         <div class="cards">
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df">
+                <img src="/images/restaurante.jpg">
 
                 <div class="card-content">
                     <h3>Restaurantes</h3>
@@ -914,20 +981,20 @@
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+                <img src="/images/snack.jpeg">
 
                 <div class="card-content">
-                    <h3>Cafeterías</h3>
+                    <h3>Snacks</h3>
                     <p>Diseño visual atractivo para destacar.</p>
                     <button>Ver más</button>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+                <img src="/images/barberia.jpeg">
 
                 <div class="card-content">
-                    <h3>Tiendas</h3>
+                    <h3>Barberia</h3>
                     <p>Catálogos digitales profesionales.</p>
                     <button>Ver más</button>
                 </div>
@@ -949,12 +1016,12 @@
         </div>
 
         <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-            <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
+            <img src="/images/galeria1.webp">
+            <img src="/images/galeria2.png">
+            <img src="/images/galeria3.jpg">
+            <img src="/images/galeria4.jpg">
+            <img src="/images/galeria5.jpeg">
+            <img src="/images/galeria6.jpg">
         </div>
 
     </section>
@@ -962,7 +1029,7 @@
     <!-- ABOUT -->
     <section class="about">
 
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+        <img src="/images/about.png">
 
         <div class="about-text">
 
@@ -1012,7 +1079,7 @@
         <div class="testimonial-container">
 
             <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg">
+                <img src="/images/testimonia1.jpg">
 
                 <p>
                     "Aumenté mis ventas en más del 40% gracias al nuevo diseño digital."
@@ -1022,7 +1089,7 @@
             </div>
 
             <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg">
+                <img src="/images/testimonia2.jpg">
 
                 <p>
                     "Mi negocio ahora luce moderno y mucho más profesional."
@@ -1032,7 +1099,7 @@
             </div>
 
             <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg">
+                <img src="/images/testimonia3.jpg">
 
                 <p>
                     "Los clientes encuentran mi menú más rápido y visualmente atractivo."
@@ -1090,7 +1157,7 @@
 
                     <div>
                         <strong>Teléfono</strong>
-                        <p>+52 961 105 0667</p>
+                        <p>+52 961 123 4567</p>
                     </div>
 
                 </div>
@@ -1168,7 +1235,7 @@
 
                 <ul>
                     <li><i class="fas fa-envelope"></i> brianisaac@carringtom.com</li>
-                    <li><i class="fas fa-phone"></i> +52 961 105 0667</li>
+                    <li><i class="fas fa-phone"></i> +52 961 123 4567</li>
                 </ul>
 
                 <div class="socials">
