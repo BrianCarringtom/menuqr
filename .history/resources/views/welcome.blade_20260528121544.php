@@ -878,87 +878,6 @@
             }
 
         }
-
-        /* BOTON WHATSAPP */
-        .whatsapp-float {
-            position: fixed;
-            right: 22px;
-            bottom: 22px;
-
-            width: 65px;
-            height: 65px;
-
-            border-radius: 50%;
-
-            background: linear-gradient(135deg, #25d366, #1ebe5d);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            color: white;
-            font-size: 32px;
-
-            text-decoration: none;
-
-            z-index: 9999;
-
-            transition: .35s;
-        }
-
-        .whatsapp-float:hover {
-            transform: translateY(-6px) scale(1.08);
-            box-shadow:
-                0 20px 40px rgba(37, 211, 102, 0.55);
-        }
-
-        /* EFECTO PULSO */
-        .whatsapp-float::before {
-            content: "";
-            position: absolute;
-
-            width: 100%;
-            height: 100%;
-
-            border-radius: 50%;
-
-            background: rgba(37, 211, 102, 0.45);
-
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: .7;
-            }
-
-            70% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        .whatsapp-float i {
-            position: relative;
-            z-index: 2;
-        }
-
-        @media(max-width:500px) {
-            .whatsapp-float {
-                width: 58px;
-                height: 58px;
-                font-size: 28px;
-
-                right: 16px;
-                bottom: 20px;
-            }
-        }
     </style>
 </head>
 
@@ -1331,11 +1250,6 @@
         </div>
 
     </footer>
-
-    <!-- BOTON WHATSAPP -->
-    <a href="https://wa.me/529611234567" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script>
         function toggleMenu() {

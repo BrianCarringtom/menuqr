@@ -956,7 +956,7 @@
                 font-size: 28px;
 
                 right: 16px;
-                bottom: 20px;
+                bottom: 10px;
             }
         }
     </style>

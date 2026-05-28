@@ -903,6 +903,9 @@
 
             z-index: 9999;
 
+            box-shadow:
+                0 15px 35px rgba(37, 211, 102, 0.4);
+
             transition: .35s;
         }
 
@@ -956,7 +959,7 @@
                 font-size: 28px;
 
                 right: 16px;
-                bottom: 20px;
+                bottom: 16px;
             }
         }
     </style>

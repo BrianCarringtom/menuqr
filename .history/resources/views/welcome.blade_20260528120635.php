@@ -878,87 +878,6 @@
             }
 
         }
-
-        /* BOTON WHATSAPP */
-        .whatsapp-float {
-            position: fixed;
-            right: 22px;
-            bottom: 22px;
-
-            width: 65px;
-            height: 65px;
-
-            border-radius: 50%;
-
-            background: linear-gradient(135deg, #25d366, #1ebe5d);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            color: white;
-            font-size: 32px;
-
-            text-decoration: none;
-
-            z-index: 9999;
-
-            transition: .35s;
-        }
-
-        .whatsapp-float:hover {
-            transform: translateY(-6px) scale(1.08);
-            box-shadow:
-                0 20px 40px rgba(37, 211, 102, 0.55);
-        }
-
-        /* EFECTO PULSO */
-        .whatsapp-float::before {
-            content: "";
-            position: absolute;
-
-            width: 100%;
-            height: 100%;
-
-            border-radius: 50%;
-
-            background: rgba(37, 211, 102, 0.45);
-
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: .7;
-            }
-
-            70% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        .whatsapp-float i {
-            position: relative;
-            z-index: 2;
-        }
-
-        @media(max-width:500px) {
-            .whatsapp-float {
-                width: 58px;
-                height: 58px;
-                font-size: 28px;
-
-                right: 16px;
-                bottom: 20px;
-            }
-        }
     </style>
 </head>
 
@@ -973,8 +892,8 @@
 
         <nav id="menu">
             <a href="#negocios">Negocios</a>
-            <a href="#galeria">Galeria</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#">Galeria</a>
+            <a href="#">Contacto</a>
         </nav>
 
         <a href="/login" class="btn-login">Login</a>
@@ -982,7 +901,7 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero" id="inicio">
+    <section class="hero">
 
         <div class="hero-content">
 
@@ -997,10 +916,12 @@
             </h1>
 
             <p>
-                Lleva tu menú a otro nivel con QR, diseño moderno y presencia profesional.
+                Convierte tu menú en una experiencia premium con QR, diseño moderno,
+                catálogo digital y una presencia profesional para destacar frente
+                a tu competencia.
             </p>
 
-            <a href="#features" class="btn-main">Comenzar ahora</a>
+            <a href="#" class="btn-main">Comenzar ahora</a>
 
             <div class="hero-images">
                 <img src="/images/welcome1.jpeg">
@@ -1013,7 +934,7 @@
     </section>
 
     <!-- FEATURES -->
-    <section class="features" id="features">
+    <section class="features">
 
         <div class="feature">
             <i class="fas fa-qrcode"></i>
@@ -1083,7 +1004,7 @@
     </section>
 
     <!-- GALERIA -->
-    <section class="gallery" id="galeria">
+    <section class="gallery">
 
         <div class="section-title">
             <h2>Galería</h2>
@@ -1105,7 +1026,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="about" id="nosotros">
+    <section class="about">
 
         <img src="/images/about.png">
 
@@ -1191,7 +1112,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="contact" id="contacto">
+    <section class="contact">
 
         <div class="section-title">
             <h2>Contáctanos 🚀</h2>
@@ -1284,10 +1205,10 @@
                 <h3>Explorar</h3>
 
                 <ul>
-                    <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#negocios"><i class="fas fa-briefcase"></i> Negocios</a></li>
-                    <li><a href="#nosotros"><i class="fas fa-user"></i> Nosotros</a></li>
-                    <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Servicios</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> Nosotros</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contacto</a></li>
                 </ul>
 
             </div>
@@ -1331,11 +1252,6 @@
         </div>
 
     </footer>
-
-    <!-- BOTON WHATSAPP -->
-    <a href="https://wa.me/529611234567" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script>
         function toggleMenu() {

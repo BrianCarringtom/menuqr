@@ -903,6 +903,7 @@
 
             z-index: 9999;
 
+
             transition: .35s;
         }
 
@@ -956,7 +957,7 @@
                 font-size: 28px;
 
                 right: 16px;
-                bottom: 20px;
+                bottom: 16px;
             }
         }
     </style>

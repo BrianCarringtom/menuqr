@@ -883,7 +883,7 @@
         .whatsapp-float {
             position: fixed;
             right: 22px;
-            bottom: 22px;
+            bottom: 40px;
 
             width: 65px;
             height: 65px;
@@ -956,7 +956,7 @@
                 font-size: 28px;
 
                 right: 16px;
-                bottom: 20px;
+                bottom: 16px;
             }
         }
     </style>

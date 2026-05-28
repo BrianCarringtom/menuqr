@@ -959,6 +959,17 @@
                 bottom: 20px;
             }
         }
+
+        @media(max-width:340) {
+            .whatsapp-float {
+                width: 58px;
+                height: 58px;
+                font-size: 28px;
+
+                right: 16px;
+                bottom: 10px;
+            }
+        }
     </style>
 </head>
 
