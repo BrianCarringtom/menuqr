@@ -12,8 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         html {
@@ -65,7 +63,6 @@
             transition: max-height 0.5s ease;
         }
 
-        /* 🔥 IMÁGENES PEQUEÑAS Y ELEGANTES */
         /* 🔥 IMÁGENES MINIMALISTAS Y PREMIUM */
         .menu-image {
             width: 56px;
@@ -73,14 +70,11 @@
             object-fit: cover;
             border-radius: 18px;
 
-            /* BORDE DELGADO */
             border: 1px solid rgba(255, 255, 255, 0.08);
 
-            /* EFECTO GLASS */
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
 
-            /* SOMBRA ELEGANTE */
             box-shadow:
                 0 8px 25px rgba(0, 0, 0, 0.35),
                 0 0 0 1px rgba(255, 255, 255, 0.03);
@@ -112,6 +106,65 @@
             display: flex;
             align-items: center;
             gap: 16px;
+        }
+
+        /* 🔥 BOTÓN FLOTANTE HERO */
+        .hero-floating-btn {
+            position: absolute;
+            right: 28px;
+            bottom: 28px;
+            z-index: 30;
+
+            width: 65px;
+            height: 65px;
+            border-radius: 999px;
+
+            background: #eab308;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 10px 30px rgba(234, 179, 8, 0.35);
+
+            transition: 0.3s ease;
+        }
+
+        .hero-floating-btn:hover {
+            transform: translateY(-4px) scale(1.06);
+            background: white;
+        }
+
+        .hero-floating-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: black;
+        }
+
+        /* 🔥 DIRECCIÓN HERO */
+        .hero-location {
+            position: absolute;
+            left: 28px;
+            bottom: 28px;
+            z-index: 20;
+
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            padding: 14px 20px;
+            border-radius: 18px;
+
+            max-width: 320px;
+        }
+
+        .hero-location p {
+            color: #d1d5db;
+            font-size: 14px;
+            line-height: 1.7;
+            letter-spacing: 1px;
         }
 
         /* 🔥 RESPONSIVE CELULAR */
@@ -218,60 +271,31 @@
             .category-left {
                 gap: 12px;
             }
-        }
 
-        .whatsapp-float {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #25D366, #1ebe5d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 29px;
-            transition: all .3s ease;
-            backdrop-filter: blur(10px);
-
-            /* POSICIÓN */
-            position: absolute;
-            right: 20px;
-            bottom: 7%;
-            z-index: 30;
-        }
-
-        .whatsapp-float:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow:
-                0 14px 35px rgba(37, 211, 102, 0.45),
-                0 6px 14px rgba(0, 0, 0, 0.35);
-        }
-
-        .whatsapp-float:active {
-            transform: scale(0.96);
-        }
-
-        /* Tablets */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                font-size: 26px;
-
+            /* BOTÓN FLOTANTE */
+            .hero-floating-btn {
+                width: 58px;
+                height: 58px;
                 right: 18px;
-                bottom: 8%;
+                bottom: 18px;
             }
-        }
 
-        /* Celulares */
-        @media (max-width: 430px) {
-            .whatsapp-float {
-                width: 52px;
-                height: 52px;
-                font-size: 24px;
+            .hero-floating-btn svg {
+                width: 26px;
+                height: 26px;
+            }
 
-                right: 20px;
-                bottom: 9%;
+            /* DIRECCIÓN */
+            .hero-location {
+                left: 18px;
+                bottom: 18px;
+                max-width: 220px;
+                padding: 12px 16px;
+            }
+
+            .hero-location p {
+                font-size: 12px;
+                line-height: 1.6;
             }
         }
     </style>
@@ -299,6 +323,24 @@
             </p>
         </div>
 
+        <!-- 🔥 DIRECCIÓN -->
+        <div class="hero-location">
+            <p>
+                📍 Av. Central #245, Tuxtla Gutiérrez, Chiapas
+            </p>
+        </div>
+
+        <!-- 🔥 BOTÓN FLOTANTE -->
+        <a href="https://wa.me/529611234567" target="_blank" class="hero-floating-btn">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+
+                <path
+                    d="M380.9 97.1C339-6.1 218.7-35.6 126.8 26.4S-9.5 207.8 32.4 311l-31 113.4 116.1-30.4c94.4 51.4 212.9 17.2 266.4-76.7 53.5-93.9 24.1-213.4-3.9-220.2zM224 438.6c-43.5 0-86.1-11.7-123.1-33.9l-8.8-5.2-68.9 18 18.4-67.1-5.7-9C17.5 304.5 8 264.5 8 224 8 106.8 106.8 8 224 8s216 98.8 216 216-98.8 214.6-216 214.6zm101.5-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.8-8.8-2.8-12.5 2.8-3.7 5.5-14.3 18-17.5 21.7-3.2 3.7-6.5 4.1-12 .9-32.6-16.3-54-29.1-75.6-65.9-5.7-9.8 5.7-9.1 16.3-30.4 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5h-10.6c-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.4 18.9-19.4 46 0 27.1 19.8 53.3 22.6 57 2.8 3.7 39 59.5 94.5 83.4 35.1 15.2 48.8 16.5 66.4 13.9 10.8-1.6 32.8-13.4 37.4-26.3 4.6-12.9 4.6-24 3.2-26.3-1.4-2.3-5.1-3.7-10.6-6.5z" />
+            </svg>
+
+        </a>
+
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
@@ -317,13 +359,6 @@
             </a>
 
         </div>
-
-        <!-- BOTÓN WHATSAPP -->
-        <a href="https://wa.me/{{ $user->whatsapp }}" target="_blank" class="whatsapp-float">
-
-            <i class="fab fa-whatsapp"></i>
-
-        </a>
 
     </section>
 
@@ -367,13 +402,11 @@
                             <!-- 🔥 IMAGEN -->
                             <div class="relative">
 
-                                <!-- IMAGEN -->
                                 <img src="{{ $category->image
                                     ? asset('storage/' . $category->image)
                                     : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop' }}"
                                     class="menu-image">
 
-                                <!-- EFECTO PREMIUM -->
                                 <div class="absolute inset-0 rounded-[18px] bg-white/5 backdrop-blur-sm -z-10">
                                 </div>
 
@@ -450,91 +483,42 @@
 
 
     <!-- 🔥 FOOTER -->
-    <footer class="bg-white text-black py-16 md:py-20 text-center mobile-spacing relative overflow-hidden">
+    <footer class="bg-white text-black py-20 text-center mobile-spacing">
 
-        <!-- Fondo decorativo -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+        <h3 class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
+            Carrington Brian
+        </h3>
 
-            <div
-                class="w-[260px] sm:w-[350px] md:w-[500px] h-[260px] sm:h-[350px] md:h-[500px] bg-black rounded-full blur-3xl absolute -top-32 -left-32">
-            </div>
+        <p class="footer-text text-gray-600 text-lg mb-8">
+            Experiencia de calidad y atención excepcional
+        </p>
 
-            <div
-                class="w-[220px] sm:w-[300px] md:w-[400px] h-[220px] sm:h-[300px] md:h-[400px] bg-black rounded-full blur-3xl absolute -bottom-32 -right-32">
-            </div>
+        <!-- INFO -->
+        <div class="flex flex-col gap-3 text-gray-600 mb-10">
 
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-
-            <!-- TITULO -->
-            <h3
-                class="footer-title text-2xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.25em] mb-4 font-semibold">
-                Carrington Brian
-            </h3>
-
-            <p
-                class="footer-text text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16">
-                Experiencia de calidad y atención excepcional
+            <p class="footer-text">
+                📍 Av. Central #245, Tuxtla Gutiérrez, Chiapas
             </p>
 
-            <!-- INFO EXTRA -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-14">
+            <p class="footer-text">
+                📞 +52 961 123 4567
+            </p>
 
-                <!-- Horario -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] p-6 sm:p-8 text-left shadow-sm hover:shadow-2xl transition duration-500 group">
-
-                    <div class="flex items-center gap-4 mb-6">
-
-                        <div
-                            class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition duration-300">
-                            🕒
-                        </div>
-
-                        <h4 class="text-lg sm:text-xl md:text-2xl font-semibold">
-                            Horario
-                        </h4>
-
-                    </div>
-
-                    <div class="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
-
-                        {!! nl2br(e($user->schedule)) !!}
-
-                    </div>
-
-                </div>
-
-                <!-- MAPA -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 min-h-[280px] sm:min-h-[320px]">
-
-                    <iframe src="{{ $user->map_url }}"
-                        class="w-full h-full min-h-[280px] sm:min-h-[320px] lg:min-h-full" style="border:0;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
-                </div>
-
-            </div>
-
-            <!-- FOOTER BOTTOM -->
-            <div
-                class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 text-sm sm:text-base text-gray-500 mb-8">
-
-                <span>© {{ date('Y') }}</span>
-
-                <span class="hidden sm:block text-gray-300">•</span>
-
-                <span>Todos los derechos reservados</span>
-
-            </div>
-
-            <!-- Línea -->
-            <div class="w-16 sm:w-20 h-[2px] bg-black mx-auto rounded-full"></div>
+            <p class="footer-text">
+                🕒 Lunes a Domingo | 8:00 AM - 10:00 PM
+            </p>
 
         </div>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
+
+            <span>© {{ date('Y') }}</span>
+            <span>Todos los derechos reservados</span>
+
+        </div>
+
+        <!-- Línea -->
+        <div class="w-20 h-[2px] bg-black mx-auto"></div>
 
     </footer>
 

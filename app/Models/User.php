@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
         'role',   // <-- agregar
         'slug',   // <-- agregar
+        'whatsapp',
+        'address',
+        'map_url',
+        'schedule',
     ];
 
     /**

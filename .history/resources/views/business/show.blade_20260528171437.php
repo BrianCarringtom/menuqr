@@ -12,8 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         html {
@@ -219,61 +217,6 @@
                 gap: 12px;
             }
         }
-
-        .whatsapp-float {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #25D366, #1ebe5d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 29px;
-            transition: all .3s ease;
-            backdrop-filter: blur(10px);
-
-            /* POSICIÓN */
-            position: absolute;
-            right: 20px;
-            bottom: 7%;
-            z-index: 30;
-        }
-
-        .whatsapp-float:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow:
-                0 14px 35px rgba(37, 211, 102, 0.45),
-                0 6px 14px rgba(0, 0, 0, 0.35);
-        }
-
-        .whatsapp-float:active {
-            transform: scale(0.96);
-        }
-
-        /* Tablets */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                font-size: 26px;
-
-                right: 18px;
-                bottom: 8%;
-            }
-        }
-
-        /* Celulares */
-        @media (max-width: 430px) {
-            .whatsapp-float {
-                width: 52px;
-                height: 52px;
-                font-size: 24px;
-
-                right: 20px;
-                bottom: 9%;
-            }
-        }
     </style>
 </head>
 
@@ -318,10 +261,58 @@
 
         </div>
 
-        <!-- BOTÓN WHATSAPP -->
-        <a href="https://wa.me/{{ $user->whatsapp }}" target="_blank" class="whatsapp-float">
+        <!-- Dirección -->
+        <div
+            class="absolute bottom-6 left-6 z-20 backdrop-blur-md bg-white/10 border border-white/10 rounded-2xl px-5 py-4 flex items-center gap-4 shadow-2xl max-w-[280px]">
 
-            <i class="fab fa-whatsapp"></i>
+            <div
+                class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center border border-yellow-500/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-400" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                        d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+
+            <div class="text-left">
+                <p class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-1">
+                    Ubicación
+                </p>
+
+                <p class="text-white text-sm md:text-base leading-snug">
+                    Tuxtla Gutiérrez, Chiapas
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Botón WhatsApp -->
+        <a href="https://wa.me/529611234567" target="_blank" class="absolute bottom-6 right-6 z-20 group">
+
+            <div
+                class="flex items-center gap-4 bg-[#25D366] hover:bg-[#1ebe5d] transition-all duration-300 px-5 py-4 rounded-2xl shadow-[0_10px_40px_rgba(37,211,102,0.35)] border border-white/10 backdrop-blur-md">
+
+                <div class="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M20.52 3.48A11.77 11.77 0 0012.04 0C5.42 0 .05 5.37.05 11.99c0 2.11.55 4.17 1.59 5.99L0 24l6.18-1.62a11.9 11.9 0 005.86 1.5h.01c6.62 0 11.99-5.37 11.99-11.99 0-3.2-1.25-6.2-3.52-8.41zM12.05 21.8a9.8 9.8 0 01-5-1.37l-.36-.21-3.67.96.98-3.58-.23-.37a9.73 9.73 0 01-1.5-5.24c0-5.4 4.39-9.79 9.79-9.79 2.61 0 5.06 1.02 6.9 2.87a9.72 9.72 0 012.87 6.91c0 5.39-4.39 9.78-9.78 9.78zm5.37-7.34c-.29-.14-1.72-.85-1.99-.95-.27-.1-.47-.14-.67.15-.19.29-.76.95-.93 1.14-.17.2-.34.22-.63.08-.29-.15-1.21-.45-2.31-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.51.08-.78.37-.27.29-1.02 1-.99 2.43.02 1.43 1.02 2.81 1.16 3 .15.2 2 3.06 4.85 4.29.68.29 1.21.47 1.62.6.68.22 1.29.19 1.78.12.54-.08 1.72-.7 1.96-1.37.24-.68.24-1.25.17-1.37-.07-.12-.27-.2-.56-.34z" />
+                    </svg>
+                </div>
+
+                <div class="text-left hidden sm:block">
+                    <p class="text-white text-sm font-semibold">
+                        Contáctanos
+                    </p>
+
+                    <p class="text-white/80 text-xs tracking-wide">
+                        WhatsApp disponible
+                    </p>
+                </div>
+
+            </div>
 
         </a>
 
@@ -450,91 +441,25 @@
 
 
     <!-- 🔥 FOOTER -->
-    <footer class="bg-white text-black py-16 md:py-20 text-center mobile-spacing relative overflow-hidden">
+    <footer class="bg-white text-black py-20 text-center mobile-spacing">
 
-        <!-- Fondo decorativo -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+        <h3 class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
+            Carrington Brian
+        </h3>
 
-            <div
-                class="w-[260px] sm:w-[350px] md:w-[500px] h-[260px] sm:h-[350px] md:h-[500px] bg-black rounded-full blur-3xl absolute -top-32 -left-32">
-            </div>
+        <p class="footer-text text-gray-600 text-lg mb-8">
+            Experiencia de calidad y atención excepcional
+        </p>
 
-            <div
-                class="w-[220px] sm:w-[300px] md:w-[400px] h-[220px] sm:h-[300px] md:h-[400px] bg-black rounded-full blur-3xl absolute -bottom-32 -right-32">
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
 
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-
-            <!-- TITULO -->
-            <h3
-                class="footer-title text-2xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.25em] mb-4 font-semibold">
-                Carrington Brian
-            </h3>
-
-            <p
-                class="footer-text text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16">
-                Experiencia de calidad y atención excepcional
-            </p>
-
-            <!-- INFO EXTRA -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-14">
-
-                <!-- Horario -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] p-6 sm:p-8 text-left shadow-sm hover:shadow-2xl transition duration-500 group">
-
-                    <div class="flex items-center gap-4 mb-6">
-
-                        <div
-                            class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition duration-300">
-                            🕒
-                        </div>
-
-                        <h4 class="text-lg sm:text-xl md:text-2xl font-semibold">
-                            Horario
-                        </h4>
-
-                    </div>
-
-                    <div class="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
-
-                        {!! nl2br(e($user->schedule)) !!}
-
-                    </div>
-
-                </div>
-
-                <!-- MAPA -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 min-h-[280px] sm:min-h-[320px]">
-
-                    <iframe src="{{ $user->map_url }}"
-                        class="w-full h-full min-h-[280px] sm:min-h-[320px] lg:min-h-full" style="border:0;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
-                </div>
-
-            </div>
-
-            <!-- FOOTER BOTTOM -->
-            <div
-                class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 text-sm sm:text-base text-gray-500 mb-8">
-
-                <span>© {{ date('Y') }}</span>
-
-                <span class="hidden sm:block text-gray-300">•</span>
-
-                <span>Todos los derechos reservados</span>
-
-            </div>
-
-            <!-- Línea -->
-            <div class="w-16 sm:w-20 h-[2px] bg-black mx-auto rounded-full"></div>
+            <span>© {{ date('Y') }}</span>
+            <span>Todos los derechos reservados</span>
 
         </div>
+
+        <!-- Línea -->
+        <div class="w-20 h-[2px] bg-black mx-auto"></div>
 
     </footer>
 

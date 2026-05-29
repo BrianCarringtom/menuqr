@@ -213,6 +213,8 @@ Route::post('/business/info', function (Request $request) {
 
         'whatsapp' => $request->whatsapp,
 
+        'address' => $request->address,
+
         'map_url' => $request->map_url,
 
         'schedule' => $request->schedule,

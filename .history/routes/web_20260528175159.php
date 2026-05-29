@@ -206,12 +206,13 @@ Route::get('/business/gestion', function () {
 
 Route::post('/business/info', function (Request $request) {
 
-    /** @var \App\Models\User $user */
     $user = Auth::user();
 
     $user->update([
 
         'whatsapp' => $request->whatsapp,
+
+        'address' => $request->address,
 
         'map_url' => $request->map_url,
 

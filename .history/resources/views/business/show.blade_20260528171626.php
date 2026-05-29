@@ -12,8 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         html {
@@ -219,61 +217,6 @@
                 gap: 12px;
             }
         }
-
-        .whatsapp-float {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #25D366, #1ebe5d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 29px;
-            transition: all .3s ease;
-            backdrop-filter: blur(10px);
-
-            /* POSICIÓN */
-            position: absolute;
-            right: 20px;
-            bottom: 7%;
-            z-index: 30;
-        }
-
-        .whatsapp-float:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow:
-                0 14px 35px rgba(37, 211, 102, 0.45),
-                0 6px 14px rgba(0, 0, 0, 0.35);
-        }
-
-        .whatsapp-float:active {
-            transform: scale(0.96);
-        }
-
-        /* Tablets */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                font-size: 26px;
-
-                right: 18px;
-                bottom: 8%;
-            }
-        }
-
-        /* Celulares */
-        @media (max-width: 430px) {
-            .whatsapp-float {
-                width: 52px;
-                height: 52px;
-                font-size: 24px;
-
-                right: 20px;
-                bottom: 9%;
-            }
-        }
     </style>
 </head>
 
@@ -289,8 +232,7 @@
         </div>
 
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
-        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95"></div>
 
         <!-- Marca -->
         <div class="absolute top-6 left-6 z-20">
@@ -302,7 +244,7 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight text-white">
                 {{ $user->name }}
             </h1>
 
@@ -312,18 +254,78 @@
             </p>
 
             <a href="#menu"
-                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">
+                class="inline-flex items-center gap-3 border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300 backdrop-blur-sm">
+
                 DESCUBRE MÁS
+
             </a>
 
         </div>
 
-        <!-- BOTÓN WHATSAPP -->
-        <a href="https://wa.me/{{ $user->whatsapp }}" target="_blank" class="whatsapp-float">
+        <!-- Barra Inferior Elegante -->
+        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 w-[92%] md:w-auto">
 
-            <i class="fab fa-whatsapp"></i>
+            <div
+                class="flex items-center justify-between gap-4 bg-black/35 backdrop-blur-xl border border-white/10 rounded-full px-4 py-3 shadow-2xl">
 
-        </a>
+                <!-- Dirección -->
+                <div class="flex items-center gap-3 pl-2">
+
+                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    </div>
+
+                    <div class="text-left">
+
+                        <p class="text-[10px] uppercase tracking-[0.25em] text-gray-400">
+                            Dirección
+                        </p>
+
+                        <p class="text-white text-sm md:text-base">
+                            Tuxtla Gutiérrez, Chiapas
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Línea -->
+                <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/529611234567" target="_blank" class="group">
+
+                    <div
+                        class="flex items-center gap-3 bg-[#25D366] hover:scale-105 hover:bg-[#1ebe5d] transition-all duration-300 rounded-full px-5 py-3 shadow-lg">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path
+                                d="M20.52 3.48A11.77 11.77 0 0012.04 0C5.42 0 .05 5.37.05 11.99c0 2.11.55 4.17 1.59 5.99L0 24l6.18-1.62a11.9 11.9 0 005.86 1.5h.01c6.62 0 11.99-5.37 11.99-11.99 0-3.2-1.25-6.2-3.52-8.41z" />
+                        </svg>
+
+                        <span class="text-white text-sm font-medium hidden sm:block">
+                            WhatsApp
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
 
     </section>
 
@@ -450,91 +452,25 @@
 
 
     <!-- 🔥 FOOTER -->
-    <footer class="bg-white text-black py-16 md:py-20 text-center mobile-spacing relative overflow-hidden">
+    <footer class="bg-white text-black py-20 text-center mobile-spacing">
 
-        <!-- Fondo decorativo -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+        <h3 class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
+            Carrington Brian
+        </h3>
 
-            <div
-                class="w-[260px] sm:w-[350px] md:w-[500px] h-[260px] sm:h-[350px] md:h-[500px] bg-black rounded-full blur-3xl absolute -top-32 -left-32">
-            </div>
+        <p class="footer-text text-gray-600 text-lg mb-8">
+            Experiencia de calidad y atención excepcional
+        </p>
 
-            <div
-                class="w-[220px] sm:w-[300px] md:w-[400px] h-[220px] sm:h-[300px] md:h-[400px] bg-black rounded-full blur-3xl absolute -bottom-32 -right-32">
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
 
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-
-            <!-- TITULO -->
-            <h3
-                class="footer-title text-2xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.25em] mb-4 font-semibold">
-                Carrington Brian
-            </h3>
-
-            <p
-                class="footer-text text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16">
-                Experiencia de calidad y atención excepcional
-            </p>
-
-            <!-- INFO EXTRA -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-14">
-
-                <!-- Horario -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] p-6 sm:p-8 text-left shadow-sm hover:shadow-2xl transition duration-500 group">
-
-                    <div class="flex items-center gap-4 mb-6">
-
-                        <div
-                            class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition duration-300">
-                            🕒
-                        </div>
-
-                        <h4 class="text-lg sm:text-xl md:text-2xl font-semibold">
-                            Horario
-                        </h4>
-
-                    </div>
-
-                    <div class="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
-
-                        {!! nl2br(e($user->schedule)) !!}
-
-                    </div>
-
-                </div>
-
-                <!-- MAPA -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 min-h-[280px] sm:min-h-[320px]">
-
-                    <iframe src="{{ $user->map_url }}"
-                        class="w-full h-full min-h-[280px] sm:min-h-[320px] lg:min-h-full" style="border:0;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
-                </div>
-
-            </div>
-
-            <!-- FOOTER BOTTOM -->
-            <div
-                class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 text-sm sm:text-base text-gray-500 mb-8">
-
-                <span>© {{ date('Y') }}</span>
-
-                <span class="hidden sm:block text-gray-300">•</span>
-
-                <span>Todos los derechos reservados</span>
-
-            </div>
-
-            <!-- Línea -->
-            <div class="w-16 sm:w-20 h-[2px] bg-black mx-auto rounded-full"></div>
+            <span>© {{ date('Y') }}</span>
+            <span>Todos los derechos reservados</span>
 
         </div>
+
+        <!-- Línea -->
+        <div class="w-20 h-[2px] bg-black mx-auto"></div>
 
     </footer>
 

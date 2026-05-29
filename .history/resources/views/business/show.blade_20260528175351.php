@@ -498,9 +498,22 @@
 
                     </div>
 
-                    <div class="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
+                    <div class="space-y-3 text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
 
-                        {!! nl2br(e($user->schedule)) !!}
+                        <p class="flex justify-between border-b border-gray-200 pb-2">
+                            <span>Lunes - Viernes</span>
+                            <span>9:00 AM - 8:00 PM</span>
+                        </p>
+
+                        <p class="flex justify-between border-b border-gray-200 pb-2">
+                            <span>Sábado</span>
+                            <span>10:00 AM - 6:00 PM</span>
+                        </p>
+
+                        <p class="flex justify-between">
+                            <span>Domingo</span>
+                            <span>Cerrado</span>
+                        </p>
 
                     </div>
 
@@ -510,7 +523,7 @@
                 <div
                     class="bg-gray-50 border border-gray-200 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 min-h-[280px] sm:min-h-[320px]">
 
-                    <iframe src="{{ $user->map_url }}"
+                    <iframe src="https://www.google.com/maps?q=Tuxtla+Gutierrez+Chiapas&output=embed"
                         class="w-full h-full min-h-[280px] sm:min-h-[320px] lg:min-h-full" style="border:0;"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>

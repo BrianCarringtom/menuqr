@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
         'role',   // <-- agregar
         'slug',   // <-- agregar
+        'whatsapp',
+        'address',
+        'map_url',
+        'schedule',
     ];
 
     /**
@@ -35,6 +39,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
     /**
      * Get the attributes that should be cast.
      *

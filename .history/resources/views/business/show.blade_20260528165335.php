@@ -12,8 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         html {
@@ -219,61 +217,6 @@
                 gap: 12px;
             }
         }
-
-        .whatsapp-float {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #25D366, #1ebe5d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 29px;
-            transition: all .3s ease;
-            backdrop-filter: blur(10px);
-
-            /* POSICIÓN */
-            position: absolute;
-            right: 20px;
-            bottom: 7%;
-            z-index: 30;
-        }
-
-        .whatsapp-float:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow:
-                0 14px 35px rgba(37, 211, 102, 0.45),
-                0 6px 14px rgba(0, 0, 0, 0.35);
-        }
-
-        .whatsapp-float:active {
-            transform: scale(0.96);
-        }
-
-        /* Tablets */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                font-size: 26px;
-
-                right: 18px;
-                bottom: 8%;
-            }
-        }
-
-        /* Celulares */
-        @media (max-width: 430px) {
-            .whatsapp-float {
-                width: 52px;
-                height: 52px;
-                font-size: 24px;
-
-                right: 20px;
-                bottom: 9%;
-            }
-        }
     </style>
 </head>
 
@@ -285,7 +228,7 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover scale-110">
+                class="w-full h-full object-cover scale-110 blur-[2px]">
         </div>
 
         <!-- Overlay -->
@@ -317,13 +260,6 @@
             </a>
 
         </div>
-
-        <!-- BOTÓN WHATSAPP -->
-        <a href="https://wa.me/{{ $user->whatsapp }}" target="_blank" class="whatsapp-float">
-
-            <i class="fab fa-whatsapp"></i>
-
-        </a>
 
     </section>
 
@@ -450,91 +386,25 @@
 
 
     <!-- 🔥 FOOTER -->
-    <footer class="bg-white text-black py-16 md:py-20 text-center mobile-spacing relative overflow-hidden">
+    <footer class="bg-white text-black py-20 text-center mobile-spacing">
 
-        <!-- Fondo decorativo -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+        <h3 class="footer-title text-3xl tracking-[0.3em] mb-4 font-semibold">
+            Carrington Brian
+        </h3>
 
-            <div
-                class="w-[260px] sm:w-[350px] md:w-[500px] h-[260px] sm:h-[350px] md:h-[500px] bg-black rounded-full blur-3xl absolute -top-32 -left-32">
-            </div>
+        <p class="footer-text text-gray-600 text-lg mb-8">
+            Experiencia de calidad y atención excepcional
+        </p>
 
-            <div
-                class="w-[220px] sm:w-[300px] md:w-[400px] h-[220px] sm:h-[300px] md:h-[400px] bg-black rounded-full blur-3xl absolute -bottom-32 -right-32">
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-base text-gray-500 mb-8">
 
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-
-            <!-- TITULO -->
-            <h3
-                class="footer-title text-2xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.25em] mb-4 font-semibold">
-                Carrington Brian
-            </h3>
-
-            <p
-                class="footer-text text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16">
-                Experiencia de calidad y atención excepcional
-            </p>
-
-            <!-- INFO EXTRA -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-14">
-
-                <!-- Horario -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] p-6 sm:p-8 text-left shadow-sm hover:shadow-2xl transition duration-500 group">
-
-                    <div class="flex items-center gap-4 mb-6">
-
-                        <div
-                            class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition duration-300">
-                            🕒
-                        </div>
-
-                        <h4 class="text-lg sm:text-xl md:text-2xl font-semibold">
-                            Horario
-                        </h4>
-
-                    </div>
-
-                    <div class="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
-
-                        {!! nl2br(e($user->schedule)) !!}
-
-                    </div>
-
-                </div>
-
-                <!-- MAPA -->
-                <div
-                    class="bg-gray-50 border border-gray-200 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 min-h-[280px] sm:min-h-[320px]">
-
-                    <iframe src="{{ $user->map_url }}"
-                        class="w-full h-full min-h-[280px] sm:min-h-[320px] lg:min-h-full" style="border:0;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
-                </div>
-
-            </div>
-
-            <!-- FOOTER BOTTOM -->
-            <div
-                class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 text-sm sm:text-base text-gray-500 mb-8">
-
-                <span>© {{ date('Y') }}</span>
-
-                <span class="hidden sm:block text-gray-300">•</span>
-
-                <span>Todos los derechos reservados</span>
-
-            </div>
-
-            <!-- Línea -->
-            <div class="w-16 sm:w-20 h-[2px] bg-black mx-auto rounded-full"></div>
+            <span>© {{ date('Y') }}</span>
+            <span>Todos los derechos reservados</span>
 
         </div>
+
+        <!-- Línea -->
+        <div class="w-20 h-[2px] bg-black mx-auto"></div>
 
     </footer>
 

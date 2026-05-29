@@ -605,6 +605,18 @@
 
                         </div>
 
+                        <!-- DIRECCIÓN -->
+                        <div style="margin-bottom:18px;">
+
+                            <label style="display:block; margin-bottom:8px;">
+                                Dirección
+                            </label>
+
+                            <input type="text" name="address" class="input" placeholder="Tuxtla Gutiérrez, Chiapas"
+                                value="{{ Auth::user()->address }}">
+
+                        </div>
+
                         <!-- MAPA -->
                         <div style="margin-bottom:18px;">
 

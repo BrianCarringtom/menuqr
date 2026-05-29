@@ -498,9 +498,22 @@
 
                     </div>
 
-                    <div class="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
+                    <div class="space-y-3 text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
 
-                        {!! nl2br(e($user->schedule)) !!}
+                        <p class="flex justify-between border-b border-gray-200 pb-2">
+                            <span>Lunes - Viernes</span>
+                            <span>9:00 AM - 8:00 PM</span>
+                        </p>
+
+                        <p class="flex justify-between border-b border-gray-200 pb-2">
+                            <span>Sábado</span>
+                            <span>10:00 AM - 6:00 PM</span>
+                        </p>
+
+                        <p class="flex justify-between">
+                            <span>Domingo</span>
+                            <span>Cerrado</span>
+                        </p>
 
                     </div>
 
