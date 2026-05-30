@@ -302,19 +302,14 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
                 {{ $user->name }}
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
+            {{-- <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
                 Una experiencia única donde cada detalle importa.
                 Calidad, estilo y atención en un solo lugar.
-            </p>
+            </p> --}}
 
             <a href="#menu"
                 class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">

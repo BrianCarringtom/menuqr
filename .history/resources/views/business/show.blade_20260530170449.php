@@ -285,40 +285,76 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover scale-110">
+                class="w-full h-full object-cover scale-105">
         </div>
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75">
+        <!-- Overlay más ligero -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/50"></div>
+
+        <!-- Efecto brillo premium -->
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-yellow-500/10 rounded-full blur-3xl">
         </div>
 
         <!-- Marca -->
         <div class="absolute top-6 left-6 z-20">
-            <p class="text-sm md:text-base tracking-[0.4em] text-gray-400 uppercase">
+            <p class="text-sm md:text-base tracking-[0.4em] text-white/80 uppercase font-medium">
                 Carrington Brian
             </p>
         </div>
 
         <!-- Contenido -->
-        <div class="relative z-10 max-w-3xl px-4 fade-in">
+        <div
+            class="relative z-10 max-w-4xl mx-4 px-8 py-10 rounded-[35px] backdrop-blur-md bg-black/15 border border-white/10 shadow-2xl fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <!-- Título -->
+            <h1 class="text-5xl md:text-7xl font-bold tracking-wider mb-5 text-white"
+                style="text-shadow:0 5px 30px rgba(0,0,0,.8);">
+
                 {{ $user->name }}
+
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
+            <!-- Línea decorativa -->
+            <div class="w-24 h-[3px] bg-yellow-500 mx-auto rounded-full mb-8"></div>
+
+            <!-- Descripción -->
+            <p class="text-white text-lg md:text-2xl leading-relaxed mb-8 max-w-2xl mx-auto"
+                style="text-shadow:0 3px 20px rgba(0,0,0,.8);">
+
                 Una experiencia única donde cada detalle importa.
                 Calidad, estilo y atención en un solo lugar.
+
             </p>
 
+            <!-- Insignias -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+
+                <span
+                    class="bg-white/10 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-sm text-white">
+                    ⭐ Calidad garantizada
+                </span>
+
+                <span
+                    class="bg-white/10 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-sm text-white">
+                    🚀 Atención rápida
+                </span>
+
+                <span
+                    class="bg-white/10 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-sm text-white">
+                    💎 Servicio premium
+                </span>
+
+            </div>
+
+            <!-- Botón -->
             <a href="#menu"
-                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">
-                DESCUBRE MÁS
+                class="inline-flex items-center gap-3 bg-yellow-500 text-black font-semibold px-10 py-4 rounded-full shadow-2xl hover:bg-yellow-400 hover:scale-105 transition duration-300">
+
+                Descubrir Menú
+
+                <i class="fa-solid fa-arrow-right"></i>
+
             </a>
 
         </div>
@@ -339,7 +375,7 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover opacity-20">
+                class="w-full h-full object-cover opacity-35">
         </div>
 
         <!-- Overlay -->

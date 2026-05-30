@@ -37,6 +37,49 @@
             background: black;
         }
 
+        .hero-card {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 35px;
+            padding: 40px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .35),
+                inset 0 1px 0 rgba(255, 255, 255, .05);
+        }
+
+        .hero-title {
+            text-shadow:
+                0 5px 30px rgba(0, 0, 0, .6);
+        }
+
+        .hero-text {
+            text-shadow:
+                0 3px 15px rgba(0, 0, 0, .5);
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: .9rem;
+            transition: .3s;
+        }
+
+        .trust-badge:hover {
+            transform: translateY(-3px);
+        }
+
+        .product-flex {
+            transition: .3s;
+        }
+
+        .product-flex:hover {
+            transform: translateX(8px);
+        }
+
         h1,
         h2,
         h3 {
@@ -289,7 +332,7 @@
         </div>
 
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
         </div>
 
         <!-- Marca -->
@@ -300,35 +343,43 @@
         </div>
 
         <!-- Contenido -->
-        <div class="relative z-10 max-w-3xl px-4 fade-in">
+        <div class="relative z-10 max-w-4xl hero-card fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-5 font-bold leading-tight">
                 {{ $user->name }}
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
+            <div class="w-28 h-[2px] bg-yellow-500 mx-auto mb-8"></div>
+
+            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-10 leading-relaxed">
                 Una experiencia única donde cada detalle importa.
                 Calidad, estilo y atención en un solo lugar.
             </p>
 
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+
+                <span class="trust-badge">
+                    ⭐ Calidad garantizada
+                </span>
+
+                <span class="trust-badge">
+                    🚀 Atención rápida
+                </span>
+
+                <span class="trust-badge">
+                    💎 Servicio premium
+                </span>
+
+            </div>
+
             <a href="#menu"
-                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">
-                DESCUBRE MÁS
+                class="hero-button inline-flex items-center gap-3 bg-yellow-500 text-black px-10 py-4 rounded-full font-semibold shadow-2xl hover:bg-yellow-400 hover:scale-105 transition duration-300">
+
+                Descubrir Menú
+
+                <i class="fa-solid fa-arrow-right"></i>
+
             </a>
-
-        </div>
-
-        <!-- BOTÓN WHATSAPP -->
-        <a href="https://wa.me/{{ $user->whatsapp }}" target="_blank" class="whatsapp-float">
-
-            <i class="fab fa-whatsapp"></i>
-
-        </a>
 
     </section>
 
@@ -339,7 +390,7 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover opacity-20">
+                class="w-full h-full object-cover opacity-15">
         </div>
 
         <!-- Overlay -->
@@ -543,6 +594,20 @@
 
     </footer>
 
+    <script>
+        window.onload = () => {
+
+            const firstCategory =
+                document.getElementById("content-0");
+
+            if (firstCategory) {
+
+                toggleMenu(0);
+
+            }
+
+        };
+    </script>
 
     <!-- 🔥 SCRIPT -->
     <script>

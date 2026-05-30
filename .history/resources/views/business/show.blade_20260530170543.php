@@ -285,40 +285,49 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover scale-110">
+                class="w-full h-full object-cover scale-105">
         </div>
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75">
-        </div>
+        <!-- Overlay ligero -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/35"></div>
 
         <!-- Marca -->
         <div class="absolute top-6 left-6 z-20">
-            <p class="text-sm md:text-base tracking-[0.4em] text-gray-400 uppercase">
+            <p class="text-sm md:text-base tracking-[0.4em] text-white/90 uppercase font-medium"
+                style="text-shadow:0 2px 10px rgba(0,0,0,.8);">
                 Carrington Brian
             </p>
         </div>
 
         <!-- Contenido -->
-        <div class="relative z-10 max-w-3xl px-4 fade-in">
+        <div class="relative z-10 max-w-4xl px-6 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-wider mb-6 text-white leading-tight"
+                style="text-shadow:
+            0 4px 15px rgba(0,0,0,.9),
+            0 8px 40px rgba(0,0,0,.8);">
+
                 {{ $user->name }}
+
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
+            <div class="w-24 h-[3px] bg-yellow-500 mx-auto rounded-full mb-8"></div>
+
+            <p class="text-white text-lg md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed"
+                style="text-shadow:
+            0 3px 12px rgba(0,0,0,.9),
+            0 6px 20px rgba(0,0,0,.8);">
+
                 Una experiencia única donde cada detalle importa.
                 Calidad, estilo y atención en un solo lugar.
+
             </p>
 
             <a href="#menu"
-                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">
-                DESCUBRE MÁS
+                class="inline-block bg-yellow-500 text-black font-semibold px-10 py-4 rounded-full shadow-2xl hover:bg-yellow-400 hover:scale-105 transition duration-300">
+
+                DESCUBRIR MENÚ
+
             </a>
 
         </div>
@@ -339,7 +348,7 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover opacity-20">
+                class="w-full h-full object-cover opacity-35">
         </div>
 
         <!-- Overlay -->

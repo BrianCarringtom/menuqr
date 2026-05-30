@@ -285,16 +285,20 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover scale-110">
+                class="w-full h-full object-cover scale-105">
         </div>
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75">
-        </div>
+        <!-- Overlay ligero -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-black/35"></div>
 
         <!-- Marca -->
         <div class="absolute top-6 left-6 z-20">
-            <p class="text-sm md:text-base tracking-[0.4em] text-gray-400 uppercase">
+            <p class="text-sm md:text-base tracking-[0.4em] text-white uppercase"
+                style="
+                text-shadow:
+                0 2px 8px rgba(0,0,0,.9),
+                0 4px 20px rgba(0,0,0,.7);
+            ">
                 Carrington Brian
             </p>
         </div>
@@ -302,22 +306,28 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight text-white"
                 style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+                text-shadow:
+                0 3px 10px rgba(0,0,0,.95),
+                0 8px 25px rgba(0,0,0,.90),
+                0 15px 45px rgba(0,0,0,.75);
+            ">
                 {{ $user->name }}
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
+            <p class="hero-text text-white text-xl md:text-2xl mb-12 leading-relaxed"
+                style="
+                text-shadow:
+                0 2px 8px rgba(0,0,0,.95),
+                0 5px 18px rgba(0,0,0,.8);
+            ">
                 Una experiencia única donde cada detalle importa.
                 Calidad, estilo y atención en un solo lugar.
             </p>
 
             <a href="#menu"
-                class="hero-button inline-block border border-yellow-500 text-yellow-400 px-10 py-4 rounded-full tracking-[0.2em] hover:bg-yellow-500 hover:text-black transition duration-300">
+                class="hero-button inline-block bg-yellow-500 text-black font-semibold px-10 py-4 rounded-full tracking-[0.15em] shadow-2xl hover:bg-yellow-400 hover:scale-105 transition duration-300">
                 DESCUBRE MÁS
             </a>
 
@@ -325,9 +335,7 @@
 
         <!-- BOTÓN WHATSAPP -->
         <a href="https://wa.me/{{ $user->whatsapp }}" target="_blank" class="whatsapp-float">
-
             <i class="fab fa-whatsapp"></i>
-
         </a>
 
     </section>
@@ -339,7 +347,7 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover opacity-20">
+                class="w-full h-full object-cover opacity-15">
         </div>
 
         <!-- Overlay -->

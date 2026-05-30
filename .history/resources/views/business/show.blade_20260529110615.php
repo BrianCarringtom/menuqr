@@ -284,12 +284,12 @@
 
         <!-- Fondo -->
         <div class="absolute inset-0">
-            <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
+            <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1543599538-a6c4f6cc5c05?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}"
                 class="w-full h-full object-cover scale-110">
         </div>
 
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
         </div>
 
         <!-- Marca -->
@@ -302,12 +302,7 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
                 {{ $user->name }}
             </h1>
 
@@ -339,7 +334,7 @@
         <!-- Fondo -->
         <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover opacity-20">
+                class="w-full h-full object-cover opacity-15">
         </div>
 
         <!-- Overlay -->

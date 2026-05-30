@@ -34,7 +34,7 @@
         body {
             font-family: 'Inter', sans-serif;
             color: #f5f5f5;
-            background: black;
+            background: orange;
         }
 
         h1,
@@ -76,9 +76,9 @@
             /* BORDE DELGADO */
             border: 1px solid rgba(255, 255, 255, 0.08);
 
-            /* EFECTO GLASS */
+            /* EFECTO GLASS
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); */
 
             /* SOMBRA ELEGANTE */
             box-shadow:
@@ -289,7 +289,7 @@
         </div>
 
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/95">
         </div>
 
         <!-- Marca -->
@@ -302,12 +302,7 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
                 {{ $user->name }}
             </h1>
 
@@ -337,10 +332,10 @@
     <section id="menu" class="relative py-28 px-6 mobile-section mobile-spacing">
 
         <!-- Fondo -->
-        <div class="absolute inset-0">
+        {{-- <div class="absolute inset-0">
             <img src="{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
-                class="w-full h-full object-cover opacity-20">
-        </div>
+                class="w-full h-full object-cover opacity-15">
+        </div> --}}
 
         <!-- Overlay -->
         <div class="absolute inset-0 bg-black/80"></div>

@@ -302,18 +302,27 @@
         <!-- Contenido -->
         <div class="relative z-10 max-w-3xl px-4 fade-in">
 
-            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight"
-                style="
-        text-shadow:
-            0 2px 8px rgba(0,0,0,.45),
-            0 4px 16px rgba(0,0,0,.25);
-    ">
+            <h1 class="hero-title text-6xl md:text-7xl tracking-widest mb-8 font-bold leading-tight">
                 {{ $user->name }}
             </h1>
 
-            <p class="hero-text text-gray-300 text-xl md:text-2xl mb-12 leading-relaxed">
-                Una experiencia única donde cada detalle importa.
-                Calidad, estilo y atención en un solo lugar.
+            <p class="hero-text text-white text-lg md:text-2xl mb-12 leading-relaxed font-medium"
+                style="
+      display:inline-block;
+      padding:12px 22px;
+      border-radius:18px;
+      background:rgba(0,0,0,.18);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      text-shadow:
+         0 2px 8px rgba(0,0,0,.95),
+         0 6px 20px rgba(0,0,0,.85),
+         0 0 35px rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+         0 10px 30px rgba(0,0,0,.25);
+   ">
+                Calidad y atención en cada experiencia.
             </p>
 
             <a href="#menu"
