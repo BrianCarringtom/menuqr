@@ -667,10 +667,10 @@
 
                 img.onload = function() {
 
-                    canvas.width = img.width || 500;
-                    canvas.height = img.height || 500;
+                    canvas.width = img.width || 1500;
+                    canvas.height = img.height || 1500;
 
-                    ctx.drawImage(img, 0, 0);
+                    ctx.drawImage(img, 0, 0, 1500, 1500);
 
                     URL.revokeObjectURL(url);
 

@@ -644,57 +644,6 @@
     </div>
 
     <script>
-        document.getElementById('downloadQr').addEventListener('click', async function(e) {
-            e.preventDefault();
-
-            const svgUrl = "{{ asset('storage/' . Auth::user()->qr_path) }}";
-
-            try {
-
-                const response = await fetch(svgUrl);
-                const svgText = await response.text();
-
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-
-                const img = new Image();
-
-                const svgBlob = new Blob([svgText], {
-                    type: 'image/svg+xml;charset=utf-8'
-                });
-
-                const url = URL.createObjectURL(svgBlob);
-
-                img.onload = function() {
-
-                    canvas.width = img.width || 500;
-                    canvas.height = img.height || 500;
-
-                    ctx.drawImage(img, 0, 0);
-
-                    URL.revokeObjectURL(url);
-
-                    const pngUrl = canvas.toDataURL('image/png');
-
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = pngUrl;
-                    downloadLink.download = "qr-{{ Auth::user()->slug }}.png";
-
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-                };
-
-                img.src = url;
-
-            } catch (error) {
-                console.error(error);
-                alert('Error al descargar el QR.');
-            }
-        });
-    </script>
-
-    <script>
         function toggleMenu() {
 
             const sidebar = document.querySelector('.sidebar');
