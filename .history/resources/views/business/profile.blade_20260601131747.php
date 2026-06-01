@@ -644,9 +644,6 @@
     </div>
 
     <script>
-        const coverUrl =
-            "{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : '' }}";
-
         document.getElementById('downloadQr').addEventListener('click', async function(e) {
             e.preventDefault();
 
@@ -670,256 +667,78 @@
 
                 img.onload = function() {
 
-                    const qrSize = 620;
+                    const qrSize = 1000;
 
                     canvas.width = 1200;
-                    canvas.height = 1600;
+                    canvas.height = 1450;
 
-                    const cover = new Image();
-                    cover.crossOrigin = "anonymous";
+                    // Fondo elegante
+                    ctx.fillStyle = "#FFF8E7";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                    cover.onload = function() {
+                    // Tarjeta blanca
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fillRect(50, 50, 1100, 1350);
 
-                        // ==========================
-                        // FONDO
-                        // ==========================
+                    // Sombra
+                    ctx.shadowColor = "rgba(0,0,0,0.15)";
+                    ctx.shadowBlur = 20;
+                    ctx.shadowOffsetY = 8;
 
-                        ctx.drawImage(
-                            cover,
-                            0,
-                            0,
-                            canvas.width,
-                            canvas.height
-                        );
+                    // QR centrado
+                    ctx.drawImage(
+                        img,
+                        100,
+                        100,
+                        qrSize,
+                        qrSize
+                    );
 
-                        // Overlay oscuro elegante
-                        ctx.fillStyle = "rgba(0,0,0,0.60)";
-                        ctx.fillRect(
-                            0,
-                            0,
-                            canvas.width,
-                            canvas.height
-                        );
+                    // Quitar sombra para textos
+                    ctx.shadowColor = "transparent";
 
-                        // ==========================
-                        // TARJETA PRINCIPAL
-                        // ==========================
+                    // Nombre del negocio
+                    ctx.fillStyle = "#c9a227";
+                    ctx.font = "bold 55px Inter, Arial";
+                    ctx.textAlign = "center";
 
-                        ctx.save();
+                    ctx.fillText(
+                        "{{ Auth::user()->name }}",
+                        canvas.width / 2,
+                        1220
+                    );
 
-                        ctx.shadowColor = "rgba(0,0,0,0.35)";
-                        ctx.shadowBlur = 40;
-                        ctx.shadowOffsetY = 15;
+                    // Texto secundario
+                    ctx.fillStyle = "#6b7280";
+                    ctx.font = "32px Inter, Arial";
 
-                        ctx.fillStyle = "rgba(255,255,255,0.97)";
+                    ctx.fillText(
+                        "Escanea para ver nuestro menú digital",
+                        canvas.width / 2,
+                        1290
+                    );
 
-                        roundRect(
-                            ctx,
-                            80,
-                            100,
-                            1040,
-                            1400,
-                            45
-                        );
+                    // URL
+                    ctx.fillStyle = "#374151";
+                    ctx.font = "26px Inter, Arial";
 
-                        ctx.restore();
+                    ctx.fillText(
+                        "{{ url('/' . Auth::user()->slug) }}",
+                        canvas.width / 2,
+                        1350
+                    );
 
-                        // ==========================
-                        // NOMBRE DEL NEGOCIO
-                        // ==========================
+                    URL.revokeObjectURL(url);
 
-                        ctx.fillStyle = "#111827";
-                        ctx.textAlign = "center";
+                    const pngUrl = canvas.toDataURL('image/png');
 
-                        ctx.font = "bold 60px Arial";
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = pngUrl;
+                    downloadLink.download = "qr-{{ Auth::user()->slug }}.png";
 
-                        ctx.fillText(
-                            "{{ Auth::user()->name }}",
-                            canvas.width / 2,
-                            210
-                        );
-
-                        // ==========================
-                        // SUBTITULO
-                        // ==========================
-
-                        ctx.fillStyle = "#6B7280";
-                        ctx.font = "32px Arial";
-
-                        ctx.fillText(
-                            "MENÚ DIGITAL",
-                            canvas.width / 2,
-                            270
-                        );
-
-                        // Línea dorada elegante
-
-                        ctx.fillStyle = "#D4AF37";
-
-                        roundRect(
-                            ctx,
-                            470,
-                            310,
-                            260,
-                            8,
-                            20
-                        );
-
-                        // ==========================
-                        // MARCO PREMIUM QR
-                        // ==========================
-
-                        ctx.save();
-
-                        ctx.shadowColor = "rgba(0,0,0,0.12)";
-                        ctx.shadowBlur = 30;
-
-                        ctx.fillStyle = "#FFFFFF";
-
-                        roundRect(
-                            ctx,
-                            210,
-                            360,
-                            780,
-                            780,
-                            40
-                        );
-
-                        ctx.restore();
-
-                        // Borde fino elegante
-
-                        ctx.strokeStyle = "#E5E7EB";
-                        ctx.lineWidth = 3;
-
-                        ctx.strokeRect(
-                            225,
-                            375,
-                            750,
-                            750
-                        );
-
-                        // QR
-
-                        ctx.drawImage(
-                            img,
-                            290,
-                            440,
-                            qrSize,
-                            qrSize
-                        );
-
-                        // ==========================
-                        // TITULO QR
-                        // ==========================
-
-                        ctx.fillStyle = "#111827";
-                        ctx.font = "bold 44px Arial";
-
-                        ctx.fillText(
-                            "Escanea el código QR",
-                            canvas.width / 2,
-                            1220
-                        );
-
-                        // ==========================
-                        // DESCRIPCIÓN
-                        // ==========================
-
-                        ctx.fillStyle = "#6B7280";
-                        ctx.font = "30px Arial";
-
-                        ctx.fillText(
-                            "Consulta nuestro menú desde cualquier dispositivo",
-                            canvas.width / 2,
-                            1280
-                        );
-
-                        // ==========================
-                        // URL
-                        // ==========================
-
-                        ctx.fillStyle = "#F3F4F6";
-
-                        roundRect(
-                            ctx,
-                            240,
-                            1320,
-                            720,
-                            65,
-                            18
-                        );
-
-                        ctx.fillStyle = "#374151";
-                        ctx.font = "24px Arial";
-
-                        ctx.fillText(
-                            "{{ url('/' . Auth::user()->slug) }}",
-                            canvas.width / 2,
-                            1362
-                        );
-
-                        // ==========================
-                        // BOTÓN INFERIOR
-                        // ==========================
-
-                        ctx.fillStyle = "#D4AF37";
-
-                        roundRect(
-                            ctx,
-                            330,
-                            1420,
-                            540,
-                            95,
-                            25
-                        );
-
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.font = "bold 34px Arial";
-
-                        ctx.fillText(
-                            "ESCANEA Y VISÍTANOS",
-                            canvas.width / 2,
-                            1482
-                        );
-
-                        URL.revokeObjectURL(url);
-
-                        const pngUrl = canvas.toDataURL('image/png');
-
-                        const downloadLink = document.createElement('a');
-
-                        downloadLink.href = pngUrl;
-                        downloadLink.download = "qr-{{ Auth::user()->slug }}.png";
-
-                        document.body.appendChild(downloadLink);
-                        downloadLink.click();
-                        document.body.removeChild(downloadLink);
-                    };
-
-                    cover.src = coverUrl;
-
-                    function roundRect(ctx, x, y, width, height, radius) {
-
-                        ctx.beginPath();
-
-                        ctx.moveTo(x + radius, y);
-
-                        ctx.lineTo(x + width - radius, y);
-                        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-
-                        ctx.lineTo(x + width, y + height - radius);
-                        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-
-                        ctx.lineTo(x + radius, y + height);
-                        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-
-                        ctx.lineTo(x, y + radius);
-                        ctx.quadraticCurveTo(x, y, x + radius, y);
-
-                        ctx.closePath();
-                        ctx.fill();
-                    }
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
                 };
 
                 img.src = url;

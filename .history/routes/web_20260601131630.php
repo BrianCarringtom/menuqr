@@ -80,7 +80,7 @@ Route::post('/admin/create-user', function (Request $request) {
     ]);
 
     // 🔹 GENERAR QR en SVG
-    $qrSvg = QrCode::format('svg')->size(1500)->generate(url($slug));
+    $qrSvg = QrCode::format('svg')->size(200)->generate(url($slug));
     $qrPath = 'qrcodes/' . $user->id . '.svg';
     Storage::disk('public')->put($qrPath, $qrSvg);
 

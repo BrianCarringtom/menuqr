@@ -670,7 +670,7 @@
 
                 img.onload = function() {
 
-                    const qrSize = 620;
+                    const qrSize = 700;
 
                     canvas.width = 1200;
                     canvas.height = 1600;
@@ -681,7 +681,7 @@
                     cover.onload = function() {
 
                         // ==========================
-                        // FONDO
+                        // FONDO (PORTADA DEL NEGOCIO)
                         // ==========================
 
                         ctx.drawImage(
@@ -693,7 +693,7 @@
                         );
 
                         // Overlay oscuro elegante
-                        ctx.fillStyle = "rgba(0,0,0,0.60)";
+                        ctx.fillStyle = "rgba(0,0,0,0.55)";
                         ctx.fillRect(
                             0,
                             0,
@@ -702,129 +702,104 @@
                         );
 
                         // ==========================
-                        // TARJETA PRINCIPAL
+                        // TARJETA CENTRAL
                         // ==========================
 
                         ctx.save();
 
                         ctx.shadowColor = "rgba(0,0,0,0.35)";
-                        ctx.shadowBlur = 40;
+                        ctx.shadowBlur = 35;
                         ctx.shadowOffsetY = 15;
 
-                        ctx.fillStyle = "rgba(255,255,255,0.97)";
-
+                        ctx.fillStyle = "rgba(255,255,255,0.96)";
                         roundRect(
                             ctx,
-                            80,
-                            100,
-                            1040,
-                            1400,
-                            45
-                        );
-
-                        ctx.restore();
-
-                        // ==========================
-                        // NOMBRE DEL NEGOCIO
-                        // ==========================
-
-                        ctx.fillStyle = "#111827";
-                        ctx.textAlign = "center";
-
-                        ctx.font = "bold 60px Arial";
-
-                        ctx.fillText(
-                            "{{ Auth::user()->name }}",
-                            canvas.width / 2,
-                            210
-                        );
-
-                        // ==========================
-                        // SUBTITULO
-                        // ==========================
-
-                        ctx.fillStyle = "#6B7280";
-                        ctx.font = "32px Arial";
-
-                        ctx.fillText(
-                            "MENÚ DIGITAL",
-                            canvas.width / 2,
-                            270
-                        );
-
-                        // Línea dorada elegante
-
-                        ctx.fillStyle = "#D4AF37";
-
-                        roundRect(
-                            ctx,
-                            470,
-                            310,
-                            260,
-                            8,
-                            20
-                        );
-
-                        // ==========================
-                        // MARCO PREMIUM QR
-                        // ==========================
-
-                        ctx.save();
-
-                        ctx.shadowColor = "rgba(0,0,0,0.12)";
-                        ctx.shadowBlur = 30;
-
-                        ctx.fillStyle = "#FFFFFF";
-
-                        roundRect(
-                            ctx,
-                            210,
-                            360,
-                            780,
-                            780,
+                            90,
+                            120,
+                            1020,
+                            1360,
                             40
                         );
 
                         ctx.restore();
 
-                        // Borde fino elegante
+                        // ==========================
+                        // CABECERA
+                        // ==========================
 
-                        ctx.strokeStyle = "#E5E7EB";
-                        ctx.lineWidth = 3;
+                        ctx.fillStyle = "#111827";
+                        ctx.font = "bold 65px Arial";
+                        ctx.textAlign = "center";
 
-                        ctx.strokeRect(
-                            225,
-                            375,
-                            750,
-                            750
+                        ctx.fillText(
+                            "{{ Auth::user()->name }}",
+                            canvas.width / 2,
+                            220
                         );
 
-                        // QR
+                        ctx.fillStyle = "#6B7280";
+                        ctx.font = "34px Arial";
+
+                        ctx.fillText(
+                            "MENÚ DIGITAL",
+                            canvas.width / 2,
+                            280
+                        );
+
+                        // Línea decorativa
+                        ctx.fillStyle = "#D4AF37";
+
+                        roundRect(
+                            ctx,
+                            canvas.width / 2 - 120,
+                            320,
+                            240,
+                            8,
+                            10
+                        );
+
+                        // ==========================
+                        // QR CON BORDE PREMIUM
+                        // ==========================
+
+                        ctx.save();
+
+                        ctx.shadowColor = "rgba(0,0,0,0.18)";
+                        ctx.shadowBlur = 25;
+
+                        ctx.fillStyle = "#FFFFFF";
+
+                        roundRect(
+                            ctx,
+                            250,
+                            390,
+                            700,
+                            700,
+                            30
+                        );
+
+                        ctx.restore();
 
                         ctx.drawImage(
                             img,
-                            290,
-                            440,
+                            280,
+                            420,
                             qrSize,
                             qrSize
                         );
 
                         // ==========================
-                        // TITULO QR
+                        // TEXTO INFORMATIVO
                         // ==========================
 
                         ctx.fillStyle = "#111827";
-                        ctx.font = "bold 44px Arial";
+                        ctx.font = "bold 46px Arial";
 
                         ctx.fillText(
                             "Escanea el código QR",
                             canvas.width / 2,
-                            1220
+                            1190
                         );
-
-                        // ==========================
-                        // DESCRIPCIÓN
-                        // ==========================
 
                         ctx.fillStyle = "#6B7280";
                         ctx.font = "30px Arial";
@@ -832,55 +807,44 @@
                         ctx.fillText(
                             "Consulta nuestro menú desde cualquier dispositivo",
                             canvas.width / 2,
-                            1280
+                            1250
                         );
 
                         // ==========================
                         // URL
                         // ==========================
 
-                        ctx.fillStyle = "#F3F4F6";
-
-                        roundRect(
-                            ctx,
-                            240,
-                            1320,
-                            720,
-                            65,
-                            18
-                        );
-
                         ctx.fillStyle = "#374151";
-                        ctx.font = "24px Arial";
+                        ctx.font = "26px Arial";
 
                         ctx.fillText(
                             "{{ url('/' . Auth::user()->slug) }}",
                             canvas.width / 2,
-                            1362
+                            1320
                         );
 
                         // ==========================
-                        // BOTÓN INFERIOR
+                        // CTA INFERIOR
                         // ==========================
 
                         ctx.fillStyle = "#D4AF37";
 
                         roundRect(
                             ctx,
-                            330,
-                            1420,
-                            540,
-                            95,
-                            25
+                            340,
+                            1370,
+                            520,
+                            90,
+                            20
                         );
 
                         ctx.fillStyle = "#FFFFFF";
                         ctx.font = "bold 34px Arial";
 
                         ctx.fillText(
-                            "ESCANEA Y VISÍTANOS",
+                            "ESCANEA Y DESCUBRE MÁS",
                             canvas.width / 2,
-                            1482
+                            1428
                         );
 
                         URL.revokeObjectURL(url);
@@ -888,7 +852,6 @@
                         const pngUrl = canvas.toDataURL('image/png');
 
                         const downloadLink = document.createElement('a');
-
                         downloadLink.href = pngUrl;
                         downloadLink.download = "qr-{{ Auth::user()->slug }}.png";
 
@@ -899,6 +862,7 @@
 
                     cover.src = coverUrl;
 
+                    // Función para bordes redondeados
                     function roundRect(ctx, x, y, width, height, radius) {
 
                         ctx.beginPath();
