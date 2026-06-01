@@ -338,28 +338,28 @@
 
                 <select name="role" id="editRole">
 
+                    <select name="plan" id="editPlan">
+
+                        <option value="basico">
+                            Básico
+                        </option>
+
+                        <option value="emprendedor">
+                            Emprendedor
+                        </option>
+
+                        <option value="premium">
+                            Premium
+                        </option>
+
+                    </select>
+
                     <option value="admin">
                         Admin
                     </option>
 
                     <option value="business">
                         Business
-                    </option>
-
-                </select>
-
-                <select name="plan" id="editPlan">
-
-                    <option value="basico">
-                        Básico
-                    </option>
-
-                    <option value="emprendedor">
-                        Emprendedor
-                    </option>
-
-                    <option value="premium">
-                        Premium
                     </option>
 
                 </select>
