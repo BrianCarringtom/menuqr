@@ -308,7 +308,7 @@ Route::post('/business/product', function (Request $request) {
     ) {
         return back()->with(
             'error',
-            '📦 Has alcanzado el límite de 30 productos. 🚀 ¡Actualiza tu plan!'
+            'Tu límite de productos ha finalizado. El Plan Básico permite hasta 30 productos. Si deseas ampliar tu catálogo, comunícate con tu distribuidor para cambiar de plan.'
         );
     }
 
@@ -318,7 +318,7 @@ Route::post('/business/product', function (Request $request) {
     ) {
         return back()->with(
             'error',
-            '📦 Has alcanzado el límite de 80 productos. 🚀 ¡Actualiza tu plan!'
+            'Tu límite de productos ha finalizado. El Plan Emprendedor permite hasta 80 productos. Si deseas ampliar tu catálogo, comunícate con tu distribuidor para cambiar de plan.'
         );
     }
 

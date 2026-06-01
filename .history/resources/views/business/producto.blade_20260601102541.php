@@ -677,7 +677,7 @@
         let toastTime = 1300; // éxito
 
         @if (session('error'))
-            toastTime = 3000; // error
+            toastTime = 4000; // error
         @endif
 
         setTimeout(() => {

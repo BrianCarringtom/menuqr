@@ -674,12 +674,6 @@
 
     <script>
         // TOAST
-        let toastTime = 1300; // éxito
-
-        @if (session('error'))
-            toastTime = 3000; // error
-        @endif
-
         setTimeout(() => {
 
             const overlay = document.getElementById('toast-overlay');
@@ -693,7 +687,7 @@
                 }, 250);
             }
 
-        }, toastTime);
+        }, 5000);
 
         // MENÚ
         function toggleMenu() {

@@ -677,23 +677,10 @@
         let toastTime = 1300; // éxito
 
         @if (session('error'))
-            toastTime = 3000; // error
+            toastTime = 4000; // error
         @endif
 
-        setTimeout(() => {
 
-            const overlay = document.getElementById('toast-overlay');
-
-            if (overlay) {
-
-                overlay.style.animation = "toastOut 0.4s forwards";
-
-                setTimeout(() => {
-                    overlay.remove();
-                }, 250);
-            }
-
-        }, toastTime);
 
         // MENÚ
         function toggleMenu() {

@@ -674,10 +674,10 @@
 
     <script>
         // TOAST
-        let toastTime = 1300; // éxito
+        let toastTime = 3000; // éxito
 
         @if (session('error'))
-            toastTime = 3000; // error
+            toastTime = 7000; // error
         @endif
 
         setTimeout(() => {

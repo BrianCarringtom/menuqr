@@ -389,7 +389,6 @@
             document.getElementById('editName').value = name;
             document.getElementById('editEmail').value = email;
             document.getElementById('editRole').value = role;
-            document.getElementById('editPlan').value = plan;
 
             document.getElementById('editForm').action =
                 `/admin/users/${id}`;

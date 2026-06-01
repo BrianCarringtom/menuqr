@@ -308,7 +308,7 @@ Route::post('/business/product', function (Request $request) {
     ) {
         return back()->with(
             'error',
-            '📦 Has alcanzado el límite de 30 productos. 🚀 ¡Actualiza tu plan!'
+            'Has alcanzado el límite de 30 productos de tu plan. Para agregar más, actualiza tu plan.'
         );
     }
 
@@ -318,7 +318,7 @@ Route::post('/business/product', function (Request $request) {
     ) {
         return back()->with(
             'error',
-            '📦 Has alcanzado el límite de 80 productos. 🚀 ¡Actualiza tu plan!'
+            'Has alcanzado el límite de 80 productos de tu plan. Para agregar más, actualiza tu plan.'
         );
     }
 

@@ -207,7 +207,6 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Rol</th>
-                        <th>Plan</th>
                         <th>Slug</th>
                         <th>Acciones</th>
                     </tr>
@@ -235,18 +234,6 @@
                             </td>
 
                             <td>
-
-                                @if ($user->plan == 'basico')
-                                    Básico
-                                @elseif($user->plan == 'emprendedor')
-                                    Emprendedor
-                                @else
-                                    Premium
-                                @endif
-
-                            </td>
-
-                            <td>
                                 <a href="/{{ $user->slug }}" target="_blank" class="link-slug">
 
                                     {{ $user->slug }}
@@ -260,7 +247,7 @@
 
                                     <!-- EDITAR -->
                                     <button
-                                        onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}'), '{{ $user->plan }}'"
+                                        onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')"
                                         class="btn btn-edit">
 
                                         Editar
@@ -332,22 +319,6 @@
 
                 <select name="role" id="editRole">
 
-                    <select name="plan" id="editPlan">
-
-                        <option value="basico">
-                            Básico
-                        </option>
-
-                        <option value="emprendedor">
-                            Emprendedor
-                        </option>
-
-                        <option value="premium">
-                            Premium
-                        </option>
-
-                    </select>
-
                     <option value="admin">
                         Admin
                     </option>
@@ -382,14 +353,13 @@
 
     <!-- 🔥 SCRIPT -->
     <script>
-        function openEditModal(id, name, email, role, plan) {
+        function openEditModal(id, name, email, role) {
 
             document.getElementById('editModal').style.display = 'flex';
 
             document.getElementById('editName').value = name;
             document.getElementById('editEmail').value = email;
             document.getElementById('editRole').value = role;
-            document.getElementById('editPlan').value = plan;
 
             document.getElementById('editForm').action =
                 `/admin/users/${id}`;

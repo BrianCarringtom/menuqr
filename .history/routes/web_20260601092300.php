@@ -295,33 +295,6 @@ Route::post('/business/product', function (Request $request) {
         abort(403);
     }
 
-    $user = Auth::user();
-
-    $totalProductos = Product::where(
-        'user_id',
-        $user->id
-    )->count();
-
-    if (
-        $user->plan === 'basico'
-        && $totalProductos >= 30
-    ) {
-        return back()->with(
-            'error',
-            '📦 Has alcanzado el límite de 30 productos. 🚀 ¡Actualiza tu plan!'
-        );
-    }
-
-    if (
-        $user->plan === 'emprendedor'
-        && $totalProductos >= 80
-    ) {
-        return back()->with(
-            'error',
-            '📦 Has alcanzado el límite de 80 productos. 🚀 ¡Actualiza tu plan!'
-        );
-    }
-
     $request->validate([
         'name' => 'required|string|max:255',
         'price' => 'required|numeric',

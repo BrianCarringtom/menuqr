@@ -382,14 +382,13 @@
 
     <!-- 🔥 SCRIPT -->
     <script>
-        function openEditModal(id, name, email, role, plan) {
+        function openEditModal(id, name, email, role) {
 
             document.getElementById('editModal').style.display = 'flex';
 
             document.getElementById('editName').value = name;
             document.getElementById('editEmail').value = email;
             document.getElementById('editRole').value = role;
-            document.getElementById('editPlan').value = plan;
 
             document.getElementById('editForm').action =
                 `/admin/users/${id}`;

@@ -568,15 +568,6 @@
                 </div>
             @endif
 
-            @if (session('error'))
-                <div id="toast-overlay">
-                    <div id="toast" style="border-left:6px solid #dc2626;">
-                        <i class="fas fa-triangle-exclamation" style="color:#dc2626;"></i>
-                        <span>{{ session('error') }}</span>
-                    </div>
-                </div>
-            @endif
-
             <!-- GRID -->
             <div class="grid">
 
@@ -674,12 +665,6 @@
 
     <script>
         // TOAST
-        let toastTime = 1300; // éxito
-
-        @if (session('error'))
-            toastTime = 3000; // error
-        @endif
-
         setTimeout(() => {
 
             const overlay = document.getElementById('toast-overlay');
@@ -693,7 +678,7 @@
                 }, 250);
             }
 
-        }, toastTime);
+        }, 1300);
 
         // MENÚ
         function toggleMenu() {
