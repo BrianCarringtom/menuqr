@@ -644,7 +644,8 @@
     </div>
 
     <script>
-        const coverUrl = "{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : '' }}";
+        const coverUrl =
+            "{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : '' }}";
 
         document.getElementById('downloadQr').addEventListener('click', async function(e) {
             e.preventDefault();
@@ -652,6 +653,7 @@
             const svgUrl = "{{ asset('storage/' . Auth::user()->qr_path) }}";
 
             try {
+
                 const response = await fetch(svgUrl);
                 const svgText = await response.text();
 
@@ -659,195 +661,264 @@
                 const ctx = canvas.getContext('2d');
 
                 const img = new Image();
+
                 const svgBlob = new Blob([svgText], {
                     type: 'image/svg+xml;charset=utf-8'
                 });
+
                 const url = URL.createObjectURL(svgBlob);
 
                 img.onload = function() {
+
+                    const qrSize = 620;
+
                     canvas.width = 1200;
                     canvas.height = 1600;
-                    const systemFont = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
-                    const drawCanvasContent = () => {
-                        // ==========================================
-                        // 1. EFECTO CRISTAL (Glassmorphism de fondo)
-                        // ==========================================
+                    const cover = new Image();
+                    cover.crossOrigin = "anonymous";
+
+                    cover.onload = function() {
+
+                        // ==========================
+                        // FONDO
+                        // ==========================
+
+                        ctx.drawImage(
+                            cover,
+                            0,
+                            0,
+                            canvas.width,
+                            canvas.height
+                        );
+
+                        // Overlay oscuro elegante
+                        ctx.fillStyle = "rgba(0,0,0,0.60)";
+                        ctx.fillRect(
+                            0,
+                            0,
+                            canvas.width,
+                            canvas.height
+                        );
+
+                        // ==========================
+                        // TARJETA PRINCIPAL
+                        // ==========================
+
                         ctx.save();
-                        // Sombra exterior muy suave para separar la tarjeta del fondo real
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
-                        ctx.shadowBlur = 60;
-                        ctx.shadowOffsetY = 20;
 
-                        // Capa translúcida que deja ver el fondo de manera elegante
-                        ctx.fillStyle = "rgba(20, 15, 10, 0.45)";
-                        roundRect(ctx, 100, 100, 1000, 1400, 30);
-                        ctx.restore();
-
-                        // Borde fino dorado/brillante del cristal
-                        ctx.strokeStyle = "rgba(212, 175, 55, 0.25)";
-                        ctx.lineWidth = 3;
-                        ctx.stroke();
-
-                        // ==========================================
-                        // 2. TÍTULO EN ORO METÁLICO (Gradiente y Relieve)
-                        // ==========================================
-                        ctx.textAlign = "center";
-                        const titleX = canvas.width / 2;
-                        const titleY = 250;
-
-                        // Gradiente de oro de 4 pasos (simula reflejo metálico)
-                        const goldGlow = ctx.createLinearGradient(0, titleY - 60, 0, titleY + 20);
-                        goldGlow.addColorStop(0, '#FFF3D1'); // Brillo máximo
-                        goldGlow.addColorStop(0.3, '#D4AF37'); // Oro base
-                        goldGlow.addColorStop(0.6, '#AA7C11'); // Sombra oro
-                        goldGlow.addColorStop(1, '#E6CA65'); // Reflejo inferior
-
-                        // Sombra del título para separarlo del fondo
-                        ctx.save();
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
-                        ctx.shadowBlur = 15;
-                        ctx.shadowOffsetY = 8;
-
-                        ctx.font = `bold 76px ${systemFont}`;
-                        ctx.fillStyle = goldGlow;
-                        ctx.fillText("{{ Auth::user()->name }}", titleX, titleY);
-                        ctx.restore();
-
-                        // Subtítulo estilizado
-                        ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
-                        ctx.font = `600 30px ${systemFont}`;
-                        ctx.letterSpacing = "6px";
-                        ctx.fillText("MENÚ DIGITAL", titleX, titleY + 75);
-
-                        // Adorno lineal dorado bajo el subtítulo
-                        ctx.fillStyle = "#D4AF37";
-                        roundRect(ctx, titleX - 100, titleY + 110, 200, 3, 2);
-
-                        // ==========================================
-                        // 3. MARCO DE QR DE LUJO Y CÓDIGO QR
-                        // ==========================================
-                        const qrBoxX = 260;
-                        const qrBoxY = 500;
-                        const qrBoxSize = 680;
-
-                        // Sombra masiva para el contenedor del QR (Le da volumen 3D)
-                        ctx.save();
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+                        ctx.shadowColor = "rgba(0,0,0,0.35)";
                         ctx.shadowBlur = 40;
                         ctx.shadowOffsetY = 15;
 
-                        // Marco exterior dorado grueso
-                        ctx.fillStyle = "#AA7C11";
-                        roundRect(ctx, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24);
+                        ctx.fillStyle = "rgba(255,255,255,0.97)";
 
-                        // Interior del marco (Contraste blanco puro para que el QR sea 100% escaneable)
-                        ctx.fillStyle = "#FFFFFF";
-                        roundRect(ctx, qrBoxX + 15, qrBoxY + 15, qrBoxSize - 30, qrBoxSize - 30, 16);
+                        roundRect(
+                            ctx,
+                            80,
+                            100,
+                            1040,
+                            1400,
+                            45
+                        );
+
                         ctx.restore();
 
-                        // Esquinas interiores doradas (Estilo filigrana geométrica del render)
+                        // ==========================
+                        // NOMBRE DEL NEGOCIO
+                        // ==========================
+
+                        ctx.fillStyle = "#111827";
+                        ctx.textAlign = "center";
+
+                        ctx.font = "bold 60px Arial";
+
+                        ctx.fillText(
+                            "{{ Auth::user()->name }}",
+                            canvas.width / 2,
+                            210
+                        );
+
+                        // ==========================
+                        // SUBTITULO
+                        // ==========================
+
+                        ctx.fillStyle = "#6B7280";
+                        ctx.font = "32px Arial";
+
+                        ctx.fillText(
+                            "MENÚ DIGITAL",
+                            canvas.width / 2,
+                            270
+                        );
+
+                        // Línea dorada elegante
+
                         ctx.fillStyle = "#D4AF37";
-                        const pad = 35;
-                        // Superior Izquierda
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 40, 6);
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 6, 40);
-                        // Superior Derecha
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + pad, 40, 6);
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + pad, 6, 40);
-                        // Inferior Izquierda
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 6, 40, 6);
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 40, 6, 40);
-                        // Inferior Derecha
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + qrBoxSize - pad - 6, 40,
-                            6);
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + qrBoxSize - pad - 40, 6,
-                            40);
 
-                        // Dibujar el QR centrado a la perfección
-                        ctx.drawImage(img, qrBoxX + 65, qrBoxY + 65, qrBoxSize - 130, qrBoxSize - 130);
+                        roundRect(
+                            ctx,
+                            470,
+                            310,
+                            260,
+                            8,
+                            20
+                        );
 
-                        // ==========================================
-                        // 4. CTA Y ELEMENTOS INFERIORES
-                        // ==========================================
+                        // ==========================
+                        // MARCO PREMIUM QR
+                        // ==========================
+
                         ctx.save();
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-                        ctx.shadowBlur = 10;
-                        ctx.shadowOffsetY = 4;
 
-                        ctx.fillStyle = "#FFF3D1";
-                        ctx.font = `bold 42px ${systemFont}`;
-                        ctx.fillText("Escanea el código QR", titleX, 1260);
-                        ctx.restore();
+                        ctx.shadowColor = "rgba(0,0,0,0.12)";
+                        ctx.shadowBlur = 30;
 
-                        // Píldora de la URL estilizada
-                        ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-                        roundRect(ctx, 250, 1310, 700, 60, 30);
-                        ctx.strokeStyle = "rgba(212, 175, 55, 0.3)";
-                        ctx.stroke();
-
-                        ctx.fillStyle = "#E6CA65";
-                        ctx.font = `500 24px ${systemFont}`;
-                        ctx.fillText("{{ url('/' . Auth::user()->slug) }}", titleX, 1348);
-
-                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico
-                        ctx.save();
-                        ctx.shadowColor = "rgba(0,0,0,0.4)";
-                        ctx.shadowBlur = 20;
-                        ctx.shadowOffsetY = 8;
-
-                        const btnGrad = ctx.createLinearGradient(0, 1410, 0, 1490);
-                        btnGrad.addColorStop(0, '#AA7C11');
-                        btnGrad.addColorStop(0.5, '#D4AF37');
-                        btnGrad.addColorStop(1, '#8A640F');
-
-                        ctx.fillStyle = btnGrad;
-                        roundRect(ctx, 350, 1410, 500, 80, 40);
-                        ctx.restore();
-
-                        // Texto del botón
                         ctx.fillStyle = "#FFFFFF";
-                        ctx.font = `bold 30px ${systemFont}`;
-                        ctx.letterSpacing = "2px";
-                        ctx.fillText("ESCANEA Y VISÍTANOS", titleX, 1460);
 
-                        // ==========================================
-                        // 5. EJECUTAR DESCARGA
-                        // ==========================================
+                        roundRect(
+                            ctx,
+                            210,
+                            360,
+                            780,
+                            780,
+                            40
+                        );
+
+                        ctx.restore();
+
+                        // Borde fino elegante
+
+                        ctx.strokeStyle = "#E5E7EB";
+                        ctx.lineWidth = 3;
+
+                        ctx.strokeRect(
+                            225,
+                            375,
+                            750,
+                            750
+                        );
+
+                        // QR
+
+                        ctx.drawImage(
+                            img,
+                            290,
+                            440,
+                            qrSize,
+                            qrSize
+                        );
+
+                        // ==========================
+                        // TITULO QR
+                        // ==========================
+
+                        ctx.fillStyle = "#111827";
+                        ctx.font = "bold 44px Arial";
+
+                        ctx.fillText(
+                            "Escanea el código QR",
+                            canvas.width / 2,
+                            1220
+                        );
+
+                        // ==========================
+                        // DESCRIPCIÓN
+                        // ==========================
+
+                        ctx.fillStyle = "#6B7280";
+                        ctx.font = "30px Arial";
+
+                        ctx.fillText(
+                            "Consulta nuestro menú desde cualquier dispositivo",
+                            canvas.width / 2,
+                            1280
+                        );
+
+                        // ==========================
+                        // URL
+                        // ==========================
+
+                        ctx.fillStyle = "#F3F4F6";
+
+                        roundRect(
+                            ctx,
+                            240,
+                            1320,
+                            720,
+                            65,
+                            18
+                        );
+
+                        ctx.fillStyle = "#374151";
+                        ctx.font = "24px Arial";
+
+                        ctx.fillText(
+                            "{{ url('/' . Auth::user()->slug) }}",
+                            canvas.width / 2,
+                            1362
+                        );
+
+                        // ==========================
+                        // BOTÓN INFERIOR
+                        // ==========================
+
+                        ctx.fillStyle = "#D4AF37";
+
+                        roundRect(
+                            ctx,
+                            330,
+                            1420,
+                            540,
+                            95,
+                            25
+                        );
+
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.font = "bold 34px Arial";
+
+                        ctx.fillText(
+                            "ESCANEA Y VISÍTANOS",
+                            canvas.width / 2,
+                            1482
+                        );
+
                         URL.revokeObjectURL(url);
+
                         const pngUrl = canvas.toDataURL('image/png');
+
                         const downloadLink = document.createElement('a');
 
                         downloadLink.href = pngUrl;
-                        downloadLink.download = "qr-premium-{{ Auth::user()->slug }}.png";
+                        downloadLink.download = "qr-{{ Auth::user()->slug }}.png";
 
                         document.body.appendChild(downloadLink);
                         downloadLink.click();
                         document.body.removeChild(downloadLink);
                     };
 
-                    // Loader y render del fondo
-                    if (coverUrl) {
-                        const cover = new Image();
-                        cover.crossOrigin = "anonymous";
-                        cover.onload = function() {
-                            // Dibujar la imagen de fondo completa
-                            ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
+                    cover.src = coverUrl;
 
-                            // Capa oscura ambiental cálida para unificar el fondo con los dorados
-                            ctx.fillStyle = "rgba(18, 12, 5, 0.55)";
-                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    function roundRect(ctx, x, y, width, height, radius) {
 
-                            drawCanvasContent();
-                        };
-                        cover.onerror = function() {
-                            drawDefaultBackground(ctx, canvas);
-                            drawCanvasContent();
-                        };
-                        cover.src = coverUrl;
-                    } else {
-                        drawDefaultBackground(ctx, canvas);
-                        drawCanvasContent();
+                        ctx.beginPath();
+
+                        ctx.moveTo(x + radius, y);
+
+                        ctx.lineTo(x + width - radius, y);
+                        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+
+                        ctx.lineTo(x + width, y + height - radius);
+                        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+
+                        ctx.lineTo(x + radius, y + height);
+                        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+
+                        ctx.lineTo(x, y + radius);
+                        ctx.quadraticCurveTo(x, y, x + radius, y);
+
+                        ctx.closePath();
+                        ctx.fill();
                     }
                 };
 
@@ -855,35 +926,9 @@
 
             } catch (error) {
                 console.error(error);
-                alert('Error al generar la descarga premium.');
+                alert('Error al descargar el QR.');
             }
         });
-
-        // Fondo alternativo lujoso por si no hay imagen de fondo activa
-        function drawDefaultBackground(ctx, canvas) {
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, '#110D08');
-            gradient.addColorStop(0.5, '#231A10');
-            gradient.addColorStop(1, '#0D0A06');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        // Función modificada para soportar fill y stroke sin perder el path
-        function roundRect(ctx, x, y, width, height, radius) {
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width - radius, y);
-            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-            ctx.lineTo(x + width, y + height - radius);
-            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-            ctx.lineTo(x + radius, y + height);
-            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-            ctx.lineTo(x, y + radius);
-            ctx.quadraticCurveTo(x, y, x + radius, y);
-            ctx.closePath();
-            ctx.fill();
-        }
     </script>
 
     <script>

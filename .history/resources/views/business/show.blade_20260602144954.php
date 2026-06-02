@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $user->name }} - Menú Digital</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -36,7 +36,7 @@
             position: relative;
         }
 
-        /* CAPA DE FONDO FIJO PREMIUM: Imagen estable en el fondo del celular sin estirarse */
+        /* CAPA DE FONDO FIJO PREMIUM: Soluciona el problema de carga, estiramiento y recortes en celulares */
         body::before {
             content: "";
             position: fixed;
@@ -44,21 +44,26 @@
             left: 0;
             width: 100%;
             height: 100%;
+            /* Capa oscurecedora combinada con la imagen del negocio */
             background: linear-gradient(rgba(13, 13, 15, 0.88), rgba(13, 13, 15, 0.96)),
                 url("{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}");
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             z-index: -1;
+            /* Se sitúa detrás de todo el contenido */
             will-change: transform;
+            /* Optimiza el rendimiento de scroll en iPhone y Android */
         }
 
-        /* Branding / Identidad del local con espacio elegante al inicio */
+        /* Branding / Identidad del local con espaciado amplio solicitado */
         .brand-section {
             text-align: center;
             padding: 15px 20px 25px;
             margin-top: 80px;
+            /* Baja la marca desde el borde superior */
             margin-bottom: 70px;
+            /* Empuja el buscador y el resto del contenido hacia abajo */
         }
 
         .logo-wrapper {
@@ -100,7 +105,7 @@
             margin-top: 6px;
         }
 
-        /* BARRA DE BÚSQUEDA INTERACTIVA (SIN ZOOM INESTABLE) */
+        /* BARRA DE BÚSQUEDA INTERACTIVA */
         .search-box-container {
             padding: 0 20px 25px;
         }
@@ -116,18 +121,17 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .search-input {
             width: 100%;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px 16px 14px 46px;
+            padding: 12px 16px 12px 44px;
             border-radius: 16px;
             color: white;
-            font-size: 16px;
-            /* Clave: Al ser 16px o más, iOS y Android no fuerzan zoom visual */
+            font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
         }

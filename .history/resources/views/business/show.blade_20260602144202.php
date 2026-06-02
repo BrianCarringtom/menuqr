@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $user->name }} - Menú Digital</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -27,38 +27,24 @@
         }
 
         body {
-            background-color: #0d0d0f;
-            /* Color base ultra oscuro mientras carga la imagen */
+            /* Capa degradada sobre la imagen principal del usuario en el fondo */
+            background: linear-gradient(rgba(18, 18, 20, 0.88), rgba(18, 18, 20, 0.95)),
+                url("{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
             color: var(--text-main);
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            position: relative;
         }
 
-        /* CAPA DE FONDO FIJO PREMIUM: Imagen estable en el fondo del celular sin estirarse */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(13, 13, 15, 0.88), rgba(13, 13, 15, 0.96)),
-                url("{{ $user->image ? asset('storage/' . $user->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}");
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            z-index: -1;
-            will-change: transform;
-        }
-
-        /* Branding / Identidad del local con espacio elegante al inicio */
+        /* Branding / Identidad del local con más espacio arriba */
         .brand-section {
             text-align: center;
             padding: 15px 20px 25px;
-            margin-top: 80px;
-            margin-bottom: 70px;
+            margin-top: 50px;
+            /* Ajuste solicitado para dar más aire y bajar el contenido */
         }
 
         .logo-wrapper {
@@ -66,12 +52,12 @@
             border: 2px dashed var(--accent-orange);
             border-radius: 50%;
             padding: 16px;
-            margin-bottom: 16px;
-            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .logo-content i {
-            font-size: 38px;
+            font-size: 36px;
             color: var(--accent-orange);
             display: block;
             margin-bottom: 4px;
@@ -84,12 +70,12 @@
         }
 
         .brand-title {
-            font-size: 38px;
+            font-size: 36px;
             font-weight: 700;
             color: var(--accent-orange);
             font-style: italic;
             line-height: 1;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
         .brand-subtitle {
@@ -97,12 +83,12 @@
             color: var(--text-muted);
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
-        /* BARRA DE BÚSQUEDA INTERACTIVA (SIN ZOOM INESTABLE) */
+        /* BARRA DE BÚSQUEDA INTERACTIVA */
         .search-box-container {
-            padding: 0 20px 25px;
+            padding: 0 20px 20px;
         }
 
         .search-wrapper {
@@ -116,18 +102,17 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .search-input {
             width: 100%;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px 16px 14px 46px;
+            padding: 12px 16px 12px 44px;
             border-radius: 16px;
             color: white;
-            font-size: 16px;
-            /* Clave: Al ser 16px o más, iOS y Android no fuerzan zoom visual */
+            font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
         }
@@ -208,7 +193,7 @@
             transition: transform 0.3s ease;
         }
 
-        /* Contenido desplegable */
+        /* Contenido desplegable con animaciones fluidas */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -262,7 +247,7 @@
 
         /* FOOTER PREMIUM INTEGRADO */
         .premium-footer {
-            background: linear-gradient(180deg, rgba(20, 20, 24, 0.93) 0%, rgba(13, 13, 15, 0.99) 100%);
+            background: linear-gradient(180deg, rgba(26, 26, 30, 0.9) 0%, rgba(15, 15, 18, 0.98) 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 35px 20px 25px;
@@ -313,11 +298,13 @@
             height: 160px;
         }
 
+        /* Ajuste: Mapa completamente claro con sus colores originales */
         .map-container-premium iframe {
             width: 100%;
             height: 100%;
             border: 0;
             filter: none;
+            /* Quitados los filtros oscuros para máxima claridad */
         }
 
         .copyright-section {
@@ -328,7 +315,7 @@
             padding-top: 20px;
         }
 
-        /* BOTÓN DE WHATSAPP FLOTANTE */
+        /* BOTÓN DE WHATSAPP FLOTANTE INTEGRADO */
         .whatsapp-float {
             width: 54px;
             height: 54px;
@@ -444,12 +431,14 @@
     </a>
 
     <script>
+        // Función Acordeón Dinámica
         function toggleMenu(index) {
             const content = document.getElementById(`content-${index}`);
             const icon = document.getElementById(`icon-${index}`);
             const allContents = document.querySelectorAll(".accordion-content");
             const allIcons = document.querySelectorAll(".accordion-icon");
 
+            // Cerrar todos los demás acordeones excepto el seleccionado
             allContents.forEach((item, i) => {
                 if (i !== index) {
                     item.style.maxHeight = null;
@@ -457,6 +446,7 @@
                 }
             });
 
+            // Abrir o cerrar el acordeón actual
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
                 icon.innerText = "+";
@@ -466,6 +456,7 @@
             }
         }
 
+        // LÓGICA DE BÚSQUEDA INTERACTIVA EN TIEMPO REAL
         function buscarEnTiempoReal() {
             const query = document.getElementById('input-busqueda').value.toLowerCase();
             const categories = document.querySelectorAll('.category-block');
@@ -479,6 +470,7 @@
                     const description = product.querySelector('.product-description').innerText
                     .toLowerCase();
 
+                    // Comprobar si el producto coincide con lo buscado
                     if (title.includes(query) || description.includes(query)) {
                         product.style.display = 'flex';
                         countVisibleProducts++;
@@ -487,6 +479,7 @@
                     }
                 });
 
+                // Si se está buscando algo en específico y la categoría tiene coincidencias, se expande sola
                 const accordionContent = categoryBlock.querySelector('.accordion-content');
                 const accordionIcon = categoryBlock.querySelector('.accordion-icon');
 
@@ -496,9 +489,11 @@
                         accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
                         accordionIcon.innerText = "−";
                     } else {
-                        categoryBlock.style.display = 'none';
+                        categoryBlock.style.display =
+                        'none'; // Esconder bloque de categoría completa si no tiene items que coincidan
                     }
                 } else {
+                    // Si se limpia el buscador, restablecer a la vista normal (todos cerrados de base)
                     categoryBlock.style.display = 'block';
                     accordionContent.style.maxHeight = null;
                     accordionIcon.innerText = "+";

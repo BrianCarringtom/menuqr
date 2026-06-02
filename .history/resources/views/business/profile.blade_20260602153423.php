@@ -665,188 +665,125 @@
                 const url = URL.createObjectURL(svgBlob);
 
                 img.onload = function() {
+                    // Dimensiones del lienzo (Alta resolución para impresión)
                     canvas.width = 1200;
                     canvas.height = 1600;
-                    const systemFont = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+                    // Configuración de renderizado base
+                    const qrSize = 600;
+                    const systemFont =
+                        "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
                     const drawCanvasContent = () => {
                         // ==========================================
-                        // 1. EFECTO CRISTAL (Glassmorphism de fondo)
+                        // 1. TARJETA PRINCIPAL (Contenedor blanco)
                         // ==========================================
                         ctx.save();
-                        // Sombra exterior muy suave para separar la tarjeta del fondo real
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
-                        ctx.shadowBlur = 60;
+                        ctx.shadowColor = "rgba(0, 0, 0, 0.08)";
+                        ctx.shadowBlur = 50;
                         ctx.shadowOffsetY = 20;
-
-                        // Capa translúcida que deja ver el fondo de manera elegante
-                        ctx.fillStyle = "rgba(20, 15, 10, 0.45)";
-                        roundRect(ctx, 100, 100, 1000, 1400, 30);
-                        ctx.restore();
-
-                        // Borde fino dorado/brillante del cristal
-                        ctx.strokeStyle = "rgba(212, 175, 55, 0.25)";
-                        ctx.lineWidth = 3;
-                        ctx.stroke();
-
-                        // ==========================================
-                        // 2. TÍTULO EN ORO METÁLICO (Gradiente y Relieve)
-                        // ==========================================
-                        ctx.textAlign = "center";
-                        const titleX = canvas.width / 2;
-                        const titleY = 250;
-
-                        // Gradiente de oro de 4 pasos (simula reflejo metálico)
-                        const goldGlow = ctx.createLinearGradient(0, titleY - 60, 0, titleY + 20);
-                        goldGlow.addColorStop(0, '#FFF3D1'); // Brillo máximo
-                        goldGlow.addColorStop(0.3, '#D4AF37'); // Oro base
-                        goldGlow.addColorStop(0.6, '#AA7C11'); // Sombra oro
-                        goldGlow.addColorStop(1, '#E6CA65'); // Reflejo inferior
-
-                        // Sombra del título para separarlo del fondo
-                        ctx.save();
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
-                        ctx.shadowBlur = 15;
-                        ctx.shadowOffsetY = 8;
-
-                        ctx.font = `bold 76px ${systemFont}`;
-                        ctx.fillStyle = goldGlow;
-                        ctx.fillText("{{ Auth::user()->name }}", titleX, titleY);
-                        ctx.restore();
-
-                        // Subtítulo estilizado
-                        ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
-                        ctx.font = `600 30px ${systemFont}`;
-                        ctx.letterSpacing = "6px";
-                        ctx.fillText("MENÚ DIGITAL", titleX, titleY + 75);
-
-                        // Adorno lineal dorado bajo el subtítulo
-                        ctx.fillStyle = "#D4AF37";
-                        roundRect(ctx, titleX - 100, titleY + 110, 200, 3, 2);
-
-                        // ==========================================
-                        // 3. MARCO DE QR DE LUJO Y CÓDIGO QR
-                        // ==========================================
-                        const qrBoxX = 260;
-                        const qrBoxY = 500;
-                        const qrBoxSize = 680;
-
-                        // Sombra masiva para el contenedor del QR (Le da volumen 3D)
-                        ctx.save();
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
-                        ctx.shadowBlur = 40;
-                        ctx.shadowOffsetY = 15;
-
-                        // Marco exterior dorado grueso
-                        ctx.fillStyle = "#AA7C11";
-                        roundRect(ctx, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24);
-
-                        // Interior del marco (Contraste blanco puro para que el QR sea 100% escaneable)
                         ctx.fillStyle = "#FFFFFF";
-                        roundRect(ctx, qrBoxX + 15, qrBoxY + 15, qrBoxSize - 30, qrBoxSize - 30, 16);
+
+                        // Tarjeta centrada con márgenes limpios
+                        roundRect(ctx, 80, 80, 1040, 1440, 40);
                         ctx.restore();
 
-                        // Esquinas interiores doradas (Estilo filigrana geométrica del render)
-                        ctx.fillStyle = "#D4AF37";
-                        const pad = 35;
-                        // Superior Izquierda
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 40, 6);
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 6, 40);
-                        // Superior Derecha
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + pad, 40, 6);
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + pad, 6, 40);
-                        // Inferior Izquierda
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 6, 40, 6);
-                        ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 40, 6, 40);
-                        // Inferior Derecha
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + qrBoxSize - pad - 6, 40,
-                            6);
-                        ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + qrBoxSize - pad - 40, 6,
-                            40);
+                        // ==========================================
+                        // 2. ENCABEZADO Y TEXTOS
+                        // ==========================================
+                        // Nombre del Negocio (Principal)
+                        ctx.fillStyle = "#111827"; // Gris casi negro premium
+                        ctx.textAlign = "center";
+                        ctx.font = `bold 64px ${systemFont}`;
+                        ctx.fillText("{{ Auth::user()->name }}", canvas.width / 2, 210);
 
-                        // Dibujar el QR centrado a la perfección
-                        ctx.drawImage(img, qrBoxX + 65, qrBoxY + 65, qrBoxSize - 130, qrBoxSize - 130);
+                        // Subtítulo
+                        ctx.fillStyle = "#4B5563"; // Gris medio
+                        ctx.font = `600 28px ${systemFont}`;
+                        ctx.letterSpacing =
+                        "4px"; // Espaciado elegante (soportado en entornos modernos)
+                        ctx.fillText("MENÚ DIGITAL", canvas.width / 2, 275);
+
+                        // Línea divisoria minimalista (Accento sutil)
+                        ctx.fillStyle = "#E5E7EB";
+                        roundRect(ctx, (canvas.width / 2) - 80, 315, 160, 4, 2);
 
                         // ==========================================
-                        // 4. CTA Y ELEMENTOS INFERIORES
+                        // 3. CONTENEDOR DEL QR (Aislado y limpio)
                         // ==========================================
                         ctx.save();
-                        ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-                        ctx.shadowBlur = 10;
-                        ctx.shadowOffsetY = 4;
-
-                        ctx.fillStyle = "#FFF3D1";
-                        ctx.font = `bold 42px ${systemFont}`;
-                        ctx.fillText("Escanea el código QR", titleX, 1260);
-                        ctx.restore();
-
-                        // Píldora de la URL estilizada
-                        ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-                        roundRect(ctx, 250, 1310, 700, 60, 30);
-                        ctx.strokeStyle = "rgba(212, 175, 55, 0.3)";
-                        ctx.stroke();
-
-                        ctx.fillStyle = "#E6CA65";
-                        ctx.font = `500 24px ${systemFont}`;
-                        ctx.fillText("{{ url('/' . Auth::user()->slug) }}", titleX, 1348);
-
-                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico
-                        ctx.save();
-                        ctx.shadowColor = "rgba(0,0,0,0.4)";
+                        ctx.shadowColor = "rgba(0, 0, 0, 0.03)";
                         ctx.shadowBlur = 20;
                         ctx.shadowOffsetY = 8;
-
-                        const btnGrad = ctx.createLinearGradient(0, 1410, 0, 1490);
-                        btnGrad.addColorStop(0, '#AA7C11');
-                        btnGrad.addColorStop(0.5, '#D4AF37');
-                        btnGrad.addColorStop(1, '#8A640F');
-
-                        ctx.fillStyle = btnGrad;
-                        roundRect(ctx, 350, 1410, 500, 80, 40);
+                        ctx.fillStyle = "#F9FAFB"; // Fondo ligeramente gris para el marco QR
+                        roundRect(ctx, 240, 380, 720, 720, 32);
                         ctx.restore();
 
-                        // Texto del botón
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.font = `bold 30px ${systemFont}`;
-                        ctx.letterSpacing = "2px";
-                        ctx.fillText("ESCANEA Y VISÍTANOS", titleX, 1460);
+                        // Dibujar el Código QR centrado dentro de su contenedor
+                        ctx.drawImage(img, 300, 440, qrSize, qrSize);
 
                         // ==========================================
-                        // 5. EJECUTAR DESCARGA
+                        // 4. CALL TO ACTION (Llamado a la acción)
+                        // ==========================================
+                        ctx.fillStyle = "#1F2937";
+                        ctx.font = `bold 46px ${systemFont}`;
+                        ctx.fillText("Escanea el código QR", canvas.width / 2, 1180);
+
+                        ctx.fillStyle = "#6B7280";
+                        ctx.font = `normal 28px ${systemFont}`;
+                        ctx.fillText("Consulta nuestro menú y realiza tu pedido", canvas.width / 2,
+                            1235);
+
+                        // ==========================================
+                        // 5. ENLACE URL (Píldora minimalista)
+                        // ==========================================
+                        ctx.fillStyle = "#F3F4F6";
+                        roundRect(ctx, 260, 1290, 680, 64, 32);
+
+                        ctx.fillStyle = "#4B5563";
+                        ctx.font = `600 24px ${systemFont}`;
+                        ctx.fillText("{{ url('/' . Auth::user()->slug) }}", canvas.width / 2, 1331);
+
+                        // ==========================================
+                        // 6. PROCESAR DESCARGA
                         // ==========================================
                         URL.revokeObjectURL(url);
                         const pngUrl = canvas.toDataURL('image/png');
                         const downloadLink = document.createElement('a');
 
                         downloadLink.href = pngUrl;
-                        downloadLink.download = "qr-premium-{{ Auth::user()->slug }}.png";
+                        downloadLink.download = "qr-{{ Auth::user()->slug }}.png";
 
                         document.body.appendChild(downloadLink);
                         downloadLink.click();
                         document.body.removeChild(downloadLink);
                     };
 
-                    // Loader y render del fondo
+                    // ==========================================
+                    // MANEJO DE FONDO (Imagen o Gradiente)
+                    // ==========================================
                     if (coverUrl) {
                         const cover = new Image();
                         cover.crossOrigin = "anonymous";
                         cover.onload = function() {
-                            // Dibujar la imagen de fondo completa
+                            // Dibujar imagen de fondo
                             ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
 
-                            // Capa oscura ambiental cálida para unificar el fondo con los dorados
-                            ctx.fillStyle = "rgba(18, 12, 5, 0.55)";
+                            // Capa de desenfoque/oscuridad elegante para que resalte la tarjeta
+                            ctx.fillStyle = "rgba(17, 24, 39, 0.65)";
                             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                             drawCanvasContent();
                         };
                         cover.onerror = function() {
-                            drawDefaultBackground(ctx, canvas);
+                            // Fallback si la imagen de fondo falla al cargar
+                            drawFallbackBackground(ctx, canvas);
                             drawCanvasContent();
                         };
                         cover.src = coverUrl;
                     } else {
-                        drawDefaultBackground(ctx, canvas);
+                        // Si no hay imagen configurada, usa el gradiente premium por defecto
+                        drawFallbackBackground(ctx, canvas);
                         drawCanvasContent();
                     }
                 };
@@ -855,21 +792,20 @@
 
             } catch (error) {
                 console.error(error);
-                alert('Error al generar la descarga premium.');
+                alert('Error al generar y descargar el QR.');
             }
         });
 
-        // Fondo alternativo lujoso por si no hay imagen de fondo activa
-        function drawDefaultBackground(ctx, canvas) {
+        // Función auxiliar para fondos sin imagen (Gradiente Premium Oscuro)
+        function drawFallbackBackground(ctx, canvas) {
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, '#110D08');
-            gradient.addColorStop(0.5, '#231A10');
-            gradient.addColorStop(1, '#0D0A06');
+            gradient.addColorStop(0, '#0F172A'); // Slate 900
+            gradient.addColorStop(1, '#1E293B'); // Slate 800
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        // Función modificada para soportar fill y stroke sin perder el path
+        // Función optimizada para rectángulos con esquinas redondeadas
         function roundRect(ctx, x, y, width, height, radius) {
             ctx.beginPath();
             ctx.moveTo(x + radius, y);

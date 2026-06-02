@@ -28,7 +28,6 @@
 
         body {
             background-color: #0d0d0f;
-            /* Color base ultra oscuro mientras carga la imagen */
             color: var(--text-main);
             display: flex;
             flex-direction: column;
@@ -36,7 +35,7 @@
             position: relative;
         }
 
-        /* CAPA DE FONDO FIJO PREMIUM: Imagen estable en el fondo del celular sin estirarse */
+        /* CAPA DE FONDO FIJO PREMIUM */
         body::before {
             content: "";
             position: fixed;
@@ -53,12 +52,12 @@
             will-change: transform;
         }
 
-        /* Branding / Identidad del local con espacio elegante al inicio */
+        /* Branding / Identidad */
         .brand-section {
             text-align: center;
             padding: 15px 20px 25px;
             margin-top: 80px;
-            margin-bottom: 70px;
+            margin-bottom: 60px;
         }
 
         .logo-wrapper {
@@ -100,9 +99,9 @@
             margin-top: 6px;
         }
 
-        /* BARRA DE BÚSQUEDA INTERACTIVA (SIN ZOOM INESTABLE) */
+        /* BARRA DE BÚSQUEDA INTERACTIVA (ESTABLE SIN ZOOM) */
         .search-box-container {
-            padding: 0 20px 25px;
+            padding: 0 20px 15px;
         }
 
         .search-wrapper {
@@ -127,7 +126,6 @@
             border-radius: 16px;
             color: white;
             font-size: 16px;
-            /* Clave: Al ser 16px o más, iOS y Android no fuerzan zoom visual */
             outline: none;
             transition: all 0.3s ease;
         }
@@ -137,102 +135,134 @@
             border-color: var(--accent-orange);
         }
 
-        /* Sección del menú general */
         .menu-section-title {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             padding: 0 20px;
-            margin-bottom: 18px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-orange);
         }
 
-        /* Bloques de Categorías (Acordeones estilizados) */
-        .category-block {
-            margin-bottom: 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding-bottom: 12px;
-        }
-
-        .accordion-button {
-            width: 100%;
+        /* CONTENEDOR HORIZONTAL DE CATEGORÍAS (SCROLL) */
+        .categories-horizontal-scroll {
             display: flex;
-            justify-content: space-between;
+            gap: 18px;
+            overflow-x: auto;
+            padding: 10px 20px 25px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            /* Oculta barra en Firefox */
+        }
+
+        .categories-horizontal-scroll::-webkit-scrollbar {
+            display: none;
+            /* Oculta barra en Chrome/Safari */
+        }
+
+        /* Botón de Categoría Individual */
+        .category-tab-btn {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             background: transparent;
             border: none;
-            color: white;
-            padding: 10px 20px;
             cursor: pointer;
-            text-align: left;
+            outline: none;
+            flex-shrink: 0;
+            gap: 8px;
+            transition: transform 0.2s ease;
         }
 
-        .category-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        .category-tab-btn:active {
+            transform: scale(0.95);
         }
 
-        .menu-image {
-            width: 58px;
-            height: 58px;
+        .tab-image-wrapper {
+            position: relative;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            padding: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-image-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            flex-shrink: 0;
-            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .accordion-button:hover .menu-image {
-            transform: scale(1.05);
-            border-color: var(--accent-orange);
-        }
-
-        .category-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-        }
-
-        .accordion-button:hover .category-title {
-            color: var(--accent-orange);
-        }
-
-        .accordion-icon {
-            font-size: 24px;
-            color: var(--accent-orange);
-            font-weight: 300;
-            transition: transform 0.3s ease;
-        }
-
-        /* Contenido desplegable */
-        .accordion-content {
-            max-height: 0;
+        .tab-btn-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            max-width: 75px;
+            text-align: center;
+            white-space: nowrap;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            text-overflow: ellipsis;
+            transition: all 0.3s ease;
         }
 
-        .products-list {
-            padding: 15px 16px 20px;
-            display: flex;
+        /* Estado Activo de la Categoría Seleccionada */
+        .category-tab-btn.active .tab-image-wrapper {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+            box-shadow: 0 8px 20px rgba(255, 159, 28, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .category-tab-btn.active .tab-btn-title {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        /* CONTENEDOR DE PRODUCTOS (VISTA DE TABS) */
+        .products-container {
+            padding: 5px 20px 30px;
+        }
+
+        .category-products-panel {
+            display: none;
+            /* Ocultos por defecto */
             flex-direction: column;
             gap: 16px;
         }
 
-        /* Tarjetas de productos premium */
+        /* Cuando está activa, se muestra el panel */
+        .category-products-panel.active {
+            display: flex;
+            animation: fadeIn 0.35s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tarjetas de Productos Premium (Cards Blancos) */
         .product-card {
             background-color: var(--card-bg);
-            border-radius: 24px;
-            padding: 16px;
+            border-radius: 22px;
+            padding: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #1c1c1e;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease;
         }
 
         .product-info {
@@ -248,10 +278,10 @@
         }
 
         .product-description {
-            font-size: 11.5px;
+            font-size: 12px;
             color: #555560;
             line-height: 1.4;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .product-price {
@@ -260,7 +290,7 @@
             color: var(--price-pink);
         }
 
-        /* FOOTER PREMIUM INTEGRADO */
+        /* FOOTER PREMIUM */
         .premium-footer {
             background: linear-gradient(180deg, rgba(20, 20, 24, 0.93) 0%, rgba(13, 13, 15, 0.99) 100%);
             backdrop-filter: blur(12px);
@@ -317,7 +347,6 @@
             width: 100%;
             height: 100%;
             border: 0;
-            filter: none;
         }
 
         .copyright-section {
@@ -345,11 +374,6 @@
             z-index: 200;
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
             text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-float:active {
-            transform: scale(0.9);
         }
     </style>
 </head>
@@ -375,44 +399,43 @@
         </div>
     </div>
 
-    <h2 class="menu-section-title">LO QUE OFRECEMOS</h2>
+    <h2 class="menu-section-title">Categorías</h2>
 
-    <div id="menu-categorias">
-        @forelse ($user->categories as $index => $category)
-            <div class="category-block">
-
-                <button onclick="toggleMenu({{ $index }})" class="accordion-button"
-                    id="btn-cat-{{ $index }}">
-                    <div class="category-left">
-                        <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop' }}"
-                            class="menu-image" alt="{{ $category->name }}">
-                        <h2 class="category-title">{{ $category->name }}</h2>
-                    </div>
-                    <span id="icon-{{ $index }}" class="accordion-icon">+</span>
-                </button>
-
-                <div id="content-{{ $index }}" class="accordion-content">
-                    <div class="products-list">
-                        @forelse ($category->products as $product)
-                            <div class="product-card">
-                                <div class="product-info">
-                                    <h3 class="product-title">{{ $product->name }}</h3>
-                                    <p class="product-description">{{ $product->description }}</p>
-                                    <span class="product-price">${{ number_format($product->price, 2) }}</span>
-                                </div>
-                            </div>
-                        @empty
-                            <p style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 15px;">
-                                No hay productos en esta categoría actualmente.
-                            </p>
-                        @endforelse
-                    </div>
+    <div class="categories-horizontal-scroll">
+        @foreach ($user->categories as $index => $category)
+            <button onclick="switchTab({{ $index }})" class="category-tab-btn {{ $index == 0 ? 'active' : '' }}"
+                id="tab-btn-{{ $index }}">
+                <div class="tab-image-wrapper">
+                    <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=200&auto=format&fit=crop' }}"
+                        alt="{{ $category->name }}">
                 </div>
+                <span class="tab-btn-title">{{ $category->name }}</span>
+            </button>
+        @endforeach
+    </div>
 
+    <div class="products-container" id="contenedor-paneles">
+        @forelse ($user->categories as $index => $category)
+            <div class="category-products-panel {{ $index == 0 ? 'active' : '' }}" id="panel-{{ $index }}">
+                @forelse ($category->products as $product)
+                    <div class="product-card" data-title="{{ strtolower($product->name) }}"
+                        data-desc="{{ strtolower($product->description) }}">
+                        <div class="product-info">
+                            <h3 class="product-title">{{ $product->name }}</h3>
+                            <p class="product-description">{{ $product->description }}</p>
+                            <span class="product-price">${{ number_format($product->price, 2) }}</span>
+                        </div>
+                    </div>
+                @empty
+                    <p
+                        style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 30px 15px; width: 100%;">
+                        No hay productos en esta categoría actualmente.
+                    </p>
+                @endforelse
             </div>
         @empty
-            <div class="text-center" style="color: var(--text-muted); padding: 40px 20px;">
-                <p class="text-xl">Este negocio aún no tiene un menú cargado.</p>
+            <div class="text-center" style="color: var(--text-muted); padding: 40px 20px; width: 100%;">
+                <p>Este negocio aún no tiene categorías cargadas.</p>
             </div>
         @endforelse
     </div>
@@ -444,66 +467,72 @@
     </a>
 
     <script>
-        function toggleMenu(index) {
-            const content = document.getElementById(`content-${index}`);
-            const icon = document.getElementById(`icon-${index}`);
-            const allContents = document.querySelectorAll(".accordion-content");
-            const allIcons = document.querySelectorAll(".accordion-icon");
+        // Cambiar de categoría al dar clic arriba
+        function switchTab(index) {
+            // Limpiar buscador al cambiar manualmente de categoría para mejor experiencia
+            document.getElementById('input-busqueda').value = "";
+            restablecerFiltros();
 
-            allContents.forEach((item, i) => {
-                if (i !== index) {
-                    item.style.maxHeight = null;
-                    allIcons[i].innerText = "+";
-                }
-            });
+            // Quitar clase activa a todos los botones y paneles
+            document.querySelectorAll('.category-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.category-products-panel').forEach(panel => panel.classList.remove('active'));
 
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                icon.innerText = "+";
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.innerText = "−";
-            }
+            // Activar el seleccionado
+            document.getElementById(`tab-btn-${index}`).classList.remove('active'); // Parche de seguridad
+            document.getElementById(`tab-btn-${index}`).classList.add('active');
+            document.getElementById(`panel-${index}`).classList.add('active');
         }
 
+        // Restablecer visibilidad de tarjetas
+        function restablecerFiltros() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = 'flex';
+            });
+        }
+
+        // BÚSQUEDA INTEGRADA EN TIEMPO REAL
         function buscarEnTiempoReal() {
             const query = document.getElementById('input-busqueda').value.toLowerCase();
-            const categories = document.querySelectorAll('.category-block');
+            const panels = document.querySelectorAll('.category-products-panel');
+            const tabs = document.querySelectorAll('.category-tab-btn');
 
-            categories.forEach(categoryBlock => {
-                const products = categoryBlock.querySelectorAll('.product-card');
-                let countVisibleProducts = 0;
+            if (query.length > 0) {
+                // Si escribe algo, buscamos de manera global abriendo visibilidad donde haya coincidencias
+                panels.forEach((panel, index) => {
+                    const cards = panel.querySelectorAll('.product-card');
+                    let tieneCoincidencias = 0;
 
-                products.forEach(product => {
-                    const title = product.querySelector('.product-title').innerText.toLowerCase();
-                    const description = product.querySelector('.product-description').innerText
-                    .toLowerCase();
+                    cards.forEach(card => {
+                        const title = card.getAttribute('data-title');
+                        const desc = card.getAttribute('data-desc');
 
-                    if (title.includes(query) || description.includes(query)) {
-                        product.style.display = 'flex';
-                        countVisibleProducts++;
+                        if (title.includes(query) || desc.includes(query)) {
+                            card.style.display = 'flex';
+                            tieneCoincidencias++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Si esta pestaña tiene resultados, la hacemos visible temporalmente para mostrar el producto hallado
+                    if (tieneCoincidencias > 0) {
+                        panel.classList.add('active');
+                        tabs[index].classList.add('active');
                     } else {
-                        product.style.display = 'none';
+                        panel.classList.remove('active');
+                        tabs[index].classList.remove('active');
                     }
                 });
+            } else {
+                // Si borra el buscador, regresamos al estado inicial (Pestaña index 0 activa por defecto)
+                panels.forEach(panel => panel.classList.remove('active'));
+                tabs.forEach(tab => tab.classList.remove('active'));
+                restablecerFiltros();
 
-                const accordionContent = categoryBlock.querySelector('.accordion-content');
-                const accordionIcon = categoryBlock.querySelector('.accordion-icon');
-
-                if (query.length > 0) {
-                    if (countVisibleProducts > 0) {
-                        categoryBlock.style.display = 'block';
-                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                        accordionIcon.innerText = "−";
-                    } else {
-                        categoryBlock.style.display = 'none';
-                    }
-                } else {
-                    categoryBlock.style.display = 'block';
-                    accordionContent.style.maxHeight = null;
-                    accordionIcon.innerText = "+";
-                }
-            });
+                // Activa la primera por defecto
+                if (panels[0]) panels[0].classList.add('active');
+                if (tabs[0]) tabs[0].classList.add('active');
+            }
         }
     </script>
 </body>
