@@ -15,14 +15,8 @@
             margin-bottom: 40px;
         }
 
-        /* Modifica esta regla para incluir el font-size de 16px y añade los select */
-        .create-user-form input,
-        .create-user-form select,
-        .modal-content input,
-        .modal-content select {
+        .create-user-form input {
             width: 100%;
-            font-size: 16px;
-            /* 👈 Esto evita el zoom automático en móviles */
         }
 
         /* 🔥 TABLA RESPONSIVE */
@@ -288,8 +282,7 @@
     '{{ $user->name }}',
     '{{ $user->email }}',
     '{{ $user->role }}',
-    '{{ $user->plan }}',
-    '{{ $user->theme }}'
+    '{{ $user->plan }}'
 )"
                                         class="btn btn-edit">
 
@@ -424,7 +417,7 @@
 
     <!-- 🔥 SCRIPT -->
     <script>
-        function openEditModal(id, name, email, role, plan, theme) {
+        function openEditModal(id, name, email, role, plan) {
 
             document.getElementById('editModal').style.display = 'flex';
 
@@ -432,7 +425,6 @@
             document.getElementById('editEmail').value = email;
             document.getElementById('editRole').value = role;
             document.getElementById('editPlan').value = plan;
-            document.getElementById('editTheme').value = theme;
 
             document.getElementById('editForm').action =
                 `/admin/users/${id}`;

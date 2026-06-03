@@ -116,7 +116,6 @@ Route::put('/admin/users/{id}', function (Request $request, $id) {
         'email' => $request->email,
         'role' => $request->role,
         'plan' => $request->plan,
-        'theme' => $request->theme,
     ]);
 
     return redirect('/admin/users')->with('success', 'Usuario actualizado correctamente');
@@ -399,7 +398,7 @@ Route::get('/{slug}', function ($slug) {
         abort(403, 'Este perfil está bloqueado');
     }
 
-    return view('business.' . $user->theme, compact('user'));
+    return view('business.show', compact('user'));
 })->where('slug', '^(?!admin|business|login|register|dashboard|api|logout).*$');
 
 // 🔥 IMPORTANTE

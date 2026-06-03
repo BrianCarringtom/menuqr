@@ -399,7 +399,7 @@ Route::get('/{slug}', function ($slug) {
         abort(403, 'Este perfil está bloqueado');
     }
 
-    return view('business.' . $user->theme, compact('user'));
+    return view('business.show', compact('user'));
 })->where('slug', '^(?!admin|business|login|register|dashboard|api|logout).*$');
 
 // 🔥 IMPORTANTE
