@@ -251,7 +251,7 @@
             border-radius: 14px;
             border: 1px solid #ddd;
             outline: none;
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.3s ease;
         }
 

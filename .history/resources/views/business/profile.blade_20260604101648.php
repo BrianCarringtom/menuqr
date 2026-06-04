@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -20,36 +19,43 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f9fafb;
-            color: #1f2937;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f4f7fe;
+            /* Fondo claro premium */
+            color: #1e293b;
             overflow-x: hidden;
         }
 
         .container {
             display: flex;
             min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 80% 10%, rgba(37, 99, 235, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(29, 78, 216, 0.03) 0%, transparent 50%);
         }
 
         /* ================= SIDEBAR ================= */
 
         .sidebar {
-            width: 260px;
-            background: #fff;
-            border-right: 1px solid #ececec;
-            padding: 28px 22px;
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 35px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             z-index: 1000;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.01);
         }
 
         .sidebar h2 {
             text-align: center;
-            color: #c9a227;
-            letter-spacing: 3px;
-            font-weight: 700;
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: 2px;
             font-size: 24px;
         }
 
@@ -61,40 +67,60 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 15px 16px;
-            margin-bottom: 12px;
-            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-radius: 16px;
             text-decoration: none;
-            color: #4b5563;
+            color: #64748b;
             font-size: 15px;
-            font-weight: 500;
-            transition: 0.25s ease;
+            font-weight: 600;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu a i {
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #94a3b8;
+            transition: all 0.25s;
         }
 
         .menu a:hover {
-            background: #fff7df;
-            color: #c9a227;
-            transform: translateX(3px);
+            background: rgba(37, 99, 235, 0.08);
+            color: #1d4ed8;
+            transform: translateX(4px);
+        }
+
+        .menu a:hover i {
+            color: #1d4ed8;
+            transform: scale(1.1);
         }
 
         .logout-btn {
             width: 100%;
-            background: #c9a227;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border: none;
             padding: 15px;
-            border-radius: 14px;
+            border-radius: 16px;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+            transition: all 0.3s ease;
         }
 
         .logout-btn:hover {
-            background: #a8831f;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+            filter: brightness(1.2);
         }
 
-        /* ================= MAIN ================= */
+        /* ================= MAIN CONTENT ================= */
 
         .main {
             flex: 1;
@@ -103,18 +129,20 @@
             position: relative;
         }
 
-        /* ================= PORTADA ================= */
+        /* ================= PORTADA (Estilo Azul Zafiro) ================= */
 
         .cover {
             position: relative;
+            margin-bottom: 35px;
         }
 
         .cover-img {
             width: 100%;
-            height: 360px;
-            border-radius: 28px;
+            height: 340px;
+            border-radius: 32px;
             overflow: hidden;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+            background: #0f172a;
         }
 
         .cover-img img {
@@ -122,187 +150,240 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            opacity: 0.85;
         }
 
         .cover-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 360px;
-            border-radius: 28px;
+            inset: 0;
+            border-radius: 32px;
             background: linear-gradient(to top,
-                    rgba(0, 0, 0, 0.7),
-                    rgba(0, 0, 0, 0.15),
-                    transparent);
+                    rgba(15, 23, 42, 0.95) 0%,
+                    rgba(30, 58, 138, 0.4) 50%,
+                    rgba(37, 99, 235, 0.1) 100%);
         }
 
+        /* Contenedor del QR sobre la portada */
         .profile-img {
             position: absolute;
-            bottom: -65px;
-            left: 45px;
+            bottom: -50px;
+            left: 50px;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
         .profile-img img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 6px solid white;
+            width: 135px;
+            height: 135px;
+            border-radius: 24px;
+            /* Cambiado a esquinas redondeadas modernas en lugar de círculo total */
+            border: 6px solid #ffffff;
             object-fit: cover;
             background: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
         }
 
         .profile-img a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #444;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #ffffff;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #1e3a8a;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.25s ease;
         }
 
         .profile-img a:hover {
-            color: #c9a227;
+            background: #2563eb;
+            color: #ffffff;
+            transform: translateY(-2px);
         }
 
         .edit-cover {
             position: absolute;
-            bottom: 22px;
-            right: 22px;
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(10px);
-            padding: 12px 18px;
-            border-radius: 14px;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 20px;
+            border-radius: 16px;
             cursor: pointer;
             color: white;
             font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
         .edit-cover:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
         }
 
-        /* ================= GRID ================= */
+        /* ================= GRID DE CONTENIDO ================= */
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-top: 95px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 85px;
         }
 
-        /* ================= CARD ================= */
+        /* El panel de información del negocio ocupará ambas columnas para mejor orden visual */
+        .grid .card:nth-child(3) {
+            grid-column: span 2;
+        }
+
+        /* ================= TARJETAS (CARDS) ================= */
 
         .card {
-            background: white;
-            border-radius: 24px;
-            border: 1px solid #ededed;
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid #e2e8f0;
             padding: 35px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.02);
+            position: relative;
         }
 
         .card h2 {
-            font-size: 30px;
-            margin-bottom: 12px;
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
 
         .card h3 {
-            margin-bottom: 22px;
-            color: #c9a227;
-            font-size: 24px;
+            margin-bottom: 25px;
+            color: #1e3a8a;
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card p {
-            color: #6b7280;
+            color: #64748b;
+            font-size: 15px;
             line-height: 1.7;
         }
 
-        /* ================= BOTONES ================= */
+        /* ================= BOTONES GENERALES ================= */
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #c9a227;
+            gap: 10px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
             color: white;
-            padding: 14px 22px;
-            border-radius: 14px;
+            padding: 14px 28px;
+            border-radius: 16px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
             border: none;
             cursor: pointer;
-            transition: 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn:hover {
-            background: #aa861d;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+            filter: brightness(1.1);
         }
 
-        /* ================= INPUT ================= */
+        /* ================= INPUTS Y FORMULARIOS ================= */
 
         .input {
             width: 100%;
-            padding: 15px;
-            border-radius: 14px;
-            border: 1px solid #ddd;
+            padding: 15px 18px;
+            border-radius: 16px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
             outline: none;
-            font-size: 16px;
-            transition: 0.3s ease;
+            font-size: 15px;
+            font-family: inherit;
+            color: #1e293b;
+            transition: all 0.25s ease;
         }
 
         .input:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            background: #ffffff;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
-        /* ================= HAMBURGUESA ================= */
+        label.form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        /* Input de tipo archivo oculto pero estilizado a través de etiquetas */
+        input[type="file"] {
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE DESIGN ================= */
 
         .menu-toggle {
             display: none;
             position: fixed;
-            top: 18px;
-            left: 18px;
-            width: 52px;
-            height: 52px;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
             border: none;
-            border-radius: 14px;
-            background: #c9a227;
-            color: white;
+            border-radius: 16px;
+            background: #ffffff;
+            color: #2563eb;
             font-size: 20px;
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
-
-        /* ================= CERRAR ================= */
 
         .close-menu {
             display: none;
             position: absolute;
-            top: 18px;
-            right: 18px;
-            background: none;
+            top: 24px;
+            right: 24px;
+            background: #f1f5f9;
             border: none;
-            font-size: 24px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            font-size: 18px;
+            color: #64748b;
             cursor: pointer;
-            color: #444;
         }
-
-        /* ================= OVERLAY ================= */
 
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 999;
         }
 
@@ -311,10 +392,7 @@
             visibility: visible;
         }
 
-        /* ================= TABLET ================= */
-
         @media (max-width: 992px) {
-
             .menu-toggle {
                 display: flex;
                 align-items: center;
@@ -324,10 +402,10 @@
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -280px;
-                width: 260px;
+                left: -300px;
+                width: 280px;
                 height: 100%;
-                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+                box-shadow: 20px 0 50px rgba(15, 23, 42, 0.08);
             }
 
             .sidebar.active {
@@ -339,46 +417,34 @@
             }
 
             .main {
-                padding: 90px 22px 30px;
-            }
-
-            .cover-img,
-            .cover-overlay {
-                height: 300px;
+                padding: 100px 24px 40px;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+                gap: 24px;
             }
 
-            .card {
-                padding: 28px;
-            }
-
-            .profile-img {
-                left: 25px;
+            .grid .card:nth-child(3) {
+                grid-column: span 1;
             }
         }
 
-        /* ================= MÓVIL ================= */
-
         @media (max-width: 600px) {
-
             .main {
-                padding: 85px 14px 25px;
+                padding: 90px 16px 20px;
             }
 
             .cover-img,
             .cover-overlay {
-                height: 230px;
-                border-radius: 22px;
+                height: 240px;
+                border-radius: 24px;
             }
 
             .profile-img {
-                left: 40px;
-                transform: none;
-                bottom: -55px;
-                text-align: left;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -60px;
             }
 
             .profile-img img {
@@ -387,54 +453,26 @@
             }
 
             .edit-cover {
-                right: 12px;
-                bottom: 12px;
-                padding: 10px 14px;
-                font-size: 13px;
+                right: 15px;
+                top: 15px;
+                bottom: auto;
+                padding: 8px 14px;
+                font-size: 12px;
+                border-radius: 12px;
             }
 
             .grid {
-                margin-top: 85px;
+                margin-top: 80px;
                 gap: 20px;
             }
 
             .card {
-                padding: 22px;
-                border-radius: 20px;
-                text-align: center;
+                padding: 24px;
+                border-radius: 24px;
             }
 
             .card h2 {
-                font-size: 25px;
-            }
-
-            .card h3 {
-                font-size: 22px;
-            }
-
-            .card p {
-                font-size: 14px;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 14px;
-            }
-
-            .menu a {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .logout-btn {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .menu-toggle {
-                width: 48px;
-                height: 48px;
-                font-size: 18px;
+                font-size: 26px;
             }
         }
     </style>
@@ -442,25 +480,20 @@
 
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
-        <!-- SIDEBAR -->
         <div class="sidebar">
 
-            <!-- BOTÓN CERRAR -->
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
 
             <div>
-
                 <h2>BUSINESS</h2>
 
                 <div class="menu">
-
                     <a href="/business">
                         <i class="fas fa-chart-line"></i>
                         Dashboard
@@ -480,9 +513,7 @@
                         <i class="fas fa-boxes"></i>
                         Gestión de Producto
                     </a>
-
                 </div>
-
             </div>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
@@ -491,44 +522,36 @@
 
             <button class="logout-btn"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar sesión
-
             </button>
 
         </div>
 
-        <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- PORTADA -->
             <div class="cover">
 
                 <div class="cover-img">
-                    <img
-                        src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}">
+                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}"
+                        alt="Portada">
                 </div>
 
                 <div class="cover-overlay"></div>
 
                 <div class="profile-img">
-
                     @if (Auth::user()->qr_path)
                         <img src="{{ asset('storage/' . Auth::user()->qr_path) }}" alt="QR de {{ Auth::user()->slug }}">
-
                         <a href="#" id="downloadQr">
-                            Descargar QR
+                            <i class="fas fa-download"></i> Descargar QR
                         </a>
                     @else
                         <img src="https://via.placeholder.com/150" alt="QR no disponible">
                     @endif
-
                 </div>
 
                 <label for="uploadImage" class="edit-cover">
@@ -538,103 +561,61 @@
 
             </div>
 
-            <!-- CONTENIDO -->
             <div class="grid">
 
-                <!-- INFO -->
                 <div class="card">
-
                     <h2>{{ Auth::user()->name }}</h2>
-
-                    <p>
+                    <p style="margin-bottom: 25px; font-weight: 500; color: #3b82f6;">
                         Perfil activo • Negocio digital 🚀
                     </p>
-
-                    <div style="margin-top:25px;">
-
+                    <div>
                         <a href="/{{ Auth::user()->slug }}" target="_blank" class="btn">
-                            Ver mi página
+                            <i class="fas fa-external-link-alt"></i> Ver mi página
                         </a>
-
                     </div>
-
                 </div>
 
-                <!-- FORM -->
                 <div class="card">
-
-                    <h3>Actualizar imagen</h3>
-
+                    <h3><i class="fas fa-image" style="color: #3b82f6;"></i> Actualizar imagen</h3>
                     <form action="/business/profile/image" method="POST" enctype="multipart/form-data">
-
                         @csrf
-
-                        <input id="uploadImage" type="file" name="image" required class="input">
-
-                        <button type="submit" class="btn" style="margin-top:20px; width:100%;">
-
-                            Guardar cambios
-
+                        <div style="margin-bottom: 20px;">
+                            <input id="uploadImage" type="file" name="image" required class="input">
+                        </div>
+                        <button type="submit" class="btn" style="width:100%;">
+                            <i class="fas fa-save"></i> Guardar cambios
                         </button>
-
                     </form>
-
                 </div>
 
-                <!-- INFO NEGOCIO -->
                 <div class="card">
-
-                    <h3>Información del negocio</h3>
-
+                    <h3><i class="fas fa-sliders-h" style="color: #3b82f6;"></i> Información del negocio</h3>
                     <form action="/business/info" method="POST">
-
                         @csrf
 
-                        <!-- WHATSAPP -->
-                        <div style="margin-bottom:18px;">
-
-                            <label style="display:block; margin-bottom:8px;">
-                                WhatsApp
-                            </label>
-
+                        <div style="margin-bottom:20px;">
+                            <label class="form-label">WhatsApp</label>
                             <input type="text" name="whatsapp" class="input" placeholder="5219610000000"
                                 value="{{ Auth::user()->whatsapp }}">
-
                         </div>
 
-                        <!-- MAPA -->
-                        <div style="margin-bottom:18px;">
-
-                            <label style="display:block; margin-bottom:8px;">
-                                URL Google Maps Embed
-                            </label>
-
+                        <div style="margin-bottom:20px;">
+                            <label class="form-label">URL Google Maps Embed</label>
                             <input type="text" name="map_url" class="input"
-                                placeholder="https://www.google.com/maps/embed?pb=..."
-                                value="{{ Auth::user()->map_url }}">
-
+                                placeholder="https://maps.google.com/..." value="{{ Auth::user()->map_url }}">
                         </div>
 
-                        <!-- HORARIO -->
-                        <div style="margin-bottom:18px;">
-
-                            <label style="display:block; margin-bottom:8px;">
-                                Horario
-                            </label>
-
-                            <textarea name="schedule" class="input" rows="5" placeholder="Lunes a Domingo de 8:00 AM a 10:00 PM"
+                        <div style="margin-bottom:25px;">
+                            <label class="form-label">Horario de Atención</label>
+                            <textarea name="schedule" class="input" rows="4" placeholder="Lunes a Domingo de 8:00 AM a 10:00 PM"
                                 style="resize:none;">{{ Auth::user()->schedule }}</textarea>
-
                         </div>
 
-                        <button type="submit" class="btn" style="width:100%;">
-
-                            Guardar información
-
+                        <button type="submit" class="btn"
+                            style="width:100%; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);">
+                            <i class="fas fa-check-circle"></i> Guardar configuración
                         </button>
-
                     </form>
-
                 </div>
 
             </div>
@@ -670,40 +651,29 @@
                     const systemFont = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
                     const drawCanvasContent = () => {
-                        // ==========================================
-                        // 1. EFECTO CRISTAL (Glassmorphism de fondo)
-                        // ==========================================
                         ctx.save();
-                        // Sombra exterior muy suave para separar la tarjeta del fondo real
                         ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
                         ctx.shadowBlur = 60;
                         ctx.shadowOffsetY = 20;
 
-                        // Capa translúcida que deja ver el fondo de manera elegante
                         ctx.fillStyle = "rgba(20, 15, 10, 0.45)";
                         roundRect(ctx, 100, 100, 1000, 1400, 30);
                         ctx.restore();
 
-                        // Borde fino dorado/brillante del cristal
                         ctx.strokeStyle = "rgba(212, 175, 55, 0.25)";
                         ctx.lineWidth = 3;
                         ctx.stroke();
 
-                        // ==========================================
-                        // 2. TÍTULO EN ORO METÁLICO (Gradiente y Relieve)
-                        // ==========================================
                         ctx.textAlign = "center";
                         const titleX = canvas.width / 2;
                         const titleY = 250;
 
-                        // Gradiente de oro de 4 pasos (simula reflejo metálico)
                         const goldGlow = ctx.createLinearGradient(0, titleY - 60, 0, titleY + 20);
-                        goldGlow.addColorStop(0, '#FFF3D1'); // Brillo máximo
-                        goldGlow.addColorStop(0.3, '#D4AF37'); // Oro base
-                        goldGlow.addColorStop(0.6, '#AA7C11'); // Sombra oro
-                        goldGlow.addColorStop(1, '#E6CA65'); // Reflejo inferior
+                        goldGlow.addColorStop(0, '#FFF3D1');
+                        goldGlow.addColorStop(0.3, '#D4AF37');
+                        goldGlow.addColorStop(0.6, '#AA7C11');
+                        goldGlow.addColorStop(1, '#E6CA65');
 
-                        // Sombra del título para separarlo del fondo
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
                         ctx.shadowBlur = 15;
@@ -714,62 +684,45 @@
                         ctx.fillText("{{ Auth::user()->name }}", titleX, titleY);
                         ctx.restore();
 
-                        // Subtítulo estilizado
                         ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
                         ctx.font = `600 30px ${systemFont}`;
                         ctx.letterSpacing = "6px";
                         ctx.fillText("MENÚ DIGITAL", titleX, titleY + 75);
 
-                        // Adorno lineal dorado bajo el subtítulo
                         ctx.fillStyle = "#D4AF37";
                         roundRect(ctx, titleX - 100, titleY + 110, 200, 3, 2);
 
-                        // ==========================================
-                        // 3. MARCO DE QR DE LUJO Y CÓDIGO QR
-                        // ==========================================
                         const qrBoxX = 260;
                         const qrBoxY = 500;
                         const qrBoxSize = 680;
 
-                        // Sombra masiva para el contenedor del QR (Le da volumen 3D)
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
                         ctx.shadowBlur = 40;
                         ctx.shadowOffsetY = 15;
 
-                        // Marco exterior dorado grueso
                         ctx.fillStyle = "#AA7C11";
                         roundRect(ctx, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24);
 
-                        // Interior del marco (Contraste blanco puro para que el QR sea 100% escaneable)
                         ctx.fillStyle = "#FFFFFF";
                         roundRect(ctx, qrBoxX + 15, qrBoxY + 15, qrBoxSize - 30, qrBoxSize - 30, 16);
                         ctx.restore();
 
-                        // Esquinas interiores doradas (Estilo filigrana geométrica del render)
                         ctx.fillStyle = "#D4AF37";
                         const pad = 35;
-                        // Superior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 40, 6);
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 6, 40);
-                        // Superior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + pad, 40, 6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + pad, 6, 40);
-                        // Inferior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 6, 40, 6);
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 40, 6, 40);
-                        // Inferior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + qrBoxSize - pad - 6, 40,
-                            6);
+                        6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + qrBoxSize - pad - 40, 6,
-                            40);
+                        40);
 
-                        // Dibujar el QR centrado a la perfección
                         ctx.drawImage(img, qrBoxX + 65, qrBoxY + 65, qrBoxSize - 130, qrBoxSize - 130);
 
-                        // ==========================================
-                        // 4. CTA Y ELEMENTOS INFERIORES
-                        // ==========================================
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
                         ctx.shadowBlur = 10;
@@ -780,7 +733,6 @@
                         ctx.fillText("Escanea el código QR", titleX, 1260);
                         ctx.restore();
 
-                        // Píldora de la URL estilizada
                         ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
                         roundRect(ctx, 250, 1310, 700, 60, 30);
                         ctx.strokeStyle = "rgba(212, 175, 55, 0.3)";
@@ -790,7 +742,6 @@
                         ctx.font = `500 24px ${systemFont}`;
                         ctx.fillText("{{ url('/' . Auth::user()->slug) }}", titleX, 1348);
 
-                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico
                         ctx.save();
                         ctx.shadowColor = "rgba(0,0,0,0.4)";
                         ctx.shadowBlur = 20;
@@ -805,15 +756,11 @@
                         roundRect(ctx, 350, 1410, 500, 80, 40);
                         ctx.restore();
 
-                        // Texto del botón
                         ctx.fillStyle = "#FFFFFF";
                         ctx.font = `bold 30px ${systemFont}`;
                         ctx.letterSpacing = "2px";
                         ctx.fillText("ESCANEA Y VISÍTANOS", titleX, 1460);
 
-                        // ==========================================
-                        // 5. EJECUTAR DESCARGA
-                        // ==========================================
                         URL.revokeObjectURL(url);
                         const pngUrl = canvas.toDataURL('image/png');
                         const downloadLink = document.createElement('a');
@@ -826,18 +773,13 @@
                         document.body.removeChild(downloadLink);
                     };
 
-                    // Loader y render del fondo
                     if (coverUrl) {
                         const cover = new Image();
                         cover.crossOrigin = "anonymous";
                         cover.onload = function() {
-                            // Dibujar la imagen de fondo completa
                             ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
-
-                            // Capa oscura ambiental cálida para unificar el fondo con los dorados
                             ctx.fillStyle = "rgba(18, 12, 5, 0.55)";
                             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
                             drawCanvasContent();
                         };
                         cover.onerror = function() {
@@ -859,7 +801,6 @@
             }
         });
 
-        // Fondo alternativo lujoso por si no hay imagen de fondo activa
         function drawDefaultBackground(ctx, canvas) {
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, '#110D08');
@@ -869,7 +810,6 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        // Función modificada para soportar fill y stroke sin perder el path
         function roundRect(ctx, x, y, width, height, radius) {
             ctx.beginPath();
             ctx.moveTo(x + radius, y);
@@ -888,7 +828,6 @@
 
     <script>
         function toggleMenu() {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
@@ -897,34 +836,28 @@
             overlay.classList.toggle('active');
 
             if (sidebar.classList.contains('active')) {
-
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-
             } else {
-
                 menuBtn.style.display = 'flex';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        // CERRAR MENÚ AUTOMÁTICAMENTE
         window.addEventListener('resize', () => {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
 
             if (window.innerWidth > 992) {
-
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'auto';
-
             } else {
-
-                menuBtn.style.display = 'flex';
+                if (!sidebar.classList.contains('active')) {
+                    menuBtn.style.display = 'flex';
+                }
             }
         });
     </script>

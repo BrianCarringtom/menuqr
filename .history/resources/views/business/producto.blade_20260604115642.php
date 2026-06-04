@@ -47,7 +47,7 @@
 
         .sidebar h2 {
             text-align: center;
-            color: #c9a227;
+            color: #1e40af;
             font-weight: 700;
             letter-spacing: 3px;
             font-size: 24px;
@@ -72,14 +72,14 @@
         }
 
         .menu a:hover {
-            background: #fff7df;
-            color: #c9a227;
+            background: #eff6ff;
+            color: #1e40af;
             transform: translateX(3px);
         }
 
         .logout-btn {
             width: 100%;
-            background: #c9a227;
+            background: #1e40af;
             border: none;
             padding: 15px;
             border-radius: 14px;
@@ -91,7 +91,7 @@
         }
 
         .logout-btn:hover {
-            background: #aa861d;
+            background: #1e3a8a;
         }
 
         /* ================= MAIN ================= */
@@ -214,8 +214,8 @@
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            border-color: #1e40af;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.12);
         }
 
         textarea {
@@ -225,7 +225,7 @@
         /* ================= BOTONES ================= */
 
         .btn-gold {
-            background: #c9a227;
+            background: #1e40af;
             color: white;
             border: none;
             border-radius: 14px;
@@ -237,8 +237,8 @@
         }
 
         .btn-gold:hover {
-            background: #b8911f;
-            box-shadow: 0 10px 20px rgba(201, 162, 39, 0.28);
+            background: #1d4ed8;
+            box-shadow: 0 10px 20px rgba(30, 64, 175, 0.28);
         }
 
         .btn-gold:active {
@@ -308,7 +308,7 @@
             height: 52px;
             border: none;
             border-radius: 14px;
-            background: #c9a227;
+            background: #1e40af;
             color: white;
             font-size: 20px;
             cursor: pointer;
@@ -438,7 +438,7 @@
             input,
             select,
             textarea {
-                font-size: 16px;
+                font-size: 14px;
                 padding: 14px;
             }
 
@@ -549,7 +549,7 @@
 
                 <div class="header-box">
 
-                    <i class="fas fa-crown" style="color:#c9a227;"></i>
+                    <i class="fas fa-crown" style="color:#1e40af;"></i>
 
                     Plan:
                     {{ ucfirst(auth()->user()->plan) }}
@@ -588,7 +588,7 @@
                         <h3>Categorías</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-folder" style="color:#c9a227;"></i>
+                            <i class="fas fa-folder" style="color:#1e40af;"></i>
                         </div>
 
                     </div>
@@ -625,7 +625,7 @@
                         <h3>Productos</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-box" style="color:#c9a227;"></i>
+                            <i class="fas fa-box" style="color:#1e40af;"></i>
                         </div>
 
                     </div>

@@ -438,7 +438,7 @@
             input,
             select,
             textarea {
-                font-size: 16px;
+                font-size: 14px;
                 padding: 14px;
             }
 

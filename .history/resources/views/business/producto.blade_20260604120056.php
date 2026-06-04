@@ -439,6 +439,7 @@
             select,
             textarea {
                 font-size: 16px;
+                /* Evita el zoom automático en móviles */
                 padding: 14px;
             }
 

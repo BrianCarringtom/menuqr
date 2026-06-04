@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -47,7 +45,7 @@
 
         .sidebar h2 {
             text-align: center;
-            color: #c9a227;
+            color: #1d4ed8;
             font-weight: 700;
             letter-spacing: 3px;
             font-size: 24px;
@@ -72,14 +70,14 @@
         }
 
         .menu a:hover {
-            background: #fff7df;
-            color: #c9a227;
+            background: #eff6ff;
+            color: #1d4ed8;
             transform: translateX(3px);
         }
 
         .logout-btn {
             width: 100%;
-            background: #c9a227;
+            background: #1d4ed8;
             border: none;
             padding: 15px;
             border-radius: 14px;
@@ -91,7 +89,7 @@
         }
 
         .logout-btn:hover {
-            background: #aa861d;
+            background: #1e40af;
         }
 
         /* ================= MAIN ================= */
@@ -134,11 +132,11 @@
 
         .header-box {
             font-size: 15px;
-            color: #374151;
-            background: #f9fafb;
+            color: #1e40af;
+            background: #eff6ff;
             padding: 12px 18px;
             border-radius: 14px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #bfdbfe;
             white-space: nowrap;
         }
 
@@ -177,12 +175,12 @@
         .icon-box {
             width: 44px;
             height: 44px;
-            background: #f9fafb;
+            background: #eff6ff;
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #eee;
+            border: 1px solid #dbeafe;
         }
 
         .box p {
@@ -214,8 +212,8 @@
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
         }
 
         textarea {
@@ -225,7 +223,7 @@
         /* ================= BOTONES ================= */
 
         .btn-gold {
-            background: #c9a227;
+            background: #1d4ed8;
             color: white;
             border: none;
             border-radius: 14px;
@@ -237,8 +235,8 @@
         }
 
         .btn-gold:hover {
-            background: #b8911f;
-            box-shadow: 0 10px 20px rgba(201, 162, 39, 0.28);
+            background: #1e40af;
+            box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
         }
 
         .btn-gold:active {
@@ -308,12 +306,12 @@
             height: 52px;
             border: none;
             border-radius: 14px;
-            background: #c9a227;
+            background: #1d4ed8;
             color: white;
             font-size: 20px;
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.2);
         }
 
         /* ================= CERRAR ================= */
@@ -438,7 +436,7 @@
             input,
             select,
             textarea {
-                font-size: 16px;
+                font-size: 14px;
                 padding: 14px;
             }
 
@@ -475,12 +473,10 @@
 
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
-        <!-- SIDEBAR -->
         <div class="sidebar">
 
             <button class="close-menu" onclick="toggleMenu()">
@@ -531,15 +527,12 @@
 
         </div>
 
-        <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- HEADER -->
             <div class="header">
 
                 <div>
@@ -549,7 +542,7 @@
 
                 <div class="header-box">
 
-                    <i class="fas fa-crown" style="color:#c9a227;"></i>
+                    <i class="fas fa-crown" style="color:#1d4ed8;"></i>
 
                     Plan:
                     {{ ucfirst(auth()->user()->plan) }}
@@ -558,7 +551,6 @@
 
             </div>
 
-            <!-- TOAST -->
             @if (session('success'))
                 <div id="toast-overlay">
                     <div id="toast">
@@ -577,10 +569,8 @@
                 </div>
             @endif
 
-            <!-- GRID -->
             <div class="grid">
 
-                <!-- CATEGORÍA -->
                 <div class="box">
 
                     <div class="box-header">
@@ -588,7 +578,7 @@
                         <h3>Categorías</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-folder" style="color:#c9a227;"></i>
+                            <i class="fas fa-folder" style="color:#1d4ed8;"></i>
                         </div>
 
                     </div>
@@ -601,10 +591,8 @@
 
                         @csrf
 
-                        <!-- NOMBRE -->
                         <input type="text" name="category" placeholder="Nombre de la categoría" required>
 
-                        <!-- IMAGEN -->
                         <input type="file" name="image" accept="image/*" required>
 
                         <button type="submit" class="btn-gold" style="margin-top:10px;">
@@ -617,7 +605,6 @@
 
                 </div>
 
-                <!-- PRODUCTO -->
                 <div class="box">
 
                     <div class="box-header">
@@ -625,7 +612,7 @@
                         <h3>Productos</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-box" style="color:#c9a227;"></i>
+                            <i class="fas fa-box" style="color:#1d4ed8;"></i>
                         </div>
 
                     </div>

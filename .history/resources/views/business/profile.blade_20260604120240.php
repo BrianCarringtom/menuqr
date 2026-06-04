@@ -252,6 +252,7 @@
             border: 1px solid #ddd;
             outline: none;
             font-size: 16px;
+            /* Modificado de 15px a 16px para evitar el zoom automático en iOS */
             transition: 0.3s ease;
         }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Dashboard</title>
+    <title>Business Dashboard - Perfil</title>
 
     <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -251,7 +251,7 @@
             border-radius: 14px;
             border: 1px solid #ddd;
             outline: none;
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.3s ease;
         }
 

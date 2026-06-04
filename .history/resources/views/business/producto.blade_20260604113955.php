@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -21,8 +19,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f4f6f9;
-            color: #1f2937;
+            background: #ffffff;
+            color: #0f172a;
             overflow-x: hidden;
         }
 
@@ -34,75 +32,90 @@
         /* ================= SIDEBAR ================= */
 
         .sidebar {
-            width: 260px;
-            background: white;
-            border-right: 1px solid #ececec;
-            padding: 28px 22px;
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #f1f5f9;
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.35s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
         }
 
         .sidebar h2 {
-            text-align: center;
-            color: #c9a227;
-            font-weight: 700;
-            letter-spacing: 3px;
-            font-size: 24px;
+            text-align: left;
+            color: #1d4ed8;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            font-size: 22px;
+            padding-left: 12px;
+            margin-bottom: 8px;
         }
 
         .menu {
-            margin-top: 45px;
+            margin-top: 35px;
         }
 
         .menu a {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 15px 16px;
-            margin-bottom: 12px;
-            border-radius: 14px;
+            gap: 12px;
+            padding: 12px 14px;
+            margin-bottom: 6px;
+            border-radius: 10px;
             text-decoration: none;
-            color: #4b5563;
-            font-size: 15px;
+            color: #64748b;
+            font-size: 14px;
             font-weight: 500;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
 
         .menu a:hover {
-            background: #fff7df;
-            color: #c9a227;
-            transform: translateX(3px);
+            background: #f0f5ff;
+            color: #1d4ed8;
+        }
+
+        /* Simulación de estado activo genérico por si necesitas usarlo en tu Blade */
+        .menu a.active {
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 600;
         }
 
         .logout-btn {
             width: 100%;
-            background: #c9a227;
-            border: none;
-            padding: 15px;
-            border-radius: 14px;
-            color: white;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px;
+            border-radius: 10px;
+            color: #64748b;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .logout-btn:hover {
-            background: #aa861d;
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
         }
 
         /* ================= MAIN ================= */
 
         .main {
             flex: 1;
-            padding: 28px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 32px;
             min-height: 100vh;
+            background: #ffffff;
         }
 
         /* ================= HEADER ================= */
@@ -112,33 +125,36 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            background: white;
-            padding: 22px 24px;
-            border-radius: 22px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            background: #ffffff;
+            padding: 0 0 24px 0;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
-            color: #111827;
+            color: #0f172a;
+            letter-spacing: -0.5px;
         }
 
         .header p {
-            margin-top: 6px;
-            color: #6b7280;
-            font-size: 15px;
+            margin-top: 4px;
+            color: #64748b;
+            font-size: 14px;
         }
 
         .header-box {
-            font-size: 15px;
-            color: #374151;
-            background: #f9fafb;
-            padding: 12px 18px;
-            border-radius: 14px;
-            border: 1px solid #e5e7eb;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1e3a8a;
+            background: #eff6ff;
+            padding: 10px 16px;
+            border-radius: 99s9px;
+            /* Formato píldora pill modern */
+            display: flex;
+            align-items: center;
+            gap: 8px;
             white-space: nowrap;
         }
 
@@ -147,75 +163,93 @@
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 22px;
+            gap: 32px;
         }
 
         /* ================= CARDS ================= */
 
         .box {
-            background: white;
-            border-radius: 22px;
-            padding: 28px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .box:hover {
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
         }
 
         .box-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
 
         .box-header h3 {
             margin: 0;
-            font-size: 24px;
-            color: #111827;
+            font-size: 20px;
+            color: #0f172a;
             font-weight: 700;
         }
 
         .icon-box {
-            width: 44px;
-            height: 44px;
-            background: #f9fafb;
-            border-radius: 14px;
+            width: 40px;
+            height: 40px;
+            background: #eff6ff;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #eee;
         }
 
         .box p {
-            color: #6b7280;
-            font-size: 15px;
-            margin-bottom: 22px;
-            line-height: 1.6;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.5;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         input,
         select,
         textarea {
             width: 100%;
-            padding: 15px;
-            border-radius: 14px;
-            border: 1px solid #d1d5db;
-            font-size: 15px;
-            background: #fafafa;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 14px;
+            background: #ffffff;
+            color: #0f172a;
             outline: none;
-            transition: 0.3s ease;
+            transition: all 0.2s ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #94a3b8;
         }
 
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            background: #ffffff;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            background: #f8fafc;
+            cursor: pointer;
+            border-style: dashed;
         }
 
         textarea {
@@ -225,24 +259,25 @@
         /* ================= BOTONES ================= */
 
         .btn-gold {
-            background: #c9a227;
+            background: #1d4ed8;
             color: white;
             border: none;
-            border-radius: 14px;
+            border-radius: 10px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.25s ease;
-            padding: 15px;
+            transition: all 0.2s ease;
+            padding: 14px;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15);
         }
 
         .btn-gold:hover {
-            background: #b8911f;
-            box-shadow: 0 10px 20px rgba(201, 162, 39, 0.28);
+            background: #2563eb;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
         }
 
         .btn-gold:active {
-            transform: scale(0.98);
+            transform: scale(0.99);
         }
 
         /* ================= TOAST ================= */
@@ -251,49 +286,51 @@
             position: fixed;
             inset: 0;
             display: flex;
-            align-items: center;
+            align-items: flex-top;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.18);
+            background: rgba(15, 23, 42, 0.15);
             backdrop-filter: blur(4px);
             z-index: 9999;
+            padding-top: 40px;
         }
 
         #toast {
             background: white;
-            color: #111827;
-            padding: 20px 28px;
-            border-radius: 18px;
-            font-size: 16px;
-            font-weight: 500;
+            color: #0f172a;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 14px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
-            border-left: 6px solid #16a34a;
-            animation: toastIn 0.4s ease;
+            gap: 12px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #10b981;
+            animation: toastIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         #toast i {
-            color: #16a34a;
-            font-size: 24px;
+            color: #10b981;
+            font-size: 18px;
         }
 
         @keyframes toastIn {
             from {
                 opacity: 0;
-                transform: scale(0.9) translateY(20px);
+                transform: translateY(-20px) scale(0.95);
             }
 
             to {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         @keyframes toastOut {
             to {
                 opacity: 0;
-                transform: scale(0.9) translateY(20px);
+                transform: translateY(-20px) scale(0.95);
             }
         }
 
@@ -302,18 +339,18 @@
         .menu-toggle {
             display: none;
             position: fixed;
-            top: 18px;
-            left: 18px;
-            width: 52px;
-            height: 52px;
-            border: none;
-            border-radius: 14px;
-            background: #c9a227;
-            color: white;
-            font-size: 20px;
+            top: 20px;
+            left: 20px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #0f172a;
+            font-size: 18px;
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         /* ================= CERRAR ================= */
@@ -321,13 +358,13 @@
         .close-menu {
             display: none;
             position: absolute;
-            top: 18px;
-            right: 18px;
+            top: 24px;
+            right: 24px;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
-            color: #444;
+            color: #64748b;
         }
 
         /* ================= OVERLAY ================= */
@@ -335,11 +372,11 @@
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 999;
         }
 
@@ -361,14 +398,14 @@
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -280px;
-                width: 260px;
+                left: -300px;
+                width: 280px;
                 height: 100%;
-                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+                box-shadow: 20px 0 80px rgba(15, 23, 42, 0.08);
             }
 
             .sidebar.active {
-                left: 0;
+                transform: translateX(300px);
             }
 
             .close-menu {
@@ -376,21 +413,23 @@
             }
 
             .main {
-                padding: 90px 20px 24px;
+                padding: 100px 24px 32px;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+                gap: 24px;
             }
 
             .header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 16px;
+                padding-bottom: 20px;
             }
 
             .header-box {
-                width: 100%;
-                text-align: center;
+                width: auto;
             }
         }
 
@@ -399,74 +438,19 @@
         @media (max-width: 600px) {
 
             .main {
-                padding: 85px 14px 22px;
-                gap: 18px;
-            }
-
-            .header {
-                padding: 22px 18px;
-                border-radius: 20px;
+                padding: 88px 16px 24px;
+                gap: 24px;
             }
 
             .header h1 {
-                font-size: 26px;
-                line-height: 1.3;
-            }
-
-            .header p {
-                font-size: 14px;
-            }
-
-            .header-box {
-                font-size: 14px;
-                padding: 12px;
+                font-size: 24px;
             }
 
             .box {
-                padding: 22px;
-                border-radius: 20px;
+                padding: 24px;
             }
 
             .box-header h3 {
-                font-size: 21px;
-            }
-
-            .box p {
-                font-size: 14px;
-            }
-
-            input,
-            select,
-            textarea {
-                font-size: 16px;
-                padding: 14px;
-            }
-
-            .btn-gold {
-                width: 100%;
-                padding: 14px;
-                font-size: 14px;
-            }
-
-            .menu a {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .logout-btn {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            #toast {
-                width: calc(100% - 30px);
-                padding: 18px;
-                font-size: 14px;
-            }
-
-            .menu-toggle {
-                width: 48px;
-                height: 48px;
                 font-size: 18px;
             }
         }
@@ -475,12 +459,10 @@
 
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
-        <!-- SIDEBAR -->
         <div class="sidebar">
 
             <button class="close-menu" onclick="toggleMenu()">
@@ -493,7 +475,7 @@
 
                 <div class="menu">
 
-                    <a href="/business">
+                    <a href="/business" class="active">
                         <i class="fas fa-chart-line"></i>
                         Dashboard
                     </a>
@@ -531,15 +513,12 @@
 
         </div>
 
-        <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- HEADER -->
             <div class="header">
 
                 <div>
@@ -549,7 +528,7 @@
 
                 <div class="header-box">
 
-                    <i class="fas fa-crown" style="color:#c9a227;"></i>
+                    <i class="fas fa-crown" style="color:#1d4ed8;"></i>
 
                     Plan:
                     {{ ucfirst(auth()->user()->plan) }}
@@ -558,7 +537,6 @@
 
             </div>
 
-            <!-- TOAST -->
             @if (session('success'))
                 <div id="toast-overlay">
                     <div id="toast">
@@ -570,17 +548,15 @@
 
             @if (session('error'))
                 <div id="toast-overlay">
-                    <div id="toast" style="border-left:6px solid #dc2626;">
-                        <i class="fas fa-triangle-exclamation" style="color:#dc2626;"></i>
+                    <div id="toast" style="border-left:4px solid #ef4444;">
+                        <i class="fas fa-triangle-exclamation" style="color:#ef4444;"></i>
                         <span>{{ session('error') }}</span>
                     </div>
                 </div>
             @endif
 
-            <!-- GRID -->
             <div class="grid">
 
-                <!-- CATEGORÍA -->
                 <div class="box">
 
                     <div class="box-header">
@@ -588,7 +564,7 @@
                         <h3>Categorías</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-folder" style="color:#c9a227;"></i>
+                            <i class="fas fa-folder" style="color:#1d4ed8;"></i>
                         </div>
 
                     </div>
@@ -601,13 +577,11 @@
 
                         @csrf
 
-                        <!-- NOMBRE -->
                         <input type="text" name="category" placeholder="Nombre de la categoría" required>
 
-                        <!-- IMAGEN -->
                         <input type="file" name="image" accept="image/*" required>
 
-                        <button type="submit" class="btn-gold" style="margin-top:10px;">
+                        <button type="submit" class="btn-gold" style="margin-top:4px;">
 
                             Crear Categoría
 
@@ -617,7 +591,6 @@
 
                 </div>
 
-                <!-- PRODUCTO -->
                 <div class="box">
 
                     <div class="box-header">
@@ -625,7 +598,7 @@
                         <h3>Productos</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-box" style="color:#c9a227;"></i>
+                            <i class="fas fa-box" style="color:#1d4ed8;"></i>
                         </div>
 
                     </div>
@@ -686,7 +659,7 @@
 
             if (overlay) {
 
-                overlay.style.animation = "toastOut 0.4s forwards";
+                overlay.style.animation = "toastOut 0.3s forwards";
 
                 setTimeout(() => {
                     overlay.remove();

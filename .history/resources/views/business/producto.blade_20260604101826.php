@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -32,7 +30,6 @@
         }
 
         /* ================= SIDEBAR ================= */
-
         .sidebar {
             width: 260px;
             background: white;
@@ -41,7 +38,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.35s ease;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
         }
 
@@ -71,7 +68,8 @@
             transition: all 0.25s ease;
         }
 
-        .menu a:hover {
+        .menu a:hover,
+        .menu a.active {
             background: #fff7df;
             color: #c9a227;
             transform: translateX(3px);
@@ -87,15 +85,22 @@
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .logout-btn:hover {
             background: #aa861d;
         }
 
-        /* ================= MAIN ================= */
+        .logout-btn:active {
+            transform: scale(0.98);
+        }
 
+        /* ================= MAIN ================= */
         .main {
             flex: 1;
             padding: 28px;
@@ -106,7 +111,6 @@
         }
 
         /* ================= HEADER ================= */
-
         .header {
             display: flex;
             justify-content: space-between;
@@ -134,16 +138,19 @@
 
         .header-box {
             font-size: 15px;
+            font-weight: 600;
             color: #374151;
             background: #f9fafb;
             padding: 12px 18px;
             border-radius: 14px;
             border: 1px solid #e5e7eb;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         /* ================= GRID ================= */
-
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -151,20 +158,21 @@
         }
 
         /* ================= CARDS ================= */
-
         .box {
             background: white;
             border-radius: 22px;
             padding: 28px;
             border: 1px solid #e5e7eb;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
         }
 
         .box-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
         .box-header h3 {
@@ -196,6 +204,19 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+            margin-top: auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
         }
 
         input,
@@ -209,6 +230,7 @@
             background: #fafafa;
             outline: none;
             transition: 0.3s ease;
+            font-family: inherit;
         }
 
         input:focus,
@@ -216,6 +238,29 @@
         textarea:focus {
             border-color: #c9a227;
             box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            background: white;
+        }
+
+        /* Input file estilizado */
+        input[type="file"] {
+            padding: 11px;
+            background: #fafafa;
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: #e5e7eb;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 8px;
+            color: #374151;
+            font-weight: 500;
+            margin-right: 10px;
+            transition: 0.2s;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: #d1d5db;
         }
 
         textarea {
@@ -223,7 +268,6 @@
         }
 
         /* ================= BOTONES ================= */
-
         .btn-gold {
             background: #c9a227;
             color: white;
@@ -234,6 +278,10 @@
             cursor: pointer;
             transition: all 0.25s ease;
             padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-gold:hover {
@@ -246,14 +294,13 @@
         }
 
         /* ================= TOAST ================= */
-
         #toast-overlay {
             position: fixed;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.18);
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(4px);
             z-index: 9999;
         }
@@ -270,7 +317,7 @@
             gap: 14px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
             border-left: 6px solid #16a34a;
-            animation: toastIn 0.4s ease;
+            animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         #toast i {
@@ -298,7 +345,6 @@
         }
 
         /* ================= HAMBURGUESA ================= */
-
         .menu-toggle {
             display: none;
             position: fixed;
@@ -312,34 +358,39 @@
             color: white;
             font-size: 20px;
             cursor: pointer;
-            z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            z-index: 1010;
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.3);
+            align-items: center;
+            justify-content: center;
         }
 
         /* ================= CERRAR ================= */
-
         .close-menu {
             display: none;
             position: absolute;
-            top: 18px;
-            right: 18px;
+            top: 24px;
+            right: 22px;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 22px;
             cursor: pointer;
-            color: #444;
+            color: #6b7280;
+            transition: color 0.2s;
         }
 
-        /* ================= OVERLAY ================= */
+        .close-menu:hover {
+            color: #111827;
+        }
 
+        /* ================= OVERLAY RESPONSIVE ================= */
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 999;
         }
 
@@ -348,27 +399,24 @@
             visibility: visible;
         }
 
-        /* ================= TABLET ================= */
-
+        /* ================= TABLET & MÓVIL ================= */
         @media (max-width: 992px) {
-
             .menu-toggle {
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
 
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -280px;
+                left: 0;
+                transform: translateX(-280px);
                 width: 260px;
                 height: 100%;
-                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.08);
             }
 
             .sidebar.active {
-                left: 0;
+                transform: translateX(0);
             }
 
             .close-menu {
@@ -386,18 +434,16 @@
             .header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 16px;
             }
 
             .header-box {
                 width: 100%;
-                text-align: center;
+                justify-content: center;
             }
         }
 
-        /* ================= MÓVIL ================= */
-
         @media (max-width: 600px) {
-
             .main {
                 padding: 85px 14px 22px;
                 gap: 18px;
@@ -413,15 +459,6 @@
                 line-height: 1.3;
             }
 
-            .header p {
-                font-size: 14px;
-            }
-
-            .header-box {
-                font-size: 14px;
-                padding: 12px;
-            }
-
             .box {
                 padding: 22px;
                 border-radius: 20px;
@@ -430,91 +467,41 @@
             .box-header h3 {
                 font-size: 21px;
             }
-
-            .box p {
-                font-size: 14px;
-            }
-
-            input,
-            select,
-            textarea {
-                font-size: 16px;
-                padding: 14px;
-            }
-
-            .btn-gold {
-                width: 100%;
-                padding: 14px;
-                font-size: 14px;
-            }
-
-            .menu a {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .logout-btn {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            #toast {
-                width: calc(100% - 30px);
-                padding: 18px;
-                font-size: 14px;
-            }
-
-            .menu-toggle {
-                width: 48px;
-                height: 48px;
-                font-size: 18px;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
-        <!-- SIDEBAR -->
         <div class="sidebar">
-
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
 
             <div>
-
                 <h2>BUSINESS</h2>
-
                 <div class="menu">
-
-                    <a href="/business">
+                    <a href="/business" class="active">
                         <i class="fas fa-chart-line"></i>
                         Dashboard
                     </a>
-
                     <a href="/business/profile">
                         <i class="fas fa-user"></i>
                         Perfil
                     </a>
-
                     <a href="/business/producto">
                         <i class="fas fa-file-alt"></i>
                         Producto-Categoria
                     </a>
-
                     <a href="/business/gestion">
                         <i class="fas fa-boxes"></i>
-                        Gestion de Producto
+                        Gestión de Producto
                     </a>
-
                 </div>
-
             </div>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -523,42 +510,28 @@
 
             <button class="logout-btn"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar sesión
-
             </button>
-
         </div>
 
-        <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- HEADER -->
             <div class="header">
-
                 <div>
                     <h1>Panel de Control</h1>
                     <p>Gestión profesional de tu negocio</p>
                 </div>
-
                 <div class="header-box">
-
                     <i class="fas fa-crown" style="color:#c9a227;"></i>
-
-                    Plan:
-                    {{ ucfirst(auth()->user()->plan) }}
-
+                    <span>Plan: {{ ucfirst(auth()->user()->plan) }}</span>
                 </div>
-
             </div>
 
-            <!-- TOAST -->
             @if (session('success'))
                 <div id="toast-overlay">
                     <div id="toast">
@@ -577,163 +550,127 @@
                 </div>
             @endif
 
-            <!-- GRID -->
             <div class="grid">
 
-                <!-- CATEGORÍA -->
                 <div class="box">
-
                     <div class="box-header">
-
                         <h3>Categorías</h3>
-
                         <div class="icon-box">
                             <i class="fas fa-folder" style="color:#c9a227;"></i>
                         </div>
-
                     </div>
-
-                    <p>
-                        Organiza tu catálogo profesionalmente.
-                    </p>
+                    <p>Organiza tu catálogo profesionalmente añadiendo nuevas secciones.</p>
 
                     <form method="POST" action="/business/category" enctype="multipart/form-data">
-
                         @csrf
+                        <div class="form-group">
+                            <label>Nombre de la Categoría</label>
+                            <input type="text" name="category" placeholder="Ej. Entretenimiento, Servicios..."
+                                required>
+                        </div>
 
-                        <!-- NOMBRE -->
-                        <input type="text" name="category" placeholder="Nombre de la categoría" required>
-
-                        <!-- IMAGEN -->
-                        <input type="file" name="image" accept="image/*" required>
+                        <div class="form-group">
+                            <label>Imagen de Portada</label>
+                            <input type="file" name="image" accept="image/*" required>
+                        </div>
 
                         <button type="submit" class="btn-gold" style="margin-top:10px;">
-
-                            Crear Categoría
-
+                            <i class="fas fa-plus"></i> Crear Categoría
                         </button>
-
                     </form>
-
                 </div>
 
-                <!-- PRODUCTO -->
                 <div class="box">
-
                     <div class="box-header">
-
                         <h3>Productos</h3>
-
                         <div class="icon-box">
                             <i class="fas fa-box" style="color:#c9a227;"></i>
                         </div>
-
                     </div>
+                    <p>Añade nuevos productos o servicios digitales a tu catálogo disponible.</p>
 
-                    <p>
-                        Añade nuevos productos a tu catálogo.
-                    </p>
-
-                    <form method="POST" action="/business/product">
-
+                    <form method="POST" action="/business/product" enctype="multipart/form-data">
                         @csrf
+                        <div class="form-group">
+                            <label>Nombre del Producto</label>
+                            <input type="text" name="name" placeholder="Ej. Cuenta Netflix 1 Mes" required>
+                        </div>
 
-                        <input type="text" name="name" placeholder="Nombre del producto" required>
+                        <div class="form-group">
+                            <label>Precio ($)</label>
+                            <input type="number" name="price" placeholder="0.00" step="0.01" min="0"
+                                required>
+                        </div>
 
-                        <input type="number" name="price" placeholder="Precio" step="0.01" required>
+                        <div class="form-group">
+                            <label>Categoría Asignada</label>
+                            <select name="category" required>
+                                <option value="" disabled selected>Selecciona una categoría</option>
+                                @foreach (auth()->user()->categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                        <select name="category" required>
-
-                            <option value="" disabled selected>
-                                Seleccionar categoría
-                            </option>
-
-                            @foreach (auth()->user()->categories as $cat)
-                                <option value="{{ $cat->id }}">
-                                    {{ $cat->name }}
-                                </option>
-                            @endforeach
-
-                        </select>
-
-                        <textarea name="description" rows="3" placeholder="Descripción del producto" required></textarea>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea name="description" rows="3" placeholder="Detalles de la cuenta o servicio..." required></textarea>
+                        </div>
 
                         <button type="submit" class="btn-gold">
-                            Agregar Producto
+                            <i class="fas fa-cart-plus"></i> Agregar Producto
                         </button>
-
                     </form>
-
                 </div>
 
             </div>
-
         </div>
-
     </div>
 
     <script>
-        // TOAST
-        let toastTime = 1300; // éxito
-
+        // --- MANEJO DEL TOAST ---
+        let toastTime = 1800; // Éxito dura un poco más para que se lea bien
         @if (session('error'))
-            toastTime = 3000; // error
+            toastTime = 3500; // Error dura más tiempo
         @endif
 
         setTimeout(() => {
-
             const overlay = document.getElementById('toast-overlay');
-
             if (overlay) {
-
                 overlay.style.animation = "toastOut 0.4s forwards";
-
                 setTimeout(() => {
                     overlay.remove();
-                }, 250);
+                }, 300);
             }
-
         }, toastTime);
 
-        // MENÚ
-        function toggleMenu() {
 
+        // --- MENÚ DESPLEGABLE (MOBILE UI) ---
+        function toggleMenu() {
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
-            const menuBtn = document.querySelector('.menu-toggle');
 
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
 
+            // Bloquear scroll de la pantalla si el menú está abierto en móvil
             if (sidebar.classList.contains('active')) {
-
-                menuBtn.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-
             } else {
-
-                menuBtn.style.display = 'flex';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        // RESETEAR MENÚ
-        window.addEventListener('resize', () => {
 
+        // --- RESETEAR ESTADOS AL REDIMENSIONAR PANTALLA ---
+        window.addEventListener('resize', () => {
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
-            const menuBtn = document.querySelector('.menu-toggle');
 
             if (window.innerWidth > 992) {
-
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
-                menuBtn.style.display = 'none';
                 document.body.style.overflow = 'auto';
-
-            } else {
-
-                menuBtn.style.display = 'flex';
             }
         });
     </script>

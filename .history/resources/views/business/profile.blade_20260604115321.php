@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -19,11 +17,28 @@
             padding: 0;
         }
 
+        :root {
+            --primary: #0052cc;
+            --primary-hover: #0043a4;
+            --primary-light: #e6f0ff;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #f9fafb;
-            color: #1f2937;
+            background: var(--bg-main);
+            color: var(--text-main);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -34,71 +49,87 @@
         /* ================= SIDEBAR ================= */
 
         .sidebar {
-            width: 260px;
-            background: #fff;
-            border-right: 1px solid #ececec;
-            padding: 28px 22px;
+            width: 280px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.35s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
         }
 
         .sidebar h2 {
-            text-align: center;
-            color: #c9a227;
-            letter-spacing: 3px;
-            font-weight: 700;
-            font-size: 24px;
+            text-align: left;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            font-size: 22px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .sidebar h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 25%;
+            height: 50%;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
         .menu {
-            margin-top: 45px;
+            margin-top: 40px;
         }
 
         .menu a {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 15px 16px;
-            margin-bottom: 12px;
-            border-radius: 14px;
+            gap: 12px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-radius: var(--radius-md);
             text-decoration: none;
-            color: #4b5563;
+            color: var(--text-muted);
             font-size: 15px;
-            font-weight: 500;
-            transition: 0.25s ease;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         .menu a:hover {
-            background: #fff7df;
-            color: #c9a227;
-            transform: translateX(3px);
+            background: var(--primary-light);
+            color: var(--primary);
         }
 
         .logout-btn {
             width: 100%;
-            background: #c9a227;
+            background: #f1f5f9;
             border: none;
-            padding: 15px;
-            border-radius: 14px;
-            color: white;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            color: #ef4444;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .logout-btn:hover {
-            background: #a8831f;
+            background: #fee2e2;
         }
 
         /* ================= MAIN ================= */
 
         .main {
             flex: 1;
-            padding: 40px;
+            padding: 48px;
             overflow-y: auto;
             position: relative;
         }
@@ -107,14 +138,15 @@
 
         .cover {
             position: relative;
+            margin-bottom: 32px;
         }
 
         .cover-img {
             width: 100%;
-            height: 360px;
-            border-radius: 28px;
+            height: 320px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-md);
         }
 
         .cover-img img {
@@ -129,62 +161,74 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 360px;
-            border-radius: 28px;
-            background: linear-gradient(to top,
-                    rgba(0, 0, 0, 0.7),
-                    rgba(0, 0, 0, 0.15),
-                    transparent);
+            height: 320px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.1));
         }
 
         .profile-img {
             position: absolute;
-            bottom: -65px;
-            left: 45px;
+            bottom: -45px;
+            left: 48px;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
         .profile-img img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 6px solid white;
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-md);
+            border: 4px solid var(--bg-card);
             object-fit: cover;
-            background: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-lg);
         }
 
         .profile-img a {
-            display: block;
+            display: inline-block;
             text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #444;
+            font-size: 13px;
+            color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
         }
 
         .profile-img a:hover {
-            color: #c9a227;
+            background: var(--primary);
+            color: white;
         }
 
         .edit-cover {
             position: absolute;
-            bottom: 22px;
-            right: 22px;
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(10px);
-            padding: 12px 18px;
-            border-radius: 14px;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
             cursor: pointer;
             color: white;
             font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s ease;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .edit-cover:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
         }
 
         /* ================= GRID ================= */
@@ -192,34 +236,49 @@
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-top: 95px;
+            gap: 32px;
+            margin-top: 80px;
         }
 
         /* ================= CARD ================= */
 
         .card {
-            background: white;
-            border-radius: 24px;
-            border: 1px solid #ededed;
-            padding: 35px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
         }
 
         .card h2 {
-            font-size: 30px;
-            margin-bottom: 12px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .card h3 {
-            margin-bottom: 22px;
-            color: #c9a227;
-            font-size: 24px;
+            margin-bottom: 24px;
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 700;
         }
 
         .card p {
-            color: #6b7280;
-            line-height: 1.7;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
         }
 
         /* ================= BOTONES ================= */
@@ -228,36 +287,44 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #c9a227;
+            background: var(--primary);
             color: white;
-            padding: 14px 22px;
-            border-radius: 14px;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
             text-decoration: none;
             font-weight: 600;
+            font-size: 15px;
             border: none;
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.15);
         }
 
         .btn:hover {
-            background: #aa861d;
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 82, 204, 0.2);
         }
 
         /* ================= INPUT ================= */
 
         .input {
             width: 100%;
-            padding: 15px;
-            border-radius: 14px;
-            border: 1px solid #ddd;
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: #f8fafc;
             outline: none;
-            font-size: 16px;
-            transition: 0.3s ease;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--text-main);
+            transition: all 0.2s ease;
         }
 
         .input:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            background: var(--bg-card);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.1);
         }
 
         /* ================= HAMBURGUESA ================= */
@@ -265,18 +332,18 @@
         .menu-toggle {
             display: none;
             position: fixed;
-            top: 18px;
-            left: 18px;
-            width: 52px;
-            height: 52px;
-            border: none;
-            border-radius: 14px;
-            background: #c9a227;
-            color: white;
-            font-size: 20px;
+            top: 20px;
+            left: 20px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 18px;
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: var(--shadow-md);
         }
 
         /* ================= CERRAR ================= */
@@ -284,13 +351,18 @@
         .close-menu {
             display: none;
             position: absolute;
-            top: 18px;
-            right: 18px;
-            background: none;
+            top: 24px;
+            right: 24px;
+            background: #f1f5f9;
             border: none;
-            font-size: 24px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 16px;
             cursor: pointer;
-            color: #444;
+            color: var(--text-muted);
+            align-items: center;
+            justify-content: center;
         }
 
         /* ================= OVERLAY ================= */
@@ -298,11 +370,12 @@
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 999;
         }
 
@@ -311,10 +384,9 @@
             visibility: visible;
         }
 
-        /* ================= TABLET ================= */
+        /* ================= RESPONSIVE TABLET ================= */
 
         @media (max-width: 992px) {
-
             .menu-toggle {
                 display: flex;
                 align-items: center;
@@ -324,10 +396,10 @@
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -280px;
-                width: 260px;
+                left: -300px;
+                width: 280px;
                 height: 100%;
-                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+                box-shadow: var(--shadow-lg);
             }
 
             .sidebar.active {
@@ -335,50 +407,45 @@
             }
 
             .close-menu {
-                display: block;
+                display: flex;
             }
 
             .main {
-                padding: 90px 22px 30px;
+                padding: 96px 24px 40px;
             }
 
             .cover-img,
             .cover-overlay {
-                height: 300px;
+                height: 260px;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+                gap: 24px;
             }
 
             .card {
-                padding: 28px;
-            }
-
-            .profile-img {
-                left: 25px;
+                padding: 32px;
             }
         }
 
-        /* ================= MÓVIL ================= */
+        /* ================= RESPONSIVE MÓVIL ================= */
 
         @media (max-width: 600px) {
-
             .main {
-                padding: 85px 14px 25px;
+                padding: 88px 16px 32px;
             }
 
             .cover-img,
             .cover-overlay {
-                height: 230px;
-                border-radius: 22px;
+                height: 200px;
+                border-radius: var(--radius-md);
             }
 
             .profile-img {
-                left: 40px;
-                transform: none;
-                bottom: -55px;
-                text-align: left;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -60px;
             }
 
             .profile-img img {
@@ -387,54 +454,32 @@
             }
 
             .edit-cover {
-                right: 12px;
-                bottom: 12px;
-                padding: 10px 14px;
+                right: 16px;
+                bottom: 16px;
+                padding: 8px 14px;
                 font-size: 13px;
             }
 
             .grid {
-                margin-top: 85px;
+                margin-top: 90px;
                 gap: 20px;
             }
 
             .card {
-                padding: 22px;
-                border-radius: 20px;
-                text-align: center;
+                padding: 24px;
+                border-radius: var(--radius-md);
             }
 
             .card h2 {
-                font-size: 25px;
+                font-size: 24px;
             }
 
             .card h3 {
-                font-size: 22px;
-            }
-
-            .card p {
-                font-size: 14px;
+                font-size: 18px;
             }
 
             .btn {
                 width: 100%;
-                padding: 14px;
-            }
-
-            .menu a {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .logout-btn {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .menu-toggle {
-                width: 48px;
-                height: 48px;
-                font-size: 18px;
             }
         }
     </style>
@@ -442,25 +487,20 @@
 
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
-        <!-- SIDEBAR -->
         <div class="sidebar">
 
-            <!-- BOTÓN CERRAR -->
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
 
             <div>
-
                 <h2>BUSINESS</h2>
 
                 <div class="menu">
-
                     <a href="/business">
                         <i class="fas fa-chart-line"></i>
                         Dashboard
@@ -480,9 +520,7 @@
                         <i class="fas fa-boxes"></i>
                         Gestión de Producto
                     </a>
-
                 </div>
-
             </div>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
@@ -491,23 +529,18 @@
 
             <button class="logout-btn"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar sesión
-
             </button>
 
         </div>
 
-        <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- PORTADA -->
             <div class="cover">
 
                 <div class="cover-img">
@@ -518,17 +551,14 @@
                 <div class="cover-overlay"></div>
 
                 <div class="profile-img">
-
                     @if (Auth::user()->qr_path)
                         <img src="{{ asset('storage/' . Auth::user()->qr_path) }}" alt="QR de {{ Auth::user()->slug }}">
-
                         <a href="#" id="downloadQr">
                             Descargar QR
                         </a>
                     @else
                         <img src="https://via.placeholder.com/150" alt="QR no disponible">
                     @endif
-
                 </div>
 
                 <label for="uploadImage" class="edit-cover">
@@ -538,103 +568,67 @@
 
             </div>
 
-            <!-- CONTENIDO -->
             <div class="grid">
 
-                <!-- INFO -->
                 <div class="card">
-
                     <h2>{{ Auth::user()->name }}</h2>
+                    <p>Perfil activo • Negocio digital 🚀</p>
 
-                    <p>
-                        Perfil activo • Negocio digital 🚀
-                    </p>
-
-                    <div style="margin-top:25px;">
-
+                    <div style="margin-top:24px;">
                         <a href="/{{ Auth::user()->slug }}" target="_blank" class="btn">
                             Ver mi página
                         </a>
-
                     </div>
-
                 </div>
 
-                <!-- FORM -->
                 <div class="card">
-
                     <h3>Actualizar imagen</h3>
 
                     <form action="/business/profile/image" method="POST" enctype="multipart/form-data">
-
                         @csrf
-
                         <input id="uploadImage" type="file" name="image" required class="input">
 
                         <button type="submit" class="btn" style="margin-top:20px; width:100%;">
-
                             Guardar cambios
-
                         </button>
-
                     </form>
-
                 </div>
 
-                <!-- INFO NEGOCIO -->
                 <div class="card">
-
                     <h3>Información del negocio</h3>
 
                     <form action="/business/info" method="POST">
-
                         @csrf
 
-                        <!-- WHATSAPP -->
-                        <div style="margin-bottom:18px;">
-
+                        <div style="margin-bottom:20px;">
                             <label style="display:block; margin-bottom:8px;">
                                 WhatsApp
                             </label>
-
                             <input type="text" name="whatsapp" class="input" placeholder="5219610000000"
                                 value="{{ Auth::user()->whatsapp }}">
-
                         </div>
 
-                        <!-- MAPA -->
-                        <div style="margin-bottom:18px;">
-
+                        <div style="margin-bottom:20px;">
                             <label style="display:block; margin-bottom:8px;">
                                 URL Google Maps Embed
                             </label>
-
                             <input type="text" name="map_url" class="input"
                                 placeholder="https://www.google.com/maps/embed?pb=..."
                                 value="{{ Auth::user()->map_url }}">
-
                         </div>
 
-                        <!-- HORARIO -->
-                        <div style="margin-bottom:18px;">
-
+                        <div style="margin-bottom:20px;">
                             <label style="display:block; margin-bottom:8px;">
                                 Horario
                             </label>
-
-                            <textarea name="schedule" class="input" rows="5" placeholder="Lunes a Domingo de 8:00 AM a 10:00 PM"
+                            <textarea name="schedule" class="input" rows="4" placeholder="Lunes a Domingo de 8:00 AM a 10:00 PM"
                                 style="resize:none;">{{ Auth::user()->schedule }}</textarea>
-
                         </div>
 
                         <button type="submit" class="btn" style="width:100%;">
-
                             Guardar información
-
                         </button>
-
                     </form>
-
                 </div>
 
             </div>
@@ -670,40 +664,29 @@
                     const systemFont = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
                     const drawCanvasContent = () => {
-                        // ==========================================
-                        // 1. EFECTO CRISTAL (Glassmorphism de fondo)
-                        // ==========================================
                         ctx.save();
-                        // Sombra exterior muy suave para separar la tarjeta del fondo real
                         ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
                         ctx.shadowBlur = 60;
                         ctx.shadowOffsetY = 20;
 
-                        // Capa translúcida que deja ver el fondo de manera elegante
                         ctx.fillStyle = "rgba(20, 15, 10, 0.45)";
                         roundRect(ctx, 100, 100, 1000, 1400, 30);
                         ctx.restore();
 
-                        // Borde fino dorado/brillante del cristal
                         ctx.strokeStyle = "rgba(212, 175, 55, 0.25)";
                         ctx.lineWidth = 3;
                         ctx.stroke();
 
-                        // ==========================================
-                        // 2. TÍTULO EN ORO METÁLICO (Gradiente y Relieve)
-                        // ==========================================
                         ctx.textAlign = "center";
                         const titleX = canvas.width / 2;
                         const titleY = 250;
 
-                        // Gradiente de oro de 4 pasos (simula reflejo metálico)
                         const goldGlow = ctx.createLinearGradient(0, titleY - 60, 0, titleY + 20);
-                        goldGlow.addColorStop(0, '#FFF3D1'); // Brillo máximo
-                        goldGlow.addColorStop(0.3, '#D4AF37'); // Oro base
-                        goldGlow.addColorStop(0.6, '#AA7C11'); // Sombra oro
-                        goldGlow.addColorStop(1, '#E6CA65'); // Reflejo inferior
+                        goldGlow.addColorStop(0, '#FFF3D1');
+                        goldGlow.addColorStop(0.3, '#D4AF37');
+                        goldGlow.addColorStop(0.6, '#AA7C11');
+                        goldGlow.addColorStop(1, '#E6CA65');
 
-                        // Sombra del título para separarlo del fondo
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
                         ctx.shadowBlur = 15;
@@ -714,62 +697,45 @@
                         ctx.fillText("{{ Auth::user()->name }}", titleX, titleY);
                         ctx.restore();
 
-                        // Subtítulo estilizado
                         ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
                         ctx.font = `600 30px ${systemFont}`;
                         ctx.letterSpacing = "6px";
                         ctx.fillText("MENÚ DIGITAL", titleX, titleY + 75);
 
-                        // Adorno lineal dorado bajo el subtítulo
                         ctx.fillStyle = "#D4AF37";
                         roundRect(ctx, titleX - 100, titleY + 110, 200, 3, 2);
 
-                        // ==========================================
-                        // 3. MARCO DE QR DE LUJO Y CÓDIGO QR
-                        // ==========================================
                         const qrBoxX = 260;
                         const qrBoxY = 500;
                         const qrBoxSize = 680;
 
-                        // Sombra masiva para el contenedor del QR (Le da volumen 3D)
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
                         ctx.shadowBlur = 40;
                         ctx.shadowOffsetY = 15;
 
-                        // Marco exterior dorado grueso
                         ctx.fillStyle = "#AA7C11";
                         roundRect(ctx, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24);
 
-                        // Interior del marco (Contraste blanco puro para que el QR sea 100% escaneable)
                         ctx.fillStyle = "#FFFFFF";
                         roundRect(ctx, qrBoxX + 15, qrBoxY + 15, qrBoxSize - 30, qrBoxSize - 30, 16);
                         ctx.restore();
 
-                        // Esquinas interiores doradas (Estilo filigrana geométrica del render)
                         ctx.fillStyle = "#D4AF37";
                         const pad = 35;
-                        // Superior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 40, 6);
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 6, 40);
-                        // Superior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + pad, 40, 6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + pad, 6, 40);
-                        // Inferior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 6, 40, 6);
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 40, 6, 40);
-                        // Inferior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + qrBoxSize - pad - 6, 40,
-                            6);
+                        6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + qrBoxSize - pad - 40, 6,
-                            40);
+                        40);
 
-                        // Dibujar el QR centrado a la perfección
                         ctx.drawImage(img, qrBoxX + 65, qrBoxY + 65, qrBoxSize - 130, qrBoxSize - 130);
 
-                        // ==========================================
-                        // 4. CTA Y ELEMENTOS INFERIORES
-                        // ==========================================
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
                         ctx.shadowBlur = 10;
@@ -780,7 +746,6 @@
                         ctx.fillText("Escanea el código QR", titleX, 1260);
                         ctx.restore();
 
-                        // Píldora de la URL estilizada
                         ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
                         roundRect(ctx, 250, 1310, 700, 60, 30);
                         ctx.strokeStyle = "rgba(212, 175, 55, 0.3)";
@@ -790,7 +755,6 @@
                         ctx.font = `500 24px ${systemFont}`;
                         ctx.fillText("{{ url('/' . Auth::user()->slug) }}", titleX, 1348);
 
-                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico
                         ctx.save();
                         ctx.shadowColor = "rgba(0,0,0,0.4)";
                         ctx.shadowBlur = 20;
@@ -805,15 +769,11 @@
                         roundRect(ctx, 350, 1410, 500, 80, 40);
                         ctx.restore();
 
-                        // Texto del botón
                         ctx.fillStyle = "#FFFFFF";
                         ctx.font = `bold 30px ${systemFont}`;
                         ctx.letterSpacing = "2px";
                         ctx.fillText("ESCANEA Y VISÍTANOS", titleX, 1460);
 
-                        // ==========================================
-                        // 5. EJECUTAR DESCARGA
-                        // ==========================================
                         URL.revokeObjectURL(url);
                         const pngUrl = canvas.toDataURL('image/png');
                         const downloadLink = document.createElement('a');
@@ -826,18 +786,13 @@
                         document.body.removeChild(downloadLink);
                     };
 
-                    // Loader y render del fondo
                     if (coverUrl) {
                         const cover = new Image();
                         cover.crossOrigin = "anonymous";
                         cover.onload = function() {
-                            // Dibujar la imagen de fondo completa
                             ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
-
-                            // Capa oscura ambiental cálida para unificar el fondo con los dorados
                             ctx.fillStyle = "rgba(18, 12, 5, 0.55)";
                             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
                             drawCanvasContent();
                         };
                         cover.onerror = function() {
@@ -859,7 +814,6 @@
             }
         });
 
-        // Fondo alternativo lujoso por si no hay imagen de fondo activa
         function drawDefaultBackground(ctx, canvas) {
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, '#110D08');
@@ -869,7 +823,6 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        // Función modificada para soportar fill y stroke sin perder el path
         function roundRect(ctx, x, y, width, height, radius) {
             ctx.beginPath();
             ctx.moveTo(x + radius, y);
@@ -888,7 +841,6 @@
 
     <script>
         function toggleMenu() {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
@@ -897,34 +849,28 @@
             overlay.classList.toggle('active');
 
             if (sidebar.classList.contains('active')) {
-
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-
             } else {
-
                 menuBtn.style.display = 'flex';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        // CERRAR MENÚ AUTOMÁTICAMENTE
         window.addEventListener('resize', () => {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
 
             if (window.innerWidth > 992) {
-
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'auto';
-
             } else {
-
-                menuBtn.style.display = 'flex';
+                if (!sidebar.classList.contains('active')) {
+                    menuBtn.style.display = 'flex';
+                }
             }
         });
     </script>

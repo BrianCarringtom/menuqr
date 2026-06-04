@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
-    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -21,8 +19,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f4f6f9;
-            color: #1f2937;
+            background: #090d16;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(108, 92, 231, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 206, 201, 0.15) 0px, transparent 50%);
+            color: #e2e8f0;
             overflow-x: hidden;
         }
 
@@ -35,8 +36,9 @@
 
         .sidebar {
             width: 260px;
-            background: white;
-            border-right: 1px solid #ececec;
+            background: rgba(15, 23, 42, 0.8);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
             padding: 28px 22px;
             display: flex;
             flex-direction: column;
@@ -47,9 +49,10 @@
 
         .sidebar h2 {
             text-align: center;
-            color: #c9a227;
+            color: #00ce01;
+            text-shadow: 0 0 10px rgba(0, 206, 201, 0.3);
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             font-size: 24px;
         }
 
@@ -65,33 +68,41 @@
             margin-bottom: 12px;
             border-radius: 14px;
             text-decoration: none;
-            color: #4b5563;
+            color: #94a3b8;
             font-size: 15px;
             font-weight: 500;
             transition: all 0.25s ease;
+            border: 1px solid transparent;
         }
 
         .menu a:hover {
-            background: #fff7df;
-            color: #c9a227;
-            transform: translateX(3px);
+            background: rgba(108, 92, 231, 0.15);
+            color: #00ce01;
+            border-color: rgba(0, 206, 201, 0.3);
+            transform: translateX(5px);
         }
 
         .logout-btn {
             width: 100%;
-            background: #c9a227;
-            border: none;
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(220, 38, 38, 0.4);
             padding: 15px;
             border-radius: 14px;
-            color: white;
-            font-weight: 600;
+            color: #ef4444;
+            weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .logout-btn:hover {
-            background: #aa861d;
+            background: #dc2626;
+            color: white;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
         }
 
         /* ================= MAIN ================= */
@@ -112,34 +123,37 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            background: white;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
             padding: 22px 24px;
             border-radius: 22px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         .header h1 {
             margin: 0;
             font-size: 32px;
             font-weight: 700;
-            color: #111827;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
             margin-top: 6px;
-            color: #6b7280;
+            color: #94a3b8;
             font-size: 15px;
         }
 
         .header-box {
             font-size: 15px;
-            color: #374151;
-            background: #f9fafb;
+            color: #00ce01;
+            background: rgba(0, 206, 201, 0.1);
             padding: 12px 18px;
             border-radius: 14px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(0, 206, 201, 0.3);
             white-space: nowrap;
+            box-shadow: 0 0 10px rgba(0, 206, 201, 0.1);
         }
 
         /* ================= GRID ================= */
@@ -153,11 +167,18 @@
         /* ================= CARDS ================= */
 
         .box {
-            background: white;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
             border-radius: 22px;
             padding: 28px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .box:hover {
+            border-color: rgba(108, 92, 231, 0.4);
+            transform: translateY(-2px);
         }
 
         .box-header {
@@ -170,23 +191,23 @@
         .box-header h3 {
             margin: 0;
             font-size: 24px;
-            color: #111827;
+            color: white;
             font-weight: 700;
         }
 
         .icon-box {
             width: 44px;
             height: 44px;
-            background: #f9fafb;
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #eee;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .box p {
-            color: #6b7280;
+            color: #94a3b8;
             font-size: 15px;
             margin-bottom: 22px;
             line-height: 1.6;
@@ -204,18 +225,30 @@
             width: 100%;
             padding: 15px;
             border-radius: 14px;
-            border: 1px solid #d1d5db;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             font-size: 15px;
-            background: #fafafa;
+            background: rgba(9, 13, 22, 0.6);
+            color: white;
             outline: none;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #64748b;
         }
 
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+            border-color: #00ce01;
+            box-shadow: 0 0 0 4px rgba(0, 206, 201, 0.15);
+            background: rgba(9, 13, 22, 0.9);
+        }
+
+        select option {
+            background: #0f172a;
+            color: white;
         }
 
         textarea {
@@ -225,7 +258,7 @@
         /* ================= BOTONES ================= */
 
         .btn-gold {
-            background: #c9a227;
+            background: linear-gradient(135deg, #6c5ce7, #00ce01);
             color: white;
             border: none;
             border-radius: 14px;
@@ -234,11 +267,13 @@
             cursor: pointer;
             transition: all 0.25s ease;
             padding: 15px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .btn-gold:hover {
-            background: #b8911f;
-            box-shadow: 0 10px 20px rgba(201, 162, 39, 0.28);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 20px rgba(0, 206, 201, 0.3);
+            transform: translateY(-1px);
         }
 
         .btn-gold:active {
@@ -253,14 +288,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.18);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
             z-index: 9999;
         }
 
         #toast {
-            background: white;
-            color: #111827;
+            background: #0f172a;
+            color: white;
             padding: 20px 28px;
             border-radius: 18px;
             font-size: 16px;
@@ -268,14 +303,16 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
-            border-left: 6px solid #16a34a;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-left: 6px solid #22c55e;
             animation: toastIn 0.4s ease;
         }
 
         #toast i {
-            color: #16a34a;
+            color: #22c55e;
             font-size: 24px;
+            filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.4));
         }
 
         @keyframes toastIn {
@@ -306,14 +343,17 @@
             left: 18px;
             width: 52px;
             height: 52px;
-            border: none;
+            border: 1px solid rgba(0, 206, 201, 0.3);
             border-radius: 14px;
-            background: #c9a227;
-            color: white;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            color: #00ce01;
             font-size: 20px;
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            align-items: center;
+            justify-content: center;
         }
 
         /* ================= CERRAR ================= */
@@ -327,7 +367,11 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            color: #444;
+            color: #64748b;
+        }
+
+        .close-menu:hover {
+            color: white;
         }
 
         /* ================= OVERLAY ================= */
@@ -335,8 +379,8 @@
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
             transition: 0.3s ease;
@@ -354,8 +398,6 @@
 
             .menu-toggle {
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
 
             .sidebar {
@@ -364,7 +406,8 @@
                 left: -280px;
                 width: 260px;
                 height: 100%;
-                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+                background: #0f172a;
+                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
             }
 
             .sidebar.active {
@@ -438,7 +481,7 @@
             input,
             select,
             textarea {
-                font-size: 16px;
+                font-size: 14px;
                 padding: 14px;
             }
 
@@ -475,12 +518,10 @@
 
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
-        <!-- SIDEBAR -->
         <div class="sidebar">
 
             <button class="close-menu" onclick="toggleMenu()">
@@ -531,15 +572,12 @@
 
         </div>
 
-        <!-- MAIN -->
         <div class="main">
 
-            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- HEADER -->
             <div class="header">
 
                 <div>
@@ -549,7 +587,7 @@
 
                 <div class="header-box">
 
-                    <i class="fas fa-crown" style="color:#c9a227;"></i>
+                    <i class="fas fa-crown" style="color:#00ce01;"></i>
 
                     Plan:
                     {{ ucfirst(auth()->user()->plan) }}
@@ -558,7 +596,6 @@
 
             </div>
 
-            <!-- TOAST -->
             @if (session('success'))
                 <div id="toast-overlay">
                     <div id="toast">
@@ -570,17 +607,15 @@
 
             @if (session('error'))
                 <div id="toast-overlay">
-                    <div id="toast" style="border-left:6px solid #dc2626;">
+                    <div id="toast" style="border-left:6px solid #dc2626; border-color: rgba(220,38,38,0.3);">
                         <i class="fas fa-triangle-exclamation" style="color:#dc2626;"></i>
                         <span>{{ session('error') }}</span>
                     </div>
                 </div>
             @endif
 
-            <!-- GRID -->
             <div class="grid">
 
-                <!-- CATEGORÍA -->
                 <div class="box">
 
                     <div class="box-header">
@@ -588,7 +623,7 @@
                         <h3>Categorías</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-folder" style="color:#c9a227;"></i>
+                            <i class="fas fa-folder" style="color:#00ce01;"></i>
                         </div>
 
                     </div>
@@ -601,10 +636,8 @@
 
                         @csrf
 
-                        <!-- NOMBRE -->
                         <input type="text" name="category" placeholder="Nombre de la categoría" required>
 
-                        <!-- IMAGEN -->
                         <input type="file" name="image" accept="image/*" required>
 
                         <button type="submit" class="btn-gold" style="margin-top:10px;">
@@ -617,7 +650,6 @@
 
                 </div>
 
-                <!-- PRODUCTO -->
                 <div class="box">
 
                     <div class="box-header">
@@ -625,7 +657,7 @@
                         <h3>Productos</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-box" style="color:#c9a227;"></i>
+                            <i class="fas fa-box" style="color:#00ce01;"></i>
                         </div>
 
                     </div>
