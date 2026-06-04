@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Dashboard</title>
 
+    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -45,7 +47,7 @@
 
         .sidebar h2 {
             text-align: center;
-            color: #1520A6;
+            color: #c9a227;
             font-weight: 700;
             letter-spacing: 3px;
             font-size: 24px;
@@ -70,14 +72,14 @@
         }
 
         .menu a:hover {
-            background: #eef0fa;
-            color: #1520A6;
+            background: #fff7df;
+            color: #c9a227;
             transform: translateX(3px);
         }
 
         .logout-btn {
             width: 100%;
-            background: #1520A6;
+            background: #c9a227;
             border: none;
             padding: 15px;
             border-radius: 14px;
@@ -89,7 +91,7 @@
         }
 
         .logout-btn:hover {
-            background: #0f187d;
+            background: #aa861d;
         }
 
         /* ================= MAIN ================= */
@@ -212,8 +214,8 @@
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #1520A6;
-            box-shadow: 0 0 0 4px rgba(21, 32, 166, 0.12);
+            border-color: #c9a227;
+            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
         }
 
         textarea {
@@ -223,7 +225,7 @@
         /* ================= BOTONES ================= */
 
         .btn-gold {
-            background: #1520A6;
+            background: #c9a227;
             color: white;
             border: none;
             border-radius: 14px;
@@ -235,8 +237,8 @@
         }
 
         .btn-gold:hover {
-            background: #0f187d;
-            box-shadow: 0 10px 20px rgba(21, 32, 166, 0.28);
+            background: #b8911f;
+            box-shadow: 0 10px 20px rgba(201, 162, 39, 0.28);
         }
 
         .btn-gold:active {
@@ -306,7 +308,7 @@
             height: 52px;
             border: none;
             border-radius: 14px;
-            background: #1520A6;
+            background: #c9a227;
             color: white;
             font-size: 20px;
             cursor: pointer;
@@ -473,10 +475,12 @@
 
 <body>
 
+    <!-- OVERLAY -->
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <div class="container">
 
+        <!-- SIDEBAR -->
         <div class="sidebar">
 
             <button class="close-menu" onclick="toggleMenu()">
@@ -527,12 +531,15 @@
 
         </div>
 
+        <!-- MAIN -->
         <div class="main">
 
+            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
+            <!-- HEADER -->
             <div class="header">
 
                 <div>
@@ -542,7 +549,7 @@
 
                 <div class="header-box">
 
-                    <i class="fas fa-crown" style="color:#1520A6;"></i>
+                    <i class="fas fa-crown" style="color:#c9a227;"></i>
 
                     Plan:
                     {{ ucfirst(auth()->user()->plan) }}
@@ -551,6 +558,7 @@
 
             </div>
 
+            <!-- TOAST -->
             @if (session('success'))
                 <div id="toast-overlay">
                     <div id="toast">
@@ -569,8 +577,10 @@
                 </div>
             @endif
 
+            <!-- GRID -->
             <div class="grid">
 
+                <!-- CATEGORÍA -->
                 <div class="box">
 
                     <div class="box-header">
@@ -578,7 +588,7 @@
                         <h3>Categorías</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-folder" style="color:#1520A6;"></i>
+                            <i class="fas fa-folder" style="color:#c9a227;"></i>
                         </div>
 
                     </div>
@@ -591,8 +601,10 @@
 
                         @csrf
 
+                        <!-- NOMBRE -->
                         <input type="text" name="category" placeholder="Nombre de la categoría" required>
 
+                        <!-- IMAGEN -->
                         <input type="file" name="image" accept="image/*" required>
 
                         <button type="submit" class="btn-gold" style="margin-top:10px;">
@@ -605,6 +617,7 @@
 
                 </div>
 
+                <!-- PRODUCTO -->
                 <div class="box">
 
                     <div class="box-header">
@@ -612,7 +625,7 @@
                         <h3>Productos</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-box" style="color:#1520A6;"></i>
+                            <i class="fas fa-box" style="color:#c9a227;"></i>
                         </div>
 
                     </div>

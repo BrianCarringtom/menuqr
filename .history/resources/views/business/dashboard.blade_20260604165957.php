@@ -97,7 +97,7 @@
             background: #0f177a;
         }
 
-        /* ================= MAIN ================= */
+        /* ================= MAIN (ESTRUCTURA MEJORADA) ================= */
 
         .main {
             flex: 1;
@@ -106,115 +106,107 @@
             justify-content: center;
             padding: 40px;
             position: relative;
+            background: #f3f4f6;
         }
 
-        /* ================= WELCOME ================= */
+        /* ================= WELCOME BOX (MODERNO Y GENIAL) ================= */
 
         .welcome-box {
             position: relative;
             width: 100%;
-            max-width: 1100px;
-            min-height: 650px;
-            border-radius: 32px;
+            max-width: 1050px;
+            height: 80vh;
+            min-height: 600px;
+            border-radius: 24px;
             overflow: hidden;
-            background: #000;
-            box-shadow: 0 25px 60px rgba(21, 32, 166, 0.15), 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Imagen adaptada estilo Banner Hero */
         .welcome-box img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Cambiado a cover para que llene el contenedor con estilo */
-            position: absolute;
-            inset: 0;
-            display: block;
-            background: #000;
+            object-position: center;
+            z-index: 1;
         }
 
-        /* OSCURECER CON DEGRADADO EN ENFOQUE */
+        /* Overlay oscuro y elegante */
         .welcome-overlay {
             position: absolute;
             inset: 0;
-            z-index: 1;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.85) 0%,
-                    rgba(0, 0, 0, 0.50) 50%,
-                    rgba(21, 32, 166, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+            z-index: 2;
         }
 
-        /* CONTENIDO OPTIMIZADO Y ESPACIADO */
+        /* Contenedor de contenido estilo Glassmorphism */
         .welcome-content {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-
+            position: relative;
+            z-index: 3;
+            width: 90%;
+            max-width: 620px;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
-            text-align: center;
-            padding: 60px 40px;
-            /* Más espacio interno */
-            color: white;
         }
 
         .welcome-content h1 {
-            font-size: 58px;
+            font-size: 42px;
             font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
             line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .welcome-content h2 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #ffffff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 24px;
-            font-weight: 700;
-            padding: 6px 20px;
-            background-color: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            text-shadow: none;
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-weight: 500;
+            opacity: 0.95;
         }
 
         .welcome-content p {
-            max-width: 600px;
-            font-size: 18px;
-            line-height: 1.8;
+            font-size: 16px;
+            line-height: 1.6;
             color: rgba(255, 255, 255, 0.85);
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 28px;
         }
 
-        /* BOTÓN MODERNO PREMIUM */
+        /* Botón Estilizado y Pulido */
         .welcome-btn {
-            margin-top: 35px;
-            padding: 14px 36px;
-            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 32px;
+            border-radius: 12px;
             background: #ffffff;
-            border: 1px solid #ffffff;
             color: #1520A6;
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
-            letter-spacing: 0.3px;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .welcome-btn:hover {
-            background: transparent;
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+            background: #f3f4f6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         /* ================= BOTÓN HAMBURGUESA ================= */
@@ -268,10 +260,9 @@
             visibility: visible;
         }
 
-        /* ================= TABLET ================= */
+        /* ================= RESPONSIVE DESIGN (TABLET Y MÓVIL) ================= */
 
         @media (max-width: 992px) {
-
             .menu-toggle {
                 display: flex;
                 align-items: center;
@@ -297,12 +288,12 @@
 
             .main {
                 width: 100%;
-                padding: 90px 22px 30px;
+                padding: 90px 20px 30px;
             }
 
             .welcome-box {
-                min-height: 580px;
-                border-radius: 26px;
+                height: 70vh;
+                min-height: 500px;
             }
 
             .welcome-content {
@@ -310,58 +301,48 @@
             }
 
             .welcome-content h1 {
-                font-size: 44px;
-            }
-
-            .welcome-content h2 {
-                font-size: 26px;
-            }
-
-            .welcome-content p {
-                font-size: 16px;
-            }
-        }
-
-        /* ================= MÓVIL ================= */
-
-        @media (max-width: 600px) {
-
-            .main {
-                padding: 85px 14px 22px;
-            }
-
-            .welcome-box {
-                min-height: 520px;
-                /* Ajustado para que quepa todo de manera fluida */
-                border-radius: 24px;
-            }
-
-            .welcome-content {
-                padding: 30px 20px;
-                justify-content: center;
-                /* Eliminado transform: translateY que causaba cortes visuales */
-            }
-
-            .welcome-content h1 {
-                font-size: 32px;
-                line-height: 1.2;
-                margin-bottom: 12px;
+                font-size: 34px;
             }
 
             .welcome-content h2 {
                 font-size: 22px;
-                margin-bottom: 20px;
-                padding: 4px 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main {
+                padding: 85px 12px 20px;
+            }
+
+            .welcome-box {
+                height: 75vh;
+                min-height: 460px;
+                border-radius: 18px;
+            }
+
+            .welcome-content {
+                width: 92%;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+
+            .welcome-content h1 {
+                font-size: 26px;
+            }
+
+            .welcome-content h2 {
+                font-size: 18px;
+                margin-bottom: 12px;
             }
 
             .welcome-content p {
-                font-size: 15px;
-                line-height: 1.6;
+                font-size: 14px;
+                line-height: 1.5;
+                margin-bottom: 20px;
             }
 
             .welcome-btn {
-                margin-top: 25px;
-                padding: 12px 28px;
+                padding: 10px 24px;
                 font-size: 14px;
             }
 
@@ -374,12 +355,6 @@
                 font-size: 14px;
                 padding: 14px;
             }
-
-            .menu-toggle {
-                width: 46px;
-                height: 46px;
-                font-size: 17px;
-            }
         }
     </style>
 </head>
@@ -391,37 +366,29 @@
     <div class="container">
 
         <div class="sidebar">
-
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
 
             <div>
-
                 <h2>BUSINESS</h2>
-
                 <div class="menu">
-
                     <a href="/business">
                         <i class="fas fa-chart-line"></i>
                         Dashboard
                     </a>
-
                     <a href="/business/profile">
                         <i class="fas fa-user"></i>
                         Perfil
                     </a>
-
                     <a href="/business/producto">
                         <i class="fas fa-file-alt"></i>
                         Producto-Categoria
                     </a>
-
                     <a href="/business/gestion">
                         <i class="fas fa-boxes"></i>
                         Gestion de Producto
                     </a>
-
                 </div>
             </div>
 
@@ -429,54 +396,39 @@
                 @csrf
             </form>
 
-            <button class="logout-btn"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-
+            <button class="logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar sesión
-
             </button>
-
         </div>
 
         <div class="main">
-
             <button class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
             <div class="welcome-box">
-
                 <img src="/images/bienvenido.png" alt="Negocio">
-
                 <div class="welcome-overlay"></div>
-
+                
                 <div class="welcome-content">
-
                     <h1>Bienvenido a tu panel</h1>
-
                     <h2>{{ auth()->user()->name }}</h2>
-
                     <p>
                         Gestiona tu negocio de forma profesional,
                         moderna y organizada desde un solo lugar.
                     </p>
-
                     <a href="/{{ auth()->user()->slug }}" class="welcome-btn">
                         Ver mi página
                     </a>
-
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
     <script>
         function toggleMenu() {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
@@ -485,37 +437,29 @@
             overlay.classList.toggle('active');
 
             if (sidebar.classList.contains('active')) {
-
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-
             } else {
-
                 menuBtn.style.display = 'flex';
                 document.body.style.overflow = 'auto';
             }
         }
 
         window.addEventListener('resize', () => {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
 
             if (window.innerWidth > 992) {
-
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'auto';
-
             } else {
-
                 menuBtn.style.display = 'flex';
             }
         });
     </script>
 
 </body>
-
 </html>

@@ -7,7 +7,6 @@
     <title>Business Dashboard</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -22,6 +21,7 @@
             background: #f9fafb;
             color: #1f2937;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -32,87 +32,115 @@
         /* ================= SIDEBAR ================= */
 
         .sidebar {
-            width: 260px;
+            width: 280px;
             background: #fff;
-            border-right: 1px solid #ececec;
-            padding: 28px 22px;
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             z-index: 1000;
         }
 
         .sidebar h2 {
             text-align: center;
             color: #1520A6;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             font-weight: 700;
-            font-size: 24px;
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .sidebar h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #1520A6, transparent);
         }
 
         .menu {
-            margin-top: 45px;
+            margin-top: 40px;
         }
 
         .menu a {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 15px 16px;
-            margin-bottom: 12px;
-            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-radius: 12px;
             text-decoration: none;
             color: #4b5563;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
-            transition: 0.25s ease;
+            transition: all 0.25s ease;
+        }
+
+        .menu a i {
+            font-size: 16px;
+            opacity: 0.8;
         }
 
         .menu a:hover {
             background: #eef0fc;
             color: #1520A6;
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
 
         .logout-btn {
             width: 100%;
             background: #1520A6;
             border: none;
-            padding: 15px;
-            border-radius: 14px;
+            padding: 14px;
+            border-radius: 12px;
             color: white;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(21, 32, 166, 0.15);
         }
 
         .logout-btn:hover {
             background: #0f177a;
+            box-shadow: 0 6px 20px rgba(21, 32, 166, 0.25);
+            transform: translateY(-1px);
         }
 
         /* ================= MAIN ================= */
 
         .main {
             flex: 1;
-            padding: 40px;
+            padding: 48px;
             overflow-y: auto;
             position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        /* ================= PORTADA ================= */
+        /* ================= PORTADA / COVER ================= */
 
         .cover {
             position: relative;
+            margin-bottom: 32px;
         }
 
         .cover-img {
             width: 100%;
-            height: 360px;
-            border-radius: 28px;
+            height: 340px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
         }
 
         .cover-img img {
@@ -120,6 +148,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .cover:hover .cover-img img {
+            transform: scale(1.02);
         }
 
         .cover-overlay {
@@ -127,97 +160,148 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 360px;
-            border-radius: 28px;
-            background: linear-gradient(to top,
-                    rgba(0, 0, 0, 0.7),
-                    rgba(0, 0, 0, 0.15),
-                    transparent);
+            height: 340px;
+            border-radius: 24px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
         }
 
         .profile-img {
             position: absolute;
-            bottom: -65px;
-            left: 45px;
+            bottom: -40px;
+            left: 40px;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
         .profile-img img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
             border: 6px solid white;
             object-fit: cover;
             background: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
         }
 
         .profile-img a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #444;
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #1f2937;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
         }
 
         .profile-img a:hover {
             color: #1520A6;
+            background: #fff;
+            transform: translateY(-2px);
         }
 
         .edit-cover {
             position: absolute;
-            bottom: 22px;
-            right: 22px;
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(10px);
-            padding: 12px 18px;
-            border-radius: 14px;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 18px;
+            border-radius: 12px;
             cursor: pointer;
             color: white;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s ease;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .edit-cover:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
         }
 
-        /* ================= GRID ================= */
+        /* ================= GRID ASIMÉTRICO (Estilo Bento 2026) ================= */
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-top: 95px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 70px;
         }
 
-        /* ================= CARD ================= */
+        /* Hacemos que la tarjeta de Información principal destaque más */
+        .grid .card:nth-child(3) {
+            grid-column: span 2;
+        }
+
+        /* ================= CARDS / TARJETAS ================= */
 
         .card {
             background: white;
             border-radius: 24px;
-            border: 1px solid #ededed;
-            padding: 35px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
         }
 
         .card h2 {
-            font-size: 30px;
-            margin-bottom: 12px;
+            font-size: 26px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
         }
 
         .card h3 {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             color: #1520A6;
-            font-size: 24px;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card p {
             color: #6b7280;
-            line-height: 1.7;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* ================= GRUPOS DE FORMULARIOS ================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4b5563;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* ================= BOTONES ================= */
@@ -228,79 +312,101 @@
             justify-content: center;
             background: #1520A6;
             color: white;
-            padding: 14px 22px;
-            border-radius: 14px;
+            padding: 14px 24px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 14px;
             border: none;
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(21, 32, 166, 0.1);
         }
 
         .btn:hover {
             background: #0f177a;
+            box-shadow: 0 6px 20px rgba(21, 32, 166, 0.2);
+            transform: translateY(-2px);
         }
 
-        /* ================= INPUT ================= */
+        /* ================= INPUTS & TEXTAREAS ================= */
 
         .input {
             width: 100%;
-            padding: 15px;
-            border-radius: 14px;
-            border: 1px solid #ddd;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
             outline: none;
-            font-size: 16px;
-            transition: 0.3s ease;
+            font-size: 15px;
+            color: #1f2937;
+            transition: all 0.25s ease;
+            font-family: inherit;
         }
 
         .input:focus {
+            background: #fff;
             border-color: #1520A6;
-            box-shadow: 0 0 0 4px rgba(21, 32, 166, 0.12);
+            box-shadow: 0 0 0 4px rgba(21, 32, 166, 0.08);
         }
 
-        /* ================= HAMBURGUESA ================= */
+        /* input tipo file estilización suave */
+        input[type="file"].input {
+            padding: 11px 16px;
+            cursor: pointer;
+        }
+
+        /* ================= COMPONENTES DE MENÚ MÓVIL ================= */
 
         .menu-toggle {
             display: none;
             position: fixed;
-            top: 18px;
-            left: 18px;
-            width: 52px;
-            height: 52px;
+            top: 20px;
+            left: 20px;
+            width: 48px;
+            height: 48px;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             background: #1520A6;
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 4px 14px rgba(21, 32, 166, 0.3);
+            transition: all 0.2s;
         }
-
-        /* ================= CERRAR ================= */
 
         .close-menu {
             display: none;
             position: absolute;
-            top: 18px;
-            right: 18px;
-            background: none;
+            top: 24px;
+            right: 24px;
+            background: #f3f4f6;
             border: none;
-            font-size: 24px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 16px;
             cursor: pointer;
-            color: #444;
+            color: #4b5563;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
         }
 
-        /* ================= OVERLAY ================= */
+        .close-menu:hover {
+            background: #e5e7eb;
+        }
 
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
+            background: rgba(17, 24, 39, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 999;
         }
 
@@ -309,10 +415,9 @@
             visibility: visible;
         }
 
-        /* ================= TABLET ================= */
+        /* ================= RESPONSIVE DESIGN (TABLETS) ================= */
 
         @media (max-width: 992px) {
-
             .menu-toggle {
                 display: flex;
                 align-items: center;
@@ -322,10 +427,10 @@
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -280px;
-                width: 260px;
+                left: -300px;
+                width: 280px;
                 height: 100%;
-                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+                box-shadow: 20px 0 50px rgba(0, 0, 0, 0.1);
             }
 
             .sidebar.active {
@@ -333,106 +438,82 @@
             }
 
             .close-menu {
-                display: block;
+                display: flex;
             }
 
             .main {
-                padding: 90px 22px 30px;
+                padding: 100px 24px 40px;
             }
 
             .cover-img,
             .cover-overlay {
-                height: 300px;
+                height: 260px;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .grid .card:nth-child(3) {
+                grid-column: span 1;
             }
 
             .card {
                 padding: 28px;
             }
-
-            .profile-img {
-                left: 25px;
-            }
         }
 
-        /* ================= MÓVIL ================= */
+        /* ================= RESPONSIVE DESIGN (MÓVILES) ================= */
 
         @media (max-width: 600px) {
-
             .main {
-                padding: 85px 14px 25px;
+                padding: 88px 16px 24px;
             }
 
             .cover-img,
             .cover-overlay {
-                height: 230px;
-                border-radius: 22px;
+                height: 200px;
+                border-radius: 16px;
             }
 
             .profile-img {
-                left: 40px;
-                transform: none;
-                bottom: -55px;
-                text-align: left;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -50px;
             }
 
             .profile-img img {
-                width: 110px;
-                height: 110px;
+                width: 100px;
+                height: 100px;
+                border-radius: 16px;
+                border-width: 4px;
             }
 
             .edit-cover {
-                right: 12px;
-                bottom: 12px;
-                padding: 10px 14px;
-                font-size: 13px;
+                right: 16px;
+                bottom: 16px;
+                padding: 8px 12px;
+                font-size: 12px;
             }
 
             .grid {
-                margin-top: 85px;
-                gap: 20px;
+                margin-top: 64px;
+                gap: 16px;
             }
 
             .card {
-                padding: 22px;
-                border-radius: 20px;
-                text-align: center;
+                padding: 24px;
+                border-radius: 16px;
             }
 
             .card h2 {
-                font-size: 25px;
-            }
-
-            .card h3 {
                 font-size: 22px;
             }
 
-            .card p {
-                font-size: 14px;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 14px;
-            }
-
-            .menu a {
-                font-size: 14px;
-                padding: 14px;
-            }
-
+            .btn,
             .logout-btn {
-                font-size: 14px;
-                padding: 14px;
-            }
-
-            .menu-toggle {
-                width: 48px;
-                height: 48px;
-                font-size: 18px;
+                width: 100%;
             }
         }
     </style>
@@ -445,39 +526,30 @@
     <div class="container">
 
         <div class="sidebar">
-
             <button class="close-menu" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
             </button>
 
             <div>
-
                 <h2>BUSINESS</h2>
-
                 <div class="menu">
-
                     <a href="/business">
                         <i class="fas fa-chart-line"></i>
                         Dashboard
                     </a>
-
                     <a href="/business/profile">
                         <i class="fas fa-user"></i>
                         Perfil
                     </a>
-
                     <a href="/business/producto">
                         <i class="fas fa-file-alt"></i>
                         Producto-Categoria
                     </a>
-
                     <a href="/business/gestion">
                         <i class="fas fa-boxes"></i>
                         Gestión de Producto
                     </a>
-
                 </div>
-
             </div>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
@@ -486,12 +558,9 @@
 
             <button class="logout-btn"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar sesión
-
             </button>
-
         </div>
 
         <div class="main">
@@ -501,125 +570,82 @@
             </button>
 
             <div class="cover">
-
                 <div class="cover-img">
                     <img
                         src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}">
                 </div>
-
                 <div class="cover-overlay"></div>
 
                 <div class="profile-img">
-
                     @if (Auth::user()->qr_path)
                         <img src="{{ asset('storage/' . Auth::user()->qr_path) }}" alt="QR de {{ Auth::user()->slug }}">
-
                         <a href="#" id="downloadQr">
-                            Descargar QR
+                            <i class="fas fa-download" style="margin-right: 5px;"></i> Descargar QR
                         </a>
                     @else
                         <img src="https://via.placeholder.com/150" alt="QR no disponible">
                     @endif
-
                 </div>
 
                 <label for="uploadImage" class="edit-cover">
                     <i class="fas fa-camera"></i>
                     Cambiar portada
                 </label>
-
             </div>
 
             <div class="grid">
 
                 <div class="card">
-
                     <h2>{{ Auth::user()->name }}</h2>
-
-                    <p>
-                        Perfil activo • Negocio digital 🚀
-                    </p>
-
-                    <div style="margin-top:25px;">
-
+                    <p style="margin-bottom: 20px;">Perfil activo • Negocio digital 🚀</p>
+                    <div>
                         <a href="/{{ Auth::user()->slug }}" target="_blank" class="btn">
                             Ver mi página
                         </a>
-
                     </div>
-
                 </div>
 
                 <div class="card">
-
-                    <h3>Actualizar imagen</h3>
-
+                    <h3><i class="fas fa-image"></i> Actualizar imagen</h3>
                     <form action="/business/profile/image" method="POST" enctype="multipart/form-data">
-
                         @csrf
-
-                        <input id="uploadImage" type="file" name="image" required class="input">
-
-                        <button type="submit" class="btn" style="margin-top:20px; width:100%;">
-
+                        <div class="form-group">
+                            <input id="uploadImage" type="file" name="image" required class="input">
+                        </div>
+                        <button type="submit" class="btn" style="width:100%;">
                             Guardar cambios
-
                         </button>
-
                     </form>
-
                 </div>
 
                 <div class="card">
-
-                    <h3>Información del negocio</h3>
-
+                    <h3><i class="fas fa-briefcase"></i> Información del negocio</h3>
                     <form action="/business/info" method="POST">
-
                         @csrf
 
-                        <div style="margin-bottom:18px;">
-
-                            <label style="display:block; margin-bottom:8px;">
-                                WhatsApp
-                            </label>
-
+                        <div class="form-group">
+                            <label>WhatsApp</label>
                             <input type="text" name="whatsapp" class="input" placeholder="5219610000000"
                                 value="{{ Auth::user()->whatsapp }}">
-
                         </div>
 
-                        <div style="margin-bottom:18px;">
-
-                            <label style="display:block; margin-bottom:8px;">
-                                URL Google Maps Embed
-                            </label>
-
+                        <div class="form-group">
+                            <label>URL Google Maps Embed</label>
                             <input type="text" name="map_url" class="input"
                                 placeholder="https://www.google.com/maps/embed?pb=..."
                                 value="{{ Auth::user()->map_url }}">
-
                         </div>
 
-                        <div style="margin-bottom:18px;">
-
-                            <label style="display:block; margin-bottom:8px;">
-                                Horario
-                            </label>
-
-                            <textarea name="schedule" class="input" rows="5" placeholder="Lunes a Domingo de 8:00 AM a 10:00 PM"
+                        <div class="form-group">
+                            <label>Horario</label>
+                            <textarea name="schedule" class="input" rows="4" placeholder="Lunes a Domingo de 8:00 AM a 10:00 PM"
                                 style="resize:none;">{{ Auth::user()->schedule }}</textarea>
-
                         </div>
 
                         <button type="submit" class="btn" style="width:100%;">
-
                             Guardar información
-
                         </button>
-
                     </form>
-
                 </div>
 
             </div>
@@ -655,40 +681,29 @@
                     const systemFont = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
                     const drawCanvasContent = () => {
-                        // ==========================================
-                        // 1. EFECTO CRISTAL (Glassmorphism de fondo)
-                        // ==========================================
                         ctx.save();
-                        // Sombra exterior muy suave para separar la tarjeta del fondo real
                         ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
                         ctx.shadowBlur = 60;
                         ctx.shadowOffsetY = 20;
 
-                        // Capa translúcida que deja ver el fondo de manera elegante
                         ctx.fillStyle = "rgba(20, 15, 10, 0.45)";
                         roundRect(ctx, 100, 100, 1000, 1400, 30);
                         ctx.restore();
 
-                        // Borde fino dorado/brillante del cristal
                         ctx.strokeStyle = "rgba(212, 175, 55, 0.25)";
                         ctx.lineWidth = 3;
                         ctx.stroke();
 
-                        // ==========================================
-                        // 2. TÍTULO EN ORO METÁLICO (Gradiente y Relieve)
-                        // ==========================================
                         ctx.textAlign = "center";
                         const titleX = canvas.width / 2;
                         const titleY = 250;
 
-                        // Gradiente de oro de 4 pasos (simula reflejo metálico)
                         const goldGlow = ctx.createLinearGradient(0, titleY - 60, 0, titleY + 20);
-                        goldGlow.addColorStop(0, '#FFF3D1'); // Brillo máximo
-                        goldGlow.addColorStop(0.3, '#D4AF37'); // Oro base
-                        goldGlow.addColorStop(0.6, '#AA7C11'); // Sombra oro
-                        goldGlow.addColorStop(1, '#E6CA65'); // Reflejo inferior
+                        goldGlow.addColorStop(0, '#FFF3D1');
+                        goldGlow.addColorStop(0.3, '#D4AF37');
+                        goldGlow.addColorStop(0.6, '#AA7C11');
+                        goldGlow.addColorStop(1, '#E6CA65');
 
-                        // Sombra del título para separarlo del fondo
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
                         ctx.shadowBlur = 15;
@@ -699,62 +714,45 @@
                         ctx.fillText("{{ Auth::user()->name }}", titleX, titleY);
                         ctx.restore();
 
-                        // Subtítulo estilizado
                         ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
                         ctx.font = `600 30px ${systemFont}`;
                         ctx.letterSpacing = "6px";
                         ctx.fillText("MENÚ DIGITAL", titleX, titleY + 75);
 
-                        // Adorno lineal dorado bajo el subtítulo
                         ctx.fillStyle = "#D4AF37";
                         roundRect(ctx, titleX - 100, titleY + 110, 200, 3, 2);
 
-                        // ==========================================
-                        // 3. MARCO DE QR DE LUJO Y CÓDIGO QR
-                        // ==========================================
                         const qrBoxX = 260;
                         const qrBoxY = 500;
                         const qrBoxSize = 680;
 
-                        // Sombra masiva para el contenedor del QR (Le da volumen 3D)
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
                         ctx.shadowBlur = 40;
                         ctx.shadowOffsetY = 15;
 
-                        // Marco exterior dorado grueso
                         ctx.fillStyle = "#AA7C11";
                         roundRect(ctx, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24);
 
-                        // Interior del marco (Contraste blanco puro para que el QR sea 100% escaneable)
                         ctx.fillStyle = "#FFFFFF";
                         roundRect(ctx, qrBoxX + 15, qrBoxY + 15, qrBoxSize - 30, qrBoxSize - 30, 16);
                         ctx.restore();
 
-                        // Esquinas interiores doradas (Estilo filigrana geométrica del render)
                         ctx.fillStyle = "#D4AF37";
                         const pad = 35;
-                        // Superior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 40, 6);
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 6, 40);
-                        // Superior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + pad, 40, 6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + pad, 6, 40);
-                        // Inferior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 6, 40, 6);
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 40, 6, 40);
-                        // Inferior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + qrBoxSize - pad - 6, 40,
-                            6);
+                        6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + qrBoxSize - pad - 40, 6,
-                            40);
+                        40);
 
-                        // Dibujar el QR centrado a la perfección
                         ctx.drawImage(img, qrBoxX + 65, qrBoxY + 65, qrBoxSize - 130, qrBoxSize - 130);
 
-                        // ==========================================
-                        // 4. CTA Y ELEMENTOS INFERIORES
-                        // ==========================================
                         ctx.save();
                         ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
                         ctx.shadowBlur = 10;
@@ -765,7 +763,6 @@
                         ctx.fillText("Escanea el código QR", titleX, 1260);
                         ctx.restore();
 
-                        // Píldora de la URL estilizada
                         ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
                         roundRect(ctx, 250, 1310, 700, 60, 30);
                         ctx.strokeStyle = "rgba(212, 175, 55, 0.3)";
@@ -775,7 +772,6 @@
                         ctx.font = `500 24px ${systemFont}`;
                         ctx.fillText("{{ url('/' . Auth::user()->slug) }}", titleX, 1348);
 
-                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico
                         ctx.save();
                         ctx.shadowColor = "rgba(0,0,0,0.4)";
                         ctx.shadowBlur = 20;
@@ -790,15 +786,11 @@
                         roundRect(ctx, 350, 1410, 500, 80, 40);
                         ctx.restore();
 
-                        // Texto del botón
                         ctx.fillStyle = "#FFFFFF";
                         ctx.font = `bold 30px ${systemFont}`;
                         ctx.letterSpacing = "2px";
                         ctx.fillText("ESCANEA Y VISÍTANOS", titleX, 1460);
 
-                        // ==========================================
-                        // 5. EJECUTAR DESCARGA
-                        // ==========================================
                         URL.revokeObjectURL(url);
                         const pngUrl = canvas.toDataURL('image/png');
                         const downloadLink = document.createElement('a');
@@ -811,18 +803,13 @@
                         document.body.removeChild(downloadLink);
                     };
 
-                    // Loader y render del fondo
                     if (coverUrl) {
                         const cover = new Image();
                         cover.crossOrigin = "anonymous";
                         cover.onload = function() {
-                            // Dibujar la imagen de fondo completa
                             ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
-
-                            // Capa oscura ambiental cálida para unificar el fondo con los dorados
                             ctx.fillStyle = "rgba(18, 12, 5, 0.55)";
                             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
                             drawCanvasContent();
                         };
                         cover.onerror = function() {
@@ -844,7 +831,6 @@
             }
         });
 
-        // Fondo alternativo lujoso por si no hay imagen de fondo activa
         function drawDefaultBackground(ctx, canvas) {
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, '#110D08');
@@ -854,7 +840,6 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        // Función modificada para soportar fill y stroke sin perder el path
         function roundRect(ctx, x, y, width, height, radius) {
             ctx.beginPath();
             ctx.moveTo(x + radius, y);
@@ -873,7 +858,6 @@
 
     <script>
         function toggleMenu() {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
@@ -882,34 +866,28 @@
             overlay.classList.toggle('active');
 
             if (sidebar.classList.contains('active')) {
-
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'hidden';
-
             } else {
-
                 menuBtn.style.display = 'flex';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        // CERRAR MENÚ AUTOMÁTICAMENTE
         window.addEventListener('resize', () => {
-
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.overlay');
             const menuBtn = document.querySelector('.menu-toggle');
 
             if (window.innerWidth > 992) {
-
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 menuBtn.style.display = 'none';
                 document.body.style.overflow = 'auto';
-
             } else {
-
-                menuBtn.style.display = 'flex';
+                if (!sidebar.classList.contains('active')) {
+                    menuBtn.style.display = 'flex';
+                }
             }
         });
     </script>

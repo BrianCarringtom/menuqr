@@ -7,6 +7,7 @@
     <title>Business Dashboard</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -118,32 +119,29 @@
             border-radius: 32px;
             overflow: hidden;
             background: #000;
-            box-shadow: 0 25px 60px rgba(21, 32, 166, 0.15), 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14);
         }
 
         .welcome-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* Cambiado a cover para que llene el contenedor con estilo */
-            position: absolute;
-            inset: 0;
+            object-fit: contain;
             display: block;
             background: #000;
         }
 
-        /* OSCURECER CON DEGRADADO EN ENFOQUE */
+        /* OSCURECER UN POCO */
         .welcome-overlay {
             position: absolute;
             inset: 0;
-            z-index: 1;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.85) 0%,
-                    rgba(0, 0, 0, 0.50) 50%,
-                    rgba(21, 32, 166, 0.3) 100%);
+            background:
+                linear-gradient(to top,
+                    rgba(0, 0, 0, 0.72),
+                    rgba(0, 0, 0, 0.20),
+                    rgba(0, 0, 0, 0.08));
         }
 
-        /* CONTENIDO OPTIMIZADO Y ESPACIADO */
+        /* CONTENIDO */
         .welcome-content {
             position: absolute;
             inset: 0;
@@ -155,66 +153,53 @@
             justify-content: center;
 
             text-align: center;
-            padding: 60px 40px;
-            /* Más espacio interno */
+            padding: 40px;
             color: white;
         }
 
         .welcome-content h1 {
-            font-size: 58px;
+            font-size: 56px;
             font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-            line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            margin-bottom: 14px;
+            text-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
         }
 
         .welcome-content h2 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #ffffff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 24px;
-            font-weight: 700;
-            padding: 6px 20px;
-            background-color: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            text-shadow: none;
+            font-size: 30px;
+            color: #1520A6;
+            margin-bottom: 18px;
+            font-weight: 600;
+            text-shadow: 0 5px 18px rgba(0, 0, 0, 0.4);
         }
 
         .welcome-content p {
-            max-width: 600px;
-            font-size: 18px;
+            max-width: 650px;
+            font-size: 17px;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
         }
 
-        /* BOTÓN MODERNO PREMIUM */
+        /* BOTÓN MÁS ELEGANTE */
         .welcome-btn {
-            margin-top: 35px;
-            padding: 14px 36px;
+            margin-top: 28px;
+            padding: 10px 20px;
             border-radius: 999px;
-            background: #ffffff;
-            border: 1px solid #ffffff;
-            color: #1520A6;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+
+            color: white;
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px;
+            font-weight: 500;
+
+            transition: 0.3s ease;
         }
 
         .welcome-btn:hover {
-            background: transparent;
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         /* ================= BOTÓN HAMBURGUESA ================= */
@@ -301,24 +286,20 @@
             }
 
             .welcome-box {
-                min-height: 580px;
+                min-height: 560px;
                 border-radius: 26px;
             }
 
-            .welcome-content {
-                padding: 40px 30px;
-            }
-
             .welcome-content h1 {
-                font-size: 44px;
+                font-size: 42px;
             }
 
             .welcome-content h2 {
-                font-size: 26px;
+                font-size: 24px;
             }
 
             .welcome-content p {
-                font-size: 16px;
+                font-size: 15px;
             }
         }
 
@@ -331,38 +312,40 @@
             }
 
             .welcome-box {
-                min-height: 520px;
-                /* Ajustado para que quepa todo de manera fluida */
+                min-height: 420px;
                 border-radius: 24px;
             }
 
+            .welcome-box img {
+                object-fit: contain;
+                background: #000;
+            }
+
             .welcome-content {
-                padding: 30px 20px;
+                padding: 22px;
                 justify-content: center;
-                /* Eliminado transform: translateY que causaba cortes visuales */
+                transform: translateY(100px);
             }
 
             .welcome-content h1 {
-                font-size: 32px;
-                line-height: 1.2;
-                margin-bottom: 12px;
+                font-size: 30px;
+                line-height: 1.3;
             }
 
             .welcome-content h2 {
-                font-size: 22px;
-                margin-bottom: 20px;
-                padding: 4px 14px;
+                font-size: 21px;
+                margin-bottom: 14px;
             }
 
             .welcome-content p {
-                font-size: 15px;
-                line-height: 1.6;
+                font-size: 14px;
+                line-height: 1.7;
             }
 
             .welcome-btn {
-                margin-top: 25px;
-                padding: 12px 28px;
-                font-size: 14px;
+                margin-top: 22px;
+                padding: 9px 17px;
+                font-size: 12px;
             }
 
             .menu a {

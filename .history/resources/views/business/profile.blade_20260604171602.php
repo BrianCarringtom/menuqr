@@ -664,49 +664,50 @@
                         ctx.shadowBlur = 60;
                         ctx.shadowOffsetY = 20;
 
-                        // Capa translúcida que deja ver el fondo de manera elegante
-                        ctx.fillStyle = "rgba(20, 15, 10, 0.45)";
+                        // Capa translúcida oscura-azulada para neutralizar amarillos
+                        ctx.fillStyle = "rgba(10, 15, 30, 0.6)";
                         roundRect(ctx, 100, 100, 1000, 1400, 30);
                         ctx.restore();
 
-                        // Borde fino dorado/brillante del cristal
-                        ctx.strokeStyle = "rgba(212, 175, 55, 0.25)";
+                        // Borde fino azul brillante del cristal
+                        ctx.strokeStyle = "rgba(21, 32, 166, 0.35)";
                         ctx.lineWidth = 3;
                         ctx.stroke();
 
                         // ==========================================
-                        // 2. TÍTULO EN ORO METÁLICO (Gradiente y Relieve)
+                        // 2. TÍTULO EN BLANCO CON CONTORNO AZUL DE MARCA
                         // ==========================================
                         ctx.textAlign = "center";
                         const titleX = canvas.width / 2;
                         const titleY = 250;
 
-                        // Gradiente de oro de 4 pasos (simula reflejo metálico)
-                        const goldGlow = ctx.createLinearGradient(0, titleY - 60, 0, titleY + 20);
-                        goldGlow.addColorStop(0, '#FFF3D1'); // Brillo máximo
-                        goldGlow.addColorStop(0.3, '#D4AF37'); // Oro base
-                        goldGlow.addColorStop(0.6, '#AA7C11'); // Sombra oro
-                        goldGlow.addColorStop(1, '#E6CA65'); // Reflejo inferior
-
-                        // Sombra del título para separarlo del fondo
                         ctx.save();
+                        // Sombra para despegar el texto completamente del fondo
                         ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
-                        ctx.shadowBlur = 15;
-                        ctx.shadowOffsetY = 8;
+                        ctx.shadowBlur = 20;
+                        ctx.shadowOffsetY = 10;
 
                         ctx.font = `bold 76px ${systemFont}`;
-                        ctx.fillStyle = goldGlow;
+
+                        // Configuración del contorno azul (#1520A6)
+                        ctx.strokeStyle = "#1520A6";
+                        ctx.lineWidth = 12; // Grosor del contorno para que resalte
+                        ctx.lineJoin = "round"; // Bordes suaves en las letras
+                        ctx.strokeText("{{ Auth::user()->name }}", titleX, titleY);
+
+                        // Relleno en Blanco Puro para máxima legibilidad
+                        ctx.fillStyle = "#FFFFFF";
                         ctx.fillText("{{ Auth::user()->name }}", titleX, titleY);
                         ctx.restore();
 
                         // Subtítulo estilizado
-                        ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+                        ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
                         ctx.font = `600 30px ${systemFont}`;
                         ctx.letterSpacing = "6px";
                         ctx.fillText("MENÚ DIGITAL", titleX, titleY + 75);
 
-                        // Adorno lineal dorado bajo el subtítulo
-                        ctx.fillStyle = "#D4AF37";
+                        // Adorno lineal azul bajo el subtítulo
+                        ctx.fillStyle = "#1520A6";
                         roundRect(ctx, titleX - 100, titleY + 110, 200, 3, 2);
 
                         // ==========================================
@@ -722,8 +723,8 @@
                         ctx.shadowBlur = 40;
                         ctx.shadowOffsetY = 15;
 
-                        // Marco exterior dorado grueso
-                        ctx.fillStyle = "#AA7C11";
+                        // Marco exterior azul profundo grueso
+                        ctx.fillStyle = "#0A0F52";
                         roundRect(ctx, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24);
 
                         // Interior del marco (Contraste blanco puro para que el QR sea 100% escaneable)
@@ -731,8 +732,8 @@
                         roundRect(ctx, qrBoxX + 15, qrBoxY + 15, qrBoxSize - 30, qrBoxSize - 30, 16);
                         ctx.restore();
 
-                        // Esquinas interiores doradas (Estilo filigrana geométrica del render)
-                        ctx.fillStyle = "#D4AF37";
+                        // Esquinas interiores azules de precisión
+                        ctx.fillStyle = "#1520A6";
                         const pad = 35;
                         // Superior Izquierda
                         ctx.fillRect(qrBoxX + pad, qrBoxY + pad, 40, 6);
@@ -745,9 +746,9 @@
                         ctx.fillRect(qrBoxX + pad, qrBoxY + qrBoxSize - pad - 40, 6, 40);
                         // Inferior Derecha
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 40, qrBoxY + qrBoxSize - pad - 6, 40,
-                            6);
+                        6);
                         ctx.fillRect(qrBoxX + qrBoxSize - pad - 6, qrBoxY + qrBoxSize - pad - 40, 6,
-                            40);
+                        40);
 
                         // Dibujar el QR centrado a la perfección
                         ctx.drawImage(img, qrBoxX + 65, qrBoxY + 65, qrBoxSize - 130, qrBoxSize - 130);
@@ -760,31 +761,31 @@
                         ctx.shadowBlur = 10;
                         ctx.shadowOffsetY = 4;
 
-                        ctx.fillStyle = "#FFF3D1";
+                        ctx.fillStyle = "#FFFFFF";
                         ctx.font = `bold 42px ${systemFont}`;
                         ctx.fillText("Escanea el código QR", titleX, 1260);
                         ctx.restore();
 
-                        // Píldora de la URL estilizada
-                        ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+                        // Píldora de la URL estilizada en azul
+                        ctx.fillStyle = "rgba(10, 15, 30, 0.5)";
                         roundRect(ctx, 250, 1310, 700, 60, 30);
-                        ctx.strokeStyle = "rgba(212, 175, 55, 0.3)";
+                        ctx.strokeStyle = "rgba(21, 32, 166, 0.4)";
                         ctx.stroke();
 
-                        ctx.fillStyle = "#E6CA65";
+                        ctx.fillStyle = "#E0E7FF";
                         ctx.font = `500 24px ${systemFont}`;
                         ctx.fillText("{{ url('/' . Auth::user()->slug) }}", titleX, 1348);
 
-                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico
+                        // Botón inferior "ESCANEA Y VISÍTANOS" con relieve metálico azul de marca
                         ctx.save();
                         ctx.shadowColor = "rgba(0,0,0,0.4)";
                         ctx.shadowBlur = 20;
                         ctx.shadowOffsetY = 8;
 
                         const btnGrad = ctx.createLinearGradient(0, 1410, 0, 1490);
-                        btnGrad.addColorStop(0, '#AA7C11');
-                        btnGrad.addColorStop(0.5, '#D4AF37');
-                        btnGrad.addColorStop(1, '#8A640F');
+                        btnGrad.addColorStop(0, '#1520A6'); // Color principal
+                        btnGrad.addColorStop(0.5, '#2A37D9'); // Brillo azul progresivo
+                        btnGrad.addColorStop(1, '#0A0F52'); // Sombra oscura azul
 
                         ctx.fillStyle = btnGrad;
                         roundRect(ctx, 350, 1410, 500, 80, 40);
@@ -819,8 +820,8 @@
                             // Dibujar la imagen de fondo completa
                             ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
 
-                            // Capa oscura ambiental cálida para unificar el fondo con los dorados
-                            ctx.fillStyle = "rgba(18, 12, 5, 0.55)";
+                            // Filtro ambiental azul oscuro frío para pisar cualquier tono cálido/amarillo de la imagen original
+                            ctx.fillStyle = "rgba(11, 15, 25, 0.65)";
                             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                             drawCanvasContent();

@@ -7,6 +7,7 @@
     <title>Business Dashboard</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
@@ -97,7 +98,7 @@
             background: #0f177a;
         }
 
-        /* ================= MAIN ================= */
+        /* ================= MAIN (OPTIMIZADO Y MODERNO) ================= */
 
         .main {
             flex: 1;
@@ -106,6 +107,7 @@
             justify-content: center;
             padding: 40px;
             position: relative;
+            background: #f3f4f6; /* Un fondo sutilmente más estructurado */
         }
 
         /* ================= WELCOME ================= */
@@ -114,107 +116,117 @@
             position: relative;
             width: 100%;
             max-width: 1100px;
-            min-height: 650px;
-            border-radius: 32px;
+            min-height: 600px;
+            border-radius: 24px; /* Bordes modernos pero no exagerados */
             overflow: hidden;
-            background: #000;
-            box-shadow: 0 25px 60px rgba(21, 32, 166, 0.15), 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #0f172a, #1e293b); /* Fondo alternativo elegante */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .welcome-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Cambiado a cover para que llene el contenedor con estilo */
             position: absolute;
             inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Cambiado a cover para un diseño inmersivo */
             display: block;
-            background: #000;
         }
 
-        /* OSCURECER CON DEGRADADO EN ENFOQUE */
+        /* CAPA OSCURA MODERNA (GRADIENTE EN CAPAS) */
         .welcome-overlay {
             position: absolute;
             inset: 0;
+            background: linear-gradient(to bottom, 
+                rgba(15, 23, 42, 0.4) 0%, 
+                rgba(15, 23, 42, 0.75) 60%, 
+                rgba(15, 23, 42, 0.95) 100%
+            );
             z-index: 1;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.85) 0%,
-                    rgba(0, 0, 0, 0.50) 50%,
-                    rgba(21, 32, 166, 0.3) 100%);
         }
 
-        /* CONTENIDO OPTIMIZADO Y ESPACIADO */
+        /* CONTENIDO ESTILIZADO */
         .welcome-content {
-            position: absolute;
-            inset: 0;
+            position: relative;
             z-index: 2;
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
             text-align: center;
-            padding: 60px 40px;
-            /* Más espacio interno */
+            padding: 40px 60px;
             color: white;
+            max-width: 800px;
         }
 
         .welcome-content h1 {
-            font-size: 58px;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 8px;
             letter-spacing: -1px;
             line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .welcome-content h2 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #ffffff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 28px;
+            color: #1520A6;
             margin-bottom: 24px;
             font-weight: 700;
+            background: #ffffff; /* Color de fondo interno del tag */
             padding: 6px 20px;
-            background-color: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
             display: inline-block;
-            text-shadow: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            text-shadow: none; /* Quitamos la sombra fea sobre fondo blanco */
         }
 
         .welcome-content p {
-            max-width: 600px;
+            max-width: 580px;
             font-size: 18px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
+            line-height: 1.7;
+            color: #e2e8f0;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            margin-bottom: 32px;
         }
 
-        /* BOTÓN MODERNO PREMIUM */
+        /* BOTÓN HOVER MODERNO CON CRISTAL */
         .welcome-btn {
-            margin-top: 35px;
-            padding: 14px 36px;
-            border-radius: 999px;
-            background: #ffffff;
-            border: 1px solid #ffffff;
-            color: #1520A6;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: white;
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
             letter-spacing: 0.3px;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .welcome-btn:hover {
-            background: transparent;
-            color: #ffffff;
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .welcome-btn i {
+            font-size: 13px;
+            transition: transform 0.3s ease;
+        }
+        
+        .welcome-btn:hover i {
+            transform: translateX(3px);
         }
 
         /* ================= BOTÓN HAMBURGUESA ================= */
@@ -301,20 +313,21 @@
             }
 
             .welcome-box {
-                min-height: 580px;
-                border-radius: 26px;
+                min-height: 500px;
+                border-radius: 20px;
             }
 
             .welcome-content {
-                padding: 40px 30px;
+                padding: 30px;
             }
 
             .welcome-content h1 {
-                font-size: 44px;
+                font-size: 38px;
             }
 
             .welcome-content h2 {
-                font-size: 26px;
+                font-size: 22px;
+                margin-bottom: 20px;
             }
 
             .welcome-content p {
@@ -331,38 +344,37 @@
             }
 
             .welcome-box {
-                min-height: 520px;
-                /* Ajustado para que quepa todo de manera fluida */
-                border-radius: 24px;
+                min-height: 450px;
+                border-radius: 16px;
             }
 
             .welcome-content {
-                padding: 30px 20px;
-                justify-content: center;
-                /* Eliminado transform: translateY que causaba cortes visuales */
+                padding: 24px 16px;
+                transform: none; /* Removido el desajuste de TranslateY que rompía el flujo */
             }
 
             .welcome-content h1 {
-                font-size: 32px;
+                font-size: 28px;
                 line-height: 1.2;
-                margin-bottom: 12px;
             }
 
             .welcome-content h2 {
-                font-size: 22px;
-                margin-bottom: 20px;
+                font-size: 18px;
                 padding: 4px 14px;
+                margin-bottom: 16px;
             }
 
             .welcome-content p {
-                font-size: 15px;
+                font-size: 14px;
                 line-height: 1.6;
+                margin-bottom: 24px;
             }
 
             .welcome-btn {
-                margin-top: 25px;
-                padding: 12px 28px;
+                padding: 12px 24px;
                 font-size: 14px;
+                width: 100%;
+                justify-content: center;
             }
 
             .menu a {
@@ -464,6 +476,7 @@
 
                     <a href="/{{ auth()->user()->slug }}" class="welcome-btn">
                         Ver mi página
+                        <i class="fas fa-arrow-right"></i>
                     </a>
 
                 </div>

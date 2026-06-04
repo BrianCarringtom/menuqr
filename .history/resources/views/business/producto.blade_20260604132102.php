@@ -45,7 +45,7 @@
 
         .sidebar h2 {
             text-align: center;
-            color: #1520A6;
+            color: #4169E1;
             font-weight: 700;
             letter-spacing: 3px;
             font-size: 24px;
@@ -70,14 +70,14 @@
         }
 
         .menu a:hover {
-            background: #eef0fa;
-            color: #1520A6;
+            background: #e8eefd;
+            color: #4169E1;
             transform: translateX(3px);
         }
 
         .logout-btn {
             width: 100%;
-            background: #1520A6;
+            background: #4169E1;
             border: none;
             padding: 15px;
             border-radius: 14px;
@@ -89,7 +89,7 @@
         }
 
         .logout-btn:hover {
-            background: #0f187d;
+            background: #2e52be;
         }
 
         /* ================= MAIN ================= */
@@ -212,8 +212,8 @@
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #1520A6;
-            box-shadow: 0 0 0 4px rgba(21, 32, 166, 0.12);
+            border-color: #4169E1;
+            box-shadow: 0 0 0 4px rgba(65, 105, 225, 0.12);
         }
 
         textarea {
@@ -223,7 +223,7 @@
         /* ================= BOTONES ================= */
 
         .btn-gold {
-            background: #1520A6;
+            background: #4169E1;
             color: white;
             border: none;
             border-radius: 14px;
@@ -235,8 +235,8 @@
         }
 
         .btn-gold:hover {
-            background: #0f187d;
-            box-shadow: 0 10px 20px rgba(21, 32, 166, 0.28);
+            background: #3459c7;
+            box-shadow: 0 10px 20px rgba(65, 105, 225, 0.28);
         }
 
         .btn-gold:active {
@@ -306,7 +306,7 @@
             height: 52px;
             border: none;
             border-radius: 14px;
-            background: #1520A6;
+            background: #4169E1;
             color: white;
             font-size: 20px;
             cursor: pointer;
@@ -542,7 +542,7 @@
 
                 <div class="header-box">
 
-                    <i class="fas fa-crown" style="color:#1520A6;"></i>
+                    <i class="fas fa-crown" style="color:#4169E1;"></i>
 
                     Plan:
                     {{ ucfirst(auth()->user()->plan) }}
@@ -578,7 +578,7 @@
                         <h3>Categorías</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-folder" style="color:#1520A6;"></i>
+                            <i class="fas fa-folder" style="color:#4169E1;"></i>
                         </div>
 
                     </div>
@@ -612,7 +612,7 @@
                         <h3>Productos</h3>
 
                         <div class="icon-box">
-                            <i class="fas fa-box" style="color:#1520A6;"></i>
+                            <i class="fas fa-box" style="color:#4169E1;"></i>
                         </div>
 
                     </div>
