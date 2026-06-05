@@ -174,7 +174,17 @@
                 </div>
                 <div class="stat-info">
                     <h3>Usuarios Totales</h3>
-                    <p>{{ is_array($users) || is_object($users) ? count($users) : 0 }}</p>
+                    <p>1,248</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Visitas Hoy</h3>
+                    <p>4,832</p>
                 </div>
             </div>
 

@@ -174,7 +174,17 @@
                 </div>
                 <div class="stat-info">
                     <h3>Usuarios Totales</h3>
-                    <p>{{ is_array($users) || is_object($users) ? count($users) : 0 }}</p>
+                    <p>{{ count($users) }}</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Visitas Hoy</h3>
+                    <p>4,832</p>
                 </div>
             </div>
 
@@ -189,6 +199,128 @@
                     </p>
                 </div>
             </div>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table class="custom-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Plan</th>
+                        <th>Diseño</th>
+                        <th>Slug</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach ($users as $user)
+                        <tr>
+
+                            <td>
+                                {{ $user->id }}
+                            </td>
+
+                            <td>
+                                {{ $user->name }}
+                            </td>
+
+                            <td>
+                                {{ $user->email }}
+                            </td>
+
+                            <td class="text-capitalize">
+                                {{ $user->role }}
+                            </td>
+
+                            <td>
+
+                                @if ($user->plan == 'basico')
+                                    Básico
+                                @elseif($user->plan == 'emprendedor')
+                                    Emprendedor
+                                @else
+                                    Premium
+                                @endif
+
+                            </td>
+
+                            <td>
+                                {{ $user->theme }}
+                            </td>
+
+                            <td>
+                                <a href="/{{ $user->slug }}" target="_blank" class="link-slug">
+
+                                    {{ $user->slug }}
+
+                                </a>
+                            </td>
+
+                            <td>
+
+                                <div class="actions">
+
+                                    <button
+                                        onclick="openEditModal(
+                                            {{ $user->id }},
+                                            '{{ $user->name }}',
+                                            '{{ $user->email }}',
+                                            '{{ $user->role }}',
+                                            '{{ $user->plan }}',
+                                            '{{ $user->theme }}'
+                                        )"
+                                        class="btn btn-edit">
+
+                                        Editar
+
+                                    </button>
+
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                        onsubmit="return confirm('¿Eliminar usuario?')">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-delete">
+
+                                            Eliminar
+
+                                        </button>
+
+                                    </form>
+
+                                    <form action="{{ route('users.toggle', $user->id) }}" method="POST">
+
+                                        @csrf
+                                        @method('PUT')
+
+                                        <button type="submit"
+                                            class="btn {{ $user->is_active ? 'btn-warning' : 'btn-success' }}">
+
+                                            {{ $user->is_active ? 'Bloquear' : 'Desbloquear' }}
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    @endforeach
+
+                </tbody>
+
+            </table>
 
         </div>
 

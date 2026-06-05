@@ -174,7 +174,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>Usuarios Totales</h3>
-                    <p>{{ is_array($users) || is_object($users) ? count($users) : 0 }}</p>
+                    <p>{{ count($users) }}</p>
                 </div>
             </div>
 
