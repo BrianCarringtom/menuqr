@@ -72,30 +72,10 @@
             display: flex;
             gap: 8px;
             flex-wrap: nowrap;
-            align-items: center;
         }
 
         .btn {
             white-space: nowrap;
-        }
-
-        /* Estilos específicos para los botones convertidos en iconos */
-        .actions .btn-edit,
-        .actions .btn-delete {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            padding: 0;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .actions .btn-edit i,
-        .actions .btn-delete i {
-            font-size: 14px;
         }
 
         /* 🔥 MODAL */
@@ -134,12 +114,6 @@
             .btn {
                 font-size: 13px;
                 padding: 8px 12px;
-            }
-
-            .actions .btn-edit,
-            .actions .btn-delete {
-                width: 32px;
-                height: 32px;
             }
 
             .actions {
@@ -246,17 +220,15 @@
                                 <div class="actions">
                                     <button
                                         onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}', '{{ $user->plan }}', '{{ $user->theme }}')"
-                                        class="btn btn-edit" title="Editar">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        class="btn btn-edit">
+                                        Editar
                                     </button>
 
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                         onsubmit="return confirm('¿Eliminar usuario?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-delete" title="Eliminar">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        <button type="submit" class="btn btn-delete">Eliminar</button>
                                     </form>
 
                                     <form action="{{ route('users.toggle', $user->id) }}" method="POST">

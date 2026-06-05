@@ -15,6 +15,7 @@
             margin-bottom: 40px;
         }
 
+        /* Modifica esta regla para incluir el font-size de 16px y añade los select */
         .create-user-form input,
         .create-user-form select,
         .modal-content input,
@@ -72,30 +73,10 @@
             display: flex;
             gap: 8px;
             flex-wrap: nowrap;
-            align-items: center;
         }
 
         .btn {
             white-space: nowrap;
-        }
-
-        /* Estilos específicos para los botones convertidos en iconos */
-        .actions .btn-edit,
-        .actions .btn-delete {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            padding: 0;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .actions .btn-edit i,
-        .actions .btn-delete i {
-            font-size: 14px;
         }
 
         /* 🔥 MODAL */
@@ -117,6 +98,7 @@
 
         /* 🔥 RESPONSIVE */
         @media screen and (max-width: 768px) {
+
             .page-title {
                 font-size: 1.7rem;
             }
@@ -136,18 +118,13 @@
                 padding: 8px 12px;
             }
 
-            .actions .btn-edit,
-            .actions .btn-delete {
-                width: 32px;
-                height: 32px;
-            }
-
             .actions {
                 gap: 6px;
             }
         }
 
         @media screen and (max-width: 480px) {
+
             .page-title {
                 font-size: 1.5rem;
             }
@@ -173,7 +150,10 @@
     </style>
 
     <div class="users-container">
-        <h1 class="page-title">Panel Administrador</h1>
+
+        <h1 class="page-title">
+            Panel Administrador
+        </h1>
 
         @if (session('success'))
             <p class="success-message">
@@ -181,33 +161,64 @@
             </p>
         @endif
 
-        <h3 class="section-title">Crear usuario business</h3>
+        <!-- 🔥 CREAR USUARIO -->
+        <h3 class="section-title">
+            Crear usuario business
+        </h3>
 
         <form method="POST" action="/admin/create-user" class="create-user-form">
+
             @csrf
 
             <input name="name" placeholder="Nombre" required>
+
             <input name="email" placeholder="Email" required>
+
             <input type="password" name="password" placeholder="Password" required>
 
             <select name="plan" required>
-                <option value="basico">Básico (30 productos)</option>
-                <option value="emprendedor">Emprendedor (80 productos)</option>
-                <option value="premium">Premium (Ilimitado)</option>
+
+                <option value="basico">
+                    Básico (30 productos)
+                </option>
+
+                <option value="emprendedor">
+                    Emprendedor (80 productos)
+                </option>
+
+                <option value="premium">
+                    Premium (Ilimitado)
+                </option>
+
             </select>
 
             <select name="theme" required>
-                <option value="show">Diseño 1</option>
-                <option value="show2">Diseño 2</option>
+
+                <option value="show">
+                    Diseño 1
+                </option>
+
+                <option value="show2">
+                    Diseño 2
+                </option>
+
             </select>
 
-            <button type="submit">Crear Usuario</button>
+            <button>
+                Crear Usuario
+            </button>
+
         </form>
 
-        <h3 class="section-title">Lista de Usuarios</h3>
+        <!-- 🔥 TABLA -->
+        <h3 class="section-title">
+            Lista de Usuarios
+        </h3>
 
         <div class="table-wrapper">
+
             <table class="custom-table">
+
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -220,14 +231,30 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
+
                 <tbody>
+
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td class="text-capitalize">{{ $user->role }}</td>
+
                             <td>
+                                {{ $user->id }}
+                            </td>
+
+                            <td>
+                                {{ $user->name }}
+                            </td>
+
+                            <td>
+                                {{ $user->email }}
+                            </td>
+
+                            <td class="text-capitalize">
+                                {{ $user->role }}
+                            </td>
+
+                            <td>
+
                                 @if ($user->plan == 'basico')
                                     Básico
                                 @elseif($user->plan == 'emprendedor')
@@ -235,119 +262,235 @@
                                 @else
                                     Premium
                                 @endif
+
                             </td>
-                            <td>{{ $user->theme }}</td>
+
+                            <td>
+                                {{ $user->theme }}
+                            </td>
+
                             <td>
                                 <a href="/{{ $user->slug }}" target="_blank" class="link-slug">
+
                                     {{ $user->slug }}
+
                                 </a>
                             </td>
+
                             <td>
+
                                 <div class="actions">
+
+                                    <!-- EDITAR -->
                                     <button
-                                        onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}', '{{ $user->plan }}', '{{ $user->theme }}')"
-                                        class="btn btn-edit" title="Editar">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        onclick="openEditModal(
+    {{ $user->id }},
+    '{{ $user->name }}',
+    '{{ $user->email }}',
+    '{{ $user->role }}',
+    '{{ $user->plan }}',
+    '{{ $user->theme }}'
+)"
+                                        class="btn btn-edit">
+
+                                        Editar
+
                                     </button>
 
+                                    <!-- ELIMINAR -->
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                         onsubmit="return confirm('¿Eliminar usuario?')">
+
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-delete" title="Eliminar">
-                                            <i class="fa-solid fa-trash-can"></i>
+
+                                        <button type="submit" class="btn btn-delete">
+
+                                            Eliminar
+
                                         </button>
+
                                     </form>
 
+                                    <!-- BLOQUEAR -->
                                     <form action="{{ route('users.toggle', $user->id) }}" method="POST">
+
                                         @csrf
                                         @method('PUT')
+
                                         <button type="submit"
                                             class="btn {{ $user->is_active ? 'btn-warning' : 'btn-success' }}">
+
                                             {{ $user->is_active ? 'Bloquear' : 'Desbloquear' }}
+
                                         </button>
+
                                     </form>
+
                                 </div>
+
                             </td>
+
                         </tr>
                     @endforeach
+
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
 
+    <!-- 🔥 MODAL -->
     <div id="editModal" class="modal">
+
         <div class="modal-content">
-            <h3 style="margin-bottom:20px;">Editar Usuario</h3>
+
+            <h3 style="margin-bottom:20px;">
+                Editar Usuario
+            </h3>
 
             <form id="editForm" method="POST">
+
                 @csrf
                 @method('PUT')
 
                 <input type="text" name="name" id="editName" placeholder="Nombre" required>
+
                 <input type="email" name="email" id="editEmail" placeholder="Email" required>
 
                 <select name="role" id="editRole">
-                    <option value="admin">Admin</option>
-                    <option value="business">Business</option>
+
+                    <option value="admin">
+                        Admin
+                    </option>
+
+                    <option value="business">
+                        Business
+                    </option>
+
                 </select>
 
                 <select name="plan" id="editPlan">
-                    <option value="basico">Básico</option>
-                    <option value="emprendedor">Emprendedor</option>
-                    <option value="premium">Premium</option>
+
+                    <option value="basico">
+                        Básico
+                    </option>
+
+                    <option value="emprendedor">
+                        Emprendedor
+                    </option>
+
+                    <option value="premium">
+                        Premium
+                    </option>
+
                 </select>
 
                 <select name="theme" id="editTheme">
-                    <option value="show">Diseño 1</option>
-                    <option value="show2">Diseño 2</option>
+
+                    <option value="show">
+                        Diseño 1
+                    </option>
+
+                    <option value="show2">
+                        Diseño 2
+                    </option>
+
                 </select>
 
                 <div style="margin-top:20px;">
-                    <button type="submit" class="btn btn-edit">Actualizar</button>
-                    <button type="button" class="btn btn-delete" onclick="closeModal()">Cancelar</button>
+
+                    <button type="submit" class="btn btn-edit">
+
+                        Actualizar
+
+                    </button>
+
+                    <button type="button" class="btn btn-delete" onclick="closeModal()">
+
+                        Cancelar
+
+                    </button>
+
                 </div>
+
             </form>
+
         </div>
+
     </div>
 
+    <!-- 🔥 SCRIPT -->
     <script>
         function openEditModal(id, name, email, role, plan, theme) {
+
             document.getElementById('editModal').style.display = 'flex';
+
             document.getElementById('editName').value = name;
             document.getElementById('editEmail').value = email;
             document.getElementById('editRole').value = role;
             document.getElementById('editPlan').value = plan;
             document.getElementById('editTheme').value = theme;
-            document.getElementById('editForm').action = `/admin/users/${id}`;
+
+            document.getElementById('editForm').action =
+                `/admin/users/${id}`;
+
         }
 
         function closeModal() {
+
             document.getElementById('editModal').style.display = 'none';
+
         }
 
         // 🔥 CERRAR MODAL
         window.onclick = function(e) {
-            let modal = document.getElementById('editModal');
+
+            let modal =
+                document.getElementById('editModal');
+
             if (e.target === modal) {
+
                 modal.style.display = "none";
+
             }
+
         }
     </script>
 
+    <!-- 🔥 GUARDAR SCROLL -->
     <script>
         document.querySelectorAll("form").forEach(form => {
+
             form.addEventListener("submit", () => {
-                localStorage.setItem("scrollY", window.scrollY);
+
+                localStorage.setItem(
+                    "scrollY",
+                    window.scrollY
+                );
+
             });
+
         });
 
         window.addEventListener("load", () => {
-            const scrollY = localStorage.getItem("scrollY");
+
+            const scrollY =
+                localStorage.getItem("scrollY");
+
             if (scrollY !== null) {
-                window.scrollTo(0, parseInt(scrollY));
+
+                window.scrollTo(
+                    0,
+                    parseInt(scrollY)
+                );
+
                 localStorage.removeItem("scrollY");
+
             }
+
         });
     </script>
 @endsection

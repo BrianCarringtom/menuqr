@@ -67,35 +67,51 @@
             font-size: 1.4rem;
         }
 
-        /* 🔥 BOTONES */
+        /* 🔥 BOTONES Y ACCIONES */
         .actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: nowrap;
             align-items: center;
         }
 
-        .btn {
-            white-space: nowrap;
-        }
-
-        /* Estilos específicos para los botones convertidos en iconos */
-        .actions .btn-edit,
-        .actions .btn-delete {
+        .btn-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            padding: 0;
+            width: 34px;
+            height: 34px;
             border-radius: 8px;
             border: none;
             cursor: pointer;
+            transition: all 0.2s ease;
+            color: #ffffff;
         }
 
-        .actions .btn-edit i,
-        .actions .btn-delete i {
+        .btn-icon i {
             font-size: 14px;
+        }
+
+        .btn-icon:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        /* Colores de estados para botones de iconos */
+        .btn-edit {
+            background-color: #3b82f6;
+        }
+
+        .btn-delete {
+            background-color: #ef4444;
+        }
+
+        .btn-warning {
+            background-color: #f59e0b;
+        }
+
+        .btn-success {
+            background-color: #10b981;
         }
 
         /* 🔥 MODAL */
@@ -115,6 +131,16 @@
             min-width: 120px;
         }
 
+        /* Botones tradicionales dentro del modal */
+        .btn-modal {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
         /* 🔥 RESPONSIVE */
         @media screen and (max-width: 768px) {
             .page-title {
@@ -131,19 +157,13 @@
                 font-size: 14px;
             }
 
-            .btn {
-                font-size: 13px;
-                padding: 8px 12px;
+            .btn-icon {
+                width: 30px;
+                height: 30px;
             }
 
-            .actions .btn-edit,
-            .actions .btn-delete {
-                width: 32px;
-                height: 32px;
-            }
-
-            .actions {
-                gap: 6px;
+            .btn-icon i {
+                font-size: 12px;
             }
         }
 
@@ -163,11 +183,6 @@
             .custom-table th,
             .custom-table td {
                 font-size: 13px;
-            }
-
-            .btn {
-                font-size: 12px;
-                padding: 7px 10px;
             }
         }
     </style>
@@ -246,7 +261,7 @@
                                 <div class="actions">
                                     <button
                                         onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}', '{{ $user->plan }}', '{{ $user->theme }}')"
-                                        class="btn btn-edit" title="Editar">
+                                        class="btn-icon btn-edit" title="Editar Usuario">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
 
@@ -254,7 +269,7 @@
                                         onsubmit="return confirm('¿Eliminar usuario?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-delete" title="Eliminar">
+                                        <button type="submit" class="btn-icon btn-delete" title="Eliminar Usuario">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                     </form>
@@ -263,8 +278,9 @@
                                         @csrf
                                         @method('PUT')
                                         <button type="submit"
-                                            class="btn {{ $user->is_active ? 'btn-warning' : 'btn-success' }}">
-                                            {{ $user->is_active ? 'Bloquear' : 'Desbloquear' }}
+                                            class="btn-icon {{ $user->is_active ? 'btn-warning' : 'btn-success' }}"
+                                            title="{{ $user->is_active ? 'Bloquear Usuario' : 'Desbloquear Usuario' }}">
+                                            <i class="fa-solid {{ $user->is_active ? 'fa-lock' : 'fa-lock-open' }}"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -304,8 +320,8 @@
                 </select>
 
                 <div style="margin-top:20px;">
-                    <button type="submit" class="btn btn-edit">Actualizar</button>
-                    <button type="button" class="btn btn-delete" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-modal btn-edit">Actualizar</button>
+                    <button type="button" class="btn-modal btn-delete" onclick="closeModal()">Cancelar</button>
                 </div>
             </form>
         </div>
