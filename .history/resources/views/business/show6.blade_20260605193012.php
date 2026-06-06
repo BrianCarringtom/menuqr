@@ -465,7 +465,6 @@
                     </div>
                     <div class="category-title-info">
                         <h2 class="category-name-badge">{{ $category->name }}</h2>
-                        <span class="category-meta-size">-----------</span>
                     </div>
                 </div>
 

@@ -7,20 +7,16 @@
     <title>{{ $user->name }} - Catálogo Exclusivo</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-crema: #fdf6ec;
-            /* Fondo tradicional crema cálido */
-            --rosa-mexicano: #e6007e;
-            --verde-tradicional: #00a650;
-            --naranja-calido: #f37023;
-            --amarillo-sol: #ffcb42;
-            --texto-oscuro: #3a2512;
-            /* Café rústico oscuro */
+            --bg-crema: #fdf6ec;      /* Fondo tradicional crema cálido */
+            --rosa-mexicano: #e6007e;  
+            --verde-tradicional: #00a650; 
+            --naranja-calido: #f37023;    
+            --amarillo-sol: #ffcb42;  
+            --texto-oscuro: #3a2512;      /* Café rústico oscuro */
         }
 
         * {
@@ -60,26 +56,11 @@
             color: white;
             font-size: 9px;
         }
-
-        .b-verde {
-            background-color: var(--verde-tradicional);
-        }
-
-        .b-rosa {
-            background-color: var(--rosa-mexicano);
-        }
-
-        .b-naranja {
-            background-color: var(--naranja-calido);
-        }
-
-        .b-amarillo {
-            background-color: var(--amarillo-sol);
-        }
-
-        .b-morado {
-            background-color: #8c52ff;
-        }
+        .b-verde { background-color: var(--verde-tradicional); }
+        .b-rosa { background-color: var(--rosa-mexicano); }
+        .b-naranja { background-color: var(--naranja-calido); }
+        .b-amarillo { background-color: var(--amarillo-sol); }
+        .b-morado { background-color: #8c52ff; }
 
         .brand-section {
             text-align: center;
@@ -123,7 +104,7 @@
             font-size: 15px;
             font-weight: 500;
             outline: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
         /* CONTENEDOR PRINCIPAL DEL FILTRADO */
@@ -137,8 +118,7 @@
         /* ESTRUCTURA FILA INTERCALADA (ZIG-ZAG 2 COLUMNAS) */
         .category-row {
             display: grid;
-            grid-template-columns: 125px 1fr;
-            /* Bloque fijo a la izquierda, productos a la derecha */
+            grid-template-columns: 125px 1fr; /* Bloque fijo a la izquierda, productos a la derecha */
             gap: 12px;
             align-items: center;
             background: rgba(255, 255, 255, 0.4);
@@ -173,21 +153,10 @@
         }
 
         /* Control de Colores Vibrantes Tradicionales por Fila */
-        .category-row:nth-child(4n+1) .cat-name {
-            color: var(--rosa-mexicano);
-        }
-
-        .category-row:nth-child(4n+2) .cat-name {
-            color: var(--verde-tradicional);
-        }
-
-        .category-row:nth-child(4n+3) .cat-name {
-            color: var(--naranja-calido);
-        }
-
-        .category-row:nth-child(4n+4) .cat-name {
-            color: #8c52ff;
-        }
+        .category-row:nth-child(4n+1) .cat-name { color: var(--rosa-mexicano); }
+        .category-row:nth-child(4n+2) .cat-name { color: var(--verde-tradicional); }
+        .category-row:nth-child(4n+3) .cat-name { color: var(--naranja-calido); }
+        .category-row:nth-child(4n+4) .cat-name { color: #8c52ff; }
 
         .cat-thumb {
             width: 68px;
@@ -198,21 +167,10 @@
             border: 2px solid #ffffff;
         }
 
-        .category-row:nth-child(4n+1) .cat-thumb {
-            box-shadow: 0 0 0 3px var(--rosa-mexicano);
-        }
-
-        .category-row:nth-child(4n+2) .cat-thumb {
-            box-shadow: 0 0 0 3px var(--verde-tradicional);
-        }
-
-        .category-row:nth-child(4n+3) .cat-thumb {
-            box-shadow: 0 0 0 3px var(--naranja-calido);
-        }
-
-        .category-row:nth-child(4n+4) .cat-thumb {
-            box-shadow: 0 0 0 3px #8c52ff;
-        }
+        .category-row:nth-child(4n+1) .cat-thumb { box-shadow: 0 0 0 3px var(--rosa-mexicano); }
+        .category-row:nth-child(4n+2) .cat-thumb { box-shadow: 0 0 0 3px var(--verde-tradicional); }
+        .category-row:nth-child(4n+3) .cat-thumb { box-shadow: 0 0 0 3px var(--naranja-calido); }
+        .category-row:nth-child(4n+4) .cat-thumb { box-shadow: 0 0 0 3px #8c52ff; }
 
         .cat-name {
             font-family: 'Lobster', cursive;
@@ -229,13 +187,11 @@
             gap: 10px;
             padding: 5px 2px 8px;
             scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            /* Oculta barra en Firefox */
+            scrollbar-width: none; /* Oculta barra en Firefox */
         }
 
         .products-slider-container::-webkit-scrollbar {
-            display: none;
-            /* Oculta barra en Chrome/Safari */
+            display: none; /* Oculta barra en Chrome/Safari */
         }
 
         /* Mueve el slider a la izquierda en filas pares */
@@ -246,8 +202,7 @@
 
         /* TARJETA DE PRODUCTO COMPACTA PARA EL SLIDER */
         .product-slider-card {
-            flex: 0 0 165px;
-            /* Ancho fijo ideal para que se aprecien varios a la vez en pantalla */
+            flex: 0 0 165px; /* Ancho fijo ideal para que se aprecien varios a la vez en pantalla */
             scroll-snap-align: start;
             background: #ffffff;
             border-radius: 20px;
@@ -329,9 +284,7 @@
             gap: 10px;
         }
 
-        .footer-title-block i {
-            color: var(--rosa-mexicano);
-        }
+        .footer-title-block i { color: var(--rosa-mexicano); }
 
         .schedule-card {
             background: var(--bg-crema);
@@ -358,7 +311,7 @@
             text-align: center;
             font-size: 11px;
             opacity: 0.6;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: 1px solid rgba(0,0,0,0.05);
             padding-top: 20px;
         }
 
@@ -402,25 +355,22 @@
     <div class="search-box-container">
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="input-busqueda" class="search-input"
-                placeholder="Buscar servicios o categorías..." oninput="buscarEnTiempoReal()">
+            <input type="text" id="input-busqueda" class="search-input" placeholder="Buscar servicios o categorías..." oninput="buscarEnTiempoReal()">
         </div>
     </div>
 
     <div class="catalog-container" id="contenedor-catalogo">
         @forelse ($user->categories as $category)
             <div class="category-row" data-cat-name="{{ strtolower($category->name) }}">
-
+                
                 <div class="category-badge-card">
-                    <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000&auto=format&fit=crop' }}"
-                        class="cat-thumb" alt="{{ $category->name }}">
+                    <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000&auto=format&fit=crop' }}" class="cat-thumb" alt="{{ $category->name }}">
                     <h3 class="cat-name">{{ $category->name }}</h3>
                 </div>
 
                 <div class="products-slider-container">
                     @forelse ($category->products as $product)
-                        <div class="product-slider-card"
-                            data-product-info="{{ strtolower($product->name . ' ' . $product->description) }}">
+                        <div class="product-slider-card" data-product-info="{{ strtolower($product->name . ' ' . $product->description) }}">
                             <div>
                                 <h4 class="prod-title">{{ $product->name }}</h4>
                                 <p class="prod-desc">{{ $product->description }}</p>
@@ -431,8 +381,7 @@
                             </div>
                         </div>
                     @empty
-                        <div class="product-slider-card"
-                            style="justify-content: center; align-items: center; border-style: dashed; background: transparent;">
+                        <div class="product-slider-card" style="justify-content: center; align-items: center; border-style: dashed; background: transparent;">
                             <p style="font-size: 11px; opacity: 0.6; text-align: center;">Próximamente más opciones.</p>
                         </div>
                     @endforelse
