@@ -305,10 +305,6 @@
                 <select name="theme" id="editTheme">
                     <option value="show">Diseño 1</option>
                     <option value="show2">Diseño 2</option>
-                    <option value="show3">Diseño 3</option>
-                    <option value="show4">Diseño 4</option>
-                    <option value="show5">Diseño 5</option>
-                    <option value="show6">Diseño 6</option>
                 </select>
 
                 <div style="margin-top:20px;">
