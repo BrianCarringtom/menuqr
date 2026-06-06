@@ -407,10 +407,8 @@
         }
 
         .product-info {
-            flex: 0 1 auto;
-            /* Permite reducirse si el espacio lo requiere */
-            max-width: 65%;
-            /* Asegura que la flecha tenga un recorrido visible */
+            flex: 0 1 auto; /* Permite reducirse si el espacio lo requiere */
+            max-width: 65%; /* Asegura que la flecha tenga un recorrido visible */
             z-index: 2;
         }
 
@@ -430,14 +428,12 @@
 
         /* DISEÑO DE LÍNEA-FLECHA EXPANSIVA COLECTORA */
         .product-arrow-connector {
-            flex: 1;
-            /* Ocupa de manera dinámica todo el espacio restante intermedio */
+            flex: 1; /* Ocupa de manera dinámica todo el espacio restante intermedio */
             display: flex;
             align-items: center;
             position: relative;
             margin: 0 14px;
-            min-width: 40px;
-            /* Longitud mínima garantizada en pantallas compactas */
+            min-width: 40px; /* Longitud mínima garantizada en pantallas compactas */
             height: 20px;
             z-index: 2;
         }
@@ -456,8 +452,7 @@
         .product-arrow-connector i {
             color: rgba(255, 94, 126, 0.4);
             font-size: 12px;
-            margin-left: -4px;
-            /* Ensamblado directo sobre la línea */
+            margin-left: -4px; /* Ensamblado directo sobre la línea */
             transition: all 0.3s ease;
         }
 
@@ -481,8 +476,7 @@
             min-width: 75px;
             height: 60px;
             z-index: 2;
-            flex-shrink: 0;
-            /* Impide que el bloque del precio se deforme */
+            flex-shrink: 0; /* Impide que el bloque del precio se deforme */
         }
 
         /* Estrella de fondo integrada */

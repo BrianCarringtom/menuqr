@@ -21,6 +21,8 @@
             /* Amarillo festivo */
             --accent-blue: #4d96ff;
             /* Azul mágico */
+            --price-color: #10b981;
+            /* Verde éxito elegante para precios */
         }
 
         * {
@@ -41,7 +43,7 @@
             overflow-x: hidden;
         }
 
-        /* CAPA DE FONDO INTERACTIVA (PIÑATERÍA ELEGANTE) */
+        /* CAPA DE FONDO INTERACTIVA Y COLORIDA (PIÑATERÍA ELEGANTE) */
         body::before {
             content: "";
             position: fixed;
@@ -57,7 +59,7 @@
             z-index: -2;
         }
 
-        /* FIGURAS DE CONFETI EN EL FONDO */
+        /* FIGURAS DE CONFETI Y CELEBRACIÓN EN EL FONDO */
         .bg-shapes {
             position: absolute;
             top: 0;
@@ -130,10 +132,10 @@
             display: inline-block;
             border: 3px dashed var(--accent-primary);
             border-radius: 50%;
-            padding: 12px;
+            padding: 14px;
             margin-bottom: 16px;
             background: #ffffff;
-            box-shadow: 0 10px 25px rgba(255, 94, 126, 0.18);
+            box-shadow: 0 10px 20px rgba(255, 94, 126, 0.15);
             animation: pulse 3s infinite alternate;
         }
 
@@ -143,68 +145,26 @@
             }
 
             100% {
-                transform: scale(1.03);
+                transform: scale(1.04);
                 border-color: var(--accent-secondary);
             }
         }
 
-        .logo-content {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            border-radius: 50%;
-        }
-
-        .logo-rotator-item {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(25px) scale(0.85);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-            pointer-events: none;
-        }
-
-        .logo-rotator-item.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-
-        .logo-rotator-item.exit {
-            opacity: 0;
-            transform: translateY(-25px) scale(0.85);
-        }
-
-        .logo-rotator-item img {
-            width: 54px;
-            height: 54px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--accent-primary);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .logo-content i {
+            font-size: 42px;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
             margin-bottom: 4px;
         }
 
-        .logo-rotator-item span {
+        .logo-content span {
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
             font-weight: 700;
-            color: var(--text-main);
-            max-width: 90px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
+            color: var(--text-muted);
         }
 
         .brand-title {
@@ -303,6 +263,7 @@
             display: none;
         }
 
+        /* Botón de Categoría Individual */
         .category-tab-btn {
             display: flex;
             flex-direction: column;
@@ -325,6 +286,7 @@
             width: 72px;
             height: 72px;
             border-radius: 24px;
+            /* Estilo squircle moderno */
             padding: 4px;
             background: var(--card-bg);
             border: 2px solid transparent;
@@ -351,6 +313,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Estado Activo de la Categoría Seleccionada */
         .category-tab-btn.active .tab-image-wrapper {
             background: #ffffff;
             border-color: var(--accent-primary);
@@ -391,122 +354,53 @@
             }
         }
 
-        /* NUEVAS TARJETAS DE PRODUCTOS COMPACTAS Y OPTIMIZADAS */
+        /* Tarjetas de Productos Premium */
         .product-card {
             background-color: var(--card-bg);
-            border-radius: 22px;
-            padding: 16px 20px;
+            border-radius: 24px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: var(--text-main);
-            box-shadow: 0 10px 25px rgba(160, 174, 192, 0.12);
+            box-shadow: 0 10px 30px rgba(160, 174, 192, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:transform {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(160, 174, 192, 0.25);
         }
 
         .product-info {
-            flex: 0 1 auto;
-            /* Permite reducirse si el espacio lo requiere */
-            max-width: 65%;
-            /* Asegura que la flecha tenga un recorrido visible */
-            z-index: 2;
+            flex: 1;
+            padding-right: 14px;
         }
 
         .product-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             color: #1a202c;
-            margin-bottom: 4px;
-            letter-spacing: -0.2px;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
         }
 
         .product-description {
-            font-size: 12.5px;
+            font-size: 13px;
             color: var(--text-muted);
-            line-height: 1.4;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
-        /* DISEÑO DE LÍNEA-FLECHA EXPANSIVA COLECTORA */
-        .product-arrow-connector {
-            flex: 1;
-            /* Ocupa de manera dinámica todo el espacio restante intermedio */
-            display: flex;
-            align-items: center;
-            position: relative;
-            margin: 0 14px;
-            min-width: 40px;
-            /* Longitud mínima garantizada en pantallas compactas */
-            height: 20px;
-            z-index: 2;
-        }
-
-        /* Línea horizontal continua */
-        .product-arrow-connector::before {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(to right, rgba(255, 94, 126, 0.15), rgba(255, 94, 126, 0.4));
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* Punta de la flecha integrada al final de la línea */
-        .product-arrow-connector i {
-            color: rgba(255, 94, 126, 0.4);
-            font-size: 12px;
-            margin-left: -4px;
-            /* Ensamblado directo sobre la línea */
-            transition: all 0.3s ease;
-        }
-
-        /* Animación e iluminación al hacer hover/touch sobre la tarjeta */
-        .product-card:hover .product-arrow-connector::before {
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-primary));
-            height: 2.5px;
-        }
-
-        .product-card:hover .product-arrow-connector i {
-            color: var(--accent-primary);
-            transform: translateX(4px) scale(1.1);
-        }
-
-        /* CONTENEDOR DEL PRECIO EN LA PARTE DERECHA CON ESTRELLA */
-        .product-price-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 75px;
-            height: 60px;
-            z-index: 2;
-            flex-shrink: 0;
-            /* Impide que el bloque del precio se deforme */
-        }
-
-        /* Estrella de fondo integrada */
-        .price-star-bg {
-            position: absolute;
-            font-size: 58px;
-            /* Tamaño grande para envolver el precio */
-            background: linear-gradient(135deg, rgba(255, 222, 89, 0.35) 0%, rgba(255, 162, 0, 0.15) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transform: rotate(-15deg);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Texto del Precio sobre la estrella */
         .product-price {
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 20px;
+            font-weight: 700;
             color: var(--accent-primary);
-            z-index: 2;
-            text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #ffffff;
-            /* Evita que el fondo interfiera con la lectura */
-            letter-spacing: -0.5px;
+            background: rgba(255, 94, 126, 0.08);
+            padding: 4px 14px;
+            border-radius: 12px;
+            display: inline-block;
         }
 
         /* FOOTER PREMIUM ELEGANTE */
@@ -603,6 +497,57 @@
         .whatsapp-float:hover {
             transform: scale(1.08);
         }
+
+        .logo-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Contenedor del texto rotativo */
+        .category-rotator {
+            position: relative;
+            height: 18px;
+            /* Altura fija para controlar el flujo de texto */
+            width: 120px;
+            /* Ancho máximo estimado */
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+        /* Estilo base para cada categoría que va a rotar */
+        .rotating-text {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-muted);
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        /* Estado activo del texto visible */
+        .rotating-text.active {
+            opacity: 1;
+            transform: translateY(0);
+            color: var(--accent-primary);
+            /* Se ilumina con el color rosa/vibrante */
+        }
+
+        /* Estado de salida cuando se oculta */
+        .rotating-text.exit {
+            opacity: 0;
+            transform: translateY(-15px);
+        }
     </style>
 </head>
 
@@ -619,13 +564,12 @@
     <section class="brand-section">
         <div class="logo-wrapper">
             <div class="logo-content">
-                @foreach ($user->categories as $index => $category)
-                    <div class="logo-rotator-item {{ $index == 0 ? 'active' : '' }}">
-                        <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=200&auto=format&fit=crop' }}"
-                            alt="{{ $category->name }}">
-                        <span>{{ $category->name }}</span>
-                    </div>
-                @endforeach
+                <i class="fa-solid fa-fire-burner"></i>
+                <div class="category-rotator">
+                    @foreach ($user->categories as $index => $category)
+                        <span class="rotating-text {{ $index == 0 ? 'active' : '' }}">{{ $category->name }}</span>
+                    @endforeach
+                </div>
             </div>
         </div>
         <h1 class="brand-title">{{ $user->name }}</h1>
@@ -661,22 +605,11 @@
                 @forelse ($category->products as $product)
                     <div class="product-card" data-title="{{ strtolower($product->name) }}"
                         data-desc="{{ strtolower($product->description) }}">
-
                         <div class="product-info">
                             <h3 class="product-title">{{ $product->name }}</h3>
                             <p class="product-description">{{ $product->description }}</p>
-                        </div>
-
-                        <!-- Conector de flecha expandible de extremo a extremo -->
-                        <div class="product-arrow-connector">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </div>
-
-                        <div class="product-price-wrapper">
-                            <i class="fa-solid fa-star price-star-bg"></i>
                             <span class="product-price">${{ number_format($product->price, 2) }}</span>
                         </div>
-
                     </div>
                 @empty
                     <p
@@ -720,44 +653,23 @@
     </a>
 
     <script>
-        // Carrousel automático interno del Logo (Cambia Imagen + Nombre 1 x 1)
-        document.addEventListener("DOMContentLoaded", function() {
-            const items = document.querySelectorAll('.logo-rotator-item');
-            if (items.length <= 1) return;
-
-            let currentIndex = 0;
-
-            setInterval(() => {
-                const currentItem = items[currentIndex];
-
-                currentItem.classList.remove('active');
-                currentItem.classList.add('exit');
-
-                setTimeout(() => {
-                    currentItem.classList.remove('exit');
-                }, 600);
-
-                currentIndex = (currentIndex + 1) % items.length;
-
-                const nextItem = items[currentIndex];
-                nextItem.classList.add('active');
-
-            }, 2500);
-        });
-
         // Cambiar de categoría al dar clic arriba
         function switchTab(index) {
+            // Limpiar buscador al cambiar manualmente de categoría para mejor experiencia
             document.getElementById('input-busqueda').value = "";
             restablecerFiltros();
 
+            // Quitar clase activa a todos los botones y paneles
             document.querySelectorAll('.category-tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.category-products-panel').forEach(panel => panel.classList.remove('active'));
 
-            document.getElementById(`tab-btn-${index}`).classList.remove('active');
+            // Activar el seleccionado
+            document.getElementById(`tab-btn-${index}`).classList.remove('active'); // Parche de seguridad
             document.getElementById(`tab-btn-${index}`).classList.add('active');
             document.getElementById(`panel-${index}`).classList.add('active');
         }
 
+        // Restablecer visibilidad de tarjetas
         function restablecerFiltros() {
             document.querySelectorAll('.product-card').forEach(card => {
                 card.style.display = 'flex';
@@ -771,6 +683,7 @@
             const tabs = document.querySelectorAll('.category-tab-btn');
 
             if (query.length > 0) {
+                // Si escribe algo, buscamos de manera global abriendo visibilidad donde haya coincidencias
                 panels.forEach((panel, index) => {
                     const cards = panel.querySelectorAll('.product-card');
                     let tieneCoincidencias = 0;
@@ -787,6 +700,7 @@
                         }
                     });
 
+                    // Si esta pestaña tiene resultados, la hacemos visible temporalmente para mostrar el producto hallado
                     if (tieneCoincidencias > 0) {
                         panel.classList.add('active');
                         tabs[index].classList.add('active');
@@ -796,10 +710,12 @@
                     }
                 });
             } else {
+                // Si borra el buscador, regresamos al estado inicial (Pestaña index 0 activa por defecto)
                 panels.forEach(panel => panel.classList.remove('active'));
                 tabs.forEach(tab => tab.classList.remove('active'));
                 restablecerFiltros();
 
+                // Activa la primera por defecto
                 if (panels[0]) panels[0].classList.add('active');
                 if (tabs[0]) tabs[0].classList.add('active');
             }

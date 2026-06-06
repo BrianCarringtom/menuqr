@@ -407,11 +407,10 @@
         }
 
         .product-info {
-            flex: 0 1 auto;
-            /* Permite reducirse si el espacio lo requiere */
-            max-width: 65%;
-            /* Asegura que la flecha tenga un recorrido visible */
+            flex: 1;
+            padding-right: 16px;
             z-index: 2;
+            /* Encima de fondos decorativos */
         }
 
         .product-title {
@@ -428,48 +427,21 @@
             line-height: 1.4;
         }
 
-        /* DISEÑO DE LÍNEA-FLECHA EXPANSIVA COLECTORA */
-        .product-arrow-connector {
-            flex: 1;
-            /* Ocupa de manera dinámica todo el espacio restante intermedio */
+        /* ESTILO E INTERACCIÓN DE LA FLECHA INDICADORA */
+        .product-arrow-indicator {
             display: flex;
             align-items: center;
-            position: relative;
-            margin: 0 14px;
-            min-width: 40px;
-            /* Longitud mínima garantizada en pantallas compactas */
-            height: 20px;
+            justify-content: center;
+            padding: 0 10px;
+            color: rgba(255, 94, 126, 0.35);
+            font-size: 15px;
             z-index: 2;
-        }
-
-        /* Línea horizontal continua */
-        .product-arrow-connector::before {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(to right, rgba(255, 94, 126, 0.15), rgba(255, 94, 126, 0.4));
-            border-radius: 2px;
             transition: all 0.3s ease;
         }
 
-        /* Punta de la flecha integrada al final de la línea */
-        .product-arrow-connector i {
-            color: rgba(255, 94, 126, 0.4);
-            font-size: 12px;
-            margin-left: -4px;
-            /* Ensamblado directo sobre la línea */
-            transition: all 0.3s ease;
-        }
-
-        /* Animación e iluminación al hacer hover/touch sobre la tarjeta */
-        .product-card:hover .product-arrow-connector::before {
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-primary));
-            height: 2.5px;
-        }
-
-        .product-card:hover .product-arrow-connector i {
+        .product-card:hover .product-arrow-indicator {
             color: var(--accent-primary);
-            transform: translateX(4px) scale(1.1);
+            transform: scale(1.1) translateX(3px);
         }
 
         /* CONTENEDOR DEL PRECIO EN LA PARTE DERECHA CON ESTRELLA */
@@ -481,8 +453,6 @@
             min-width: 75px;
             height: 60px;
             z-index: 2;
-            flex-shrink: 0;
-            /* Impide que el bloque del precio se deforme */
         }
 
         /* Estrella de fondo integrada */
@@ -667,9 +637,8 @@
                             <p class="product-description">{{ $product->description }}</p>
                         </div>
 
-                        <!-- Conector de flecha expandible de extremo a extremo -->
-                        <div class="product-arrow-connector">
-                            <i class="fa-solid fa-chevron-right"></i>
+                        <div class="product-arrow-indicator">
+                            <i class="fa-solid fa-long-arrow-right"></i>
                         </div>
 
                         <div class="product-price-wrapper">

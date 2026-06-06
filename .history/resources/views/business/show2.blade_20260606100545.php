@@ -15,12 +15,9 @@
             --card-bg: #ffffff;
             --text-main: #2d3748;
             --text-muted: #718096;
-            --accent-primary: #ff5e7e;
-            /* Rosa piñata vibrante */
-            --accent-secondary: #ffa200;
-            /* Amarillo festivo */
-            --accent-blue: #4d96ff;
-            /* Azul mágico */
+            --accent-primary: #ff5e7e; /* Rosa piñata vibrante */
+            --accent-secondary: #ffa200; /* Amarillo festivo */
+            --accent-blue: #4d96ff; /* Azul mágico */
         }
 
         * {
@@ -74,50 +71,11 @@
             opacity: 0.15;
             border-radius: 50%;
         }
-
-        .shape-1 {
-            top: 5%;
-            left: 8%;
-            width: 60px;
-            height: 60px;
-            background: var(--accent-primary);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-
-        .shape-2 {
-            top: 15%;
-            right: 10%;
-            width: 40px;
-            height: 40px;
-            background: var(--accent-blue);
-            transform: rotate(45deg);
-            border-radius: 4px;
-        }
-
-        .shape-3 {
-            top: 40%;
-            left: -20px;
-            width: 80px;
-            height: 80px;
-            background: var(--accent-secondary);
-        }
-
-        .shape-4 {
-            top: 65%;
-            right: -30px;
-            width: 100px;
-            height: 100px;
-            background: var(--accent-primary);
-        }
-
-        .shape-5 {
-            top: 80%;
-            left: 12%;
-            width: 30px;
-            height: 30px;
-            background: var(--accent-blue);
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-        }
+        .shape-1 { top: 5%; left: 8%; width: 60px; height: 60px; background: var(--accent-primary); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+        .shape-2 { top: 15%; right: 10%; width: 40px; height: 40px; background: var(--accent-blue); transform: rotate(45deg); border-radius: 4px; }
+        .shape-3 { top: 40%; left: -20px; width: 80px; height: 80px; background: var(--accent-secondary); }
+        .shape-4 { top: 65%; right: -30px; width: 100px; height: 100px; background: var(--accent-primary); }
+        .shape-5 { top: 80%; left: 12%; width: 30px; height: 30px; background: var(--accent-blue); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
 
         /* Branding / Identidad */
         .brand-section {
@@ -138,14 +96,8 @@
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            100% {
-                transform: scale(1.03);
-                border-color: var(--accent-secondary);
-            }
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); border-color: var(--accent-secondary); }
         }
 
         .logo-content {
@@ -190,7 +142,7 @@
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid var(--accent-primary);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             margin-bottom: 4px;
         }
 
@@ -384,7 +336,6 @@
                 opacity: 0;
                 transform: translateY(15px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -407,11 +358,9 @@
         }
 
         .product-info {
-            flex: 0 1 auto;
-            /* Permite reducirse si el espacio lo requiere */
-            max-width: 65%;
-            /* Asegura que la flecha tenga un recorrido visible */
-            z-index: 2;
+            flex: 1;
+            padding-right: 16px;
+            z-index: 2; /* Encima de fondos decorativos */
         }
 
         .product-title {
@@ -428,50 +377,6 @@
             line-height: 1.4;
         }
 
-        /* DISEÑO DE LÍNEA-FLECHA EXPANSIVA COLECTORA */
-        .product-arrow-connector {
-            flex: 1;
-            /* Ocupa de manera dinámica todo el espacio restante intermedio */
-            display: flex;
-            align-items: center;
-            position: relative;
-            margin: 0 14px;
-            min-width: 40px;
-            /* Longitud mínima garantizada en pantallas compactas */
-            height: 20px;
-            z-index: 2;
-        }
-
-        /* Línea horizontal continua */
-        .product-arrow-connector::before {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(to right, rgba(255, 94, 126, 0.15), rgba(255, 94, 126, 0.4));
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* Punta de la flecha integrada al final de la línea */
-        .product-arrow-connector i {
-            color: rgba(255, 94, 126, 0.4);
-            font-size: 12px;
-            margin-left: -4px;
-            /* Ensamblado directo sobre la línea */
-            transition: all 0.3s ease;
-        }
-
-        /* Animación e iluminación al hacer hover/touch sobre la tarjeta */
-        .product-card:hover .product-arrow-connector::before {
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-primary));
-            height: 2.5px;
-        }
-
-        .product-card:hover .product-arrow-connector i {
-            color: var(--accent-primary);
-            transform: translateX(4px) scale(1.1);
-        }
-
         /* CONTENEDOR DEL PRECIO EN LA PARTE DERECHA CON ESTRELLA */
         .product-price-wrapper {
             position: relative;
@@ -481,15 +386,12 @@
             min-width: 75px;
             height: 60px;
             z-index: 2;
-            flex-shrink: 0;
-            /* Impide que el bloque del precio se deforme */
         }
 
         /* Estrella de fondo integrada */
         .price-star-bg {
             position: absolute;
-            font-size: 58px;
-            /* Tamaño grande para envolver el precio */
+            font-size: 58px; /* Tamaño grande para envolver el precio */
             background: linear-gradient(135deg, rgba(255, 222, 89, 0.35) 0%, rgba(255, 162, 0, 0.15) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -504,8 +406,7 @@
             font-weight: 800;
             color: var(--accent-primary);
             z-index: 2;
-            text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #ffffff;
-            /* Evita que el fondo interfiera con la lectura */
+            text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #ffffff; /* Evita que el fondo interfiera con la lectura */
             letter-spacing: -0.5px;
         }
 
@@ -621,8 +522,8 @@
             <div class="logo-content">
                 @foreach ($user->categories as $index => $category)
                     <div class="logo-rotator-item {{ $index == 0 ? 'active' : '' }}">
-                        <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=200&auto=format&fit=crop' }}"
-                            alt="{{ $category->name }}">
+                        <img src="{{ $category->image ? asset('storage/' . $category->image) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=200&auto=format&fit=crop' }}" 
+                             alt="{{ $category->name }}">
                         <span>{{ $category->name }}</span>
                     </div>
                 @endforeach
@@ -661,15 +562,10 @@
                 @forelse ($category->products as $product)
                     <div class="product-card" data-title="{{ strtolower($product->name) }}"
                         data-desc="{{ strtolower($product->description) }}">
-
+                        
                         <div class="product-info">
                             <h3 class="product-title">{{ $product->name }}</h3>
                             <p class="product-description">{{ $product->description }}</p>
-                        </div>
-
-                        <!-- Conector de flecha expandible de extremo a extremo -->
-                        <div class="product-arrow-connector">
-                            <i class="fa-solid fa-chevron-right"></i>
                         </div>
 
                         <div class="product-price-wrapper">
@@ -679,15 +575,13 @@
 
                     </div>
                 @empty
-                    <p
-                        style="color: var(--text-muted); font-size: 14px; text-align: center; padding: 40px 15px; width: 100%; font-weight: 500;">
+                    <p style="color: var(--text-muted); font-size: 14px; text-align: center; padding: 40px 15px; width: 100%; font-weight: 500;">
                         No hay productos en esta categoría actualmente.
                     </p>
                 @endforelse
             </div>
         @empty
-            <div class="text-center"
-                style="color: var(--text-muted); padding: 40px 20px; width: 100%; font-weight: 500;">
+            <div class="text-center" style="color: var(--text-muted); padding: 40px 20px; width: 100%; font-weight: 500;">
                 <p>Este negocio aún no tiene categorías cargadas.</p>
             </div>
         @endforelse
@@ -729,10 +623,10 @@
 
             setInterval(() => {
                 const currentItem = items[currentIndex];
-
+                
                 currentItem.classList.remove('active');
                 currentItem.classList.add('exit');
-
+                
                 setTimeout(() => {
                     currentItem.classList.remove('exit');
                 }, 600);
@@ -753,7 +647,7 @@
             document.querySelectorAll('.category-tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.category-products-panel').forEach(panel => panel.classList.remove('active'));
 
-            document.getElementById(`tab-btn-${index}`).classList.remove('active');
+            document.getElementById(`tab-btn-${index}`).classList.remove('active'); 
             document.getElementById(`tab-btn-${index}`).classList.add('active');
             document.getElementById(`panel-${index}`).classList.add('active');
         }

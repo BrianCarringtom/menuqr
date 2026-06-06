@@ -126,13 +126,14 @@
             position: relative;
         }
 
+        /* Contenedor circular del logo animado */
         .logo-wrapper {
             display: inline-block;
             border: 3px dashed var(--accent-primary);
             border-radius: 50%;
             padding: 12px;
             margin-bottom: 16px;
-            background: #ffffff;
+            background: orangered;
             box-shadow: 0 10px 25px rgba(255, 94, 126, 0.18);
             animation: pulse 3s infinite alternate;
         }
@@ -148,6 +149,7 @@
             }
         }
 
+        /* ESTRUCTURA DEL CONTENEDOR DE ROTACIÓN INTERNA DEL LOGO */
         .logo-content {
             width: 100px;
             height: 100px;
@@ -159,6 +161,7 @@
             border-radius: 50%;
         }
 
+        /* Bloque de cada categoría individual dentro de la rotación */
         .logo-rotator-item {
             position: absolute;
             width: 100%;
@@ -173,17 +176,20 @@
             pointer-events: none;
         }
 
+        /* Estado activo: visible en el centro */
         .logo-rotator-item.active {
             opacity: 1;
             transform: translateY(0) scale(1);
             pointer-events: auto;
         }
 
+        /* Estado de salida: se desliza hacia arriba */
         .logo-rotator-item.exit {
             opacity: 0;
             transform: translateY(-25px) scale(0.85);
         }
 
+        /* Imagen circular interna */
         .logo-rotator-item img {
             width: 54px;
             height: 54px;
@@ -194,6 +200,7 @@
             margin-bottom: 4px;
         }
 
+        /* Nombre de la categoría rotativa */
         .logo-rotator-item span {
             font-size: 11px;
             text-transform: uppercase;
@@ -303,6 +310,7 @@
             display: none;
         }
 
+        /* Botón de Categoría Individual */
         .category-tab-btn {
             display: flex;
             flex-direction: column;
@@ -351,6 +359,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Estado Activo de la Categoría Seleccionada */
         .category-tab-btn.active .tab-image-wrapper {
             background: #ffffff;
             border-color: var(--accent-primary);
@@ -391,122 +400,48 @@
             }
         }
 
-        /* NUEVAS TARJETAS DE PRODUCTOS COMPACTAS Y OPTIMIZADAS */
+        /* Tarjetas de Productos Premium */
         .product-card {
             background-color: var(--card-bg);
-            border-radius: 22px;
-            padding: 16px 20px;
+            border-radius: 24px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: var(--text-main);
-            box-shadow: 0 10px 25px rgba(160, 174, 192, 0.12);
+            box-shadow: 0 10px 30px rgba(160, 174, 192, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
         .product-info {
-            flex: 0 1 auto;
-            /* Permite reducirse si el espacio lo requiere */
-            max-width: 65%;
-            /* Asegura que la flecha tenga un recorrido visible */
-            z-index: 2;
+            flex: 1;
+            padding-right: 14px;
         }
 
         .product-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             color: #1a202c;
-            margin-bottom: 4px;
-            letter-spacing: -0.2px;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
         }
 
         .product-description {
-            font-size: 12.5px;
+            font-size: 13px;
             color: var(--text-muted);
-            line-height: 1.4;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
-        /* DISEÑO DE LÍNEA-FLECHA EXPANSIVA COLECTORA */
-        .product-arrow-connector {
-            flex: 1;
-            /* Ocupa de manera dinámica todo el espacio restante intermedio */
-            display: flex;
-            align-items: center;
-            position: relative;
-            margin: 0 14px;
-            min-width: 40px;
-            /* Longitud mínima garantizada en pantallas compactas */
-            height: 20px;
-            z-index: 2;
-        }
-
-        /* Línea horizontal continua */
-        .product-arrow-connector::before {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(to right, rgba(255, 94, 126, 0.15), rgba(255, 94, 126, 0.4));
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* Punta de la flecha integrada al final de la línea */
-        .product-arrow-connector i {
-            color: rgba(255, 94, 126, 0.4);
-            font-size: 12px;
-            margin-left: -4px;
-            /* Ensamblado directo sobre la línea */
-            transition: all 0.3s ease;
-        }
-
-        /* Animación e iluminación al hacer hover/touch sobre la tarjeta */
-        .product-card:hover .product-arrow-connector::before {
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-primary));
-            height: 2.5px;
-        }
-
-        .product-card:hover .product-arrow-connector i {
-            color: var(--accent-primary);
-            transform: translateX(4px) scale(1.1);
-        }
-
-        /* CONTENEDOR DEL PRECIO EN LA PARTE DERECHA CON ESTRELLA */
-        .product-price-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 75px;
-            height: 60px;
-            z-index: 2;
-            flex-shrink: 0;
-            /* Impide que el bloque del precio se deforme */
-        }
-
-        /* Estrella de fondo integrada */
-        .price-star-bg {
-            position: absolute;
-            font-size: 58px;
-            /* Tamaño grande para envolver el precio */
-            background: linear-gradient(135deg, rgba(255, 222, 89, 0.35) 0%, rgba(255, 162, 0, 0.15) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transform: rotate(-15deg);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Texto del Precio sobre la estrella */
         .product-price {
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 20px;
+            font-weight: 700;
             color: var(--accent-primary);
-            z-index: 2;
-            text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #ffffff;
-            /* Evita que el fondo interfiera con la lectura */
-            letter-spacing: -0.5px;
+            background: rgba(255, 94, 126, 0.08);
+            padding: 4px 14px;
+            border-radius: 12px;
+            display: inline-block;
         }
 
         /* FOOTER PREMIUM ELEGANTE */
@@ -661,22 +596,11 @@
                 @forelse ($category->products as $product)
                     <div class="product-card" data-title="{{ strtolower($product->name) }}"
                         data-desc="{{ strtolower($product->description) }}">
-
                         <div class="product-info">
                             <h3 class="product-title">{{ $product->name }}</h3>
                             <p class="product-description">{{ $product->description }}</p>
-                        </div>
-
-                        <!-- Conector de flecha expandible de extremo a extremo -->
-                        <div class="product-arrow-connector">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </div>
-
-                        <div class="product-price-wrapper">
-                            <i class="fa-solid fa-star price-star-bg"></i>
                             <span class="product-price">${{ number_format($product->price, 2) }}</span>
                         </div>
-
                     </div>
                 @empty
                     <p
@@ -723,13 +647,14 @@
         // Carrousel automático interno del Logo (Cambia Imagen + Nombre 1 x 1)
         document.addEventListener("DOMContentLoaded", function() {
             const items = document.querySelectorAll('.logo-rotator-item');
-            if (items.length <= 1) return;
+            if (items.length <= 1) return; // Si hay una o ninguna categoría no se procesa
 
             let currentIndex = 0;
 
             setInterval(() => {
                 const currentItem = items[currentIndex];
 
+                // Animación de salida hacia arriba
                 currentItem.classList.remove('active');
                 currentItem.classList.add('exit');
 
@@ -737,12 +662,14 @@
                     currentItem.classList.remove('exit');
                 }, 600);
 
+                // Siguiente elemento indexado
                 currentIndex = (currentIndex + 1) % items.length;
 
+                // Animación de entrada desde abajo
                 const nextItem = items[currentIndex];
                 nextItem.classList.add('active');
 
-            }, 2500);
+            }, 2500); // Rota automáticamente cada 2.5 segundos
         });
 
         // Cambiar de categoría al dar clic arriba
