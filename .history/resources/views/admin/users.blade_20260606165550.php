@@ -24,6 +24,53 @@
             /* 👈 Esto evita el zoom automático en móviles */
         }
 
+        /* 🔍 BUSCADOR FONDO BLANCO Y CONTORNO ROJO */
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px 0 15px 0;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            background: #ffffff;
+            /* Fondo blanco */
+            border: 2px solid #ef4444;
+            /* Contorno rojo */
+            border-radius: 10px;
+            color: #1f2937;
+            /* Texto oscuro para que se lea en fondo blanco */
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #dc2626;
+            /* Rojo más oscuro al hacer foco */
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+        }
+
+        .search-container input::placeholder {
+            color: #7c2d12;
+            /* Color café/rojo suave para el placeholder */
+            opacity: 0.7;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ef4444;
+            /* Icono rojo */
+            font-size: 16px;
+            pointer-events: none;
+        }
+
         /* 🔥 TABLA RESPONSIVE */
         .table-wrapper {
             width: 100%;
@@ -31,7 +78,7 @@
             overflow-y: hidden;
             border-radius: 16px;
             -webkit-overflow-scrolling: touch;
-            margin-top: 15px;
+            margin-top: 10px;
             background: #1f2937;
         }
 
@@ -46,7 +93,7 @@
 
         .custom-table {
             width: 100%;
-            min-width: 950px;
+            min-width: 850px;
             border-collapse: collapse;
         }
 
@@ -56,43 +103,29 @@
             white-space: nowrap;
         }
 
-        /* 🔥 TITULOS Y CABECERA LISTA */
+        /* 🔥 FILA EXPIRADA (Alerta 29-30 días) */
+        .row-expired {
+            background-color: #ef4444 !important;
+            color: #ffffff !important;
+        }
+
+        .row-expired td,
+        .row-expired a {
+            color: #ffffff !important;
+        }
+
+        /* 🔥 TITULOS */
         .page-title {
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
         .section-title {
-            margin: 0;
+            margin: 25px 0 15px;
             font-size: 1.4rem;
         }
 
-        .list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 35px 0 5px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        /* 🔥 CONTADOR SUPERIOR */
-        .table-header-counter {
-            font-size: 14px;
-            color: #e5e7eb;
-        }
-
-        .counter-badge {
-            background-color: #1f2937;
-            padding: 8px 14px;
-            border-radius: 8px;
-            border: 1px solid #374151;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* 🔥 BOTONES */
+        /* 🔥 BOTONES Y ACCIONES */
         .actions {
             display: flex;
             gap: 8px;
@@ -102,6 +135,27 @@
 
         .btn {
             white-space: nowrap;
+        }
+
+        .btn-renew {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            height: 36px;
+            box-sizing: border-box;
+            transition: background 0.2s;
+        }
+
+        .btn-renew:hover {
+            background-color: #059669;
         }
 
         /* Estilos específicos para los botones convertidos en iconos */
@@ -156,15 +210,21 @@
                 font-size: 14px;
             }
 
-            .btn {
+            .btn,
+            .btn-renew {
                 font-size: 13px;
                 padding: 8px 12px;
             }
 
             .actions .btn-edit,
+            .actions .btn-delete,
+            .btn-renew {
+                height: 32px;
+            }
+
+            .actions .btn-edit,
             .actions .btn-delete {
                 width: 32px;
-                height: 32px;
             }
 
             .actions {
@@ -182,7 +242,7 @@
             }
 
             .custom-table {
-                min-width: 950px;
+                min-width: 900px;
             }
 
             .custom-table th,
@@ -190,7 +250,8 @@
                 font-size: 13px;
             }
 
-            .btn {
+            .btn,
+            .btn-renew {
                 font-size: 12px;
                 padding: 7px 10px;
             }
@@ -206,7 +267,7 @@
             </p>
         @endif
 
-        <h3 class="section-title" style="margin: 25px 0 15px;">Crear usuario business</h3>
+        <h3 class="section-title">Crear usuario business</h3>
 
         <form method="POST" action="/admin/create-user" class="create-user-form">
             @csrf
@@ -233,34 +294,18 @@
             <button type="submit">Crear Usuario</button>
         </form>
 
-        {{-- Lógica previa en Blade para contar el total antes de renderizar la tabla --}}
-        @php
-            $totalBanderas = 0;
-            foreach ($users as $user) {
-                $fechaCreacion = \Carbon\Carbon::parse($user->created_at)->startOfDay();
-                $fechaHoy = \Carbon\Carbon::now()->startOfDay();
-                if ($user->role !== 'admin' && $fechaCreacion->diffInDays($fechaHoy) >= 29) {
-                    $totalBanderas++;
-                }
-            }
-        @endphp
+        <h3 class="section-title">Lista de Usuarios</h3>
 
-        {{-- Cabecera alineada: Título a la izquierda, Contador a la derecha --}}
-        <div class="list-header">
-            <h3 class="section-title">Lista de Usuarios</h3>
-            <div class="table-header-counter">
-                <div class="counter-badge">
-                    <i class="fa-solid fa-flag" style="color: #ef4444;"></i>
-                    <span>Usuarios por vencer (29+ días): <strong>{{ $totalBanderas }}</strong></span>
-                </div>
-            </div>
+        <!-- 🔍 BUSCADOR FONDO BLANCO Y BORDE ROJO -->
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="userSearchInput" placeholder="Buscar por nombre, email o slug...">
         </div>
 
         <div class="table-wrapper">
-            <table class="custom-table">
+            <table class="custom-table" id="usersTable">
                 <thead>
                     <tr>
-                        <th style="width: 40px; text-align: center;"></th>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Email</th>
@@ -268,28 +313,45 @@
                         <th>Plan</th>
                         <th>Diseño</th>
                         <th>Slug</th>
-                        <th>Creado</th>
+                        <th>Fecha Creación (Días transcurridos)</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @php
+                        $expiredUsers = [];
+                        $normalUsers = [];
+
+                        foreach ($users as $user) {
+                            // Con startOfDay() forzamos a comparar fechas completas de calendario (00:00)
+                            // ignorando la hora exacta de creación. Así del día 6 al 7 dará exactamente 1 entero.
+                            $createdDate = \Carbon\Carbon::parse($user->created_at)->startOfDay();
+                            $todayDate = \Carbon\Carbon::now()->startOfDay();
+
+                            $daysPassed = $createdDate->diffInDays($todayDate);
+
+                            if ($daysPassed >= 29) {
+                                $expiredUsers[] = ['data' => $user, 'days_passed' => $daysPassed];
+                            } else {
+                                $normalUsers[] = ['data' => $user, 'days_passed' => $daysPassed];
+                            }
+                        }
+
+                        // Los usuarios de 29 o más días se posicionan en la cabecera de la lista
+                        $sortedUsers = array_merge($expiredUsers, $normalUsers);
+                    @endphp
+
+                    @foreach ($sortedUsers as $item)
                         @php
-                            $fechaCreacion = \Carbon\Carbon::parse($user->created_at)->startOfDay();
-                            $fechaHoy = \Carbon\Carbon::now()->startOfDay();
-                            $diasPasados = $fechaCreacion->diffInDays($fechaHoy);
-                            $tieneBandera = $user->role !== 'admin' && $diasPasados >= 29;
+                            $user = $item['data'];
+                            $daysPassed = $item['days_passed'];
+                            $isUrgent = $daysPassed >= 29;
+                            $formattedDate = \Carbon\Carbon::parse($user->created_at)->format('d/m/Y');
                         @endphp
-                        <tr>
-                            <td style="text-align: center;">
-                                @if ($tieneBandera)
-                                    <i class="fa-solid fa-flag" style="color: #ef4444 !important; display: inline-block;"
-                                        title="Vence pronto ({{ $diasPasados }} días transcurridos)"></i>
-                                @endif
-                            </td>
+                        <tr class="{{ $isUrgent ? 'row-expired' : '' }}">
                             <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td class="search-name">{{ $user->name }}</td>
+                            <td class="search-email">{{ $user->email }}</td>
                             <td class="text-capitalize">{{ $user->role }}</td>
                             <td>
                                 @if ($user->plan == 'basico')
@@ -301,19 +363,29 @@
                                 @endif
                             </td>
                             <td>{{ $user->theme }}</td>
-                            <td>
+                            <td class="search-slug">
                                 <a href="/{{ $user->slug }}" target="_blank" class="link-slug">
                                     {{ $user->slug }}
                                 </a>
                             </td>
+                            <!-- 📆 EN ENTEROS: FECHA + (DÍAS CALENDARIO TRANSCURRIDOS) -->
                             <td>
-                                {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}
-                                <span style="color: #9ca3af; font-size: 12px; margin-left: 5px;">
-                                    ({{ $diasPasados }} {{ $diasPasados == 1 ? 'día' : 'días' }})
-                                </span>
+                                {{ $formattedDate }} ({{ $daysPassed }} {{ $daysPassed == 1 ? 'día' : 'días' }})
                             </td>
                             <td>
                                 <div class="actions">
+                                    <!-- 🔥 BOTÓN RENOVAR: Solo para las filas de 29 días o más calendario -->
+                                    @if ($isUrgent)
+                                        <form action="/admin/users/{{ $user->id }}/renew" method="POST"
+                                            style="margin:0; padding:0;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn-renew" title="Renovar 30 días">
+                                                <i class="fa-solid fa-rotate"></i> Renovar
+                                            </button>
+                                        </form>
+                                    @endif
+
                                     <button
                                         onclick="openEditModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}', '{{ $user->plan }}', '{{ $user->theme }}')"
                                         class="btn btn-edit" title="Editar">
@@ -346,6 +418,7 @@
         </div>
     </div>
 
+    <!-- MODAL EDITAR -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <h3 style="margin-bottom:20px;">Editar Usuario</h3>
@@ -409,6 +482,25 @@
     </script>
 
     <script>
+        // JS del Buscador en tiempo real
+        document.getElementById('userSearchInput').addEventListener('keyup', function() {
+            let value = this.value.toLowerCase().trim();
+            let rows = document.querySelectorAll('#usersTable tbody tr');
+
+            rows.forEach(row => {
+                let name = row.querySelector('.search-name').textContent.toLowerCase();
+                let email = row.querySelector('.search-email').textContent.toLowerCase();
+                let slug = row.querySelector('.search-slug').textContent.toLowerCase();
+
+                if (name.includes(value) || email.includes(value) || slug.includes(value)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Guardar Scroll
         document.querySelectorAll("form").forEach(form => {
             form.addEventListener("submit", () => {
                 localStorage.setItem("scrollY", window.scrollY);

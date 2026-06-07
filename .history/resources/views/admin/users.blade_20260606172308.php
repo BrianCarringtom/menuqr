@@ -31,7 +31,7 @@
             overflow-y: hidden;
             border-radius: 16px;
             -webkit-overflow-scrolling: touch;
-            margin-top: 15px;
+            margin-top: 20px;
             background: #1f2937;
         }
 
@@ -56,40 +56,15 @@
             white-space: nowrap;
         }
 
-        /* 🔥 TITULOS Y CABECERA LISTA */
+        /* 🔥 TITULOS */
         .page-title {
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
         .section-title {
-            margin: 0;
+            margin: 25px 0 15px;
             font-size: 1.4rem;
-        }
-
-        .list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 35px 0 5px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        /* 🔥 CONTADOR SUPERIOR */
-        .table-header-counter {
-            font-size: 14px;
-            color: #e5e7eb;
-        }
-
-        .counter-badge {
-            background-color: #1f2937;
-            padding: 8px 14px;
-            border-radius: 8px;
-            border: 1px solid #374151;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         /* 🔥 BOTONES */
@@ -206,7 +181,7 @@
             </p>
         @endif
 
-        <h3 class="section-title" style="margin: 25px 0 15px;">Crear usuario business</h3>
+        <h3 class="section-title">Crear usuario business</h3>
 
         <form method="POST" action="/admin/create-user" class="create-user-form">
             @csrf
@@ -233,28 +208,7 @@
             <button type="submit">Crear Usuario</button>
         </form>
 
-        {{-- Lógica previa en Blade para contar el total antes de renderizar la tabla --}}
-        @php
-            $totalBanderas = 0;
-            foreach ($users as $user) {
-                $fechaCreacion = \Carbon\Carbon::parse($user->created_at)->startOfDay();
-                $fechaHoy = \Carbon\Carbon::now()->startOfDay();
-                if ($user->role !== 'admin' && $fechaCreacion->diffInDays($fechaHoy) >= 29) {
-                    $totalBanderas++;
-                }
-            }
-        @endphp
-
-        {{-- Cabecera alineada: Título a la izquierda, Contador a la derecha --}}
-        <div class="list-header">
-            <h3 class="section-title">Lista de Usuarios</h3>
-            <div class="table-header-counter">
-                <div class="counter-badge">
-                    <i class="fa-solid fa-flag" style="color: #ef4444;"></i>
-                    <span>Usuarios por vencer (29+ días): <strong>{{ $totalBanderas }}</strong></span>
-                </div>
-            </div>
-        </div>
+        <h3 class="section-title">Lista de Usuarios</h3>
 
         <div class="table-wrapper">
             <table class="custom-table">
@@ -275,14 +229,15 @@
                 <tbody>
                     @foreach ($users as $user)
                         @php
+                            // Seteamos ambas fechas a las 00:00:00 para calcular únicamente por días calendarios transcurridos
                             $fechaCreacion = \Carbon\Carbon::parse($user->created_at)->startOfDay();
                             $fechaHoy = \Carbon\Carbon::now()->startOfDay();
                             $diasPasados = $fechaCreacion->diffInDays($fechaHoy);
-                            $tieneBandera = $user->role !== 'admin' && $diasPasados >= 29;
                         @endphp
                         <tr>
                             <td style="text-align: center;">
-                                @if ($tieneBandera)
+                                {{-- Si NO es admin y tiene 29 días o más transcurridos --}}
+                                @if ($user->role !== 'admin' && $diasPasados >= 29)
                                     <i class="fa-solid fa-flag" style="color: #ef4444 !important; display: inline-block;"
                                         title="Vence pronto ({{ $diasPasados }} días transcurridos)"></i>
                                 @endif
@@ -307,6 +262,7 @@
                                 </a>
                             </td>
                             <td>
+                                {{-- Muestra: dd/mm/aaaa (X días) --}}
                                 {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}
                                 <span style="color: #9ca3af; font-size: 12px; margin-left: 5px;">
                                     ({{ $diasPasados }} {{ $diasPasados == 1 ? 'día' : 'días' }})

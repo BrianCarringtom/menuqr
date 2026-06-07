@@ -31,7 +31,7 @@
             overflow-y: hidden;
             border-radius: 16px;
             -webkit-overflow-scrolling: touch;
-            margin-top: 15px;
+            margin-top: 20px;
             background: #1f2937;
         }
 
@@ -56,37 +56,31 @@
             white-space: nowrap;
         }
 
-        /* 🔥 TITULOS Y CABECERA LISTA */
+        /* 🔥 TITULOS */
         .page-title {
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
         .section-title {
-            margin: 0;
+            margin: 25px 0 15px;
             font-size: 1.4rem;
         }
 
-        .list-header {
+        /* 🔥 CONTADOR INFERIOR */
+        .table-footer-counter {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 35px 0 5px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        /* 🔥 CONTADOR SUPERIOR */
-        .table-header-counter {
+            justify-content: flex-end;
+            margin-top: 15px;
             font-size: 14px;
             color: #e5e7eb;
         }
 
         .counter-badge {
-            background-color: #1f2937;
+            background-color: #374151;
             padding: 8px 14px;
             border-radius: 8px;
-            border: 1px solid #374151;
+            border: 1px solid #4b5563;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -206,7 +200,7 @@
             </p>
         @endif
 
-        <h3 class="section-title" style="margin: 25px 0 15px;">Crear usuario business</h3>
+        <h3 class="section-title">Crear usuario business</h3>
 
         <form method="POST" action="/admin/create-user" class="create-user-form">
             @csrf
@@ -233,28 +227,7 @@
             <button type="submit">Crear Usuario</button>
         </form>
 
-        {{-- Lógica previa en Blade para contar el total antes de renderizar la tabla --}}
-        @php
-            $totalBanderas = 0;
-            foreach ($users as $user) {
-                $fechaCreacion = \Carbon\Carbon::parse($user->created_at)->startOfDay();
-                $fechaHoy = \Carbon\Carbon::now()->startOfDay();
-                if ($user->role !== 'admin' && $fechaCreacion->diffInDays($fechaHoy) >= 29) {
-                    $totalBanderas++;
-                }
-            }
-        @endphp
-
-        {{-- Cabecera alineada: Título a la izquierda, Contador a la derecha --}}
-        <div class="list-header">
-            <h3 class="section-title">Lista de Usuarios</h3>
-            <div class="table-header-counter">
-                <div class="counter-badge">
-                    <i class="fa-solid fa-flag" style="color: #ef4444;"></i>
-                    <span>Usuarios por vencer (29+ días): <strong>{{ $totalBanderas }}</strong></span>
-                </div>
-            </div>
-        </div>
+        <h3 class="section-title">Lista de Usuarios</h3>
 
         <div class="table-wrapper">
             <table class="custom-table">
@@ -273,12 +246,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- Inicializamos el contador de banderas en 0 --}}
+                    @php $totalBanderas = 0; @endphp
+
                     @foreach ($users as $user)
                         @php
                             $fechaCreacion = \Carbon\Carbon::parse($user->created_at)->startOfDay();
                             $fechaHoy = \Carbon\Carbon::now()->startOfDay();
                             $diasPasados = $fechaCreacion->diffInDays($fechaHoy);
+
+                            // Si cumple las condiciones, sumamos 1 al contador
                             $tieneBandera = $user->role !== 'admin' && $diasPasados >= 29;
+                            if ($tieneBandera) {
+                                $totalBanderas++;
+                            }
                         @endphp
                         <tr>
                             <td style="text-align: center;">
@@ -343,6 +324,14 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        {{-- Apartado inferior derecho con el conteo exacto --}}
+        <div class="table-footer-counter">
+            <div class="counter-badge">
+                <i class="fa-solid fa-flag" style="color: #ef4444;"></i>
+                <span>Usuarios por vencer (29+ días): <strong>{{ $totalBanderas }}</strong></span>
+            </div>
         </div>
     </div>
 

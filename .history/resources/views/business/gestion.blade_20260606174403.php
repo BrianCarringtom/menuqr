@@ -237,51 +237,6 @@
             background: #dc2626;
         }
 
-        /* Styles para la paginación dinámica */
-        .pagination-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 22px;
-            background: #fafafa;
-            border-top: 1px solid #eee;
-        }
-
-        .pagination-info {
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        .pagination-buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-page {
-            background: white;
-            border: 1px solid #d1d5db;
-            color: #374151;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-
-        .btn-page:hover:not(:disabled) {
-            background: #f3f4f6;
-            border-color: #1520A6;
-            color: #1520A6;
-        }
-
-        .btn-page:disabled {
-            background: #f3f4f6;
-            color: #9ca3af;
-            cursor: not-allowed;
-            border-color: #e5e7eb;
-        }
-
         /* ================= EMPTY ================= */
 
         .empty {
@@ -731,7 +686,7 @@
 
                         @if (count(auth()->user()->products) > 0)
 
-                            <table id="productsTable">
+                            <table>
 
                                 <thead>
 
@@ -790,16 +745,6 @@
                                 </tbody>
 
                             </table>
-
-                            <div id="paginationControls" class="pagination-container">
-                                <div class="pagination-info" id="paginationInfo"></div>
-                                <div class="pagination-buttons">
-                                    <button class="btn-page" id="btnPrev" onclick="prevPage()"><i
-                                            class="fas fa-chevron-left"></i> Ant.</button>
-                                    <button class="btn-page" id="btnNext" onclick="nextPage()">Sig. <i
-                                            class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
                         @else
                             <div class="empty">
                                 No hay productos
@@ -989,67 +934,6 @@
                 menuBtn.style.display = 'flex';
             }
         });
-    </script>
-
-    <script>
-        let currentPage = 1;
-        const rowsPerPage = 10;
-        let tableRows = [];
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const table = document.getElementById("productsTable");
-            if (table) {
-                tableRows = Array.from(table.querySelectorAll("tbody tr"));
-
-                // Si hay 10 o menos productos, ocultamos los controles de paginación por limpieza visual
-                if (tableRows.length <= rowsPerPage) {
-                    const controls = document.getElementById("paginationControls");
-                    if (controls) controls.style.display = "none";
-                } else {
-                    displayPage(currentPage);
-                }
-            }
-        });
-
-        function displayPage(page) {
-            const totalPages = Math.ceil(tableRows.length / rowsPerPage);
-
-            if (page < 1) page = 1;
-            if (page > totalPages) page = totalPages;
-
-            currentPage = page;
-
-            // Ocultar todas las filas primero, luego mostrar solo el rango correspondiente
-            tableRows.forEach((row, index) => {
-                const start = (page - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
-                if (index >= start && index < end) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-
-            // Actualizar el texto informativo y los botones
-            const infoText = document.getElementById("paginationInfo");
-            if (infoText) {
-                const startItem = (page - 1) * rowsPerPage + 1;
-                const endItem = Math.min(page * rowsPerPage, tableRows.length);
-                infoText.textContent = `Mostrando ${startItem}-${endItem} de ${tableRows.length}`;
-            }
-
-            document.getElementById("btnPrev").disabled = (page === 1);
-            document.getElementById("btnNext").disabled = (page === totalPages);
-        }
-
-        function prevPage() {
-            if (currentPage > 1) displayPage(currentPage - 1);
-        }
-
-        function nextPage() {
-            const totalPages = Math.ceil(tableRows.length / rowsPerPage);
-            if (currentPage < totalPages) displayPage(currentPage + 1);
-        }
     </script>
 
 </body>
