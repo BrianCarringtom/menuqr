@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Carringtom Tech</title>
+    <title>Carringtom PRO</title>
 
     <!-- FUENTE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -582,8 +582,6 @@
             background: rgba(255, 255, 255, 0.04);
             color: white;
             outline: none;
-            font-size: 16px;
-            /* Evita el zoom automático en móviles */
         }
 
         .contact-form button {
@@ -597,36 +595,27 @@
             cursor: pointer;
         }
 
-        /* Mensajes de respuesta (Éxito / Error) */
-        .form-response {
-            margin-top: 25px;
-            /* <--- Aumenta este número (ej. 25px o 30px) para que baje más */
-            padding: 16px;
-            border-radius: 16px;
-            /* Combinando con el estilo de tus inputs */
-            font-size: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
+        .contact-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.8);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .form-response.hidden {
-            display: none;
-        }
-
-        /* Estilo de Éxito (Verde translúcido) */
-        .form-response.success {
-            display: block;
-            background-color: rgba(46, 204, 113, 0.15);
-            color: #2ecc71;
-            border: 1px solid rgba(46, 204, 113, 0.3);
-        }
-
-        /* Estilo de Error (Rojo translúcido) */
-        .form-response.error {
-            display: block;
-            background-color: rgba(231, 76, 60, 0.15);
-            color: #e74c3c;
-            border: 1px solid rgba(231, 76, 60, 0.3);
+        .contact-box i {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: rgba(37, 99, 235, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #60a5fa;
+            font-size: 22px;
         }
 
         /* FOOTER */
@@ -983,7 +972,7 @@
         <i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
 
         <nav id="menu">
-            <a href="#servicios">Servicios</a>
+            <a href="#negocios">Negocios</a>
             <a href="#galeria">Galeria</a>
             <a href="#contacto">Contacto</a>
         </nav>
@@ -1046,8 +1035,8 @@
 
     </section>
 
-    <!-- TIPOS SERVICIOS -->
-    <section class="section" id="servicios">
+    <!-- TIPOS NEGOCIOS -->
+    <section class="section" id="negocios">
 
         <div class="section-title">
             <h2>Nuestros Servicios</h2>
@@ -1059,7 +1048,7 @@
         <div class="cards">
 
             <div class="card">
-                <img src="/images/galeria2.png">
+                <img src="/images/restaurante.jpg">
 
                 <div class="card-content">
                     <h3>Desarrollo Web</h3>
@@ -1069,7 +1058,7 @@
             </div>
 
             <div class="card">
-                <img src="/images/apps.jpg">
+                <img src="/images/snack.jpeg">
 
                 <div class="card-content">
                     <h3>Apps Móviles</h3>
@@ -1079,7 +1068,7 @@
             </div>
 
             <div class="card">
-                <img src="/images/marketing.jpg">
+                <img src="/images/barberia.jpeg">
 
                 <div class="card-content">
                     <h3>Marketing</h3>
@@ -1104,11 +1093,11 @@
         </div>
 
         <div class="gallery-grid">
-            <img src="/images/galeria1.jpg">
-            <img src="/images/galeria21.png">
+            <img src="/images/galeria1.webp">
+            <img src="/images/galeria2.png">
             <img src="/images/galeria3.jpg">
-            <img src="/images/galeria4.webp">
-            <img src="/images/galeria5.jpg">
+            <img src="/images/galeria4.jpg">
+            <img src="/images/galeria5.jpeg">
             <img src="/images/galeria6.jpg">
         </div>
 
@@ -1213,23 +1202,55 @@
         <div class="contact-container">
 
             <!-- FORM -->
-            <form class="contact-form" id="contactForm" action="https://formsubmit.co/t4046145@gmail.com"
-                method="POST">
+            <div class="contact-form">
 
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="correo" placeholder="Tu correo" required>
-                <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+                <input type="text" placeholder="Tu nombre">
 
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_subject" value="¡Nuevo mensaje desde el catálogo digital!">
+                <input type="email" placeholder="Tu correo">
 
-                <button type="submit" id="submitBtn">
-                    <span class="btn-text">Enviar mensaje</span>
-                </button>
+                <textarea rows="5" placeholder="Escribe tu mensaje..."></textarea>
 
-                <div id="formResponse" class="form-response hidden"></div>
-            </form>
+                <button>Enviar mensaje</button>
+
+            </div>
+
+            <!-- INFO -->
+            <div class="contact-info">
+
+                <div class="contact-box">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <div>
+                        <strong>Email</strong>
+                        <p>brianisaac@carringtom.com</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-box">
+
+                    <i class="fas fa-phone"></i>
+
+                    <div>
+                        <strong>Teléfono</strong>
+                        <p>+52 961 123 4567</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-box">
+
+                    <i class="fas fa-map-marker-alt"></i>
+
+                    <div>
+                        <strong>Ubicación</strong>
+                        <p>México</p>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -1247,7 +1268,7 @@
                     <img src="/images/logo.png" alt="Carringtom">
                 </div>
 
-                <h2>Carringtom Tech</h2>
+                <h2>Carringtom</h2>
 
                 <p>
                     Diseño web profesional y experiencias digitales premium
@@ -1263,7 +1284,7 @@
 
                 <ul>
                     <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#servicios"><i class="fas fa-briefcase"></i> Servicios</a></li>
+                    <li><a href="#negocios"><i class="fas fa-briefcase"></i> Negocios</a></li>
                     <li><a href="#nosotros"><i class="fas fa-user"></i> Nosotros</a></li>
                     <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
                 </ul>
@@ -1291,7 +1312,7 @@
 
                 <ul>
                     <li><i class="fas fa-envelope"></i> brianisaac@carringtom.com</li>
-                    <li><i class="fas fa-phone"></i> +52 961 581 6723</li>
+                    <li><i class="fas fa-phone"></i> +52 961 123 4567</li>
                 </ul>
 
                 <div class="socials">
@@ -1311,7 +1332,7 @@
     </footer>
 
     <!-- BOTON WHATSAPP -->
-    <a href="https://wa.me/529611050667" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/529611234567" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1319,47 +1340,6 @@
         function toggleMenu() {
             document.getElementById("menu").classList.toggle("active");
         }
-    </script>
-
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const form = this;
-            const button = document.getElementById('submitBtn');
-            const buttonText = button.querySelector('.btn-text');
-            const responseDiv = document.getElementById('formResponse');
-
-            // Estado de carga
-            button.disabled = true;
-            buttonText.textContent = 'Enviando...';
-            responseDiv.className = 'form-response hidden';
-
-            try {
-                const formData = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    responseDiv.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.';
-                    responseDiv.className = 'form-response success';
-                    form.reset();
-                } else {
-                    throw new Error('Error en el servidor');
-                }
-            } catch (error) {
-                responseDiv.textContent = 'Ocurrió un error al enviar. Por favor, inténtalo de nuevo.';
-                responseDiv.className = 'form-response error';
-            } finally {
-                button.disabled = false;
-                buttonText.textContent = 'Enviar mensaje';
-            }
-        });
     </script>
 
 </body>

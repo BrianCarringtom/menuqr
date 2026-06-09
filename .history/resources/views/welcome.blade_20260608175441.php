@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Carringtom Tech</title>
+    <title>Carringtom PRO</title>
 
     <!-- FUENTE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -560,51 +560,19 @@
             flex-wrap: wrap;
         }
 
-        .contact-form,
-        .contact-info {
-            flex: 1;
+        /* Deshabilitar botón mientras envía */
+        .contact-form button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            opacity: 0.7;
         }
 
-        .contact-form {
-            background: rgba(15, 23, 42, 0.8);
-            border-radius: 30px;
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 18px;
-            border-radius: 16px;
-            border: 1px solid rgba(96, 165, 250, 0.15);
-            background: rgba(255, 255, 255, 0.04);
-            color: white;
-            outline: none;
-            font-size: 16px;
-            /* Evita el zoom automático en móviles */
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* Mensajes de respuesta (Éxito / Error) */
+        /* Mensajes de respuesta */
         .form-response {
-            margin-top: 25px;
-            /* <--- Aumenta este número (ej. 25px o 30px) para que baje más */
-            padding: 16px;
-            border-radius: 16px;
-            /* Combinando con el estilo de tus inputs */
-            font-size: 15px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -613,20 +581,43 @@
             display: none;
         }
 
-        /* Estilo de Éxito (Verde translúcido) */
+        /* Estilo de Éxito (Verde suave o azul según tu paleta) */
         .form-response.success {
             display: block;
-            background-color: rgba(46, 204, 113, 0.15);
+            background-color: rgba(46, 204, 113, 0.2);
             color: #2ecc71;
-            border: 1px solid rgba(46, 204, 113, 0.3);
+            border: 1px solid #2ecc71;
         }
 
-        /* Estilo de Error (Rojo translúcido) */
+        /* Estilo de Error (Rojo) */
         .form-response.error {
             display: block;
-            background-color: rgba(231, 76, 60, 0.15);
+            background-color: rgba(231, 76, 60, 0.2);
             color: #e74c3c;
-            border: 1px solid rgba(231, 76, 60, 0.3);
+            border: 1px solid #e74c3c;
+        }
+
+        .contact-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.8);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-box i {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: rgba(37, 99, 235, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #60a5fa;
+            font-size: 22px;
         }
 
         /* FOOTER */
@@ -1230,6 +1221,44 @@
 
                 <div id="formResponse" class="form-response hidden"></div>
             </form>
+
+            <!-- INFO -->
+            <div class="contact-info">
+
+                <div class="contact-box">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <div>
+                        <strong>Email</strong>
+                        <p>brianisaac@carringtom.com</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-box">
+
+                    <i class="fas fa-phone"></i>
+
+                    <div>
+                        <strong>Teléfono</strong>
+                        <p>+52 961 581 6723</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-box">
+
+                    <i class="fas fa-map-marker-alt"></i>
+
+                    <div>
+                        <strong>Ubicación</strong>
+                        <p>México</p>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Carringtom Tech</title>
+    <title>Carringtom PRO</title>
 
     <!-- FUENTE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -627,6 +627,29 @@
             background-color: rgba(231, 76, 60, 0.15);
             color: #e74c3c;
             border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .contact-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.8);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-box i {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: rgba(37, 99, 235, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #60a5fa;
+            font-size: 22px;
         }
 
         /* FOOTER */

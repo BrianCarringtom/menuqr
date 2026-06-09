@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Carringtom Tech</title>
+    <title>Carringtom PRO</title>
 
     <!-- FUENTE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -597,36 +597,27 @@
             cursor: pointer;
         }
 
-        /* Mensajes de respuesta (Éxito / Error) */
-        .form-response {
-            margin-top: 25px;
-            /* <--- Aumenta este número (ej. 25px o 30px) para que baje más */
-            padding: 16px;
-            border-radius: 16px;
-            /* Combinando con el estilo de tus inputs */
-            font-size: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
+        .contact-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.8);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .form-response.hidden {
-            display: none;
-        }
-
-        /* Estilo de Éxito (Verde translúcido) */
-        .form-response.success {
-            display: block;
-            background-color: rgba(46, 204, 113, 0.15);
-            color: #2ecc71;
-            border: 1px solid rgba(46, 204, 113, 0.3);
-        }
-
-        /* Estilo de Error (Rojo translúcido) */
-        .form-response.error {
-            display: block;
-            background-color: rgba(231, 76, 60, 0.15);
-            color: #e74c3c;
-            border: 1px solid rgba(231, 76, 60, 0.3);
+        .contact-box i {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: rgba(37, 99, 235, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #60a5fa;
+            font-size: 22px;
         }
 
         /* FOOTER */
@@ -1230,6 +1221,44 @@
 
                 <div id="formResponse" class="form-response hidden"></div>
             </form>
+
+            <!-- INFO -->
+            <div class="contact-info">
+
+                <div class="contact-box">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <div>
+                        <strong>Email</strong>
+                        <p>brianisaac@carringtom.com</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-box">
+
+                    <i class="fas fa-phone"></i>
+
+                    <div>
+                        <strong>Teléfono</strong>
+                        <p>+52 961 581 6723</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-box">
+
+                    <i class="fas fa-map-marker-alt"></i>
+
+                    <div>
+                        <strong>Ubicación</strong>
+                        <p>México</p>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
